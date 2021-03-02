@@ -20,6 +20,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use tool_customlang\local\mlang\langstring;
+
 //moodleform is defined in formslib.php
 require_once("$CFG->libdir/formslib.php");
 
@@ -27,7 +29,7 @@ class upload extends moodleform {
     public function definition() {
         $mform = $this->_form;
 
-        $mform->addElement('filemanager', 'attachment', get_string("uploadlabel", "tad" ), null,
+        $mform->addElement('filemanager', 'attachment', get_string("uploadlabel", "local_tad"), null,
                     array('subdirs' => 0, 'maxbytes' => 0, 'areamaxbytes' => 1048576000, 'maxfiles' => 5000,
                           'accepted_types' => '*', 'return_types'=> 1 | 2));
 

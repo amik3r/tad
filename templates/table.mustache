@@ -36,20 +36,24 @@
     <strong for="filter" class="col-sm-1 mb-3">Search</strong>
     <input id="filter" name=filter class="form-control col-sm-3 mb-3"  onKeyUp="filter()">
 </div>
-<p id="noresult" style="display: none">No result found</p>
+<p id="noresult" style="display: none">{{label_noresult}}</p>
 <div id="table-container">
 <table style="width: 100%" class="table" id="filter-table"></table>
 <table style="width: 100%" class="table" id="tad-table">
   <tr>
-    <th scope="col" class="th">Author</th>
-    <th scope="col">Course code</th>
-    <th scope="col">Course name</th>
-    <th scope="col">Entity</th>
-    <th scope="col">Time created</th>
-    <th scope="col">File</th>
+    <th scope="col" class="th">{{id_heading}}</th>
+    <th scope="col" class="th">{{author_heading}}</th>
+    <th scope="col" class="th">{{course_code_heading}}</th>
+    <th scope="col" class="th">{{entity_heading}}</th>
+    <th scope="col" class="th">{{course_name_heading}}</th>
+    <th scope="col" class="th">{{time_created_heading}}</th>
+    <th scope="col" class="th">{{file_heading}}</th>
   </tr>
 {{#rows}}
 <tr class="tr">
+    <td>
+        {{id}}
+    </td>
     <td>
         {{author}}
     </td>

@@ -19,23 +19,30 @@
  * @copyright 2021, Antal Miklós <antal.miklos@gtk.bme.hu>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+use function PHPSTORM_META\type;
+
 global $PAGE;
 require_once(__DIR__ . '../../../config.php');
 
-function tad_pluginfile($filename, $context, array $options=array()){
+$types = array(
+    "word"  =>  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "pdf"   =>  "application/pdf"
+);
+
+function get_all_tad_files($filetype="word"){
+    global $types;
     global $DB;
 
-    $filedata = $DB->get_record('files', ['filename' => $filename]);
+    $type = $types[$filetype];
 
-    if (!$filedata) {
-        return $filedata;
-    }
-
-    $fs = get_file_storage();
-    $file = $fs->get_file($context->id, 'local_tad', 'attachment', $filedata->id, $filedata->filepath, $filedata->filename);
-    if (!$file) {
-        return $filedata; // The file does not exist.
-    }
-    // We can now send the file back to the browser - in this case with a cache lifetime of 1 day and no filtering. 
-    send_stored_file($file, 86400, 0, false, $options);
+    $filesql = "
+        SELECT * FROM {files}
+        WHERE filename 
+            LIKE :filepattern 
+        AND component = :filearea
+        AND mimetype = :filetype
+    ";
+    $rows = $DB->get_records_sql($filesql, ['filepattern' => "TAD%", 'filearea' => 'local_tad', 'filetype' => $type]);
+    return $rows;
 }

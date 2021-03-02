@@ -89,8 +89,8 @@ foreach ($rows as $r) {
         'url'           =>      $dllink
     ));
 }
-$PAGE->requires->js(new moodle_url('./scripts/test.js'), true);
+$PAGE->requires->js(new moodle_url('./scripts/script.js'), true);
 
 echo $OUTPUT->header();
-echo $OUTPUT->render_from_template('local_tad/tr', array('rows' => $templatecontent));
+echo $OUTPUT->render_from_template('local_tad/table', array('rows' => $templatecontent));
 echo $OUTPUT->footer();
