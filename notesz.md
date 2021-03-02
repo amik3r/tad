@@ -54,3 +54,9 @@ C:\temp\tadok_eredeti\menedzsment\tavasz\TAD-hu-BMEGT20A018-Termelesmenedzsment-
 
     - Zarka Dénes --- MTI igazgató
         -  PDF-ek stamplizása letöltéskor
+
+# 2021.03.02 Emő meeting
+
+    -   Félév jelölése a fájlokban
+    -   3. szekció szerkesztése
+    -   mintatanterv - tárgykód
