@@ -15,13 +15,33 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
  
 /**
+ *  * Strings for component 'tad', language 'en'
+
  * @package   local_tad
  * @copyright 2021, Antal Miklós <antal.miklos@gtk.bme.hu>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['access:manager'] = 'Manage all aspects of TAD process';
-$string['access:approver'] = 'Approve TADs';
-$string['access:editor'] = 'Edit TADs';
-$string['access:reviewer'] = 'Review TADs';
+defined('MOODLE_INTERNAL') || die();
+// Page titles
+$string['manager'] = 'Manage all aspects of TAD process';
+$string['approver'] = 'Approve TADs';
+$string['editor'] = 'Edit TADs';
+$string['reviewer'] = 'Review TADs';
 $string['uploadlabel'] = 'Upload TADs';
+
+// Notifications
+$string['upload_cancelled'] = 'Upload Cancelled';
+$string['upload_successful'] = 'Upload successful';
+$string['upload_failed'] = 'Upload failed';
+
+// Table headings in view.php
+$string['author_heading'] = 'Author';
+$string['course_code_heading'] = 'Course Code';
+$string['course_name_heading'] = 'Course Name';
+$string['entity_heading'] = 'Entity';
+$string['time_created_heading'] = 'Time Created';
+$string['file_heading'] = 'Files';
+$string['id_heading'] = 'ID';
+// Misc HTML content
+$string['label_noresult'] = 'No results!';
