@@ -23,74 +23,50 @@
 global $DB;
 global $USER;
 
-require_once(__DIR__ . '/../../config.php');
+require_once(__DIR__    . '/../../config.php');
+require_once(__DIR__    . './locallib.php');
+require_once(__DIR__    . './classes/tad/tadfileobject.php');
+require_once(__DIR__    . './classes/tad/tadobject.php');
 
 $CFG->cachejs = false;
 $PAGE->set_context(\context_system::instance());
-$PAGE->requires->jquery();
-
 $PAGE->set_url(new moodle_url('/local/tad/view.php'));
 $PAGE->set_title('TAD');
 $PAGE->set_heading('TAD');
-
-$filesql = "
-SELECT * FROM {files}
-WHERE filename 
-    LIKE :filepattern 
-AND component = :filearea
-
-";
-//AND mimetype LIKE 'application/pdf'
-
-$entitysql = "
-SELECT course.fullname, category.name 
-FROM {course} course
-INNER JOIN {course_categories} category
-ON course.category = category.id
-AND course.shortname LIKE :coursecode
-";
-
-
-$rows = $DB->get_records_sql($filesql, ['filepattern' => "TAD%", 'filearea' => 'local_tad']);
-
-$templatecontent = array();
-
-foreach ($rows as $r) {
-    $filename = $r->filename;
-    $author = $r->author;
-    $timecreated = $r->timecreated;
-    $itemid = $r->itemid;
-    $contextid = $r->contextid;
-    $component = $r->component;
-    $filearea = $r->filearea;
-    $filepath = $r->filepath;
-    
-    $fullname = 'Tantárgy neve';
-    $entity = 'tanszék';
-
-    $x = explode("_", $filename);
-
-    $coursecode = explode('.',$x[1])[0];
-    
-    if($coursedetails = $DB->get_record_sql($entitysql, ['coursecode' => $coursecode])){
-        $fullname = $coursedetails->fullname;
-        $entity = $coursedetails->name;
-    };
-
-    $dllink = moodle_url::make_pluginfile_url($contextid, 'local_tad', 'attachment', $itemid, $filepath, $filename, true);
-
-    array_push($templatecontent, array(
-        'author'        =>      $author,
-        'coursename'    =>      $coursecode,
-        'entity'        =>      $entity,
-        'fullname'      =>      $fullname,
-        'timecreated'   =>      date("Y-m-d h:i",$timecreated),
-        'filename'      =>      $filename,
-        'url'           =>      $dllink
-    ));
-}
+$PAGE->requires->jquery();
 $PAGE->requires->js(new moodle_url('./scripts/script.js'), true);
 
+
+$templatecontent = array();
+$tadfiles = get_all_tad_files();
+
+$i = 0;
+foreach ($tadfiles as $f) {
+    $i++;
+    $tadfile = new TadFileObject($f);
+    $tad = new TadObject(
+        $tadfile->author,
+        $tadfile->coursecode,
+        $tadfile->entity,
+        $tadfile->fullname,
+        $tadfile->timecreated,
+        $tadfile->filename,
+        $tadfile->dllink,
+        $i
+    );
+    array_push($templatecontent, $tad->get_as_templatecontext());
+}
+$fulltemplatecontext = array(
+    'id_heading'                => get_string('id_heading', "local_tad"),
+    'author_heading'            => get_string('author_heading', "local_tad"),
+    'course_code_heading'       => get_string('course_code_heading', "local_tad"),
+    'course_name_heading'       => get_string('course_name_heading', "local_tad"),
+    'entity_heading'            => get_string('entity_heading', "local_tad"),
+    'time_created_heading'      => get_string('time_created_heading', "local_tad"),
+    'file_heading'              => get_string('file_heading', "local_tad"),
+    'label_noresult'            => get_string('label_noresult', "local_tad"),
+    'rows'                      => $templatecontent,
+);
 echo $OUTPUT->header();
-echo $OUTPUT->render_from_template('local_tad/table', array('rows' => $templatecontent));
+echo $OUTPUT->render_from_template('local_tad/table', $fulltemplatecontext);
 echo $OUTPUT->footer();
