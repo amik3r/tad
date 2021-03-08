@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/tad/db" VERSION="20210220" COMMENT="XMLDB file for local_banner"
+<XMLDB PATH="local/tad/db" VERSION="202103051" COMMENT="XMLDB file for local_banner"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
-  <!-- TADok általános adatai -->
   <TABLES>
-    <TABLE NAME="tad" COMMENT="each record is a banner">
+    <!-- TADok általános adatai -->
+    <TABLE NAME="tad" COMMENT="">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="name" TYPE="text" NOTNULL="true"/>
         <FIELD NAME="author" TYPE="text" NOTNULL="true"/>
         <FIELD NAME="editable" TYPE="text" NOTNULL="true"/>
-        <FIELD NAME="timerelevant" TYPE="text" NOTNULL="true"/>
+        <FIELD NAME="coursecode" TYPE="text" NOTNULL="true"/>
+        <FIELD NAME="dlurl" TYPE="text" NOTNULL="true"/>
+        <FIELD NAME="semester" TYPE="int" LENGTH="10" NOTNULL="true"/>
+        <FIELD NAME="timerelevant" TYPE="text" NOTNULL="false"/>
         <FIELD NAME="timecreated" TYPE="text" NOTNULL="true"/>
         <FIELD NAME="version" TYPE="int" LENGTH="10" NOTNULL="true"/>
       </FIELDS>
@@ -20,65 +23,13 @@
       </KEYS>
     </TABLE>
 
-    <!-- TADok jóváhagyási állapota -->
-    <TABLE NAME="tad_approved" COMMENT="each record is a banner">
+    <!-- Corriculum data -->
+    <TABLE NAME="tad_corriculum" COMMENT="">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="tadid" TYPE="int" LENGTH="10" NOTNULL="true"/>
-        <FIELD NAME="flagged" TYPE="binary" NOTNULL="true"/>
-        <FIELD NAME="approved" TYPE="binary" NOTNULL="true"/>
-      </FIELDS>
-      <KEYS>
-        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-      </KEYS>
-    </TABLE>
-
-    <!-- TAD mezői -->
-    <TABLE NAME="tad_section" COMMENT="each record is a banner">
-      <FIELDS>
-        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="tadid" TYPE="int" LENGTH="10" NOTNULL="true"/>
-        <FIELD NAME="name" TYPE="text" NOTNULL="true"/>
-        <FIELD NAME="value" TYPE="text" NOTNULL="true"/>
-      </FIELDS>
-      <KEYS>
-        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-      </KEYS>
-    </TABLE>
-
-    <!-- Mezők elemei -->
-    <TABLE NAME="tad_section_fields" COMMENT="each record is a banner">
-      <FIELDS>
-        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="sectionid" TYPE="int" LENGTH="10" NOTNULL="true"/>
-        <FIELD NAME="name" TYPE="text" NOTNULL="true"/>
-        <FIELD NAME="value" TYPE="text" NOTNULL="true"/>
-      </FIELDS>
-      <KEYS>
-        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-      </KEYS>
-    </TABLE>
-
-    <!-- Mezők elemeinek alelemei -->
-    <TABLE NAME="tad_section_fields_subfields" COMMENT="each record is a banner">
-      <FIELDS>
-        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="tadid" TYPE="int" LENGTH="10" NOTNULL="true"/>
-        <FIELD NAME="name" TYPE="text" NOTNULL="true"/>
-        <FIELD NAME="value" TYPE="text" NOTNULL="true"/>
-      </FIELDS>
-      <KEYS>
-        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-      </KEYS>
-    </TABLE>
-
-    <!-- TAD fájlok adatai -->
-    <TABLE NAME="tad_files" COMMENT="each record is a banner">
-      <FIELDS>
-        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="tadid" TYPE="int" LENGTH="10" NOTNULL="true"/>
-        <FIELD NAME="name" TYPE="text" NOTNULL="true"/>
-        <FIELD NAME="value" TYPE="text" NOTNULL="true"/>
+        <FIELD NAME="coursename" TYPE="text" NOTNULL="true"/>
+        <FIELD NAME="coursecode" TYPE="text" NOTNULL="true"/>
+        <FIELD NAME="version" TYPE="int" LENGTH="10" NOTNULL="true"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

@@ -37,14 +37,12 @@ $PAGE->set_heading('TAD Upload');
 $mform = new upload();
 
 if ($mform->is_cancelled()) {
-    // Go back to manage
     redirect($CFG->wwwroot . '/local/tad/view.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
-    //Handle form cancel operation, if cancel button is present on form
 } else if ($fromform = $mform->get_data()) {
     // instert new data into DB
     if ($data = $mform->get_data()) {
         try{
-            file_save_draft_area_files($data->attachment, $PAGE->context->id, 'local_tad', 'attachment', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 5000));
+            file_save_draft_area_files($data->attachment, $PAGE->context->id, 'local_tad_temp', 'attachment', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 5000));
             redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_SUCCESS);
         } catch(Throwable $th) {
             redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));

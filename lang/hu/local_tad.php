@@ -22,6 +22,11 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
+
+// Settings page labels
+$string['settings_pluginname'] = 'TAD';
+$string['settings_semester_label'] = 'Félév';
+
 $string['manager'] = 'TAD-ok teljeskörű kezelése';
 $string['approver'] = 'TAD-ok jóváhagyása';
 $string['editor'] = 'TAD-ok szerkesztése';
@@ -46,3 +51,7 @@ $string['id_heading'] = 'ID';
 
 // Misc HTML content
 $string['label_noresult'] = 'Nincs találat!';
+
+$string['semester_select_label'] = 'Félév';
+$string['filterlabel'] = 'Szűrés';
+$string['semester_heading'] = 'Félév';

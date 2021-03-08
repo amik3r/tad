@@ -47,12 +47,12 @@ class TadFileObject {
         //$this->get_course_details();
 
         /// !!!!! PLACEHOLDER !!!!!!!
-        $this->fullname = 'tanszék';
         $this->entity = 'teszt';
+
         $this->dllink = moodle_url::make_pluginfile_url(
-            $this->contextid, 
-            'local_tad', 
-            'attachment', 
+            $this->contextid,
+            'local_tad_temp', 
+            'attachment',
             $this->itemid, 
             $this->filepath, 
             $this->filename, 
