@@ -45,7 +45,6 @@ class TadObject {
             'id'            => $this->id      
         );
     }
-
     public function save_to_db(){
         
     }
