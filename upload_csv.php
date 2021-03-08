@@ -26,6 +26,8 @@ global $USER;
 
 require_once(__DIR__ . '/../../config.php');
 require_once($CFG->dirroot . '/local/tad/classes/form/upload_csv.php');
+require_once(__DIR__    . './locallib.php');
+
 require_login();
 
 $PAGE->set_context(\context_system::instance());
@@ -45,6 +47,7 @@ if ($mform->is_cancelled()) {
     if ($data = $mform->get_data()) {
         try{
             file_save_draft_area_files($data->attachment, 1, 'local_tad', 'csv_temp', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 1));
+
             // read csv file
             $fs = get_file_storage();
             $file = $fs->get_area_files(1, 'local_tad', 'csv_temp');
@@ -60,13 +63,17 @@ if ($mform->is_cancelled()) {
                         $corriculum_entry->coursename = $linecont[3];
                         $corriculum_entry->coursecode= $linecont[2];
                         $corriculum_entry->version = 1;
+                        echo $linecont[2] . "---" . $linecont[3] . "<br>";
+                        create_tad_corriculum_in_db($corriculum_entry);
                     }
                 }
                 // Delete file
-                $f->delete();
+                //$f->delete();
 }
         } catch(Throwable $th) {
-            redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
+            var_dump($th);
+            die;
+            //redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
         };
     };
 };

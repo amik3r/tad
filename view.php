@@ -79,8 +79,6 @@ if ($fromform = $mform->get_data()) {
     $templatecontent = construct_view_table(get_config('local_tad', 'semester'));
 }
 
-
-
 echo $OUTPUT->header();
 $mform->display();
 if($viewid = $url->get_param('id')){

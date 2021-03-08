@@ -28,7 +28,6 @@ require_once("$CFG->libdir/formslib.php");
 class upload extends moodleform {
     public function definition() {
         $mform = $this->_form;
-
         $mform->addElement('filemanager', 'attachment', get_string("uploadlabel", "local_tad"), null,
                     array('subdirs' => 0, 'maxbytes' => 0, 'areamaxbytes' => 1048576000, 'maxfiles' => 1,
                           'accepted_types' => '*', 'return_types'=> 1 | 2));

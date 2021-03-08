@@ -66,7 +66,7 @@ function local_tad_pluginfile($course = null, $cm = null, $context, $filearea, $
  
     // Retrieve the file from the Files API.
     $fs = get_file_storage();
-    $file = $fs->get_file(1, 'local_tad_temp', $filearea, $itemid, $filepath, $filename);
+    $file = $fs->get_file($context->id, 'local_tad', $filearea, $itemid, $filepath, $filename);
     if (!$file) {
         return false;
     }

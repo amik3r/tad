@@ -35,7 +35,6 @@ class TadObject {
     }
     public function get_as_templatecontext(){
         return array(
-            'author'        => $this->author,          
             'coursename'    => $this->coursename, 
             'semester'      => $this->semester, 
             'fullname'      => $this->fullname,   

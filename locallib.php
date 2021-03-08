@@ -112,6 +112,7 @@ function save_tad_files($semester = ''){
                 $filename_explode = explode('_', $filename);
                 $extension = explode('.',$filename_explode[1]);
             }
+            $f->delete();
         }
     }
 }
@@ -120,35 +121,34 @@ function construct_view_table($semester){
     global $DB;
 
     $coursenameSQL = "
-        SELECT DISTINCT coursename 
+        SELECT coursename 
         FROM {tad_corriculum}
-        WHERE coursecode LIKE :coursecode
+        WHERE coursecode = :coursecode
     ";
 
     $templatecontent = array();
     $tadfiles = get_all_temp_tad_files();
-    save_tad_files();
     $i = 0;
     foreach ($tadfiles as $f) {
         $i++;
         $tadfile = new TadFileObject($f);
-        $coursename = $DB->get_record_sql($coursenameSQL, ['coursecode' => $tadfile->coursecode]);
-        $tad = new TadObject(
-            $tadfile->author,
-            $tadfile->coursecode,
-            $semester,
-            $tadfile->entity,
-            $coursename,
-            $tadfile->timecreated,
-            $tadfile->filename,
-            $tadfile->dllink,
-            $i
-        );
-        array_push($templatecontent, $tad->get_as_templatecontext());
+        if($coursename = $DB->get_record_sql($coursenameSQL, ['coursecode' => $tadfile->coursecode])){
+            $tad = new TadObject(
+                $tadfile->author,
+                $tadfile->coursecode,
+                $semester,
+                $tadfile->entity,
+                $coursename->coursename,
+                $tadfile->timecreated,
+                $tadfile->filename,
+                $tadfile->dllink,
+                $i
+            );
+            array_push($templatecontent, $tad->get_as_templatecontext());
+        }
     }
     $fulltemplatecontext = array(
         'id_heading'                => get_string('id_heading', "local_tad"),
-        'author_heading'            => get_string('author_heading', "local_tad"),
         'course_code_heading'       => get_string('course_code_heading', "local_tad"),
         'course_name_heading'       => get_string('course_name_heading', "local_tad"),
         'entity_heading'            => get_string('entity_heading', "local_tad"),
