@@ -35,7 +35,7 @@ foreach ($files as $f) {
     } else {
         echo "duplicate found \n";
         try{
-            $file = $fs->get_file($f->contextid, $f->component, $f->filearead, $f->itemid, $f->filepath, $f->filename))
+            $file = $fs->get_file($f->contextid, $f->component, $f->filearea, $f->itemid, $f->filepath, $f->filename);
             $file->delete();
             echo $f->filename . " deleted\n";
         } catch (Throwable $th){
