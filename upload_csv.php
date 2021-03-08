@@ -26,7 +26,7 @@ global $USER;
 
 require_once(__DIR__ . '/../../config.php');
 require_once($CFG->dirroot . '/local/tad/classes/form/upload_csv.php');
-require_once(__DIR__    . './locallib.php');
+require_once(__DIR__    . '/locallib.php');
 
 require_login();
 
