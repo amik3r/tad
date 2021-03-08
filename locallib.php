@@ -146,6 +146,7 @@ function construct_view_table($semester){
             );
             array_push($templatecontent, $tad->get_as_templatecontext());
         }
+        echo $tadfile->filename . "<br>";
     }
     $fulltemplatecontext = array(
         'id_heading'                => get_string('id_heading', "local_tad"),
