@@ -34,12 +34,13 @@ foreach ($files as $f) {
         array_push($filenames, $f->filename);
     } else {
         echo "duplicate found \n";
-        if($file = $fs->get_file($f->contextid, $f->component, $f->filearead, $f->itemid, $f->filepath, $f->filename)){
+        try{
+            $file = $fs->get_file($f->contextid, $f->component, $f->filearead, $f->itemid, $f->filepath, $f->filename))
             $file->delete();
             echo $f->filename . " deleted\n";
+        } catch (Throwable $th){
+            echo $th . "\n";
         }
-        var_dump($f);
-        die;
     }
 }
 
