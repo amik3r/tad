@@ -38,6 +38,8 @@ foreach ($files as $f) {
             $file->delete();
             echo $f->filename . " deleted\n";
         }
+        var_dump($f);
+        die;
     }
 }
 
