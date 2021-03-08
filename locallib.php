@@ -121,7 +121,7 @@ function construct_view_table($semester){
     global $DB;
 
     $coursenameSQL = "
-        SELECT coursename 
+        SELECT DISTINCT coursename 
         FROM {tad_corriculum}
         WHERE coursecode = :coursecode
     ";
