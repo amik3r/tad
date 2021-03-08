@@ -34,8 +34,10 @@ foreach ($files as $f) {
         array_push($filenames, $f->filename);
     } else {
         echo "duplicate found \n";
-        $file = $fs->get_file($f->contextid, $f->component, $f->filearead, $f->itemid, $f->filepath, $f->filename);
-        $file->delete();
+        if($file = $fs->get_file($f->contextid, $f->component, $f->filearead, $f->itemid, $f->filepath, $f->filename)){
+            $file->delete();
+            echo $f->filename . " deleted\n";
+        }
     }
 }
 
