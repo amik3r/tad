@@ -23,6 +23,12 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
+
+// Settings page labels
+$string['settings_pluginname'] = 'TAD';
+$string['settings_semester_label'] = 'Semester';
+$string['settings_semester_desc'] = 'Aktuális félév';
+
 // Page titles
 $string['manager'] = 'Manage all aspects of TAD process';
 $string['approver'] = 'Approve TADs';
@@ -45,3 +51,7 @@ $string['file_heading'] = 'Files';
 $string['id_heading'] = 'ID';
 // Misc HTML content
 $string['label_noresult'] = 'No results!';
+
+$string['semester_select_label'] = 'Semester';
+$string['filterlabel'] = 'Filter';
+$string['semester_heading'] = 'Semester';

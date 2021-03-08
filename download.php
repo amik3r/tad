@@ -20,13 +20,16 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-global $PAGE;
 global $DB;
+global $USER;
 
+require_once(__DIR__    . '/../../config.php');
+require_once(__DIR__    . './locallib.php');
+require_once(__DIR__    . './classes/tad/tadfileobject.php');
+require_once(__DIR__    . './classes/tad/tadobject.php');
 
 require_once(__DIR__ . '/lib.php');
-require_once(__DIR__ . '/../../config.php');
-require_login();
+
 
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_url(new moodle_url('/local/tad/download.php'));
@@ -36,7 +39,7 @@ $PAGE->set_heading('files');
 $url = $PAGE->url;
 $requestedfilename = $url->get_param('fn');
 
-$a = tad_pluginfile($requestedfilename, $PAGE->context);
+
 //redirect($CFG->wwwroot . '/local/tad/view.php', 'Banner submission cancelled');
 
 echo $OUTPUT->header();

@@ -19,19 +19,13 @@
  * @copyright 2020, You Name <your@email.address>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 use tool_customlang\local\mlang\langstring;
 
 //moodleform is defined in formslib.php
 require_once("$CFG->libdir/formslib.php");
-
-class upload extends moodleform {
+class semester_select extends moodleform {
     public function definition() {
         $mform = $this->_form;
-
-        $mform->addElement('filemanager', 'attachment', get_string("uploadlabel", "local_tad"), null,
-                    array('subdirs' => 0, 'maxbytes' => 0, 'areamaxbytes' => 1048576000, 'maxfiles' => 5000,
-                          'accepted_types' => '*', 'return_types'=> 1 | 2));
 
         $options = array(
             '2020/21/02' => '2020/21/02',
@@ -42,6 +36,6 @@ class upload extends moodleform {
         $select->setSelected('2020/21/02');
         $mform->setDefault('semester','2020/21/02');
 
-        $this->add_action_buttons();
+        $this->add_action_buttons($cancel = false, $submitlabel=get_string('filterlabel', 'local_tad'));
     }
 }

@@ -20,6 +20,19 @@ A TAD első vázlatának nem minden mezője szerkeszthető.
 
 ---
 
+
+# Követelmények
+
+## Web services
+
+### Felhasználó:
+
+    -   Username: ws_tad
+    -   Pass:   P******!
+    -   email:  no@barmi.hu
+    -   token: ****
+
+
 ## Jogosultságok
 
 Név| Jogosultság | Szerkesztő

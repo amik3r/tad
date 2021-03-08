@@ -30,18 +30,8 @@ class upload extends moodleform {
         $mform = $this->_form;
 
         $mform->addElement('filemanager', 'attachment', get_string("uploadlabel", "local_tad"), null,
-                    array('subdirs' => 0, 'maxbytes' => 0, 'areamaxbytes' => 1048576000, 'maxfiles' => 5000,
+                    array('subdirs' => 0, 'maxbytes' => 0, 'areamaxbytes' => 1048576000, 'maxfiles' => 1,
                           'accepted_types' => '*', 'return_types'=> 1 | 2));
-
-        $options = array(
-            '2020/21/02' => '2020/21/02',
-            '2021/22/01' => '2021/22/01'
-        );
-        $select = $mform->addElement('select', 'semester', get_string('semester_select_label', 'local_tad'), $options);
-        // This will select the colour blue.
-        $select->setSelected('2020/21/02');
-        $mform->setDefault('semester','2020/21/02');
-
         $this->add_action_buttons();
     }
 }

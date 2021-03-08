@@ -22,9 +22,10 @@
 
 
 class TadObject {
-    function __construct($author, $coursename, $entity, $fullname, $timecreated, $filename, $url, $id = 0) {
+    function __construct($author, $coursename, $semester, $entity, $fullname, $timecreated, $filename, $url, $id = 0) {
         $this->author           = $author;
         $this->coursename       = $coursename;
+        $this->semester         = $semester;
         $this->entity           = $entity;
         $this->fullname         = $fullname;
         $this->timecreated      = date("Y-m-d h:i",$timecreated);
@@ -36,6 +37,7 @@ class TadObject {
         return array(
             'author'        => $this->author,          
             'coursename'    => $this->coursename, 
+            'semester'      => $this->semester, 
             'fullname'      => $this->fullname,   
             'entity'        => $this->entity,     
             'timecreated'   => $this->timecreated,
@@ -43,5 +45,9 @@ class TadObject {
             'url'           => $this->url,
             'id'            => $this->id      
         );
+    }
+
+    public function save_to_db(){
+        
     }
 }
