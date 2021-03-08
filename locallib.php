@@ -40,7 +40,7 @@ function get_all_temp_tad_files(){
             LIKE :filepattern 
         AND component LIKE :filearea
     ";
-    $rows = $DB->get_records_sql($filesql, ['filepattern' => "TAD%.pdf", 'filearea' => 'local_tad_temp']);
+    $rows = $DB->get_records_sql($filesql, ['filepattern' => "TAD%.pdf", 'filearea' => 'local_tad']);
     return $rows;
 }
 
