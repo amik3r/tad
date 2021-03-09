@@ -38,16 +38,13 @@ $PAGE->set_heading('TAD Upload');
 $mform = new upload();
 
 if ($mform->is_cancelled()) {
-    // Go back to manage
+    // Go back to view
     redirect($CFG->wwwroot . '/local/tad/view.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
-    //Handle form cancel operation, if cancel button is present on form
 } else if ($fromform = $mform->get_data()) {
-
     // Save temp file
     if ($data = $mform->get_data()) {
         try{
             file_save_draft_area_files($data->attachment, 1, 'local_tad', 'csv_temp', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 1));
-
             // read csv file
             $fs = get_file_storage();
             $file = $fs->get_area_files(1, 'local_tad', 'csv_temp');
@@ -57,23 +54,21 @@ if ($mform->is_cancelled()) {
                 foreach ($cont as $line) {
                     $linecont = explode(',',utf8_encode($line));
                     if ($linecont[0] == ''|| $linecont[1] == ''){
-
                     } else {
                         $corriculum_entry = new stdClass();
-                        $corriculum_entry->coursename = $linecont[3];
+                        $corriculum_entry->code = $linecont[0];
+                        $corriculum_entry->name = $linecont[1];
                         $corriculum_entry->coursecode= $linecont[2];
-                        $corriculum_entry->version = 1;
+                        $corriculum_entry->coursename = $linecont[3];
                         echo $linecont[2] . "---" . $linecont[3] . "<br>";
                         create_tad_corriculum_in_db($corriculum_entry);
                     }
                 }
                 // Delete file
-                //$f->delete();
+                $f->delete();
 }
         } catch(Throwable $th) {
-            var_dump($th);
-            die;
-            //redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
+            redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
         };
     };
 };

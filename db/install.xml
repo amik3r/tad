@@ -5,7 +5,7 @@
 >
   <TABLES>
     <!-- TADok általános adatai -->
-    <TABLE NAME="tad" COMMENT="">
+    <TABLE NAME="tad" COMMENT="basic tad data">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="name" TYPE="text" NOTNULL="true"/>
@@ -24,12 +24,14 @@
     </TABLE>
 
     <!-- Corriculum data -->
-    <TABLE NAME="tad_corriculum" COMMENT="">
+    <TABLE NAME="tad_corriculum" COMMENT="corriculum data">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="code" TYPE="text" NOTNULL="true"/>
+        <FIELD NAME="name" TYPE="text" NOTNULL="true"/>
         <FIELD NAME="coursename" TYPE="text" NOTNULL="true"/>
         <FIELD NAME="coursecode" TYPE="text" NOTNULL="true"/>
-        <FIELD NAME="version" TYPE="int" LENGTH="10" NOTNULL="true"/>
+        <FIELD NAME="type" TYPE="text" NOTNULL="true"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

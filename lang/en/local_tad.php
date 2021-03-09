@@ -35,6 +35,7 @@ $string['approver'] = 'Approve TADs';
 $string['editor'] = 'Edit TADs';
 $string['reviewer'] = 'Review TADs';
 $string['uploadlabel'] = 'Upload TADs';
+$string['upload_corriculumlabel'] = 'Upload corriculums';
 
 // Notifications
 $string['upload_cancelled'] = 'Upload Cancelled';
@@ -49,9 +50,12 @@ $string['entity_heading'] = 'Entity';
 $string['time_created_heading'] = 'Time Created';
 $string['file_heading'] = 'Files';
 $string['id_heading'] = 'ID';
+$string['semester_heading'] = 'Semester';
+$string['corriculum_code_heading'] = 'Corriculum Code';
+$string['corriculum_name_heading'] = 'Corriculum Name';
+
 // Misc HTML content
 $string['label_noresult'] = 'No results!';
-
 $string['semester_select_label'] = 'Semester';
 $string['filterlabel'] = 'Filter';
-$string['semester_heading'] = 'Semester';
+

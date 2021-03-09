@@ -25,15 +25,8 @@ use function PHPSTORM_META\type;
 global $PAGE;
 require_once(__DIR__ . '../../../config.php');
 
-$types = array(
-    "word"  =>  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    "pdf"   =>  "application/pdf"
-);
-
 function get_all_temp_tad_files(){
-    global $types;
     global $DB;
-
     $filesql = "
         SELECT * FROM {files}
         WHERE filename 
@@ -44,54 +37,17 @@ function get_all_temp_tad_files(){
     return $rows;
 }
 
-function get_destfile($conversion){
-    if($convertedfile = $conversion->get_destfile()){
-        var_dump($convertedfile);
-    } else {
-        echo "\r" . 'Converting' . "\n";
-        sleep(1);
-        get_destfile($conversion);
-    }
-}
-
-function convert_word_pfd($contextid, $itemid, $filename){
-    $converter = new \core_files\converter();
-    $fs = get_file_storage();
-    // Prepare file record object
-    $fileinfo = array(
-        'component' => 'local_tad',
-        'filearea' => 'attachment',     // usually = table name
-        'itemid' => $itemid,               // usually = ID of row in table
-        'contextid' => $contextid, // ID of context
-        'filepath' => '/',           // any path beginning and ending in /
-        'filename' => $filename
-    );
-    
-    // Get file
-    $file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'], 
-            $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename']);
-    
-    // Try and convert it if it exists
-    if ($file) {
-        $conversion = $converter->start_conversion($file, 'pdf');
-        get_destfile($conversion);
-
-    } else {
-        var_dump($file);
-    }
-}
-
-function sendfile_to_ws($file){
-    $data = array('data'=>$file);
-    $targeturl = 'http://localhost:5000';
-    $curl = curl_init($targeturl);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($curl);
-    curl_close($curl);
-    return $response;
-}
+//function sendfile_to_ws($file){
+//    $data = array('data'=>$file);
+//    $targeturl = 'http://localhost:5000';
+//    $curl = curl_init($targeturl);
+//    curl_setopt($curl, CURLOPT_POST, true);
+//    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+//    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+//    $response = curl_exec($curl);
+//    curl_close($curl);
+//    return $response;
+//}
 
 function save_tad_files($semester = ''){
     if (!$semester){
@@ -119,7 +75,6 @@ function save_tad_files($semester = ''){
 
 function construct_view_table($semester){
     global $DB;
-
     $coursenameSQL = "
         SELECT DISTINCT coursename 
         FROM {tad_corriculum}
