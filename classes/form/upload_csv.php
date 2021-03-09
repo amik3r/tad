@@ -25,12 +25,15 @@ use tool_customlang\local\mlang\langstring;
 //moodleform is defined in formslib.php
 require_once("$CFG->libdir/formslib.php");
 
-class upload extends moodleform {
+class uploadCsv extends moodleform {
     public function definition() {
         $mform = $this->_form;
-        $mform->addElement('filemanager', 'attachment', get_string("uploadlabel", "local_tad"), null,
+        $mform->addElement('filemanager', 'attachment', get_string("csv_upload_label", "local_tad"), null,
                     array('subdirs' => 0, 'maxbytes' => 0, 'areamaxbytes' => 1048576000, 'maxfiles' => 1,
                           'accepted_types' => '*', 'return_types'=> 1 | 2));
+        $mform->addElement('text', 'separator', get_string('csv_separator_label', 'local_tad'));
+        $mform->setType('separator', PARAM_NOTAGS);
+        $mform->setDefault('separator', ',');
         $this->add_action_buttons();
     }
 }

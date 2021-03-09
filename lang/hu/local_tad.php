@@ -33,9 +33,13 @@ $string['editor'] = 'TAD-ok szerkesztése';
 $string['reviewer'] = 'TAD-ok ...';
 
 // Page titles
-$string['uploadlabel'] = 'TAD-ok feltöltése';
 $string['upload_corriculumlabel'] = 'Tanterv adatok feltöltése';
 
+// Form strings 
+$string['uploadlabel'] = 'TAD-ok feltöltése';
+$string['csv_upload_label'] = 'Tantervek feltöltése';
+$string['csv_separator_label'] = 'Elválasztó';
+$string['csv_parse_error'] = 'CSV fájl beolvasása sikertelen';
 
 // Notifications
 $string['upload_cancelled'] = 'Feltöltés megszakítva';

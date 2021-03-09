@@ -118,5 +118,69 @@ function construct_view_table($semester){
 
 function create_tad_corriculum_in_db($tad){
     global $DB;
-    $DB->insert_record('tad_corriculum', $tad);
+    if(!$DB->insert_record('tad_corriculum', $tad)){
+        return false;
+    };
+}
+
+function parse_csv_file($separator){
+    global $DB;
+    // read csv file
+    $checkmultiple = false;
+    $fs = get_file_storage();
+    // read corriculum table to filter duplicates (code, name)
+    if($corrtable = $DB->get_records_sql('SELECT * FROM {tad_corriculum}')){
+        $checkmultiple = true;
+    };
+    try {
+        $files = $fs->get_area_files(1, 'local_tad', 'csv_temp');
+        // last element of pesky arrays
+        $file = end($files);
+        $filecontent = $file->get_content();
+        // split on newline
+        $cont = explode(PHP_EOL, $filecontent);
+        foreach ($cont as $line) {
+            // split line on separator
+            $linecont = explode($separator, utf8_encode($line));
+            // check if line is empty
+            if ($linecont[0] == ''|| $linecont[1] == ''){} 
+            else {
+                $corriculum_entry               = new stdClass();
+                $corriculum_entry->code         = $linecont[0];
+                $corriculum_entry->name         = $linecont[1];
+                $corriculum_entry->coursecode   = $linecont[2];
+                $corriculum_entry->coursename   = $linecont[3];
+                $corriculum_entry->type         = 1;
+                // check and skip if duplicate
+                if($checkmultiple){
+                    $isok = true;
+                    foreach ($corrtable as $record) {
+                        if(
+                        $record->name       == $corriculum_entry->name && 
+                        $record->code       == $corriculum_entry->code &&
+                        $record->coursename == $corriculum_entry->coursename &&
+                        $record->coursecode == $corriculum_entry->coursecode
+                        ){
+                            $isok = false;
+                        }
+                    }
+                    if($isok){
+                        create_tad_corriculum_in_db($corriculum_entry);
+                    }
+                } else{
+                    create_tad_corriculum_in_db($corriculum_entry);
+                }
+            }
+            // Delete csv file
+            $file->delete();
+        }
+        if (count($files)>1){
+            foreach ($files as $file) {
+                $file->delete();
+            }
+        }
+        return true;
+    } catch (Throwable $th) {
+        return false;
+    }
 }
