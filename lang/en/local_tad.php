@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 // Settings page labels
 $string['settings_pluginname'] = 'TAD';
-$string['settings_semester_label'] = 'Semester';
+$string['settings_semester_label'] = 'Félév';
 $string['settings_semester_desc'] = 'Aktuális félév';
 
 // Page titles
@@ -34,7 +34,14 @@ $string['manager'] = 'Manage all aspects of TAD process';
 $string['approver'] = 'Approve TADs';
 $string['editor'] = 'Edit TADs';
 $string['reviewer'] = 'Review TADs';
+$string['upload_corriculumlabel'] = 'Upload corriculums';
+
+// Form strings 
 $string['uploadlabel'] = 'Upload TADs';
+$string['csv_upload_label'] = 'Upload Corriculums';
+$string['csv_separator_label'] = 'Separator';
+$string['csv_parse_error'] = 'Failed to read csv file';
+
 
 // Notifications
 $string['upload_cancelled'] = 'Upload Cancelled';
@@ -49,9 +56,12 @@ $string['entity_heading'] = 'Entity';
 $string['time_created_heading'] = 'Time Created';
 $string['file_heading'] = 'Files';
 $string['id_heading'] = 'ID';
+$string['semester_heading'] = 'Semester';
+$string['corriculum_code_heading'] = 'Corriculum Code';
+$string['corriculum_name_heading'] = 'Corriculum Name';
+
 // Misc HTML content
 $string['label_noresult'] = 'No results!';
-
 $string['semester_select_label'] = 'Semester';
 $string['filterlabel'] = 'Filter';
-$string['semester_heading'] = 'Semester';
+

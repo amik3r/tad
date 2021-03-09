@@ -33,7 +33,13 @@ $string['editor'] = 'TAD-ok szerkesztése';
 $string['reviewer'] = 'TAD-ok ...';
 
 // Page titles
+$string['upload_corriculumlabel'] = 'Tanterv adatok feltöltése';
+
+// Form strings 
 $string['uploadlabel'] = 'TAD-ok feltöltése';
+$string['csv_upload_label'] = 'Tantervek feltöltése';
+$string['csv_separator_label'] = 'Elválasztó';
+$string['csv_parse_error'] = 'CSV fájl beolvasása sikertelen';
 
 // Notifications
 $string['upload_cancelled'] = 'Feltöltés megszakítva';
@@ -48,10 +54,12 @@ $string['entity_heading'] = 'Tanszék';
 $string['time_created_heading'] = 'Létrehozva';
 $string['file_heading'] = 'Fájl';
 $string['id_heading'] = 'ID';
+$string['semester_heading'] = 'Félév';
+$string['corriculum_code_heading'] = 'Tanterv kód';
+$string['corriculum_name_heading'] = 'Tanterv név';
 
 // Misc HTML content
 $string['label_noresult'] = 'Nincs találat!';
 
 $string['semester_select_label'] = 'Félév';
 $string['filterlabel'] = 'Szűrés';
-$string['semester_heading'] = 'Félév';

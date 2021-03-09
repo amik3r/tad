@@ -41,19 +41,22 @@
 <table style="width: 100%" class="table" id="filter-table"></table>
 <table style="width: 100%" class="table" id="tad-table">
   <tr>
-    <th scope="col" class="th">{{id_heading}}</th>
+    <th scope="col" class="th">{{corriculum_code_heading}}</th>
+    <th scope="col" class="th">{{corriculum_name_heading}}</th>
     <th scope="col" class="th">{{author_heading}}</th>
     <th scope="col" class="th">{{course_code_heading}}</th>
     <th scope="col" class="th">{{semester_heading}}</th>
     <th scope="col" class="th">{{entity_heading}}</th>
     <th scope="col" class="th">{{course_name_heading}}</th>
-    <th scope="col" class="th">{{time_created_heading}}</th>
     <th scope="col" class="th">{{file_heading}}</th>
   </tr>
 {{#rows}}
 <tr class="tr">
     <td>
-        {{id}}
+        {{corriculum_code}}
+    </td>
+    <td>
+        {{corriculum_name}}
     </td>
     <td>
         {{author}}
@@ -69,9 +72,6 @@
     </td>
     <td>
         {{fullname}}
-    </td>
-    <td>
-        {{timecreated}}
     </td>
     <td>
         <a href="{{url}}" target="_blank">Letöltés</a>
