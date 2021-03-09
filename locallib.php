@@ -24,6 +24,8 @@ use function PHPSTORM_META\type;
 
 global $PAGE;
 require_once(__DIR__ . '../../../config.php');
+require_once(__DIR__ . '/classes/tad/tadfileobject.php');
+require_once(__DIR__ . '/classes/tad/tadobject.php');
 
 function get_all_temp_tad_files(){
     global $DB;
@@ -36,18 +38,6 @@ function get_all_temp_tad_files(){
     $rows = $DB->get_records_sql($filesql, ['filepattern' => "TAD%.pdf", 'filearea' => 'local_tad']);
     return $rows;
 }
-
-//function sendfile_to_ws($file){
-//    $data = array('data'=>$file);
-//    $targeturl = 'http://localhost:5000';
-//    $curl = curl_init($targeturl);
-//    curl_setopt($curl, CURLOPT_POST, true);
-//    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-//    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-//    $response = curl_exec($curl);
-//    curl_close($curl);
-//    return $response;
-//}
 
 function save_tad_files($semester = ''){
     if (!$semester){
@@ -75,8 +65,8 @@ function save_tad_files($semester = ''){
 
 function construct_view_table($semester){
     global $DB;
-    $coursenameSQL = "
-        SELECT DISTINCT coursename 
+    $coursedatasql = "
+        SELECT DISTINCT name, code, coursename 
         FROM {tad_corriculum}
         WHERE coursecode = :coursecode
     ";
@@ -87,17 +77,20 @@ function construct_view_table($semester){
     foreach ($tadfiles as $f) {
         $i++;
         $tadfile = new TadFileObject($f);
-        if($coursename = $DB->get_record_sql($coursenameSQL, ['coursecode' => $tadfile->coursecode])){
+        $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode]);
+        if($coursedata){
             $tad = new TadObject(
                 $tadfile->author,
                 $tadfile->coursecode,
                 $semester,
                 $tadfile->entity,
-                $coursename->coursename,
+                $coursedata->coursename,
                 $tadfile->timecreated,
                 $tadfile->filename,
                 $tadfile->dllink,
-                $i
+                $i,
+                $coursedata->code,
+                $coursedata->name
             );
             array_push($templatecontent, $tad->get_as_templatecontext());
         }
@@ -111,9 +104,41 @@ function construct_view_table($semester){
         'file_heading'              => get_string('file_heading', "local_tad"),
         'label_noresult'            => get_string('label_noresult', "local_tad"),
         'semester_heading'          => get_string('semester_heading', "local_tad"),
+        'corriculum_code_heading'   => get_string('corriculum_code_heading', "local_tad"),
+        'corriculum_name_heading'   => get_string('corriculum_name_heading', "local_tad"),
         'rows'                      => $templatecontent,
     );
     return $fulltemplatecontext;
+}
+
+function ingest_tad_db($semester){
+    global $DB;
+    $coursedatasql = "
+        SELECT DISTINCT name, code, coursename 
+        FROM {tad_corriculum}
+        WHERE coursecode = :coursecode
+    ";
+    $tadfiles = get_all_temp_tad_files();
+    foreach ($tadfiles as $f) {
+        $tadfile = new TadFileObject($f);
+        $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode]);
+        if($coursedata){
+            $tad = new TadObject(
+                $tadfile->author,
+                $tadfile->coursecode,
+                $semester,
+                $tadfile->entity,
+                $coursedata->coursename,
+                $tadfile->timecreated,
+                $tadfile->filename,
+                $tadfile->dllink,
+                0,
+                $coursedata->code,
+                $coursedata->name
+            );
+                $tad->save_to_db();
+        }
+    }
 }
 
 function create_tad_corriculum_in_db($tad){
@@ -184,3 +209,4 @@ function parse_csv_file($separator){
         return false;
     }
 }
+

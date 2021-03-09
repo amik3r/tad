@@ -25,6 +25,7 @@ global $USER;
 
 
 require_once(__DIR__ . '/../../config.php');
+require_once(__DIR__ . '/locallib.php');
 require_once($CFG->dirroot . '/local/tad/classes/form/upload.php');
 
 require_login();
@@ -41,8 +42,16 @@ if ($mform->is_cancelled()) {
 } else if ($fromform = $mform->get_data()) {
     // instert new data into DB
     if ($data = $mform->get_data()) {
+        $semester = $fromform->semester;
+        // Set semester to admin setting value
+        if(is_null($semester)){
+            $semester = get_config('local_tad', 'semester');
+        }
+        // remove slashes
+        $semester = str_replace('/','',$semester);
         try{
             file_save_draft_area_files($data->attachment, $PAGE->context->id, 'local_tad', 'attachment', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 5000));
+            ingest_tad_db($semester);
             redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_SUCCESS);
         } catch(Throwable $th) {
             redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
