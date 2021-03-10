@@ -47,8 +47,8 @@ $string['upload_successful'] = 'Feltöltés sikeres';
 $string['upload_failed'] = 'Feltöltési hiba';
 
 // view labels
-$string['semester_label'] = 'Semester';
-$string['search_label'] = 'Search';
+$string['semester_label'] = 'Félév';
+$string['search_label'] = 'Keresés';
 
 // Table headings in view.php
 $string['author_heading'] = 'Szerző';
