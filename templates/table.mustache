@@ -36,14 +36,14 @@
     <div id="filter-container" class="row justify-content-md-center justify-content-xl-start">
         <div id="filter-wrapper" class="col-xl-3 col-md-6 mb-3">
             <label for="filter">{{filter_label}}</label>
-            <input id="filter" name=filter class="form-control" type="text" onKeyUp="filter()">
+            <input id="filter" name=filter class="form-control" type="text" style="width: 33%;" onKeyUp="filter()">
         </div>
     </div>
 
     <div id="semester-container" class="row justify-content-md-center justify-content-xl-start">
         <div id="semester-select" class="col-xl-3 col-md-6 mb-6">
             <label for="semester">{{semester_label}}</label><br>
-            <select id="semester" name="semester" class="custom-select" style="width: 100%;" onChange="filter('semester')">
+            <select id="semester" name="semester" class="custom-select" style="width: 33%;" onChange="filter('semester')">
                 {{#semester_options}}
                     <option value={{{.}}}>{{{.}}}</option>
                 {{/semester_options}}        
