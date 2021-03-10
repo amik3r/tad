@@ -28,29 +28,32 @@ require_once(__DIR__    . '/classes/form/semester_select.php');
 require_once(__DIR__    . '/locallib.php');
 require_once(__DIR__    . '/classes/tad/tadfileobject.php');
 require_once(__DIR__    . '/classes/tad/tadobject.php');
-$CFG->cachejs = false;
 $PAGE->set_context(\context_system::instance());
-$url = $PAGE->url;
+$semesterstr = $PAGE->url->get_param('semester');
 $PAGE->set_url(new moodle_url('/local/tad/view.php'));
 $PAGE->set_title('TAD');
 $PAGE->set_heading('TAD');
 
 $PAGE->requires->jquery();
-$PAGE->requires->js(new moodle_url('./scripts/script.js'), true);
+$PAGE->requires->js(new moodle_url('./scripts/script.js'), false);
 
+$CFG->cachejs = false;
 require_once($CFG->libdir.'/adminlib.php');
 global $DB;
 $mform = new semester_select();
-if ($fromform = $mform->get_data()) {
-    $templatecontent = construct_view_table($fromform->semester);
+if ($semesterstr) {
+    $templatecontent = construct_view_table($semesterstr);
 } else {
     $templatecontent = construct_view_table(get_config('local_tad', 'semester'));
 }
 
+
+
 echo $OUTPUT->header();
-$mform->display();
-if($viewid = $url->get_param('id')){
+if($semesterstr){
     echo $OUTPUT->render_from_template('local_tad/table', $templatecontent);
 }
-echo $OUTPUT->render_from_template('local_tad/table', $templatecontent);
+else {
+    echo $OUTPUT->render_from_template('local_tad/table', $templatecontent);
+}
 echo $OUTPUT->footer();

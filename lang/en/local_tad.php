@@ -48,6 +48,10 @@ $string['upload_cancelled'] = 'Upload Cancelled';
 $string['upload_successful'] = 'Upload successful';
 $string['upload_failed'] = 'Upload failed';
 
+// view labels
+$string['semester_label'] = 'Félév';
+$string['search_label'] = 'Keresés';
+
 // Table headings in view.php
 $string['author_heading'] = 'Author';
 $string['course_code_heading'] = 'Course Code';

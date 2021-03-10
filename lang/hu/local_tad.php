@@ -46,6 +46,10 @@ $string['upload_cancelled'] = 'Feltöltés megszakítva';
 $string['upload_successful'] = 'Feltöltés sikeres';
 $string['upload_failed'] = 'Feltöltési hiba';
 
+// view labels
+$string['semester_label'] = 'Semester';
+$string['search_label'] = 'Search';
+
 // Table headings in view.php
 $string['author_heading'] = 'Szerző';
 $string['course_code_heading'] = 'Tárgykód';

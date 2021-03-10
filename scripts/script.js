@@ -15,11 +15,33 @@ function decorateTable(){
     }
 };
 
-function filter(){
+function filter_semester(){
+    var table = document.getElementById("tad-table");
+    var semester_select = document.getElementById('semester-options')
+    var semester_index = semester_select.options.selectedIndex
+    semester = semester_select.options[semester_index].innerHTML
+    console.log(semester);
+    var display = table.rows[0].cells[0].style.display  
+    for (var i = 1, row; row = table.rows[i]; i++) {
+        if (!row.cells[4].innerHTML == semester){
+            row.style.display = 'none'
+        } else{
+            row.style.display = display
+        }
+    }
+}
+
+function filter(semester=''){
     preparePagination('tad-table')
     var table = document.getElementById("tad-table")
-    var display = table.rows[0].cells[0].style.display  
-    var filterValue = document.getElementById('filter').value
+    var display = table.rows[0].cells[0].style.display 
+    if (!semester){
+        var filterValue = document.getElementById('filter').value
+    } else {
+        var semester_select = document.getElementById('semester')
+        var semester_index = semester_select.options.selectedIndex
+        var filterValue = semester_select.options[semester_index].innerHTML
+    }
     filterValue = filterValue.toLowerCase()
 
     document.getElementById('noresult').style.display = 'none'
@@ -30,7 +52,8 @@ function filter(){
         // reset pagination
         paginate(currpage)
     }
-    
+
+    // hide all rows
     for (var i = 1, row; row = table.rows[i]; i++) {
         row.style.display = 'none'
     }
@@ -53,9 +76,7 @@ function filter(){
         for (var i = 1, row; row = table.rows[i]; i++) {
             table.style.display = display
         }
-    } else {
-
-    }
+    } else {}
 }
 
 // Pagination globals
@@ -68,7 +89,6 @@ function preparePagination(){
         document.getElementById('pagination-row').innerHTML = ''
     } catch{}
     var table = document.getElementById("tad-table");
-
     var display = table.rows[0].cells[0].style.display      
     var btnGroup = document.getElementById('pagination-row')
     numpages = Math.round((table.rows.length / maxrows) + 1)
@@ -126,23 +146,24 @@ function preparePagination(){
     btnGroup.appendChild(button)
 
     // Hide all rows
-    for (var i=1;i<=table.rows.length - 1;i++){
-        table.rows[i].style.display = 'none'
-    }
-    // Display first 25
-    try {
-        for (var i=1;i<=maxrows;i++){
-            table.rows[i].style.display = display
-        }
-    } catch{}
+    //for (var i=1;i<=table.rows.length - 1;i++){
+    //    table.rows[i].style.display = 'none'
+    //}
+    //// Display first 25
+    //try {
+    //    for (var i=1;i<=maxrows;i++){
+    //        table.rows[i].style.display = display
+    //    }
+    //} catch{}
     return true
 }
-function paginate(page){
-    console.log('paginating page: ' + page);
+function paginate(page, doUpdate=false){
+    page = (page == 0) ? 1 : page
+    //console.log('paginating page: ' + page);
 
     var table = document.getElementById("tad-table");
     var display = table.rows[0].cells[0].style.display
-    var start = (page === 0) ? page : page*maxrows - maxrows
+    var start = (page == 0) ? 0 : page*maxrows - maxrows
     var end = page*maxrows - 1
 
     if (page >= numpages){
@@ -162,27 +183,43 @@ function paginate(page){
     }
 
     // Hide all rows
-    for (var i=1;i<=table.rows.length - 1;i++){
-        table.rows[i].style.display = 'none'
-    }
-    
-    if (end > table.rows.length){
-        end = table.rows.length + (table.rows.length % maxrows)
-    }
-    
-    for (var i=start;i<=end;i++){
-        try{
-            table.rows[i].style.display = display
+    if (!doUpdate){
+        for (var i=1;i<=table.rows.length - 1;i++){
+            table.rows[i].style.display = 'none'
         }
-        catch {
-            
+        if (end > table.rows.length){
+            end = table.rows.length + (table.rows.length % maxrows)
+        }
+        for (var i=start;i<=end;i++){
+            try{
+                table.rows[i].style.display = display
+            }
+            catch {}
+        }
+    } else {
+        var rowCount = 0
+        var shouldbeVisible = []
+        for (var i=1;i<=table.rows.length - 1;i++){
+            if (!table.rows[i].style.display == 'none'){
+                rowCount++
+                shouldbeVisible.push(i)
+            }
+            console.log(rowCount)
+        }
+        if (end > rowCount){
+            end = rowCount + (rowCount % maxrows)
+        }
+        for (var j;shouldbeVisible.length;j++){
+            try{
+                table.rows[shouldbeVisible[j]].style.display = display
+            }
+            catch {}
         }
     }
     currpage = page
 }
-
 document.addEventListener("DOMContentLoaded", function(event) {
-    if(preparePagination()){
-    }
+    preparePagination();
     decorateTable();
+    paginate(1);
 });

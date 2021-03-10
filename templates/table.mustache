@@ -32,9 +32,25 @@
     {
     }
 }}
-<div id="filter-container" class="row">
-    <strong for="filter" class="col-sm-1 mb-3">Search</strong>
-    <input id="filter" name=filter class="form-control col-sm-3 mb-3"  onKeyUp="filter()">
+<div class="container-xxl">
+    <div id="filter-container" class="row justify-content-md-center justify-content-xl-start">
+        <div id="filter-wrapper" class="col-xl-3 col-md-6 mb-3">
+            <label for="filter">{{filter_label}}</label>
+            <input id="filter" name=filter class="form-control"  onKeyUp="filter()">
+        </div>
+    </div>
+
+    <div id="semester-container" class="row justify-content-md-center justify-content-xl-start">
+        <div id="semester-select" class="col-xl-3 col-md-6 mb-6">
+            <label for="semester">{{semester_label}}</label><br>
+            <select id="semester" name="semester" class="custom-select" style="width: 100%;" onChange="filter('semester')">
+                {{#semester_options}}
+                    <option value={{{.}}}>{{{.}}}</option>
+                {{/semester_options}}        
+            </select>
+        </div>
+    </div>
+
 </div>
 <p id="noresult" style="display: none">{{label_noresult}}</p>
 <div id="table-container">

@@ -63,37 +63,76 @@ function save_tad_files($semester = ''){
     }
 }
 
-function construct_view_table($semester){
+function construct_view_table($semesterarg=null){
     global $DB;
     $coursedatasql = "
-        SELECT DISTINCT name, code, coursename 
-        FROM {tad_corriculum}
-        WHERE coursecode = :coursecode
+        SELECT
+            corr.name, 
+            corr.code, 
+            tad.name tadname, 
+            tad.id, 
+            tad.coursecode coursecode, 
+            tad.dlurl, 
+            tad.semester, 
+            tad.author author, 
+            tad.timecreated timecreated,
+            tad.version version
+        FROM {tad_corriculum} corr
+        INNER JOIN {tad} tad ON corr.coursecode = tad.coursecode
+        AND corr.coursecode = :coursecode
+        AND tad.semester = :semester
+        ORDER BY coursecode ASC
     ";
 
+    $semesterlistsql = "
+        SELECT DISTINCT semester
+        FROM {tad}
+        WHERE semester LIKE '%'
+    ";
+
+    $semesterarray = [];
+
+    $s = $DB->get_records_sql($semesterlistsql);
+    foreach ($s as $k){
+        $semesterstring = substr($k->semester, 0, 4) . '/' . substr($k->semester,4);
+        $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
+        array_push($semesterarray, $semesterstring);
+    }
+
+    $tadarray = array();
     $templatecontent = array();
-    $tadfiles = get_all_temp_tad_files();
+    $tadfiles = $DB->get_records('tad');
     $i = 0;
-    foreach ($tadfiles as $f) {
+
+    foreach ($tadfiles as $tadfile) {
+        // reparse semester str
         $i++;
-        $tadfile = new TadFileObject($f);
-        $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode]);
-        if($coursedata){
-            $tad = new TadObject(
-                $tadfile->author,
-                $tadfile->coursecode,
-                $semester,
-                $tadfile->entity,
-                $coursedata->coursename,
-                $tadfile->timecreated,
-                $tadfile->filename,
-                $tadfile->dllink,
-                $i,
-                $coursedata->code,
-                $coursedata->name
-            );
+        if ($semesterarg){
+                $semester = str_replace('/','',$semesterarg);
+                $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $semester]);
+            } else {
+                $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $tadfile->semester]);
+            }
+            if($coursedata){
+                $semesterstring = substr($coursedata->semester, 0, 4) . '/' . substr($coursedata->semester,4);
+                $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
+                $tad = new TadObject(
+                    $coursedata->author,
+                    $coursedata->coursecode,
+                    $semesterstring,
+                    'placeholder',
+                    $coursedata->tadname,
+                    $coursedata->timecreated,
+                    'irrelevant',
+                    $coursedata->dlurl,
+                    $i,
+                    $coursedata->code,
+                    $coursedata->name
+                );
+            } else {
+                continue;
+            }
             array_push($templatecontent, $tad->get_as_templatecontext());
-        }
     }
     $fulltemplatecontext = array(
         'id_heading'                => get_string('id_heading', "local_tad"),
@@ -106,7 +145,11 @@ function construct_view_table($semester){
         'semester_heading'          => get_string('semester_heading', "local_tad"),
         'corriculum_code_heading'   => get_string('corriculum_code_heading', "local_tad"),
         'corriculum_name_heading'   => get_string('corriculum_name_heading', "local_tad"),
+        'filter_label'              => get_string('search_label', 'local_tad'),     
+        'semester_label'            => get_string('semester_label', 'local_tad'),
+        'semester_options'          => $semesterarray,
         'rows'                      => $templatecontent,
+        'count'                     => count($templatecontent)
     );
     return $fulltemplatecontext;
 }
@@ -114,7 +157,7 @@ function construct_view_table($semester){
 function ingest_tad_db($semester){
     global $DB;
     $coursedatasql = "
-        SELECT DISTINCT name, code, coursename 
+        SELECT name, code, coursename 
         FROM {tad_corriculum}
         WHERE coursecode = :coursecode
     ";
