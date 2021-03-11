@@ -128,11 +128,14 @@ function construct_view_table($lang, $semesterarg=null){
                 $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $tadfile->semester]);
             }
             if($coursedata){
-                $entityname = $DB->get_record_sql($entitynamesql, ['coursecode' => $tadfile->coursecode]);
-                if ($lang == 'hu'){
-                    $entityname = $entityobject->get_hungarian($entityname);
-                } else if ($lang == 'en'){
-                    $entityname = $entityobject->get_english($entityname);
+                if($entityname = $DB->get_record_sql($entitynamesql, ['coursecode' => $tadfile->coursecode])){
+                    if ($lang == 'hu'){
+                        $entityname = $entityobject->get_hungarian($entityname->name);
+                    } else if ($lang == 'en'){
+                        $entityname = $entityobject->get_english($entityname->name);
+                    }
+                } else {
+                    $entityname = 'hiba';
                 }
                 $semesterstring = substr($coursedata->semester, 0, 4) . '/' . substr($coursedata->semester,4);
                 $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
