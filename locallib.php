@@ -26,6 +26,8 @@ global $PAGE;
 require_once(__DIR__ . '../../../config.php');
 require_once(__DIR__ . '/classes/tad/tadfileobject.php');
 require_once(__DIR__ . '/classes/tad/tadobject.php');
+require_once(__DIR__ . '/classes/tad/entityobject.php');
+
 
 function get_all_temp_tad_files(){
     global $DB;
@@ -63,8 +65,11 @@ function save_tad_files($semester = ''){
     }
 }
 
-function construct_view_table($semesterarg=null){
+function construct_view_table($lang, $semesterarg=null){
     global $DB;
+
+    $entityobject = new Entity();
+
     $coursedatasql = "
         SELECT
             corr.name, 
@@ -84,10 +89,20 @@ function construct_view_table($semesterarg=null){
         ORDER BY coursecode ASC
     ";
 
+    $entitynamesql = "
+        SELECT 
+            cat.name, 
+            c.category 
+        FROM mdl_course_categories cat 
+        INNER JOIN mdl_course c 
+        ON c.shortname LIKE ':coursecode%' 
+        AND cat.id = c.category
+        LIMIT 1;
+    ";
+
     $semesterlistsql = "
         SELECT DISTINCT semester
         FROM {tad}
-        WHERE semester LIKE '%'
     ";
 
     $semesterarray = [];
@@ -114,13 +129,19 @@ function construct_view_table($semesterarg=null){
                 $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $tadfile->semester]);
             }
             if($coursedata){
+                $entityname = $DB->get_record_sql($entitynamesql, ['coursecode' => $tadfile->coursecode]);
+                if ($lang == 'hu'){
+                    $entityname = $entityobject->get_hungarian($entityname);
+                } else if ($lang == 'en'){
+                    $entityname = $entityobject->get_english($entityname);
+                }
                 $semesterstring = substr($coursedata->semester, 0, 4) . '/' . substr($coursedata->semester,4);
                 $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
                 $tad = new TadObject(
                     $coursedata->author,
                     $coursedata->coursecode,
                     $semesterstring,
-                    'placeholder',
+                    $entityname,
                     $coursedata->tadname,
                     $coursedata->timecreated,
                     'irrelevant',
@@ -148,6 +169,7 @@ function construct_view_table($semesterarg=null){
         'filter_label'              => get_string('search_label', 'local_tad'),     
         'semester_label'            => get_string('semester_label', 'local_tad'),
         'semester_options'          => $semesterarray,
+        'semester_select_default'   => get_string('semester_select_default', 'local_tad'),
         'rows'                      => $templatecontent,
         'count'                     => count($templatecontent)
     );

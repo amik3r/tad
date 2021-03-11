@@ -49,18 +49,21 @@ $string['upload_failed'] = 'Feltöltési hiba';
 // view labels
 $string['semester_label'] = 'Félév';
 $string['search_label'] = 'Keresés';
+$string['semester_select_default'] = 'Összes';
+
 
 // Table headings in view.php
-$string['author_heading'] = 'Szerző';
-$string['course_code_heading'] = 'Tárgykód';
-$string['course_name_heading'] = 'Tárgynév';
-$string['entity_heading'] = 'Tanszék';
 $string['time_created_heading'] = 'Létrehozva';
-$string['file_heading'] = 'Fájl';
 $string['id_heading'] = 'ID';
-$string['semester_heading'] = 'Félév';
+// aktuális
 $string['corriculum_code_heading'] = 'Tanterv kód';
 $string['corriculum_name_heading'] = 'Tanterv név';
+$string['author_heading'] = 'Szerző';
+$string['course_code_heading'] = 'Tárgykód';
+$string['semester_heading'] = 'Félév';
+$string['entity_heading'] = 'Tanszék';
+$string['course_name_heading'] = 'Tárgynév';
+$string['file_heading'] = 'Letöltés';
 
 // Misc HTML content
 $string['label_noresult'] = 'Nincs találat!';

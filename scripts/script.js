@@ -20,6 +20,10 @@ function filter_semester(){
     var semester_select = document.getElementById('semester-options')
     var semester_index = semester_select.options.selectedIndex
     semester = semester_select.options[semester_index].innerHTML
+    if (semester == 0){
+        decorateTable();
+        preparePagination();
+    }
     console.log(semester);
     var display = table.rows[0].cells[0].style.display  
     for (var i = 1, row; row = table.rows[i]; i++) {

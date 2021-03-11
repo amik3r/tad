@@ -42,12 +42,10 @@ require_once($CFG->libdir.'/adminlib.php');
 global $DB;
 $mform = new semester_select();
 if ($semesterstr) {
-    $templatecontent = construct_view_table($semesterstr);
+    $templatecontent = construct_view_table(current_language(), $semesterstr);
 } else {
-    $templatecontent = construct_view_table(get_config('local_tad', 'semester'));
+    $templatecontent = construct_view_table(current_language(), get_config('local_tad', 'semester'));
 }
-
-
 
 echo $OUTPUT->header();
 if($semesterstr){

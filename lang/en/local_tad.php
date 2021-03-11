@@ -51,18 +51,19 @@ $string['upload_failed'] = 'Upload failed';
 // view labels
 $string['semester_label'] = 'Félév';
 $string['search_label'] = 'Keresés';
+$string['semester_select_default'] = 'All';
 
 // Table headings in view.php
-$string['author_heading'] = 'Author';
-$string['course_code_heading'] = 'Course Code';
-$string['course_name_heading'] = 'Course Name';
-$string['entity_heading'] = 'Entity';
-$string['time_created_heading'] = 'Time Created';
-$string['file_heading'] = 'Files';
-$string['id_heading'] = 'ID';
-$string['semester_heading'] = 'Semester';
-$string['corriculum_code_heading'] = 'Corriculum Code';
-$string['corriculum_name_heading'] = 'Corriculum Name';
+$string['author_heading']               = 'Author';
+$string['course_code_heading']          = 'Course Code';
+$string['course_name_heading']          = 'Course Name';
+$string['entity_heading']               = 'Entity';
+$string['time_created_heading']         = 'Time Created';
+$string['file_heading']                 = 'Download';
+$string['id_heading']                   = 'ID';
+$string['semester_heading']             = 'Semester';
+$string['corriculum_code_heading']      = 'Corriculum Code';
+$string['corriculum_name_heading']      = 'Corriculum Name';
 
 // Misc HTML content
 $string['label_noresult'] = 'No results!';

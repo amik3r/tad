@@ -44,7 +44,7 @@
         <div id="semester-select" class="col-xl-3 col-md-6 mb-6">
             <label for="semester">{{semester_label}}</label><br>
             <select id="semester" name="semester" class="custom-select" style="width: 33%;" onChange="filter('semester')">
-                <option value=0></option>
+                <option value=0>{{semester_select_default}}</option>
                 {{#semester_options}}
                     <option value={{{.}}}>{{{.}}}</option>
                 {{/semester_options}}        
