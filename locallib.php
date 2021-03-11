@@ -69,7 +69,10 @@ function construct_view_table($lang, $semesterarg=null){
     global $DB;
 
     $entityobject = new Entity();
-
+	if(!$lang){
+		$lang='en';
+	}
+			
     $coursedatasql = "
         SELECT
             corr.name, 
@@ -129,12 +132,10 @@ function construct_view_table($lang, $semesterarg=null){
             }
             if($coursedata){
                 if($entityname = $DB->get_record_sql($entitynamesql . $DB->sql_like('c.shortname', '?'), array($tadfile->coursecode.'%'))){
-                    echo $entityname;
-                    die;
-                    if ($lang == 'hu'){
+					if (strcmp($lang,'hu') == 0){
                         $entityname = $entityobject->get_hungarian($entityname->name);
-                    } else if ($lang == 'en'){
-                        $entityname = $entityobject->get_english($entityname->name);
+					} else {
+			    		$entityname = $entityobject->get_english($entityname->name);
                     }
                 } else {
                     $entityname = 'hiba';

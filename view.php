@@ -37,16 +37,17 @@ $PAGE->set_heading('TAD');
 $PAGE->requires->jquery();
 $PAGE->requires->js(new moodle_url('./scripts/script.js'), false);
 
+$pagelang = current_language();
+
 $CFG->cachejs = false;
 require_once($CFG->libdir.'/adminlib.php');
 global $DB;
 $mform = new semester_select();
 if ($semesterstr) {
-    $templatecontent = construct_view_table(current_language(), $semesterstr);
+    $templatecontent = construct_view_table($pagelang, $semesterstr);
 } else {
-    $templatecontent = construct_view_table(current_language(), get_config('local_tad', 'semester'));
+    $templatecontent = construct_view_table($pagelang, get_config('local_tad', 'semester'));
 }
-
 echo $OUTPUT->header();
 if($semesterstr){
     echo $OUTPUT->render_from_template('local_tad/table', $templatecontent);

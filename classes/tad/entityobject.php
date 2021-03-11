@@ -54,18 +54,18 @@ class Entity{
         /*
         * Return english name from hungarian name
         */
+		if (array_key_exists($entity,$this->entityarray)){
+			return $entity;
+		}	
         foreach ($this->entityarray as $key => $value) {
             // remove trash
             $search = str_replace(' ', '',strtolower($entity));
             $curr = $value;
             $curr = str_replace(' ', '',strtolower($curr));
 
-            if ($value = $search){
-                return $entity;
-            }
 
-            if ($curr == $search){
-                return $key;
+			if ($curr == $search){
+				return $key;
             }
         }
     }
