@@ -23,5 +23,5 @@
 defined('MOODLE_INTERNAL') || die();
  
 $plugin->version = '202103051';
-$plugin->requires = '2020110900';
+$plugin->requires = '2017110900';
 $plugin->component = 'local_tad';
