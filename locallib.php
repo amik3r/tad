@@ -93,8 +93,8 @@ function construct_view_table($lang, $semesterarg=null){
         SELECT 
             cat.name, 
             c.category 
-        FROM mdl_course_categories cat 
-        INNER JOIN mdl_course c 
+        FROM {course_categories} cat 
+        INNER JOIN {course} c 
         ON c.shortname LIKE :coursecode% 
         AND cat.id = c.category
     ";
