@@ -23,48 +23,33 @@
 global $DB;
 global $USER;
 
-
 require_once(__DIR__ . '/../../config.php');
 require_once($CFG->dirroot . '/local/tad/classes/form/upload_csv.php');
+require_once(__DIR__    . '/locallib.php');
+
 require_login();
 
 $PAGE->set_context(\context_system::instance());
-$PAGE->set_url(new moodle_url('/local/banner/create.php'));
-$PAGE->set_title('TAD Upload');
-$PAGE->set_heading('TAD Upload');
+$PAGE->set_url(new moodle_url('/local/tad/upload_csv.php'));
+$PAGE->set_title(get_string('csv_upload_label', 'local_tad'));
+$PAGE->set_heading(get_string('csv_upload_label', 'local_tad'));
 
-$mform = new upload();
-
+$mform = new uploadCsv();
 if ($mform->is_cancelled()) {
-    // Go back to manage
+    // Go back to view if cancelled
     redirect($CFG->wwwroot . '/local/tad/view.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
-    //Handle form cancel operation, if cancel button is present on form
 } else if ($fromform = $mform->get_data()) {
-
-    // Save temp file
+    // clean up previous csv files
+    $fs = get_file_storage();
+    //$fs->delete_area_files(1,'local_tad','csv_temp');
     if ($data = $mform->get_data()) {
+        $separator = $data->separator;
         try{
             file_save_draft_area_files($data->attachment, 1, 'local_tad', 'csv_temp', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 1));
-            // read csv file
-            $fs = get_file_storage();
-            $file = $fs->get_area_files(1, 'local_tad', 'csv_temp');
-            // Parse csv file
-            foreach ($file as $f) {
-                $cont = explode(PHP_EOL, $f->get_content());
-                foreach ($cont as $line) {
-                    $linecont = explode(',',utf8_encode($line));
-                    if ($linecont[0] == ''|| $linecont[1] == ''){
-
-                    } else {
-                        $corriculum_entry = new stdClass();
-                        $corriculum_entry->coursename = $linecont[3];
-                        $corriculum_entry->coursecode= $linecont[2];
-                        $corriculum_entry->version = 1;
-                    }
-                }
-                // Delete file
-                $f->delete();
-}
+            if (!parse_csv_file($separator)){
+                redirect($CFG->wwwroot . '/local/tad/view.php', get_string("csv_parse_error", "local_tad", \core\output\notification::NOTIFY_ERROR));
+            };
+            redirect($CFG->wwwroot . '/local/tad/view.php',  get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_INFO);
         } catch(Throwable $th) {
             redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
         };

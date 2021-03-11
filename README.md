@@ -149,3 +149,18 @@ path|fájl elérési útja|string
 
 ---
 
+# Nyelvi elemek
+
+## Táblázat
+
+|név|angol|magyar|
+|---|---|---|
+|corriculum_code_heading|   Corriculum Code|Tanterv kód|
+|corriculum_name_heading|   Corriculum Name|Tanterv név|
+|author_heading|            Author|  Szerző           |
+|course_code_heading|       Course Code|Tárgykód  |
+|semester_heading|          Semester|Félév|
+|entity_heading|            Entity|  Tanszék  |
+|course_name_heading|       Course Name| Tárgynév |
+|file_heading|              Download|  Letöltés |
+

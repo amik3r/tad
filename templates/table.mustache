@@ -32,28 +32,48 @@
     {
     }
 }}
-<div id="filter-container" class="row">
-    <strong for="filter" class="col-sm-1 mb-3">Search</strong>
-    <input id="filter" name=filter class="form-control col-sm-3 mb-3"  onKeyUp="filter()">
+<div class="container-xxl">
+    <div id="filter-container" class="row justify-content-md-center justify-content-xl-start">
+        <div id="filter-wrapper" class="col-xl-3 col-md-6 mb-3">
+            <label for="filter">{{filter_label}}</label>
+            <input id="filter" name=filter class="form-control" type="text" style="width: 33%;" onKeyUp="filter()">
+        </div>
+    </div>
+
+    <div id="semester-container" class="row justify-content-md-center justify-content-xl-start">
+        <div id="semester-select" class="col-xl-3 col-md-6 mb-6">
+            <label for="semester">{{semester_label}}</label><br>
+            <select id="semester" name="semester" class="custom-select" style="width: 33%;" onChange="filter('semester')">
+                <option value=0>{{semester_select_default}}</option>
+                {{#semester_options}}
+                    <option value={{{.}}}>{{{.}}}</option>
+                {{/semester_options}}        
+            </select>
+        </div>
+    </div>
+
 </div>
 <p id="noresult" style="display: none">{{label_noresult}}</p>
 <div id="table-container">
 <table style="width: 100%" class="table" id="filter-table"></table>
 <table style="width: 100%" class="table" id="tad-table">
   <tr>
-    <th scope="col" class="th">{{id_heading}}</th>
+    <th scope="col" class="th">{{corriculum_code_heading}}</th>
+    <th scope="col" class="th">{{corriculum_name_heading}}</th>
     <th scope="col" class="th">{{author_heading}}</th>
     <th scope="col" class="th">{{course_code_heading}}</th>
     <th scope="col" class="th">{{semester_heading}}</th>
     <th scope="col" class="th">{{entity_heading}}</th>
     <th scope="col" class="th">{{course_name_heading}}</th>
-    <th scope="col" class="th">{{time_created_heading}}</th>
     <th scope="col" class="th">{{file_heading}}</th>
   </tr>
 {{#rows}}
 <tr class="tr">
     <td>
-        {{id}}
+        {{corriculum_code}}
+    </td>
+    <td>
+        {{corriculum_name}}
     </td>
     <td>
         {{author}}
@@ -65,13 +85,10 @@
         {{semester}}
     </td>
     <td>
-        {{fullname}}
-    </td>
-    <td>
         {{entity}}
     </td>
     <td>
-        {{timecreated}}
+        {{fullname}}
     </td>
     <td>
         <a href="{{url}}" target="_blank">Letöltés</a>

@@ -24,67 +24,35 @@ global $DB;
 global $USER;
 
 require_once(__DIR__    . '/../../config.php');
-require_once(__DIR__    . './classes/form/semester_select.php');
-require_once(__DIR__    . './locallib.php');
-require_once(__DIR__    . './classes/tad/tadfileobject.php');
-require_once(__DIR__    . './classes/tad/tadobject.php');
-$CFG->cachejs = false;
+require_once(__DIR__    . '/classes/form/semester_select.php');
+require_once(__DIR__    . '/locallib.php');
+require_once(__DIR__    . '/classes/tad/tadfileobject.php');
+require_once(__DIR__    . '/classes/tad/tadobject.php');
 $PAGE->set_context(\context_system::instance());
-$url = $PAGE->url;
+$semesterstr = $PAGE->url->get_param('semester');
 $PAGE->set_url(new moodle_url('/local/tad/view.php'));
 $PAGE->set_title('TAD');
 $PAGE->set_heading('TAD');
 
 $PAGE->requires->jquery();
-$PAGE->requires->js(new moodle_url('./scripts/script.js'), true);
+$PAGE->requires->js(new moodle_url('./scripts/script.js'), false);
 
-//$templatecontent = array();
-//$tadfiles = get_all_tad_files();
-//
-//$i = 0;
-//foreach ($tadfiles as $f) {
-//    $i++;
-//    $tadfile = new TadFileObject($f);
-//    $tad = new TadObject(
-//        $tadfile->author,
-//        $tadfile->coursecode,
-//        'semester',
-//        $tadfile->entity,
-//        $tadfile->fullname,
-//        $tadfile->timecreated,
-//        $tadfile->filename,
-//        $tadfile->dllink,
-//        $i
-//    );
-//    array_push($templatecontent, $tad->get_as_templatecontext());
-//}
-//$fulltemplatecontext = array(
-//    'id_heading'                => get_string('id_heading', "local_tad"),
-//    'author_heading'            => get_string('author_heading', "local_tad"),
-//    'course_code_heading'       => get_string('course_code_heading', "local_tad"),
-//    'course_name_heading'       => get_string('course_name_heading', "local_tad"),
-//    'entity_heading'            => get_string('entity_heading', "local_tad"),
-//    'time_created_heading'      => get_string('time_created_heading', "local_tad"),
-//    'file_heading'              => get_string('file_heading', "local_tad"),
-//    'label_noresult'            => get_string('label_noresult', "local_tad"),
-//    'semester_heading'          => get_string('semester_heading', "local_tad"),
-//    'rows'                      => $templatecontent,
-//);
+$pagelang = current_language();
+
+$CFG->cachejs = false;
 require_once($CFG->libdir.'/adminlib.php');
 global $DB;
 $mform = new semester_select();
-if ($fromform = $mform->get_data()) {
-    $templatecontent = construct_view_table($fromform->semester);
+if ($semesterstr) {
+    $templatecontent = construct_view_table($pagelang, $semesterstr);
 } else {
-    $templatecontent = construct_view_table(get_config('local_tad', 'semester'));
+    $templatecontent = construct_view_table($pagelang, get_config('local_tad', 'semester'));
 }
-
-
-
 echo $OUTPUT->header();
-$mform->display();
-if($viewid = $url->get_param('id')){
+if($semesterstr){
     echo $OUTPUT->render_from_template('local_tad/table', $templatecontent);
 }
-echo $OUTPUT->render_from_template('local_tad/table', $templatecontent);
+else {
+    echo $OUTPUT->render_from_template('local_tad/table', $templatecontent);
+}
 echo $OUTPUT->footer();

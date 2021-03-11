@@ -16,12 +16,24 @@
  
 /**
  * @package   local_tad
- * @copyright 2020, You Name <your@email.address>
+ * @copyright 2021, Antal Miklós <antal.miklos@gtk.bme.hu>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- 
-defined('MOODLE_INTERNAL') || die();
- 
-$plugin->version = '202103111';
-$plugin->requires = '2017110900';
-$plugin->component = 'local_tad';
+define('CLI_SCRIPT', true);
+require_once(__DIR__    . '/../../../config.php');
+
+global $DB;
+
+$fs = get_file_storage();
+if(!$files = $fs->get_area_files(1,'local_tad','attachment')){
+    echo "No files found!\n";
+    exit;
+};
+foreach ($files as $f) {
+    $filename = $f->get_filename();
+    echo "deleting: " . $filename . "\n";
+    $f->delete();
+    echo "deleted: " . $filename . "\n\r";
+}
+
+

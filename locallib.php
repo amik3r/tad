@@ -24,73 +24,21 @@ use function PHPSTORM_META\type;
 
 global $PAGE;
 require_once(__DIR__ . '../../../config.php');
+require_once(__DIR__ . '/classes/tad/tadfileobject.php');
+require_once(__DIR__ . '/classes/tad/tadobject.php');
+require_once(__DIR__ . '/classes/tad/entityobject.php');
 
-$types = array(
-    "word"  =>  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    "pdf"   =>  "application/pdf"
-);
 
 function get_all_temp_tad_files(){
-    global $types;
     global $DB;
-
     $filesql = "
         SELECT * FROM {files}
         WHERE filename 
             LIKE :filepattern 
         AND component LIKE :filearea
     ";
-    $rows = $DB->get_records_sql($filesql, ['filepattern' => "TAD%.pdf", 'filearea' => 'local_tad_temp']);
+    $rows = $DB->get_records_sql($filesql, ['filepattern' => "TAD%.pdf", 'filearea' => 'local_tad']);
     return $rows;
-}
-
-function get_destfile($conversion){
-    if($convertedfile = $conversion->get_destfile()){
-        var_dump($convertedfile);
-    } else {
-        echo "\r" . 'Converting' . "\n";
-        sleep(1);
-        get_destfile($conversion);
-    }
-}
-
-function convert_word_pfd($contextid, $itemid, $filename){
-    $converter = new \core_files\converter();
-    $fs = get_file_storage();
-    // Prepare file record object
-    $fileinfo = array(
-        'component' => 'local_tad',
-        'filearea' => 'attachment',     // usually = table name
-        'itemid' => $itemid,               // usually = ID of row in table
-        'contextid' => $contextid, // ID of context
-        'filepath' => '/',           // any path beginning and ending in /
-        'filename' => $filename
-    );
-    
-    // Get file
-    $file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'], 
-            $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename']);
-    
-    // Try and convert it if it exists
-    if ($file) {
-        $conversion = $converter->start_conversion($file, 'pdf');
-        get_destfile($conversion);
-
-    } else {
-        var_dump($file);
-    }
-}
-
-function sendfile_to_ws($file){
-    $data = array('data'=>$file);
-    $targeturl = 'http://localhost:5000';
-    $curl = curl_init($targeturl);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($curl);
-    curl_close($curl);
-    return $response;
 }
 
 function save_tad_files($semester = ''){
@@ -112,43 +60,108 @@ function save_tad_files($semester = ''){
                 $filename_explode = explode('_', $filename);
                 $extension = explode('.',$filename_explode[1]);
             }
+            $f->delete();
         }
     }
 }
 
-function construct_view_table($semester){
+function construct_view_table($lang, $semesterarg=null){
     global $DB;
 
-    $coursenameSQL = "
-        SELECT DISTINCT coursename 
-        FROM {tad_corriculum}
-        WHERE coursecode LIKE :coursecode
+    $entityobject = new Entity();
+	if(!$lang){
+		$lang='en';
+	}
+			
+    $coursedatasql = "
+        SELECT
+            corr.name, 
+            corr.code, 
+            tad.name tadname, 
+            tad.id, 
+            tad.coursecode coursecode, 
+            tad.dlurl, 
+            tad.semester, 
+            tad.author author, 
+            tad.timecreated timecreated,
+            tad.version version
+        FROM {tad_corriculum} corr
+        INNER JOIN {tad} tad ON corr.coursecode = tad.coursecode
+        AND corr.coursecode = :coursecode
+        AND tad.semester = :semester
+        ORDER BY coursecode ASC
     ";
 
+    $entitynamesql = "
+        SELECT 
+            cat.name, 
+            c.category 
+        FROM {course_categories} cat 
+        INNER JOIN {course} c 
+        ON cat.id = c.category
+        AND
+    ";
+
+    $semesterlistsql = "
+        SELECT DISTINCT semester
+        FROM {tad}
+    ";
+
+    $semesterarray = [];
+
+    $s = $DB->get_records_sql($semesterlistsql);
+    foreach ($s as $k){
+        $semesterstring = substr($k->semester, 0, 4) . '/' . substr($k->semester,4);
+        $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
+        array_push($semesterarray, $semesterstring);
+    }
+
+    $tadarray = array();
     $templatecontent = array();
-    $tadfiles = get_all_temp_tad_files();
-    save_tad_files();
+    $tadfiles = $DB->get_records('tad');
     $i = 0;
-    foreach ($tadfiles as $f) {
+
+    foreach ($tadfiles as $tadfile) {
+        // reparse semester str
         $i++;
-        $tadfile = new TadFileObject($f);
-        $coursename = $DB->get_record_sql($coursenameSQL, ['coursecode' => $tadfile->coursecode]);
-        $tad = new TadObject(
-            $tadfile->author,
-            $tadfile->coursecode,
-            $semester,
-            $tadfile->entity,
-            $coursename,
-            $tadfile->timecreated,
-            $tadfile->filename,
-            $tadfile->dllink,
-            $i
-        );
-        array_push($templatecontent, $tad->get_as_templatecontext());
+        if ($semesterarg){
+                $semester = str_replace('/','',$semesterarg);
+                $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $semester]);
+            } else {
+                $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $tadfile->semester]);
+            }
+            if($coursedata){
+                if($entityname = $DB->get_record_sql($entitynamesql . $DB->sql_like('c.shortname', '?'), array($tadfile->coursecode.'%'))){
+					if (strcmp($lang,'hu') == 0){
+                        $entityname = $entityobject->get_hungarian($entityname->name);
+					} else {
+			    		$entityname = $entityobject->get_english($entityname->name);
+                    }
+                } else {
+                    $entityname = 'hiba';
+                }
+                $semesterstring = substr($coursedata->semester, 0, 4) . '/' . substr($coursedata->semester,4);
+                $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
+                $tad = new TadObject(
+                    $coursedata->author,
+                    $coursedata->coursecode,
+                    $semesterstring,
+                    $entityname,
+                    $coursedata->tadname,
+                    $coursedata->timecreated,
+                    'irrelevant',
+                    $coursedata->dlurl,
+                    $i,
+                    $coursedata->code,
+                    $coursedata->name
+                );
+            } else {
+                continue;
+            }
+            array_push($templatecontent, $tad->get_as_templatecontext());
     }
     $fulltemplatecontext = array(
         'id_heading'                => get_string('id_heading', "local_tad"),
-        'author_heading'            => get_string('author_heading', "local_tad"),
         'course_code_heading'       => get_string('course_code_heading', "local_tad"),
         'course_name_heading'       => get_string('course_name_heading', "local_tad"),
         'entity_heading'            => get_string('entity_heading', "local_tad"),
@@ -156,12 +169,114 @@ function construct_view_table($semester){
         'file_heading'              => get_string('file_heading', "local_tad"),
         'label_noresult'            => get_string('label_noresult', "local_tad"),
         'semester_heading'          => get_string('semester_heading', "local_tad"),
+        'corriculum_code_heading'   => get_string('corriculum_code_heading', "local_tad"),
+        'corriculum_name_heading'   => get_string('corriculum_name_heading', "local_tad"),
+        'filter_label'              => get_string('search_label', 'local_tad'),     
+        'semester_label'            => get_string('semester_label', 'local_tad'),
+        'semester_options'          => $semesterarray,
+        'semester_select_default'   => get_string('semester_select_default', 'local_tad'),
         'rows'                      => $templatecontent,
+        'count'                     => count($templatecontent)
     );
     return $fulltemplatecontext;
 }
 
+function ingest_tad_db($semester){
+    global $DB;
+    $coursedatasql = "
+        SELECT name, code, coursename 
+        FROM {tad_corriculum}
+        WHERE coursecode = :coursecode
+    ";
+    $tadfiles = get_all_temp_tad_files();
+    foreach ($tadfiles as $f) {
+        $tadfile = new TadFileObject($f);
+        $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode]);
+        if($coursedata){
+            $tad = new TadObject(
+                $tadfile->author,
+                $tadfile->coursecode,
+                $semester,
+                $tadfile->entity,
+                $coursedata->coursename,
+                $tadfile->timecreated,
+                $tadfile->filename,
+                $tadfile->dllink,
+                0,
+                $coursedata->code,
+                $coursedata->name
+            );
+                $tad->save_to_db();
+        }
+    }
+}
+
 function create_tad_corriculum_in_db($tad){
     global $DB;
-    $DB->insert_record('tad_corriculum', $tad);
+    if(!$DB->insert_record('tad_corriculum', $tad)){
+        return false;
+    };
 }
+
+function parse_csv_file($separator){
+    global $DB;
+    // read csv file
+    $checkmultiple = false;
+    $fs = get_file_storage();
+    // read corriculum table to filter duplicates (code, name)
+    if($corrtable = $DB->get_records_sql('SELECT * FROM {tad_corriculum}')){
+        $checkmultiple = true;
+    };
+    try {
+        $files = $fs->get_area_files(1, 'local_tad', 'csv_temp');
+        // last element of pesky arrays
+        $file = end($files);
+        $filecontent = $file->get_content();
+        // split on newline
+        $cont = explode(PHP_EOL, $filecontent);
+        foreach ($cont as $line) {
+            // split line on separator
+            $linecont = explode($separator, utf8_encode($line));
+            // check if line is empty
+            if ($linecont[0] == ''|| $linecont[1] == ''){} 
+            else {
+                $corriculum_entry               = new stdClass();
+                $corriculum_entry->code         = $linecont[0];
+                $corriculum_entry->name         = $linecont[1];
+                $corriculum_entry->coursecode   = $linecont[2];
+                $corriculum_entry->coursename   = $linecont[3];
+                $corriculum_entry->type         = 1;
+                // check and skip if duplicate
+                if($checkmultiple){
+                    $isok = true;
+                    foreach ($corrtable as $record) {
+                        if(
+                        $record->name       == $corriculum_entry->name && 
+                        $record->code       == $corriculum_entry->code &&
+                        $record->coursename == $corriculum_entry->coursename &&
+                        $record->coursecode == $corriculum_entry->coursecode
+                        ){
+                            $isok = false;
+                        }
+                    }
+                    if($isok){
+                        create_tad_corriculum_in_db($corriculum_entry);
+                    }
+                } else{
+                    create_tad_corriculum_in_db($corriculum_entry);
+                }
+            }
+            // Delete csv file
+            $file->delete();
+        }
+        if (count($files)>1){
+            foreach ($files as $file) {
+                $file->delete();
+            }
+        }
+        return true;
+    } catch (Throwable $th) {
+        return false;
+    }
+}
+

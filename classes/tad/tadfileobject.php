@@ -47,27 +47,21 @@ class TadFileObject {
         //$this->get_course_details();
 
         /// !!!!! PLACEHOLDER !!!!!!!
-        $this->entity = 'teszt';
-
-        $this->dllink = moodle_url::make_pluginfile_url(
-            $this->contextid,
-            'local_tad_temp', 
-            'attachment',
-            $this->itemid, 
-            $this->filepath, 
-            $this->filename, 
-            true
-        );
-    }
-
-    function get_course_details(){
-        global $DB;    
-        if($coursedetails = $DB->get_record_sql($this->entitysql, ['coursecode' => $this->coursecode])){
-            $this->fullname = $coursedetails->fullname;
-            $this->entity = $coursedetails->name;
-        };
+        $this->entity = 'TanszékTesztPlaceholder';
+        $this->create_download_url();       
     }
     public function create_download_url(){
+        global $DB;
+        $filerecord = $DB->get_record('files', ["component" => 'local_tad', 'filename' => $this->filename]);
+        $this->dllink = moodle_url::make_pluginfile_url(
+            $filerecord->contextid,
+            $filerecord->component,
+            $filerecord->filearea,
+            $filerecord->itemid, 
+            $filerecord->filepath, 
+            $filerecord->filename, 
+            true
+        );
         return $this->dllink;
     }
 }

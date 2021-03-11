@@ -35,41 +35,20 @@
 //
 
 function local_tad_pluginfile($course = null, $cm = null, $context, $filearea, $args, $forcedownload = true, array $options=array()) {
-    // Check the contextlevel is as expected - if your plugin is a block, this becomes CONTEXT_BLOCK, etc.
-    //if ($context->contextlevel != CONTEXT_SYSTEM) {
-    //    return false; 
-    //}
- //
-    //// Make sure the filearea is one of those used by the plugin.
-    //if ($filearea !== 'local_tad') {
-    //    return false;
-    //}
- 
-    // Make sure the user is logged in and has access to the module (plugins that are not course modules should leave out the 'cm' part).
-    // require_login($course, true, $cm);
- 
-    // Check the relevant capabilities - these may vary depending on the filearea being accessed.
-    // if (!has_capability('mod/MYPLUGIN:view', $context)) {
-    //     return false;
-    // }
- 
-    // Leave this line out if you set the itemid to null in make_pluginfile_url (set $itemid to 0 instead).
-    $itemid = array_shift($args); // The first item in the $args array.
- 
-    // Extract the filename / filepath from the $args array.
-    $filename = array_pop($args); // The last item in the $args array.
+    $itemid = array_shift($args);
+    $filename = array_pop($args);
     if (!$args) {
-        $filepath = '/'; // $args is empty => the path is '/'
+        $filepath = '/';
     } else {
-        $filepath = '/'.implode('/', $args).'/'; // $args contains elements of the filepath
+        $filepath = '/'.implode('/', $args).'/';
     }
  
     // Retrieve the file from the Files API.
     $fs = get_file_storage();
-    $file = $fs->get_file(1, 'local_tad_temp', $filearea, $itemid, $filepath, $filename);
+    $file = $fs->get_file($context->id, 'local_tad', $filearea, $itemid, $filepath, $filename);
     if (!$file) {
         return false;
     }
-    // We can now send the file back to the browser - in this case with a cache lifetime of 1 day and no filtering. 
+    // Send file to user
     send_stored_file($file, 86400, 0, $forcedownload, array());
 }

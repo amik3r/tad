@@ -33,25 +33,40 @@ $string['editor'] = 'TAD-ok szerkesztése';
 $string['reviewer'] = 'TAD-ok ...';
 
 // Page titles
+$string['upload_corriculumlabel'] = 'Tanterv adatok feltöltése';
+
+// Form strings 
 $string['uploadlabel'] = 'TAD-ok feltöltése';
+$string['csv_upload_label'] = 'Tantervek feltöltése';
+$string['csv_separator_label'] = 'Elválasztó';
+$string['csv_parse_error'] = 'CSV fájl beolvasása sikertelen';
 
 // Notifications
 $string['upload_cancelled'] = 'Feltöltés megszakítva';
 $string['upload_successful'] = 'Feltöltés sikeres';
 $string['upload_failed'] = 'Feltöltési hiba';
 
+// view labels
+$string['semester_label'] = 'Félév';
+$string['search_label'] = 'Keresés';
+$string['semester_select_default'] = 'Összes';
+
+
 // Table headings in view.php
+$string['time_created_heading'] = 'Létrehozva';
+$string['id_heading'] = 'ID';
+// aktuális
+$string['corriculum_code_heading'] = 'Tanterv kód';
+$string['corriculum_name_heading'] = 'Tanterv név';
 $string['author_heading'] = 'Szerző';
 $string['course_code_heading'] = 'Tárgykód';
-$string['course_name_heading'] = 'Tárgynév';
+$string['semester_heading'] = 'Félév';
 $string['entity_heading'] = 'Tanszék';
-$string['time_created_heading'] = 'Létrehozva';
-$string['file_heading'] = 'Fájl';
-$string['id_heading'] = 'ID';
+$string['course_name_heading'] = 'Tárgynév';
+$string['file_heading'] = 'Letöltés';
 
 // Misc HTML content
 $string['label_noresult'] = 'Nincs találat!';
 
 $string['semester_select_label'] = 'Félév';
 $string['filterlabel'] = 'Szűrés';
-$string['semester_heading'] = 'Félév';

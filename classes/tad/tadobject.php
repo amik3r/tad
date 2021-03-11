@@ -22,7 +22,19 @@
 
 
 class TadObject {
-    function __construct($author, $coursename, $semester, $entity, $fullname, $timecreated, $filename, $url, $id = 0) {
+    function __construct(
+            $author, 
+            $coursename, 
+            $semester, 
+            $entity, 
+            $fullname, 
+            $timecreated, 
+            $filename, 
+            $url, 
+            $id = 0, 
+            $corriculum_code, 
+            $corriculum_name
+        ) {
         $this->author           = $author;
         $this->coursename       = $coursename;
         $this->semester         = $semester;
@@ -32,22 +44,41 @@ class TadObject {
         $this->filename         = $filename;
         $this->url              = $url;
         $this->id               = $id;
+        $this->corriculum_code  = $corriculum_code;
+        $this->corriculum_name  = $corriculum_name;
     }
     public function get_as_templatecontext(){
         return array(
-            'author'        => $this->author,          
-            'coursename'    => $this->coursename, 
-            'semester'      => $this->semester, 
-            'fullname'      => $this->fullname,   
-            'entity'        => $this->entity,     
-            'timecreated'   => $this->timecreated,
-            'filename'      => $this->filename,   
-            'url'           => $this->url,
-            'id'            => $this->id      
+            'coursename'            => $this->coursename, 
+            'semester'              => $this->semester, 
+            'fullname'              => $this->fullname,   
+            'entity'                => $this->entity,     
+            'timecreated'           => $this->timecreated,
+            'filename'              => $this->filename,   
+            'url'                   => $this->url,
+            'id'                    => $this->id,    
+            'corriculum_code'       => $this->corriculum_code,    
+            'corriculum_name'       => $this->corriculum_name,    
         );
     }
+    public function save_to_db(){                                                                                                
+        global $DB;
+        $dbobj = new stdClass();
+        $dbobj->id             = $this->id;
+        $dbobj->name           = $this->fullname;
+        $dbobj->author         = $this->author;
+        $dbobj->editable       = false;
+        $dbobj->coursecode     = $this->coursename;
+        $dbobj->dlurl          = $this->url->out(false);
+        $dbobj->semester       = $this->semester;
+        $dbobj->timecreated    = $this->timecreated;
+        $dbobj->timerelevant   = $this->timecreated;
+        $dbobj->version        = 1;
 
-    public function save_to_db(){
-        
+        if(!$DB->insert_record('tad', $dbobj)){
+            return false;
+        }
+        echo $dbobj->name . " added to db" . "<br>";
+        return true;
     }
 }
