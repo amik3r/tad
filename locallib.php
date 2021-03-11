@@ -97,7 +97,7 @@ function construct_view_table($lang, $semesterarg=null){
         INNER JOIN mdl_course c 
         ON c.shortname LIKE :coursecode% 
         AND cat.id = c.category
-        LIMIT 1;
+        LIMIT 1
     ";
 
     $semesterlistsql = "
