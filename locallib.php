@@ -96,7 +96,7 @@ function construct_view_table($lang, $semesterarg=null){
         FROM {course_categories} cat 
         INNER JOIN {course} c 
         ON cat.id = c.category
-        AND
+        AND :param
     ";
 
     $semesterlistsql = "
