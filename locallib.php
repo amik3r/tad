@@ -95,7 +95,7 @@ function construct_view_table($lang, $semesterarg=null){
             c.category 
         FROM {course_categories} cat 
         INNER JOIN {course} c 
-        ON c.shortname LIKE :coursecode% 
+        ON c.shortname :coursecodepattern 
         AND cat.id = c.category
     ";
 
@@ -128,7 +128,7 @@ function construct_view_table($lang, $semesterarg=null){
                 $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $tadfile->semester]);
             }
             if($coursedata){
-                if($entityname = $DB->get_record_sql($entitynamesql, ['coursecode' => $tadfile->coursecode])){
+                if($entityname = $DB->get_record_sql($entitynamesql, ['coursecodepattern' => $DB->sql_like('coursecode', ['coursecode'], false)])){
                     if ($lang == 'hu'){
                         $entityname = $entityobject->get_hungarian($entityname->name);
                     } else if ($lang == 'en'){
