@@ -128,8 +128,7 @@ function construct_view_table($lang, $semesterarg=null){
                 $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $tadfile->semester]);
             }
             if($coursedata){
-                if($entityname = $DB->get_record_sql($entitynamesql, 
-                    ['coursecodepattern' => $DB->sql_like('c.shortname', '?', array("$tadfile->coursecode%"))])){
+                if($entityname = $DB->get_record_sql($entitynamesql . $DB->sql_like('c.shortname', '?', array("$tadfile->coursecode%")))){
                     if ($lang == 'hu'){
                         $entityname = $entityobject->get_hungarian($entityname->name);
                     } else if ($lang == 'en'){
