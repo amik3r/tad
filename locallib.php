@@ -95,7 +95,7 @@ function construct_view_table($lang, $semesterarg=null){
             c.category 
         FROM mdl_course_categories cat 
         INNER JOIN mdl_course c 
-        ON c.shortname LIKE ':coursecode%' 
+        ON c.shortname LIKE :coursecode% 
         AND cat.id = c.category
         LIMIT 1;
     ";
