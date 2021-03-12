@@ -21,8 +21,8 @@
  * 
  */
 
-class Entity{
-    private $entityarray = array(
+class Department{
+    private $departmentarray = array(
         'Department of Ergonomics and Psychology         ' => 'Ergonómia és Pszichológia Tanszék',
         'Department of Philosophy and History of Science ' => 'Filozófia és Tudománytörténet Tanszék',
         'Centre of Modern Languages                      ' => 'Idegen Nyelvi Központ',
@@ -50,18 +50,18 @@ class Entity{
         "Dean's Office"                                    => 'Dékáni Hivatal',
     );
 
-    public function get_english($entity){
+    public function get_english($department){
         /*
         * Return english name from hungarian name
         */
-        foreach ($this->entityarray as $key => $value) {
+        foreach ($this->departmentarray as $key => $value) {
             // remove trash
-            $search = str_replace(' ', '',strtolower($entity));
+            $search = str_replace(' ', '',strtolower($department));
             $curr = $value;
             $curr = str_replace(' ', '',strtolower($curr));
 
             if ($value = $search){
-                return $entity;
+                return $department;
             }
 
             if ($curr == $search){
@@ -69,19 +69,19 @@ class Entity{
             }
         }
     }
-    public function get_hungarian($entity){
+    public function get_hungarian($department){
         /*
         * Return hungarian name from english name
         */
-        foreach ($this->entityarray as $key => $value) {
+        foreach ($this->departmentarray as $key => $value) {
             // remove trash
 
-            $search = str_replace(' ', '',strtolower($entity));
+            $search = str_replace(' ', '',strtolower($department));
             $curr = $value;
             $curr = str_replace(' ', '',strtolower($curr));
 
             if ($value = $search){
-                return $entity;
+                return $department;
             }
             if ($curr == $search){
                 return $value;

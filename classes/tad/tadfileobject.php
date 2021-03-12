@@ -33,26 +33,15 @@ class TadFileObject {
         $this->component = $r->component;
         $this->filearea = $r->filearea;
         $this->filepath = $r->filepath;
-        $this->entitysql = "
-            SELECT course.fullname, category.name 
-            FROM {course} course
-            INNER JOIN {course_categories} category
-            ON course.category = category.id
-            AND course.shortname LIKE :coursecode
-        ";
         $x = explode("_", $this->filename);
         $this->coursecode = explode('.',$x[1])[0];
-        $x = '';
-        
-        //$this->get_course_details();
-
-        /// !!!!! PLACEHOLDER !!!!!!!
-        $this->entity = 'TanszékTesztPlaceholder';
         $this->create_download_url();       
     }
     public function create_download_url(){
         global $DB;
-        $filerecord = $DB->get_record('files', ["component" => 'local_tad', 'filename' => $this->filename]);
+        if(!$filerecord = $DB->get_record('files', ["component" => 'local_tad', 'filename' => $this->filename])){
+            return false;
+        };
         $this->dllink = moodle_url::make_pluginfile_url(
             $filerecord->contextid,
             $filerecord->component,
@@ -62,6 +51,6 @@ class TadFileObject {
             $filerecord->filename, 
             true
         );
-        return $this->dllink;
+        return true;
     }
 }

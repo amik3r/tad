@@ -21,9 +21,9 @@
  */
 define('CLI_SCRIPT', true);
 require_once(__DIR__    . '/../../../config.php');
-require_once($CFG->dirroot . '/local/tad/classes/tad/entityobject.php');
+require_once($CFG->dirroot . '/local/tad/classes/tad/departmentobject.php');
 
-$ent = new Entity();
+$ent = new Department();
 
 echo "Case 1: eng->hun --- hun->eng \n";
 echo "------------------------------------\n";
