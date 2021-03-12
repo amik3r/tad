@@ -40,7 +40,7 @@ class TadObject {
         $this->semester         = $semester;
         $this->entity           = $entity;
         $this->fullname         = $fullname;
-        $this->timecreated      = date("Y-m-d h:i",$timecreated);
+        $this->timecreated      = date("Y-m-d h:i",intval($timecreated));
         $this->filename         = $filename;
         $this->url              = $url;
         $this->id               = $id;

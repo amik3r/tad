@@ -113,7 +113,6 @@ function construct_view_table($lang, $semesterarg=null){
         array_push($semesterarray, $semesterstring);
     }
 
-    $tadarray = array();
     $templatecontent = array();
     $tadfiles = $DB->get_records('tad');
     $i = 0;
@@ -123,14 +122,23 @@ function construct_view_table($lang, $semesterarg=null){
         $i++;
         if ($semesterarg){
                 $semester = str_replace('/','',$semesterarg);
-                $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $semester]);
+                $coursedata = $DB->get_records_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $semester]);
+                $coursedata = reset($coursedata);
             } else {
-                $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $tadfile->semester]);
+                $coursedata = $DB->get_records_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $tadfile->semester]);
+                $coursedata = reset($coursedata);
             }
+            $semesterurls = array();
+            foreach ($semesterarray as $s) {
+                $sdata = new stdClass();
+                $sdata->displaystr = $s;
+                $sdata->url = new moodle_url('/local/tad/view2.php', array('semester' => str_replace('/','',$s)));
+                $sdata->url = $sdata->url->out();
+                array_push($semesterurls, $sdata);
+            };
+
             if($coursedata){
                 if($entityname = $DB->get_record_sql($entitynamesql . $DB->sql_like('c.shortname', '?'), array($tadfile->coursecode.'%'))){
-                    echo $entityname;
-                    die;
                     if ($lang == 'hu'){
                         $entityname = $entityobject->get_hungarian($entityname->name);
                     } else if ($lang == 'en'){
@@ -174,6 +182,7 @@ function construct_view_table($lang, $semesterarg=null){
         'semester_label'            => get_string('semester_label', 'local_tad'),
         'semester_options'          => $semesterarray,
         'semester_select_default'   => get_string('semester_select_default', 'local_tad'),
+        'semesterurls'              => $semesterurls,
         'rows'                      => $templatecontent,
         'count'                     => count($templatecontent)
     );

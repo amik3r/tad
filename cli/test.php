@@ -28,8 +28,8 @@ $ent = new Entity();
 echo "Case 1: eng->hun --- hun->eng \n";
 echo "------------------------------------\n";
 
-$hun = $ent->get_hungarian('Department of Ergonomics and Psychology');
-$eng = $ent->get_english('Ergonómia és Pszichológia Tanszék');
+$hun = $ent->get_hungarian('Üzleti Jog Tanszék');
+$eng = $ent->get_english('Üzleti Jog Tanszék');
 echo "\n hung: " . $hun . "\n eng: " . $eng . "\n\n";
 
 

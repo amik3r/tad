@@ -32,69 +32,66 @@
     {
     }
 }}
-<div class="container-xxl">
+<div class="container-fluid" style="margin: auto; padding: auto;">
     <div id="filter-container" class="row justify-content-md-center justify-content-xl-start">
         <div id="filter-wrapper" class="col-xl-3 col-md-6 mb-3">
             <label for="filter">{{filter_label}}</label>
             <input id="filter" name=filter class="form-control" type="text" style="width: 33%;" onKeyUp="filter()">
         </div>
+        <p id="noresult" style="display: none">{{label_noresult}}</p>
     </div>
-
-    <div id="semester-container" class="row justify-content-md-center justify-content-xl-start">
-        <div id="semester-select" class="col-xl-3 col-md-6 mb-6">
-            <label for="semester">{{semester_label}}</label><br>
-            <select id="semester" name="semester" class="custom-select" style="width: 33%;" onChange="filter('semester')">
-                <option value=0>{{semester_select_default}}</option>
-                {{#semester_options}}
-                    <option value={{{.}}}>{{{.}}}</option>
-                {{/semester_options}}        
-            </select>
+    <div id="table-container container-fluid">
+        <table style="width: 100%" class="table" id="filter-table"></table>
+        <div class="nav-container">
+            <nav class="nav">
+                <a class="nav-link disabled" target="" href="#">{{semester_heading}}</a>
+                <a class="nav-link active" target="" href="{{{url}}}">{{semester_select_default}}</a>
+                {{#semesterurls}}
+                <a class="nav-link active" target="" href="{{{url}}}">{{displaystr}}</a>
+                {{/semesterurls}} 
+            </nav>
         </div>
-    </div>
-
-</div>
-<p id="noresult" style="display: none">{{label_noresult}}</p>
-<div id="table-container">
-<table style="width: 100%" class="table" id="filter-table"></table>
-<table style="width: 100%" class="table" id="tad-table">
-  <tr>
-    <th scope="col" class="th">{{corriculum_code_heading}}</th>
-    <th scope="col" class="th">{{corriculum_name_heading}}</th>
-    <th scope="col" class="th">{{author_heading}}</th>
-    <th scope="col" class="th">{{course_code_heading}}</th>
-    <th scope="col" class="th">{{semester_heading}}</th>
-    <th scope="col" class="th">{{entity_heading}}</th>
-    <th scope="col" class="th">{{course_name_heading}}</th>
-    <th scope="col" class="th">{{file_heading}}</th>
-  </tr>
-{{#rows}}
-<tr class="tr">
-    <td>
-        {{corriculum_code}}
-    </td>
-    <td>
-        {{corriculum_name}}
-    </td>
-    <td>
-        {{author}}
-    </td>
-    <td>
-        {{coursename}}
-    </td>
-    <td>
-        {{semester}}
-    </td>
-    <td>
-        {{entity}}
-    </td>
-    <td>
-        {{fullname}}
-    </td>
-    <td>
-        <a href="{{url}}" target="_blank">Letöltés</a>
-    </td>
-</tr>
-{{/rows}}
+    <table style="width: 100%" class="table table-striped table-hover table-responsive" id="tad-table">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col" class="th">{{corriculum_code_heading}}</th>
+            <th scope="col" class="th">{{corriculum_name_heading}}</th>
+            <th scope="col" class="th">{{author_heading}}</th>
+            <th scope="col" class="th">{{course_code_heading}}</th>
+            <th scope="col" class="th">{{semester_heading}}</th>
+            <th scope="col" class="th">{{entity_heading}}</th>
+            <th scope="col" class="th">{{course_name_heading}}</th>
+            <th scope="col" class="th">{{file_heading}}</th>
+        </thead>
+        </tr>
+    {{#rows}}
+    <tr class="tr" style="width: auto;">
+        <td style="word-wrap: break-word;" class="tad-column">
+            {{corriculum_code}}
+        </td>
+        <td style="word-wrap: break-word;" class="tad-column">
+            {{corriculum_name}}
+        </td>
+        <td style="word-wrap: break-word;" class="tad-column">
+            {{author}}
+        </td>
+        <td style="word-wrap: break-word;" class="tad-column">
+            {{coursename}}
+        </td>
+        <td style="word-wrap: break-word;" class="tad-column">
+            {{semester}}
+        </td>
+        <td style="word-wrap: break-word;" class="tad-column">
+            {{entity}}
+        </td>
+        <td style="word-wrap: break-word;" class="tad-column">
+            {{fullname}}
+        </td>
+        <td style="word-wrap: break-word;" class="tad-column">
+            <a href="{{url}}" target="_blank">Letöltés</a>
+        </td>
+    </tr>
+    {{/rows}}
 </table>
 </div>
 <div id="pagination-container">

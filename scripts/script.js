@@ -6,14 +6,7 @@ function docReady(fn) {
     }
 }
 
-function decorateTable(){
-    var table = document.getElementById("tad-table");
-    for (i=1;i<=table.rows.length - 1;i++){
-        if (i%2 == 1) {
-            table.rows[i].style.background = '#f0f0f0';
-        }
-    }
-};
+
 
 function filter_semester(){
     var table = document.getElementById("tad-table");
@@ -224,6 +217,5 @@ function paginate(page, doUpdate=false){
 }
 document.addEventListener("DOMContentLoaded", function(event) {
     preparePagination();
-    decorateTable();
     paginate(1);
 });
