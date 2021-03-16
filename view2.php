@@ -42,6 +42,7 @@ require_once($CFG->libdir.'/adminlib.php');
 global $DB;
 $mform = new semester_select();
 if ($semesterstr) {
+    var_dump($semesterstr);
     $templatecontent = construct_view_table(current_language(), $semesterstr);
     $templatecontent['url'] = $PAGE->url;
 } else {
