@@ -54,6 +54,10 @@ class Department{
         /*
         * Return english name from hungarian name
         */
+		if (array_key_exists($entity,$this->entityarray)){
+			return $entity;
+		}	
+        foreach ($this->entityarray as $key => $value) {
         foreach ($this->departmentarray as $key => $value) {
             // remove trash
             $search = str_replace(' ', '',strtolower($department));
@@ -64,8 +68,8 @@ class Department{
                 return $department;
             }
 
-            if ($curr == $search){
-                return $key;
+			if ($curr == $search){
+				return $key;
             }
         }
     }

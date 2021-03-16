@@ -22,6 +22,10 @@
  
 defined('MOODLE_INTERNAL') || die();
  
+<<<<<<< HEAD
+$plugin->version = '202103111';
+=======
 $plugin->version = '202103151';
+>>>>>>> redesign
 $plugin->requires = '2017110900';
 $plugin->component = 'local_tad';

@@ -68,8 +68,16 @@ function save_tad_files($semester = ''){
 function construct_view_table($lang, $semesterarg=null){
     global $DB;
 
+<<<<<<< HEAD
+    $entityobject = new Entity();
+	if(!$lang){
+		$lang='en';
+	}
+			
+=======
     $departmentobject = new Department();
 
+>>>>>>> redesign
     $coursedatasql = "
         SELECT
             corr.name, 
@@ -138,6 +146,12 @@ function construct_view_table($lang, $semesterarg=null){
             };
 
             if($coursedata){
+                if($entityname = $DB->get_record_sql($entitynamesql . $DB->sql_like('c.shortname', '?'), array($tadfile->coursecode.'%'))){
+					if (strcmp($lang,'hu') == 0){
+                        $entityname = $entityobject->get_hungarian($entityname->name);
+					} else {
+			    		$entityname = $entityobject->get_english($entityname->name);
+=======
                 if($departmentname = $DB->get_record_sql($departmentnamesql . $DB->sql_like('c.shortname', '?'), array($tadfile->coursecode.'%'))){
                     if ($lang == 'hu'){
                         $departmentname = $departmentobject->get_hungarian($departmentname->name);
