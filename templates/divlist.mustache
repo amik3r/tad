@@ -1,0 +1,151 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_banner/manage
+
+    Template to display the list of forum discussions.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * TODO
+
+    Example context (json):
+    {
+    }
+}}
+<head>
+    <style>
+        .list-header .tad-wrapper{
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<div class="container-xxl">
+    <div id="filter-container" class="row justify-content-md-center justify-content-xl-start">
+        <div id="filter-wrapper" class="col-xl-3 col-md-6 mb-3">
+            <label for="filter">{{filter_label}}</label>
+            <input id="filter" name=filter class="form-control" type="text" style="width: 33%;" onKeyUp="filter()">
+        </div>
+    </div>
+
+    <div id="semester-container" class="row justify-content-md-center justify-content-xl-start">
+        <div id="semester-select" class="col-xl-3 col-md-6 mb-6">
+            <label for="semester">{{semester_label}}</label><br>
+            <select id="semester" name="semester" class="custom-select" style="width: 33%;" onChange="filter('semester')">
+                <option value=0>{{semester_select_default}}</option>
+                {{#semester_options}}
+                    <option value={{{.}}}>{{{.}}}</option>
+                {{/semester_options}}        
+            </select>
+        </div>
+    </div>
+</div>
+<p id="noresult" style="display: none">{{label_noresult}}</p>
+
+<div class="tad-wrapper">
+    <div class="list-header-container" style="display: flex; justify-content: space-between;">
+        <h3 class="list-header">{{corriculum_code_heading}}  </h3>
+        <h3 class="list-header">{{corriculum_name_heading}}  </h3>
+        <h3 class="list-header">{{author_heading}}           </h3>
+        <h3 class="list-header">{{course_code_heading}}      </h3>
+        <h3 class="list-header">{{semester_heading}}         </h3>
+        <h3 class="list-header">{{department_heading}}           </h3>
+        <h3 class="list-header">{{course_name_heading}}      </h3>
+        <h3 class="list-header">{{file_heading}}             </h3>
+    </div>
+    <div class="list-pancake" style="display: grid; grid-template-rows: 8;">
+        <div class="pancake-section1">
+            {{corriculum_code}}
+        </div>
+        <div class="pancake-section2">
+            {{corriculum_name}}
+        </div>
+        <div class="pancake-section3">
+            {{author}}
+        </div>
+        <div class="pancake-section4">
+            {{coursename}}
+        </div>
+        <div class="pancake-section5">
+            {{semester}}
+        </div>
+        <div class="pancake-section6">
+            {{department}}
+        </div>
+        <div class="pancake-section7">
+            {{fullname}}
+        </div>
+        <div class="pancake-section7">
+            <a href="{{url}}" target="_blank">Letöltés</a>
+        </div>
+    </div>
+</div>
+
+<!--
+    
+    <table style="width: 100%" class="table" id="tad-table">
+      <tr>
+        <th scope="col" class="th">{{corriculum_code_heading}}</th>
+        <th scope="col" class="th">{{corriculum_name_heading}}</th>
+        <th scope="col" class="th">{{author_heading}}</th>
+        <th scope="col" class="th">{{course_code_heading}}</th>
+        <th scope="col" class="th">{{semester_heading}}</th>
+        <th scope="col" class="th">{{department_heading}}</th>
+        <th scope="col" class="th">{{course_name_heading}}</th>
+        <th scope="col" class="th">{{file_heading}}</th>
+      </tr>
+    {{#rows}}
+    <tr class="tr">
+        <td>
+            {{corriculum_code}}
+        </td>
+        <td>
+            {{corriculum_name}}
+        </td>
+        <td>
+            {{author}}
+        </td>
+        <td>
+            {{coursename}}
+        </td>
+        <td>
+            {{semester}}
+        </td>
+        <td>
+            {{department}}
+        </td>
+        <td>
+            {{fullname}}
+        </td>
+        <td>
+            <a href="{{url}}" target="_blank">Letöltés</a>
+        </td>
+    </tr>
+    {{/rows}}
+    </table>
+    </div>
+    <div id="pagination-container">
+        <div class="row  justify-content-md-center" id="pagination-row">
+            <div class="btn-toolbar" id="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups"></div>
+        </div>
+    </div>
+-->

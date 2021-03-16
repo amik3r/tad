@@ -26,7 +26,7 @@ class TadObject {
             $author, 
             $coursename, 
             $semester, 
-            $entity, 
+            $department, 
             $fullname, 
             $timecreated, 
             $filename, 
@@ -38,9 +38,9 @@ class TadObject {
         $this->author           = $author;
         $this->coursename       = $coursename;
         $this->semester         = $semester;
-        $this->entity           = $entity;
+        $this->department           = $department;
         $this->fullname         = $fullname;
-        $this->timecreated      = date("Y-m-d h:i",$timecreated);
+        $this->timecreated      = date("Y-m-d h:i",intval($timecreated));
         $this->filename         = $filename;
         $this->url              = $url;
         $this->id               = $id;
@@ -52,7 +52,7 @@ class TadObject {
             'coursename'            => $this->coursename, 
             'semester'              => $this->semester, 
             'fullname'              => $this->fullname,   
-            'entity'                => $this->entity,     
+            'department'                => $this->department,     
             'timecreated'           => $this->timecreated,
             'filename'              => $this->filename,   
             'url'                   => $this->url,

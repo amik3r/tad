@@ -160,7 +160,7 @@ path|fájl elérési útja|string
 |author_heading|            Author|  Szerző           |
 |course_code_heading|       Course Code|Tárgykód  |
 |semester_heading|          Semester|Félév|
-|entity_heading|            Entity|  Tanszék  |
+|department_heading|            department|  Tanszék  |
 |course_name_heading|       Course Name| Tárgynév |
 |file_heading|              Download|  Letöltés |
 

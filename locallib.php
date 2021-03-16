@@ -26,7 +26,7 @@ global $PAGE;
 require_once(__DIR__ . '../../../config.php');
 require_once(__DIR__ . '/classes/tad/tadfileobject.php');
 require_once(__DIR__ . '/classes/tad/tadobject.php');
-require_once(__DIR__ . '/classes/tad/entityobject.php');
+require_once(__DIR__ . '/classes/tad/departmentobject.php');
 
 
 function get_all_temp_tad_files(){
@@ -68,11 +68,16 @@ function save_tad_files($semester = ''){
 function construct_view_table($lang, $semesterarg=null){
     global $DB;
 
+<<<<<<< HEAD
     $entityobject = new Entity();
 	if(!$lang){
 		$lang='en';
 	}
 			
+=======
+    $departmentobject = new Department();
+
+>>>>>>> redesign
     $coursedatasql = "
         SELECT
             corr.name, 
@@ -92,7 +97,7 @@ function construct_view_table($lang, $semesterarg=null){
         ORDER BY coursecode ASC
     ";
 
-    $entitynamesql = "
+    $departmentnamesql = "
         SELECT 
             cat.name, 
             c.category 
@@ -116,7 +121,6 @@ function construct_view_table($lang, $semesterarg=null){
         array_push($semesterarray, $semesterstring);
     }
 
-    $tadarray = array();
     $templatecontent = array();
     $tadfiles = $DB->get_records('tad');
     $i = 0;
@@ -126,19 +130,36 @@ function construct_view_table($lang, $semesterarg=null){
         $i++;
         if ($semesterarg){
                 $semester = str_replace('/','',$semesterarg);
-                $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $semester]);
+                $coursedata = $DB->get_records_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $semester]);
+                $coursedata = reset($coursedata);
             } else {
-                $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $tadfile->semester]);
+                $coursedata = $DB->get_records_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $tadfile->semester]);
+                $coursedata = reset($coursedata);
             }
+            $semesterurls = array();
+            foreach ($semesterarray as $s) {
+                $sdata = new stdClass();
+                $sdata->displaystr = $s;
+                $sdata->url = new moodle_url('/local/tad/view2.php', array('semester' => str_replace('/','',$s)));
+                $sdata->url = $sdata->url->out();
+                array_push($semesterurls, $sdata);
+            };
+
             if($coursedata){
                 if($entityname = $DB->get_record_sql($entitynamesql . $DB->sql_like('c.shortname', '?'), array($tadfile->coursecode.'%'))){
 					if (strcmp($lang,'hu') == 0){
                         $entityname = $entityobject->get_hungarian($entityname->name);
 					} else {
 			    		$entityname = $entityobject->get_english($entityname->name);
+=======
+                if($departmentname = $DB->get_record_sql($departmentnamesql . $DB->sql_like('c.shortname', '?'), array($tadfile->coursecode.'%'))){
+                    if ($lang == 'hu'){
+                        $departmentname = $departmentobject->get_hungarian($departmentname->name);
+                    } else if ($lang == 'en'){
+                        $departmentname = $departmentobject->get_english($departmentname->name);
                     }
                 } else {
-                    $entityname = 'hiba';
+                    $departmentname = 'hiba';
                 }
                 $semesterstring = substr($coursedata->semester, 0, 4) . '/' . substr($coursedata->semester,4);
                 $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
@@ -146,7 +167,7 @@ function construct_view_table($lang, $semesterarg=null){
                     $coursedata->author,
                     $coursedata->coursecode,
                     $semesterstring,
-                    $entityname,
+                    $departmentname,
                     $coursedata->tadname,
                     $coursedata->timecreated,
                     'irrelevant',
@@ -164,7 +185,7 @@ function construct_view_table($lang, $semesterarg=null){
         'id_heading'                => get_string('id_heading', "local_tad"),
         'course_code_heading'       => get_string('course_code_heading', "local_tad"),
         'course_name_heading'       => get_string('course_name_heading', "local_tad"),
-        'entity_heading'            => get_string('entity_heading', "local_tad"),
+        'department_heading'        => get_string('department_heading', "local_tad"),
         'time_created_heading'      => get_string('time_created_heading', "local_tad"),
         'file_heading'              => get_string('file_heading', "local_tad"),
         'label_noresult'            => get_string('label_noresult', "local_tad"),
@@ -175,6 +196,7 @@ function construct_view_table($lang, $semesterarg=null){
         'semester_label'            => get_string('semester_label', 'local_tad'),
         'semester_options'          => $semesterarray,
         'semester_select_default'   => get_string('semester_select_default', 'local_tad'),
+        'semesterurls'              => $semesterurls,
         'rows'                      => $templatecontent,
         'count'                     => count($templatecontent)
     );
@@ -197,7 +219,7 @@ function ingest_tad_db($semester){
                 $tadfile->author,
                 $tadfile->coursecode,
                 $semester,
-                $tadfile->entity,
+                $tadfile->department,
                 $coursedata->coursename,
                 $tadfile->timecreated,
                 $tadfile->filename,

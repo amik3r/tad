@@ -21,15 +21,15 @@
  */
 define('CLI_SCRIPT', true);
 require_once(__DIR__    . '/../../../config.php');
-require_once($CFG->dirroot . '/local/tad/classes/tad/entityobject.php');
+require_once($CFG->dirroot . '/local/tad/classes/tad/departmentobject.php');
 
-$ent = new Entity();
+$ent = new Department();
 
 echo "Case 1: eng->hun --- hun->eng \n";
 echo "------------------------------------\n";
 
-$hun = $ent->get_hungarian('Department of Ergonomics and Psychology');
-$eng = $ent->get_english('Ergonómia és Pszichológia Tanszék');
+$hun = $ent->get_hungarian('Üzleti Jog Tanszék');
+$eng = $ent->get_english('Üzleti Jog Tanszék');
 echo "\n hung: " . $hun . "\n eng: " . $eng . "\n\n";
 
 
