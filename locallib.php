@@ -20,14 +20,11 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use function PHPSTORM_META\type;
-
 global $PAGE;
 require_once(__DIR__ . '../../../config.php');
 require_once(__DIR__ . '/classes/tad/tadfileobject.php');
 require_once(__DIR__ . '/classes/tad/tadobject.php');
 require_once(__DIR__ . '/classes/tad/departmentobject.php');
-
 
 function get_all_temp_tad_files(){
     global $DB;
@@ -97,8 +94,8 @@ function get_department_name($lang, $departmentnamesql, $tadfile, $departmentobj
     return $departmentname;
 }
 
+// Collect all semesters in DB
 function get_semester_array($semesterlistsql){
-    // Collect all semesters in DB
     global $DB;
     $semesterarray = [];
     if ($s = $DB->get_records_sql($semesterlistsql)){
@@ -113,13 +110,13 @@ function get_semester_array($semesterlistsql){
     return $semesterarray;
 }
 
+// List semesters as nav links
 function get_semester_urls($semesterarray){
-    // List semesters as nav links
     $semesterurls = array();
     foreach ($semesterarray as $s) {
         $sdata = new stdClass();
         $sdata->displaystr = $s;
-        $sdata->url = new moodle_url('/local/tad/view2.php', array('semester' => str_replace('/','',$s)));
+        $sdata->url = new moodle_url('/local/tad/view.php', array('semester' => str_replace('/','',$s)));
         $sdata->url = $sdata->url->out();
         array_push($semesterurls, $sdata);
     };
@@ -133,7 +130,6 @@ function construct_view_table($lang, $semesterarg=null){
 	if(!$lang){
 		$lang='en';
 	}
-
     $coursedatasql = "
         SELECT
             corr.name, 
@@ -152,7 +148,6 @@ function construct_view_table($lang, $semesterarg=null){
         AND tad.semester = :semester
         ORDER BY coursecode ASC
     ";
-
     $departmentnamesql = "
         SELECT 
             cat.name, 
@@ -162,7 +157,6 @@ function construct_view_table($lang, $semesterarg=null){
         ON cat.id = c.category
         AND
     ";
-
     $semesterlistsql = "
         SELECT DISTINCT semester
         FROM {tad}
@@ -170,7 +164,6 @@ function construct_view_table($lang, $semesterarg=null){
 
     $semesterarray = get_semester_array($semesterlistsql);
     $semesterurls = get_semester_urls($semesterarray);
-
     $templatecontent = array();
     $tadfiles = $DB->get_records('tad');
 
@@ -225,6 +218,7 @@ function construct_view_table($lang, $semesterarg=null){
     return $fulltemplatecontext;
 }
 
+// Gather and insert TAD data on file upload
 function ingest_tad_db($semester){
     global $DB;
     $coursedatasql = "
@@ -262,6 +256,7 @@ function create_tad_corriculum_in_db($tad){
     };
 }
 
+// Parse corriculum csv file
 function parse_csv_file($separator){
     global $DB;
     // read csv file
