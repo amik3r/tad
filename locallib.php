@@ -20,14 +20,11 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use function PHPSTORM_META\type;
-
 global $PAGE;
 require_once(__DIR__ . '../../../config.php');
 require_once(__DIR__ . '/classes/tad/tadfileobject.php');
 require_once(__DIR__ . '/classes/tad/tadobject.php');
 require_once(__DIR__ . '/classes/tad/departmentobject.php');
-
 
 function get_all_temp_tad_files(){
     global $DB;
@@ -65,19 +62,74 @@ function save_tad_files($semester = ''){
     }
 }
 
+// Construct helpers
+
+// Get semester data of TAD
+function get_course_data($coursedatasql, $tadfile, $semesterarg=null){
+    global $DB;
+    // get semester specific data
+    if ($semesterarg){
+        $coursedata = $DB->get_records_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $semesterarg]);
+        $coursedata = reset($coursedata);
+    } else {
+        // get all
+        $coursedata = $DB->get_records_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $tadfile->semester]);
+        $coursedata = reset($coursedata);
+    }
+    return $coursedata;
+}
+
+// Get department name
+function get_department_name($lang, $departmentnamesql, $tadfile, $departmentobject){
+    global $DB;
+    if($departmentname = $DB->get_record_sql($departmentnamesql . $DB->sql_like('c.shortname', '?'), array($tadfile->coursecode.'%'))){
+        if ($lang == 'hu'){
+            $departmentname = $departmentobject->get_hungarian($departmentname->name);
+        } else if ($lang == 'en'){
+            $departmentname = $departmentobject->get_english($departmentname->name);
+        }
+    } else {
+        $departmentname = 'hiba';
+    }
+    return $departmentname;
+}
+
+// Collect all semesters in DB
+function get_semester_array($semesterlistsql){
+    global $DB;
+    $semesterarray = [];
+    if ($s = $DB->get_records_sql($semesterlistsql)){
+        foreach ($s as $k){
+            $semesterstring = substr($k->semester, 0, 4) . '/' . substr($k->semester,4);
+            $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
+            array_push($semesterarray, $semesterstring);
+        }
+    } else {
+        $semesterarray = ['2020/21/2'];
+    };
+    return $semesterarray;
+}
+
+// List semesters as nav links
+function get_semester_urls($semesterarray){
+    $semesterurls = array();
+    foreach ($semesterarray as $s) {
+        $sdata = new stdClass();
+        $sdata->displaystr = $s;
+        $sdata->url = new moodle_url('/local/tad/view.php', array('semester' => str_replace('/','',$s)));
+        $sdata->url = $sdata->url->out();
+        array_push($semesterurls, $sdata);
+    };
+    return $semesterurls;
+}
+
+// Construct the whole view
 function construct_view_table($lang, $semesterarg=null){
     global $DB;
-
-<<<<<<< HEAD
-    $entityobject = new Entity();
+    $departmentobject = new Department();
 	if(!$lang){
 		$lang='en';
 	}
-			
-=======
-    $departmentobject = new Department();
-
->>>>>>> redesign
     $coursedatasql = "
         SELECT
             corr.name, 
@@ -96,7 +148,6 @@ function construct_view_table($lang, $semesterarg=null){
         AND tad.semester = :semester
         ORDER BY coursecode ASC
     ";
-
     $departmentnamesql = "
         SELECT 
             cat.name, 
@@ -106,80 +157,44 @@ function construct_view_table($lang, $semesterarg=null){
         ON cat.id = c.category
         AND
     ";
-
     $semesterlistsql = "
         SELECT DISTINCT semester
         FROM {tad}
     ";
 
-    $semesterarray = [];
-
-    $s = $DB->get_records_sql($semesterlistsql);
-    foreach ($s as $k){
-        $semesterstring = substr($k->semester, 0, 4) . '/' . substr($k->semester,4);
-        $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
-        array_push($semesterarray, $semesterstring);
-    }
-
+    $semesterarray = get_semester_array($semesterlistsql);
+    $semesterurls = get_semester_urls($semesterarray);
     $templatecontent = array();
     $tadfiles = $DB->get_records('tad');
-    $i = 0;
 
     foreach ($tadfiles as $tadfile) {
-        // reparse semester str
-        $i++;
-        if ($semesterarg){
-                $semester = str_replace('/','',$semesterarg);
-                $coursedata = $DB->get_records_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $semester]);
-                $coursedata = reset($coursedata);
-            } else {
-                $coursedata = $DB->get_records_sql($coursedatasql, ['coursecode' => $tadfile->coursecode, 'semester' => $tadfile->semester]);
-                $coursedata = reset($coursedata);
-            }
-            $semesterurls = array();
-            foreach ($semesterarray as $s) {
-                $sdata = new stdClass();
-                $sdata->displaystr = $s;
-                $sdata->url = new moodle_url('/local/tad/view2.php', array('semester' => str_replace('/','',$s)));
-                $sdata->url = $sdata->url->out();
-                array_push($semesterurls, $sdata);
-            };
-
-            if($coursedata){
-                if($entityname = $DB->get_record_sql($entitynamesql . $DB->sql_like('c.shortname', '?'), array($tadfile->coursecode.'%'))){
-					if (strcmp($lang,'hu') == 0){
-                        $entityname = $entityobject->get_hungarian($entityname->name);
-					} else {
-			    		$entityname = $entityobject->get_english($entityname->name);
-=======
-                if($departmentname = $DB->get_record_sql($departmentnamesql . $DB->sql_like('c.shortname', '?'), array($tadfile->coursecode.'%'))){
-                    if ($lang == 'hu'){
-                        $departmentname = $departmentobject->get_hungarian($departmentname->name);
-                    } else if ($lang == 'en'){
-                        $departmentname = $departmentobject->get_english($departmentname->name);
-                    }
-                } else {
-                    $departmentname = 'hiba';
-                }
-                $semesterstring = substr($coursedata->semester, 0, 4) . '/' . substr($coursedata->semester,4);
-                $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
-                $tad = new TadObject(
-                    $coursedata->author,
-                    $coursedata->coursecode,
-                    $semesterstring,
-                    $departmentname,
-                    $coursedata->tadname,
-                    $coursedata->timecreated,
-                    'irrelevant',
-                    $coursedata->dlurl,
-                    $i,
-                    $coursedata->code,
-                    $coursedata->name
-                );
-            } else {
-                continue;
-            }
+        // collect data on course
+        $coursedata = get_course_data($coursedatasql, $tadfile, $semesterarg);
+        if($coursedata){
+            // get department name
+            $departmentname = get_department_name($lang, $departmentnamesql, $tadfile, $departmentobject);
+            // reparse semester str for tha drips
+            $semesterstring = substr($coursedata->semester, 0, 4) . '/' . substr($coursedata->semester,4);
+            $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
+            // consctruct TAD as object
+            $tad = new TadObject(
+                $coursedata->author,
+                $coursedata->coursecode,
+                $semesterstring,
+                $departmentname,
+                $coursedata->tadname,
+                $coursedata->timecreated,
+                'irrelevant',
+                $coursedata->dlurl,
+                0,
+                $coursedata->code,
+                $coursedata->name
+            );
             array_push($templatecontent, $tad->get_as_templatecontext());
+        } else {
+            // Skip if not found (ie.: in specific semester)
+            continue;
+        }
     }
     $fulltemplatecontext = array(
         'id_heading'                => get_string('id_heading', "local_tad"),
@@ -203,6 +218,7 @@ function construct_view_table($lang, $semesterarg=null){
     return $fulltemplatecontext;
 }
 
+// Gather and insert TAD data on file upload
 function ingest_tad_db($semester){
     global $DB;
     $coursedatasql = "
@@ -240,6 +256,7 @@ function create_tad_corriculum_in_db($tad){
     };
 }
 
+// Parse corriculum csv file
 function parse_csv_file($separator){
     global $DB;
     // read csv file
@@ -301,4 +318,3 @@ function parse_csv_file($separator){
         return false;
     }
 }
-

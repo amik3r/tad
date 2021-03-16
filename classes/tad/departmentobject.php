@@ -54,17 +54,16 @@ class Department{
         /*
         * Return english name from hungarian name
         */
-		if (array_key_exists($entity,$this->entityarray)){
-			return $entity;
+		if (array_key_exists($department,$this->entityarray)){
+			return $department;
 		}	
-        foreach ($this->entityarray as $key => $value) {
         foreach ($this->departmentarray as $key => $value) {
             // remove trash
             $search = str_replace(' ', '',strtolower($department));
             $curr = $value;
             $curr = str_replace(' ', '',strtolower($curr));
 
-            if ($value = $search){
+            if ($value == $search){
                 return $department;
             }
 
@@ -77,7 +76,7 @@ class Department{
         /*
         * Return hungarian name from english name
         */
-        foreach ($this->departmentarray as $key => $value) {
+        foreach ($this->departmentarray as $value) {
             // remove trash
 
             $search = str_replace(' ', '',strtolower($department));

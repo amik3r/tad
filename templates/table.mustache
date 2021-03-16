@@ -39,12 +39,12 @@
             <input id="filter" name=filter class="form-control" type="text" style="width: 33%;" onKeyUp="filter()">
         </div>
         <p id="noresult" style="display: none">{{label_noresult}}</p>
-        <div class="nav-container">
+        <div class="nav-container" style="align-items: baseline;">
             <nav class="nav">
-                <a class="nav-link disabled" target="" href="#">{{semester_heading}}</a>
-                <a class="nav-link active" target="" href="{{{url}}}">{{semester_select_default}}</a>
+                <span class="nav-element" font->{{semester_heading}}</span>
+                <a class="nav-link active nav-element" target="" href="{{{url}}}">{{semester_select_default}}</a>
                 {{#semesterurls}}
-                <a class="nav-link active" target="" href="{{{url}}}">{{displaystr}}</a>
+                <a class="nav-link active nav-element" target="" href="{{{url}}}">{{displaystr}}</a>
                 {{/semesterurls}} 
             </nav>
         </div>
