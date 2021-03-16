@@ -61,7 +61,7 @@ $string['corriculum_name_heading'] = 'Tanterv név';
 $string['author_heading'] = 'Szerző';
 $string['course_code_heading'] = 'Tárgykód';
 $string['semester_heading'] = 'Félév';
-$string['entity_heading'] = 'Tanszék';
+$string['department_heading'] = 'Tanszék';
 $string['course_name_heading'] = 'Tárgynév';
 $string['file_heading'] = 'Letöltés';
 
