@@ -63,7 +63,7 @@ class Department{
             $curr = $value;
             $curr = str_replace(' ', '',strtolower($curr));
 
-            if ($value = $search){
+            if ($value == $search){
                 return $department;
             }
 
@@ -76,7 +76,7 @@ class Department{
         /*
         * Return hungarian name from english name
         */
-        foreach ($this->departmentarray as $key => $value) {
+        foreach ($this->departmentarray as $value) {
             // remove trash
 
             $search = str_replace(' ', '',strtolower($department));
