@@ -25,7 +25,7 @@ require_once(__DIR__    . '/../../../config.php');
 global $DB;
 
 $fs = get_file_storage();
-if(!$files = $fs->get_area_files(5,'draft','user')){
+if(!$files = $fs->get_area_files(5,'user','draft')){
     echo "No files found!\n";
     exit;
 };
