@@ -35,18 +35,23 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script>
 {{! <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
- }}<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-
+ }}
+{{! <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+ }}
+{{!  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/plug-ins/1.10.24/integration/font-awesome/dataTables.fontAwesome.css">
+ }}
 <div class="container-fluid" style="margin: auto; padding: auto;">
     <div id="table-container container-fluid">
         <table table id="tad-table" class="display">
             <thead class="thead-light">
+            <tr>
                 <th scope="col" class="th essential-head">{{course_name_heading}}</th>
                 <th scope="col" class="th essential-head">{{course_code_heading}}</th>
                 <th scope="col" class="th secondary">{{semester_heading}}</th>
                 <th scope="col" class="th secondary">{{department_heading}}</th>
                 <th scope="col" class="th secondary">{{corriculum_name_heading}}</th>
-                <th scope="col" class="th essential-head">{{file_heading}}</th>
+                <th scope="col" class="th essential-head no-sort">{{file_heading}}</th>
+            </tr>
             </thead>
             {{#rows}}
             <tr class="tr" style="width: auto;">

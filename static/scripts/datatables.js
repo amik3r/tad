@@ -28,11 +28,16 @@ function addBtn(){
 document.addEventListener("DOMContentLoaded", function(event) {
     $(document).ready( function () {
         if (lang == 'hu'){
-            $('#tad-table').DataTable( {
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Hungarian.json"
-                }
-            } );
+            $('#tad-table').DataTable( 
+                {
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Hungarian.json"
+                    },
+                    columnDefs: [
+                        { targets: 'no-sort', orderable: false }
+                      ]
+                } 
+            );
         } else {
             $('#tad-table').DataTable()
         }

@@ -1,5 +1,7 @@
 th {
     height: 30px;
+    width: max-content;
+    text-align: center;
 }
 
 tr {
@@ -7,18 +9,8 @@ tr {
 }
 
 
-.paginate_button {
-    background-color: rgb(121, 177, 157);
-    border: none;
-    border-radius: 0px;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-
 .thead-light {
-    background-color: rgb(79, 149, 125);
+    background-color: #4F957D;
     color: white;
 }
 
@@ -61,3 +53,31 @@ tr {
         max-width: 90px;
     }
 }
+ 
+table.dataTable thead th.sorting:after,
+table.dataTable thead th.sorting_asc:after,
+table.dataTable thead th.sorting_desc:after {
+    position: relative;
+    display: block;
+    font-family: FontAwesome;
+    padding-left: 10px;
+}
+
+table.dataTable thead th.sorting:after {
+    content: "\f07d";
+}
+
+table.dataTable thead th.sorting_asc:after {
+    content: "\f063";
+}
+table.dataTable thead th.sorting_desc:after {
+    content: "\f062";
+}
+
+table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:after, table.dataTable thead th.sorting_desc:after {
+    position: inherit;
+    display: inline;
+  }
+  table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:after, table.dataTable thead th.sorting_desc:after {
+    right: -.5em;
+  }

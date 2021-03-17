@@ -57,7 +57,7 @@ $string['time_created_heading'] = 'Létrehozva';
 $string['id_heading'] = 'ID';
 // aktuális
 $string['corriculum_code_heading'] = 'Tanterv kód';
-$string['corriculum_name_heading'] = 'Tanterv';
+$string['corriculum_name_heading'] = 'Szak';
 $string['author_heading'] = 'Szerző';
 $string['course_code_heading'] = 'Tárgykód';
 $string['semester_heading'] = 'Félév';
