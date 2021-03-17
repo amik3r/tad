@@ -55,6 +55,8 @@ function delete_db_etries(){
     foreach ($tadsindb as $t) {
         if(empty($prevarray)){
             echo "empty\n";
+            var_dump($t);
+            die;
             array_push($t, $prevarray);
         }
         foreach ($prevarray as $prev) {
