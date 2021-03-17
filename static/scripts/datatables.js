@@ -35,11 +35,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     },
                     columnDefs: [
                         { targets: 'no-sort', orderable: false }
-                      ]
+                    ]
                 } 
             );
         } else {
-            $('#tad-table').DataTable()
+            $('#tad-table').DataTable( 
+                {
+                    columnDefs: [
+                        { targets: 'no-sort', orderable: false }
+                    ]
+                } 
+            );
         }
     } );
 });
