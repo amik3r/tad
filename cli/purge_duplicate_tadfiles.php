@@ -62,8 +62,8 @@ function delete_db_etries(){
             # code...
         }
     }
-    echo count($prevarray) . "\n";
-    echo count($recordstodelete);
+    var_dump($prevarray) . "\n";
+    var_dump($recordstodelete);
 }
 
 delete_db_etries();
