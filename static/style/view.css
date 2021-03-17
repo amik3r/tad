@@ -10,6 +10,10 @@ tr {
     height: 80px;
 }
 
+.no-sort{
+    text-align: center;
+}
+
 .coursecode{
     width: calc(fit-content + 20px);
 }
