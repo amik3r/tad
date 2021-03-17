@@ -15,6 +15,15 @@ if (lang == null){
     lang = 'hu';
 }
 
+// apply BS4 classes to elements
+
+function addBtn(){
+    var buttons = document.getElementsByClassName("paginate_button");
+    for (button of buttons){
+        button.classList.add("btn");
+        button.classList.add("btn-secondary");
+    }
+}
 
 document.addEventListener("DOMContentLoaded", function(event) {
     $(document).ready( function () {

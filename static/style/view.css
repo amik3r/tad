@@ -1,3 +1,75 @@
+th {
+    height: 80px;
+}
+
 tr {
     height: 80px;
+}
+
+.ellipsis {
+    height: 100%;
+    background-color:  rgb(79, 149, 125);
+    margin-left: 2px;
+}
+
+.paginate_button {
+    background-color: rgb(79, 149, 125);
+    border: none;
+    border-radius: 0px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.paginate_button.current {
+    background-color: rgb(121, 177, 157) !important;
+    border: none;
+    border-radius: 0px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.thead-light {
+    background-color: rgb(79, 149, 125);
+    color: white;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border-radius: 0px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .secondary{
+      display: none;
+    }
+    .essential {
+        padding: 0px;
+        width: 194px;
+    }
+}
+
+
+@media screen and (max-width: 630px) {
+    .secondary{
+      display: none;
+    }
+    .essential {
+        max-width: 210px;
+    }
+}
+
+/* iPhone 7 and below */
+@media screen and (max-width: 376px) {
+    .secondary{
+      display: none;
+    }
+    .essential {
+        font-size: x-small;
+        padding: 0px;
+        max-width: 90px;
+    }
 }

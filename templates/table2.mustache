@@ -33,6 +33,7 @@
     }
 }}
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script>
 {{! <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
  }}<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 
@@ -40,31 +41,31 @@
     <div id="table-container container-fluid">
         <table table id="tad-table" class="display">
             <thead class="thead-light">
-                <th scope="col" class="th">{{course_name_heading}}</th>
-                <th scope="col" class="th">{{course_code_heading}}</th>
-                <th scope="col" class="th">{{semester_heading}}</th>
-                <th scope="col" class="th">{{department_heading}}</th>
-                <th scope="col" class="th">{{corriculum_name_heading}}</th>
-                <th scope="col" class="th">{{file_heading}}</th>
+                <th scope="col" class="th essential">{{course_name_heading}}</th>
+                <th scope="col" class="th essential">{{course_code_heading}}</th>
+                <th scope="col" class="th secondary">{{semester_heading}}</th>
+                <th scope="col" class="th secondary">{{department_heading}}</th>
+                <th scope="col" class="th secondary">{{corriculum_name_heading}}</th>
+                <th scope="col" class="th essential">{{file_heading}}</th>
             </thead>
             {{#rows}}
             <tr class="tr" style="width: auto;">
-                <td style="word-wrap: break-word;" class="tad-column">
+                <td style="word-wrap: break-word;" class="tad-column essential">
                     {{fullname}}
                 </td>
-                <td style="word-wrap: break-word;" class="tad-column">
+                <td style="word-wrap: break-word;" class="tad-column essential">
                     {{coursename}}
                 </td>
-                <td style="word-wrap: break-word;" class="tad-column">
+                <td style="word-wrap: break-word;" class="tad-column secondary">
                     {{semester}}
                 </td>
-                <td style="word-wrap: break-word;" class="tad-column">
+                <td style="word-wrap: break-word;" class="tad-column secondary">
                     {{department}}
                 </td>
-                <td style="word-wrap: break-word;" class="tad-column">
+                <td style="word-wrap: break-word;" class="tad-column secondary">
                     {{corriculum_name}}
                 </td>
-                <td style="word-wrap: break-word;" class="tad-column">
+                <td style="word-wrap: break-word;" class="tad-column essential">
                     <a href="{{url}}" target="_blank">Letöltés</a>
                 </td>
             </tr>
