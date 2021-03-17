@@ -37,41 +37,40 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 
 <div class="container-fluid" style="margin: auto; padding: auto;">
-    
     <div id="table-container container-fluid">
-    <table style="width: 100%" table id="tad-table" class="display">
-        <thead class="thead-light">
-            <th scope="col" class="th">{{course_name_heading}}</th>
-            <th scope="col" class="th">{{course_code_heading}}</th>
-            <th scope="col" class="th">{{semester_heading}}</th>
-            <th scope="col" class="th">{{department_heading}}</th>
-            <th scope="col" class="th">{{corriculum_name_heading}}</th>
-            <th scope="col" class="th">{{file_heading}}</th>
-        </thead>
-    {{#rows}}
-    <tr class="tr" style="width: auto;">
-        <td style="word-wrap: break-word;" class="tad-column">
-            {{fullname}}
-        </td>
-        <td style="word-wrap: break-word;" class="tad-column">
-            {{coursename}}
-        </td>
-        <td style="word-wrap: break-word;" class="tad-column">
-            {{semester}}
-        </td>
-        <td style="word-wrap: break-word;" class="tad-column">
-            {{department}}
-        </td>
-        <td style="word-wrap: break-word;" class="tad-column">
-            {{corriculum_name}}
-        </td>
-        <td style="word-wrap: break-word;" class="tad-column">
-            <a href="{{url}}" target="_blank">Letöltés</a>
-        </td>
-    </tr>
-    {{/rows}}
-</table>
-</div>
+        <table table id="tad-table" class="display">
+            <thead class="thead-light">
+                <th scope="col" class="th">{{course_name_heading}}</th>
+                <th scope="col" class="th">{{course_code_heading}}</th>
+                <th scope="col" class="th">{{semester_heading}}</th>
+                <th scope="col" class="th">{{department_heading}}</th>
+                <th scope="col" class="th">{{corriculum_name_heading}}</th>
+                <th scope="col" class="th">{{file_heading}}</th>
+            </thead>
+            {{#rows}}
+            <tr class="tr" style="width: auto;">
+                <td style="word-wrap: break-word;" class="tad-column">
+                    {{fullname}}
+                </td>
+                <td style="word-wrap: break-word;" class="tad-column">
+                    {{coursename}}
+                </td>
+                <td style="word-wrap: break-word;" class="tad-column">
+                    {{semester}}
+                </td>
+                <td style="word-wrap: break-word;" class="tad-column">
+                    {{department}}
+                </td>
+                <td style="word-wrap: break-word;" class="tad-column">
+                    {{corriculum_name}}
+                </td>
+                <td style="word-wrap: break-word;" class="tad-column">
+                    <a href="{{url}}" target="_blank">Letöltés</a>
+                </td>
+            </tr>
+            {{/rows}}
+        </table>
+    </div>
 <div id="pagination-container">
     <div class="row  justify-content-md-center" id="pagination-row">
         <div class="btn-toolbar" id="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups"></div>
