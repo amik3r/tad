@@ -54,7 +54,7 @@ function delete_db_etries(){
 
     foreach ($tadsindb as $t) {
         foreach ($prevarray as $prev) {
-            if (!empty($prevarray) && $t->coursecode == $prev->coursecode && $t->semester == $prev->semester){
+            if (!empty($prevarray) && strcmp($t->coursecode, $prev->coursecode)==0){
                 $recordstodelete[] = $t->id;
             } else {
                 array_push($t, $prevarray);
