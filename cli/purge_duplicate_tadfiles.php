@@ -48,16 +48,22 @@ function delete_files(){
 
 function delete_db_etries(){
     global $DB;
-    $prevarray = [];
+    $prevarray = array();
     $recordstodelete = [];
     $tadsindb = $DB->get_records('tad');
 
     foreach ($tadsindb as $t) {
-        if (in_array($t->coursecode, $prevarray)){
-            array_push($recordstodelete, $t->id);
-            echo 'duplicate found: ' . $t->coursecode . "\n";
+        foreach ($prevarray as $prev) {
+            if (!empty($prevarray) && $t->coursecode == $prev->coursecode && $t->semester == $prev->semester){
+                $recordstodelete[] = $t->id;
+            } else {
+                array_push($t, $prevarray);
+            }
+            # code...
         }
     }
+    echo count($prevarray) . "\n";
+    echo count($recordstodelete);
 }
 
 delete_db_etries();
