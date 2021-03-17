@@ -53,6 +53,9 @@ function delete_db_etries(){
     $tadsindb = $DB->get_records('tad');
 
     foreach ($tadsindb as $t) {
+        if(empty($prevarray)){
+            array_push($t, $prevarray);
+        }
         foreach ($prevarray as $prev) {
             echo $t->id;
             if (!empty($prevarray) && strcmp($t->coursecode, $prev->coursecode)==0){
