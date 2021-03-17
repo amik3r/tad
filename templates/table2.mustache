@@ -33,50 +33,25 @@
     }
 }}
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 
 <div class="container-fluid" style="margin: auto; padding: auto;">
-    <div id="filter-container" class="container-fluid justify-content-md-center justify-content-xl-start">
-        <div id="filter-wrapper" class="col-xl-3 col-md-6 mb-3">
-            <label for="filter">{{filter_label}}</label>
-            <input id="filter" name=filter class="form-control" type="text" style="width: 33%;" onKeyUp="filter()">
-        </div>
-        <p id="noresult" style="display: none">{{label_noresult}}</p>
-        <div class="nav-container" style="align-items: baseline;">
-            <nav class="nav">
-                <span class="nav-element" font->{{semester_heading}}</span>
-                <a class="nav-link active nav-element" target="" href="{{{url}}}">{{semester_select_default}}</a>
-                {{#semesterurls}}
-                <a class="nav-link active nav-element" target="" href="{{{url}}}">{{displaystr}}</a>
-                {{/semesterurls}} 
-            </nav>
-        </div>
-    </div>
+    
     <div id="table-container container-fluid">
-        <table style="width: 100%" class="table" id="filter-table"></table>
-    <table style="width: 100%" class="table table-striped table-hover table-responsive" id="tad-table">
+    <table style="width: 100%" table id="tad-table" class="display">
         <thead class="thead-light">
-            <tr>
-            <th scope="col" class="th">{{corriculum_code_heading}}</th>
-            <th scope="col" class="th">{{corriculum_name_heading}}</th>
-            <th scope="col" class="th">{{author_heading}}</th>
+            <th scope="col" class="th">{{course_name_heading}}</th>
             <th scope="col" class="th">{{course_code_heading}}</th>
             <th scope="col" class="th">{{semester_heading}}</th>
             <th scope="col" class="th">{{department_heading}}</th>
-            <th scope="col" class="th">{{course_name_heading}}</th>
+            <th scope="col" class="th">{{corriculum_name_heading}}</th>
             <th scope="col" class="th">{{file_heading}}</th>
         </thead>
-        </tr>
     {{#rows}}
     <tr class="tr" style="width: auto;">
         <td style="word-wrap: break-word;" class="tad-column">
-            {{corriculum_code}}
-        </td>
-        <td style="word-wrap: break-word;" class="tad-column">
-            {{corriculum_name}}
-        </td>
-        <td style="word-wrap: break-word;" class="tad-column">
-            {{author}}
+            {{fullname}}
         </td>
         <td style="word-wrap: break-word;" class="tad-column">
             {{coursename}}
@@ -88,7 +63,7 @@
             {{department}}
         </td>
         <td style="word-wrap: break-word;" class="tad-column">
-            {{fullname}}
+            {{corriculum_name}}
         </td>
         <td style="word-wrap: break-word;" class="tad-column">
             <a href="{{url}}" target="_blank">Letöltés</a>
