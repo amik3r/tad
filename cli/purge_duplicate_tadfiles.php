@@ -48,7 +48,7 @@ function delete_files(){
 
 function delete_db_etries(){
     global $DB;
-    $prevarray = array();
+    $prevarray = [];
     $recordstodelete = [];
     $tadsindb = $DB->get_records('tad');
 
