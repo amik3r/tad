@@ -1,29 +1,14 @@
 th {
-    height: 80px;
+    height: 30px;
 }
 
 tr {
     height: 80px;
 }
 
-.ellipsis {
-    height: 100%;
-    background-color:  rgb(79, 149, 125);
-    margin-left: 2px;
-}
 
 .paginate_button {
-    background-color: rgb(79, 149, 125);
-    border: none;
-    border-radius: 0px;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.paginate_button.current {
-    background-color: rgb(121, 177, 157) !important;
+    background-color: rgb(121, 177, 157);
     border: none;
     border-radius: 0px;
     color: white;
@@ -37,11 +22,7 @@ tr {
     color: white;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    border-radius: 0px;
-}
-
-
+/* Ipad and above */
 @media screen and (max-width: 768px) {
     .secondary{
       display: none;
@@ -60,6 +41,9 @@ tr {
     .essential {
         max-width: 210px;
     }
+    .essential-head {
+        max-width: 210px;
+    }
 }
 
 /* iPhone 7 and below */
@@ -67,8 +51,12 @@ tr {
     .secondary{
       display: none;
     }
+    .essential-head {
+        padding: 0px;
+        max-width: 90px;
+    }
     .essential {
-        font-size: x-small;
+        font-size: small;
         padding: 0px;
         max-width: 90px;
     }
