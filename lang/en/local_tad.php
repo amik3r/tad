@@ -63,7 +63,7 @@ $string['file_heading']                 = 'Download';
 $string['id_heading']                   = 'ID';
 $string['semester_heading']             = 'Semester';
 $string['corriculum_code_heading']      = 'Corriculum Code';
-$string['corriculum_name_heading']      = 'Corriculum Name';
+$string['corriculum_name_heading']      = 'Corriculum';
 
 // Misc HTML content
 $string['label_noresult'] = 'No results!';

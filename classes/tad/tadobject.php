@@ -52,7 +52,7 @@ class TadObject {
             'coursename'            => $this->coursename, 
             'semester'              => $this->semester, 
             'fullname'              => $this->fullname,   
-            'department'                => $this->department,     
+            'department'            => $this->department,     
             'timecreated'           => $this->timecreated,
             'filename'              => $this->filename,   
             'url'                   => $this->url,
@@ -61,6 +61,15 @@ class TadObject {
             'corriculum_name'       => $this->corriculum_name,    
         );
     }
+
+    private function in_db(){
+        global $DB;
+        if($DB->get_records('tad', ['coursecode' => $this->coursecode, 'semester' => $this->semester])){
+            return true;
+        };
+        return false;
+    }
+
     public function save_to_db(){                                                                                                
         global $DB;
         $dbobj = new stdClass();
@@ -75,9 +84,14 @@ class TadObject {
         $dbobj->timerelevant   = $this->timecreated;
         $dbobj->version        = 1;
 
-        if(!$DB->insert_record('tad', $dbobj)){
+        if (!$this->in_db()){
+            if(!$DB->insert_record('tad', $dbobj)){
+                return false;
+            }
+        } else {
             return false;
         }
+
         echo $dbobj->name . " added to db" . "<br>";
         return true;
     }

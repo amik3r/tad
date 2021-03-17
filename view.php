@@ -35,7 +35,9 @@ $PAGE->set_title('TAD');
 $PAGE->set_heading('TAD');
 
 $PAGE->requires->jquery();
-$PAGE->requires->js(new moodle_url('./scripts/script.js'), false);
+$PAGE->requires->js(new moodle_url('./static/scripts/datatables.js'), false);
+$PAGE->requires->css(new moodle_url('./static/style/view.css'));
+$PAGE->requires->css(new moodle_url('./static/style/datatables.css'));
 
 $CFG->cachejs = false;
 require_once($CFG->libdir.'/adminlib.php');
@@ -49,5 +51,5 @@ if ($semesterstr) {
 }
 
 echo $OUTPUT->header();
-echo $OUTPUT->render_from_template('local_tad/table', $templatecontent);
+echo $OUTPUT->render_from_template('local_tad/table2', $templatecontent);
 echo $OUTPUT->footer();

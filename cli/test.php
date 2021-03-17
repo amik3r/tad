@@ -39,6 +39,3 @@ echo "------------------------------------\n";
 $hun = $ent->get_hungarian('Ergonómia és Pszichológia Tanszék');
 $eng = $ent->get_english('Department of Ergonomics and Psychology');
 echo "\n hung: " . $hun . "\n eng: " . $eng . "\n\n";
-
-
-

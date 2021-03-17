@@ -22,27 +22,54 @@
 define('CLI_SCRIPT', true);
 require_once(__DIR__    . '/../../../config.php');
 
-global $DB;
-
-$filenames = array();
-$i = 0;
-$fs = get_file_storage();
-$files = $DB->get_recordset('files', ["component" => "local_tad", "filearea" => "attachment"]);
-foreach ($files as $f) {
-    $i++;
-    if (!in_array($f->filename, $filenames)){
-        array_push($filenames, $f->filename);
-    } else {
-        echo "duplicate found \n";
-        try{
-            $file = $fs->get_file($f->contextid, $f->component, $f->filearea, $f->itemid, $f->filepath, $f->filename);
-            $file->delete();
-            echo $f->filename . " deleted\n";
-        } catch (Throwable $th){
-            echo $th . "\n";
+function delete_files(){
+    global $DB;
+    
+    $filenames = array();
+    $i = 0;
+    $fs = get_file_storage();
+    $files = $DB->get_recordset('files', ["component" => "local_tad", "filearea" => "attachment"]);
+    foreach ($files as $f) {
+        $i++;
+        if (!in_array($f->filename, $filenames)){
+            array_push($filenames, $f->filename);
+        } else {
+            echo "duplicate found \n";
+            try{
+                $file = $fs->get_file($f->contextid, $f->component, $f->filearea, $f->itemid, $f->filepath, $f->filename);
+                $file->delete();
+                echo $f->filename . " deleted\n";
+            } catch (Throwable $th){
+                echo $th . "\n";
+            }
         }
     }
 }
 
-echo "Files previously on server: " . $i . "\n";
-echo "Files after the purge: " . count($filenames) . "\n";
+function delete_db_etries(){
+    global $DB;
+    $prevarray = [];
+    $recordstodelete = [];
+    $tadsindb = $DB->get_records('tad');
+
+    foreach ($tadsindb as $t) {
+        if(empty($prevarray)){
+            echo "empty\n";
+            $prevarray[] = $t;          
+        }
+        foreach ($prevarray as $prev) {
+            echo $t->id;
+            if (!empty($prevarray) && strcmp($t->coursecode, $prev->coursecode)==0){
+                $recordstodelete[] = $t->id;
+            } else {
+                $prevarray[] = $t;          
+            }
+        }
+    }
+    var_dump($prevarray) . "\n";
+    var_dump($recordstodelete);
+}
+
+delete_db_etries();
+//echo "Files previously on server: " . $i . "\n";
+//echo "Files after the purge: " . count($filenames) . "\n";

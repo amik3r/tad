@@ -23,6 +23,21 @@
       </KEYS>
     </TABLE>
 
+    <!-- Course data -->
+    <TABLE NAME="tad_course" COMMENT="course data">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="coursecode" TYPE="text" NOTNULL="true"/>
+        <FIELD NAME="enname" TYPE="text" NOTNULL="false"/>
+        <FIELD NAME="huname" TYPE="text" NOTNULL="true"/>
+        <FIELD NAME="hudepartment" TYPE="text" NOTNULL="true"/>
+        <FIELD NAME="endepartment" TYPE="text" NOTNULL="true"/>
+        <FIELD NAME="semester" TYPE="text" NOTNULL="true"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
     <!-- Corriculum data -->
     <TABLE NAME="tad_corriculum" COMMENT="corriculum data">
       <FIELDS>
