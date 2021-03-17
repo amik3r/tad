@@ -62,7 +62,7 @@ function delete_db_etries(){
             if (!empty($prevarray) && strcmp($t->coursecode, $prev->coursecode)==0){
                 $recordstodelete[] = $t->id;
             } else {
-                array_push($t, $prevarray);
+                $prevarray[] = $t;          
             }
         }
     }
