@@ -187,16 +187,14 @@ function construct_view_table($lang, $semesterarg=null){
             );
             if (count($tad->corriculum_names) > 1){
                 foreach ($tad->corriculum_names as $c) {
-                    $templatecontent = $tad->get_as_templatecontext();
-                    $templatecontent["corriculum_name"] = $c;
+                    $temp = $tad->get_as_templatecontext();
+                    $temp["corriculum_name"] = $c;
                 }
-                array_push($templatecontent, $tad->get_as_templatecontext());
+                array_push($templatecontent, $temp);
             } else {
-                $templatecontent = $tad->get_as_templatecontext();
-                $templatecontent["corriculum_name"] = $tad->corriculum_names["0"];
-                var_dump($templatecontent);
-                die;
-                array_push($templatecontent, $tad->get_as_templatecontext());
+                $temp = $tad->get_as_templatecontext();
+                $temp["corriculum_name"] = $tad->corriculum_names["0"];
+                array_push($templatecontent, $temp);
             }
         } else {
             continue;
