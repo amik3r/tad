@@ -179,7 +179,7 @@ function construct_view_table($lang, $semesterarg=null){
                 $coursedata->coursecode,
                 $semesterstring,
                 $departmentname,
-                $coursedata->tadname,
+                str_replace('"','',$coursedata->tadname),
                 $coursedata->timecreated,
                 'irrelevant',
                 $coursedata->dlurl,
