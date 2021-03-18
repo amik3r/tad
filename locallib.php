@@ -188,8 +188,8 @@ function construct_view_table($lang, $semesterarg=null){
             foreach ($tad->corriculum_names as $c) {
                 $temp = $tad->get_as_templatecontext();
                 $temp["corriculum_name"] = $c;
+                array_push($templatecontent, $temp);
             }
-            array_push($templatecontent, $temp);
         } else {
             continue;
             /* $departmentname = get_department_names($lang, $tadfile);
