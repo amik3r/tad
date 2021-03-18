@@ -55,7 +55,7 @@ class TadObject {
             }
             return $corriculumnames;
         } else {
-            return ['no data'];
+            return ['-'];
         }
     }
 
@@ -69,7 +69,6 @@ class TadObject {
             'filename'              => $this->filename,   
             'url'                   => $this->url,
             'id'                    => $this->id,    
-            'corriculum_names'      => $this->corriculum_names,    
         );
     }
 }

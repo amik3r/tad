@@ -183,11 +183,22 @@ function construct_view_table($lang, $semesterarg=null){
                 $coursedata->timecreated,
                 'irrelevant',
                 $coursedata->dlurl,
-                0,
+                0
             );
-            array_push($templatecontent, $tad->get_as_templatecontext());
+            if (count($tad->corriculum_names) > 1){
+                foreach ($tad->corriculum_names as $c) {
+                    $templatecontent = $tad->get_as_templatecontext();
+                    $templatecontent["corriculum_name"] = $c;
+                }
+                array_push($templatecontent, $tad->get_as_templatecontext());
+            } else {
+                $templatecontent = $tad->get_as_templatecontext();
+                $templatecontent["corriculum_name"] = $tad->corriculum_names["0"];
+                array_push($templatecontent, $tad->get_as_templatecontext());
+            }
         } else {
-            $departmentname = get_department_names($lang, $tadfile);
+            continue;
+            /* $departmentname = get_department_names($lang, $tadfile);
             // reparse semester str for tha drips
             $semesterstr = $PAGE->url->get_param('semester');
             $tad = new TadObject(
@@ -201,7 +212,7 @@ function construct_view_table($lang, $semesterarg=null){
                 $tadfile->dlurl,
                 0,
             );
-            array_push($templatecontent, $tad->get_as_templatecontext());
+            array_push($templatecontent, $tad->get_as_templatecontext());*/
         }
     }
 
