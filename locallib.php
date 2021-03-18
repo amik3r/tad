@@ -194,9 +194,10 @@ function construct_view_table($lang, $semesterarg=null){
             } else {
                 $templatecontent = $tad->get_as_templatecontext();
                 $templatecontent["corriculum_name"] = $tad->corriculum_names["0"];
+                var_dump($templatecontent);
+                die;
                 array_push($templatecontent, $tad->get_as_templatecontext());
             }
-            var_dump($templatecontent);
         } else {
             continue;
             /* $departmentname = get_department_names($lang, $tadfile);
