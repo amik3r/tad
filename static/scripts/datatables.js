@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         } else {
             $('#tad-table').DataTable( 
                 {
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/English.json"
+                    },
                     columnDefs: [
                         { targets: 'no-sort', orderable: false }
                     ]

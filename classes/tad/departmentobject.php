@@ -22,6 +22,19 @@
  */
 
 class Department{
+    private $departmentascodearray = array(
+        "GT20"	=> "Menedzsment és Vállalkozásgazdaságtan Tanszék",
+        "GT30"	=> "Közgazdaságtan Tanszék",
+        "GT35"	=> "Pénzügyek Tanszék",
+        "GT41"	=> "Filozófia és Tudománytörténet Tanszék",
+        "GT42"	=> "Környezetgazdaságtan Tanszék",
+        "GT43"	=> "Szociológia és Kommunikáció Tanszék",
+        "GT51"	=> "Műszaki Pedagógia Tanszék",
+        "GT52"	=> "Ergonómia és Pszichológia Tanszék",
+        "GT55"	=> "Üzleti Jog Tanszék",
+        "GT70"	=> "Testnevelési Központ",
+        "GTDH"  => "Dékáni Hivatal"
+    );
     private $departmentarray = array(
         'Department of Ergonomics and Psychology         ' => 'Ergonómia és Pszichológia Tanszék',
         'Department of Philosophy and History of Science ' => 'Filozófia és Tudománytörténet Tanszék',
@@ -31,30 +44,30 @@ class Department{
         'Department of Management and Business Economics ' => 'Menedzsment és Vállalkozásgazdaságtan Tanszék',
         'Institute of Continuing Engineering Education   ' => 'Mérnöktovábbképző Intézet',
         'Department of Technical Education               ' => 'Műszaki Pedagógia Tanszék',
-        'Department of Finance                           ' => 'Pénzügyek Tanszék',
         'Department of Sociology and Communication       ' => 'Szociológia és Kommunikáció Tanszék',
         'Centre of Physical Education                    ' => 'Testnevelési Központ',
         'Department of Business Law                      ' => 'Üzleti Jog Tanszék',
-        'Department of Ergonomics and Psychology         ' => 'Ergonómia és Pszichológia Tanszék',
-        'Department of Philosophy and History of Science ' => 'Filozófia és Tudománytörténet Tanszék',
-        'Centre of Modern Languages                      ' => 'Idegen Nyelvi Központ',
-        'Department of Environmental Economics           ' => 'Környezetgazdaságtan Tanszék',
-        'Department of Economics                         ' => 'Közgazdaságtan Tanszék',
-        'Department of Management and Business Economics ' => 'Menedzsment és Vállalkozásgazdaságtan Tanszék',
-        'Institute of Continuing Engineering Education   ' => 'Mérnöktovábbképző Intézet',
-        'Department of Technical Education               ' => 'Műszaki Pedagógia Tanszék',
         'Department of Finance                           ' => 'Pénzügyek Tanszék',
-        'Department of Sociology and Communication       ' => 'Szociológia és Kommunikáció Tanszék',
-        'Centre of Physical Education                    ' => 'Testnevelési Központ',
-        'Department of Business Law                      ' => 'Üzleti Jog Tanszék',
         "Dean's Office"                                    => 'Dékáni Hivatal',
     );
+
+    public function get_department_by_code($code){
+        $code = strtolower($code); 
+        foreach ($this->departmentascodearray as $key => $value) {
+            if (strtolower($key) == $code){
+                return $value;
+            } else {
+                continue;
+            }
+        }
+        return false;
+    }
 
     public function get_english($department){
         /*
         * Return english name from hungarian name
         */
-		if (array_key_exists($department,$this->entityarray)){
+		if (array_key_exists($department, $this->departmentarray)){
 			return $department;
 		}	
         foreach ($this->departmentarray as $key => $value) {
@@ -66,7 +79,6 @@ class Department{
             if ($value == $search){
                 return $department;
             }
-
 			if ($curr == $search){
 				return $key;
             }
@@ -78,7 +90,6 @@ class Department{
         */
         foreach ($this->departmentarray as $value) {
             // remove trash
-
             $search = str_replace(' ', '',strtolower($department));
             $curr = $value;
             $curr = str_replace(' ', '',strtolower($curr));

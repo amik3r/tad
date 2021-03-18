@@ -62,11 +62,12 @@ $string['time_created_heading']         = 'Time Created';
 $string['file_heading']                 = 'Download';
 $string['id_heading']                   = 'ID';
 $string['semester_heading']             = 'Semester';
-$string['corriculum_code_heading']      = 'Corriculum Code';
-$string['corriculum_name_heading']      = 'Corriculum';
+$string['corriculum_code_heading']      = 'Programme Code';
+$string['corriculum_name_heading']      = 'Programme name';
 
 // Misc HTML content
 $string['label_noresult'] = 'No results!';
 $string['semester_select_label'] = 'Semester';
 $string['filterlabel'] = 'Filter';
+$string['corr_default_label'] = 'Programmes, which the course is part of';
 

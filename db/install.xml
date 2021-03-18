@@ -16,7 +16,7 @@
         <FIELD NAME="semester" TYPE="int" LENGTH="10" NOTNULL="true"/>
         <FIELD NAME="timerelevant" TYPE="text" NOTNULL="false"/>
         <FIELD NAME="timecreated" TYPE="text" NOTNULL="true"/>
-        <FIELD NAME="version" TYPE="int" LENGTH="10" NOTNULL="true"/>
+        <FIELD NAME="version" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

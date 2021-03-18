@@ -25,6 +25,7 @@ require_once(__DIR__ . '../../../config.php');
 require_once(__DIR__ . '/classes/tad/tadfileobject.php');
 require_once(__DIR__ . '/classes/tad/tadobject.php');
 require_once(__DIR__ . '/classes/tad/departmentobject.php');
+require_once(__DIR__ . '/classes/db/db_tadobject.php');
 
 function get_all_temp_tad_files(){
     global $DB;
@@ -80,17 +81,13 @@ function get_course_data($coursedatasql, $tadfile, $semesterarg=null){
 }
 
 // Get department name
-function get_department_name($lang, $departmentnamesql, $tadfile, $departmentobject){
-    global $DB;
-    if($departmentname = $DB->get_record_sql($departmentnamesql . $DB->sql_like('c.shortname', '?'), array($tadfile->coursecode.'%'))){
-        if ($lang == 'hu'){
-            $departmentname = $departmentobject->get_hungarian($departmentname->name);
-        } else if ($lang == 'en'){
-            $departmentname = $departmentobject->get_english($departmentname->name);
-        }
-    } else {
-        $departmentname = 'hiba';
+function get_department_names($lang, $tadfile){
+    $depobj = new Department();
+    if ($lang != 'hu'){
+        $departmentname = $depobj->get_english($depobj->get_department_by_code(substr($tadfile->coursecode, 3, 4)));
+        return $departmentname;
     }
+    $departmentname = $depobj->get_hungarian($depobj->get_department_by_code(substr($tadfile->coursecode, 3, 4)));
     return $departmentname;
 }
 
@@ -126,10 +123,19 @@ function get_semester_urls($semesterarray){
 // Construct the whole view
 function construct_view_table($lang, $semesterarg=null){
     global $DB;
-    $departmentobject = new Department();
+    global $PAGE;
 	if(!$lang){
 		$lang='en';
 	}
+
+    $corriculumnamesql = "
+        SELECT
+            name, 
+            code        
+        FROM {tad_corriculum}
+        WHERE coursecode = :coursecode
+    ";
+
     $coursedatasql = "
         SELECT
             corr.name, 
@@ -148,15 +154,6 @@ function construct_view_table($lang, $semesterarg=null){
         AND tad.semester = :semester
         ORDER BY coursecode ASC
     ";
-    $departmentnamesql = "
-        SELECT 
-            cat.name, 
-            c.category 
-        FROM {course_categories} cat 
-        INNER JOIN {course} c 
-        ON cat.id = c.category
-        AND
-    ";
     $semesterlistsql = "
         SELECT DISTINCT semester
         FROM {tad}
@@ -172,7 +169,7 @@ function construct_view_table($lang, $semesterarg=null){
         $coursedata = get_course_data($coursedatasql, $tadfile, $semesterarg);
         if($coursedata){
             // get department name
-            $departmentname = get_department_name($lang, $departmentnamesql, $tadfile, $departmentobject);
+            $departmentname = get_department_names($lang, $tadfile);
             // reparse semester str for tha drips
             $semesterstring = substr($coursedata->semester, 0, 4) . '/' . substr($coursedata->semester,4);
             $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
@@ -187,15 +184,27 @@ function construct_view_table($lang, $semesterarg=null){
                 'irrelevant',
                 $coursedata->dlurl,
                 0,
-                $coursedata->code,
-                $coursedata->name
             );
             array_push($templatecontent, $tad->get_as_templatecontext());
         } else {
-            // Skip if not found (ie.: in specific semester)
-            continue;
+            $departmentname = get_department_names($lang, $tadfile);
+            // reparse semester str for tha drips
+            $semesterstr = $PAGE->url->get_param('semester');
+            $tad = new TadObject(
+                '',
+                $tadfile->coursecode,
+                $semesterstr,
+                $departmentname,
+                'hiba',
+                'hiba',
+                'irrelevant',
+                $tadfile->dlurl,
+                0,
+            );
+            array_push($templatecontent, $tad->get_as_templatecontext());
         }
     }
+
     $fulltemplatecontext = array(
         'id_heading'                => get_string('id_heading', "local_tad"),
         'course_code_heading'       => get_string('course_code_heading', "local_tad"),
@@ -213,12 +222,42 @@ function construct_view_table($lang, $semesterarg=null){
         'semester_select_default'   => get_string('semester_select_default', 'local_tad'),
         'semesterurls'              => $semesterurls,
         'rows'                      => $templatecontent,
-        'count'                     => count($templatecontent)
+        'corr_default_label'        => get_string('corr_default_label', 'local_tad'),
     );
     return $fulltemplatecontext;
 }
 
 // Gather and insert TAD data on file upload
+//function ingest_tad_db($semester){
+//    global $DB;
+//    $coursedatasql = "
+//        SELECT name, code, coursename 
+//        FROM {tad_corriculum}
+//        WHERE coursecode = :coursecode
+//    ";
+//    $tadfiles = get_all_temp_tad_files();
+//    foreach ($tadfiles as $f) {
+//        $tadfile = new TadFileObject($f);
+//        $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode]);
+//        if($coursedata){
+//            $tad = new DBTadObject(
+//                $tadfile->author,
+//                $tadfile->coursecode,
+//                $semester,
+//                $tadfile->department,
+//                $coursedata->coursename,
+//                $tadfile->timecreated,
+//                $tadfile->filename,
+//                $tadfile->dllink,
+//                0,
+//                $coursedata->code,
+//                $coursedata->name
+//            );
+//                $tad->save_to_db();
+//        }
+//    }
+//}
+
 function ingest_tad_db($semester){
     global $DB;
     $coursedatasql = "
@@ -229,22 +268,30 @@ function ingest_tad_db($semester){
     $tadfiles = get_all_temp_tad_files();
     foreach ($tadfiles as $f) {
         $tadfile = new TadFileObject($f);
-        $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode]);
-        if($coursedata){
-            $tad = new TadObject(
-                $tadfile->author,
-                $tadfile->coursecode,
-                $semester,
-                $tadfile->department,
+        if($coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode])){
+            $tad = new DBTadObject(
                 $coursedata->coursename,
-                $tadfile->timecreated,
-                $tadfile->filename,
-                $tadfile->dllink,
+                $tadfile->author,
                 0,
-                $coursedata->code,
-                $coursedata->name
+                $tadfile->coursecode,
+                $tadfile->dllink,
+                $semester,
+                $tadfile->timecreated,
+                $tadfile->timecreated,
             );
-                $tad->save_to_db();
+            $tad->save_to_db();
+        } else {
+            $tad = new DBTadObject(
+                $tadfile->coursecode,
+                $tadfile->author,
+                0,
+                $tadfile->coursecode,
+                $tadfile->dllink,
+                $semester,
+                $tadfile->timecreated,
+                $tadfile->timecreated,
+            );
+            $tad->save_to_db();
         }
     }
 }
@@ -274,7 +321,7 @@ function parse_csv_file($separator){
         // split on newline
         $cont = explode(PHP_EOL, $filecontent);
         foreach ($cont as $line) {
-            // split line on separator
+            // split line on separator, encode stuff
             $linecont = explode($separator, utf8_encode($line));
             // check if line is empty
             if ($linecont[0] == ''|| $linecont[1] == ''){} 

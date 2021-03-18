@@ -35,6 +35,7 @@ class TadFileObject {
         $this->filepath = $r->filepath;
         $x = explode("_", $this->filename);
         $this->coursecode = explode('.',$x[1])[0];
+        $this->departmentcode = substr($this->coursecode, 3, 4);
         $this->create_download_url();       
     }
     public function create_download_url(){

@@ -26,8 +26,7 @@ global $USER;
 require_once(__DIR__    . '/../../config.php');
 require_once(__DIR__    . '/classes/form/semester_select.php');
 require_once(__DIR__    . '/locallib.php');
-require_once(__DIR__    . '/classes/tad/tadfileobject.php');
-require_once(__DIR__    . '/classes/tad/tadobject.php');
+
 $PAGE->set_context(\context_system::instance());
 $semesterstr = $PAGE->url->get_param('semester');
 $PAGE->set_url(new moodle_url('/local/tad/view.php'));

@@ -67,6 +67,6 @@ $string['file_heading'] = 'Letöltés';
 
 // Misc HTML content
 $string['label_noresult'] = 'Nincs találat!';
-
 $string['semester_select_label'] = 'Félév';
 $string['filterlabel'] = 'Szűrés';
+$string['corr_default_label'] = 'Szakok, melyben a tárgy szerepel';
