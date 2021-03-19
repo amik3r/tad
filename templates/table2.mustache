@@ -40,7 +40,11 @@
  }}
 {{!  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/plug-ins/1.10.24/integration/font-awesome/dataTables.fontAwesome.css">
  }}
+ <h1>TAD Portál</h1>
 <div class="container-fluid" style="margin: auto; padding: auto;">
+    <p class="announcement">
+        {{tad_announcement}}
+    </p>
     <div id="table-container container-fluid">
         <table table id="tad-table" class="display">
             <thead class="thead-light">
@@ -67,7 +71,7 @@
                 <td style="word-wrap: break-word;" class="tad-column secondary">
                     {{department}}
                 </td>
-                <td style="word-wrap: break-word;" class="tad-column secondary">
+                <td style="word-wrap: break-word;" class="tad-column secondary ">
                     {{corriculum_name}}
                 </td>
                 <td style="word-wrap: break-word;" class="tad-column essential">

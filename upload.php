@@ -35,6 +35,10 @@ $PAGE->set_url(new moodle_url('/local/tad/upload.php'));
 $PAGE->set_title('TAD Upload');
 $PAGE->set_heading('TAD Upload');
 
+$context = $PAGE->context;
+if (!has_capability('local/tad:manager', $context)) {
+    redirect($CFG->wwwroot . '/local/tad/view.php' );
+}
 $mform = new upload();
 
 if ($mform->is_cancelled()) {
@@ -54,6 +58,8 @@ if ($mform->is_cancelled()) {
             ingest_tad_db($semester);
             redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_SUCCESS);
         } catch(Throwable $th) {
+            var_dump($th);
+            die;
             redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
         };
     };
