@@ -208,7 +208,7 @@ function construct_view_table($lang, $semesterarg=null){
             array_push($templatecontent, $tad->get_as_templatecontext());*/
         }
     }
-
+    
     $fulltemplatecontext = array(
         'tad_announcement'          => get_string('tad_announcement', 'local_tad'),
         'id_heading'                => get_string('id_heading', "local_tad"),
@@ -229,6 +229,8 @@ function construct_view_table($lang, $semesterarg=null){
         'rows'                      => $templatecontent,
         'corr_default_label'        => get_string('corr_default_label', 'local_tad'),
     );
+    var_dump($fulltemplatecontext);
+    die;
     return $fulltemplatecontext;
 }
 
