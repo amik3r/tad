@@ -23,6 +23,9 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
+$string['pluginname'] = 'TAD portál';
+
+
 // Settings page labels
 $string['settings_pluginname'] = 'TAD';
 $string['settings_semester_label'] = 'Félév';

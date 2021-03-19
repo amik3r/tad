@@ -123,7 +123,6 @@ function get_semester_urls($semesterarray){
 // Construct the whole view
 function construct_view_table($lang, $semesterarg=null){
     global $DB;
-    global $PAGE;
 	if(!$lang){
 		$lang='en';
 	}
