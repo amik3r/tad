@@ -71,5 +71,5 @@ $string['semester_select_label'] = 'Semester';
 $string['filterlabel'] = 'Filter';
 $string['corr_default_label'] = 'Programmes, which the course is part of';
 
-$string['tad_announcement'] = 'A TAD Portál kisérleti verziója, amely egyelőre a 2020/2021 tavaszi félév tantárgyi adatlapjait tartalmazza.';
+$string['tad_announcement'] = 'Early version of the TAD Portal, which contains Course Data Forms from the 2020/2021/2 semester.';
 
