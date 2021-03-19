@@ -30,8 +30,8 @@ require_once(__DIR__    . '/locallib.php');
 $PAGE->set_context(\context_system::instance());
 $semesterstr = $PAGE->url->get_param('semester');
 $PAGE->set_url(new moodle_url('/local/tad/view.php'));
-$PAGE->set_title('TAD');
-$PAGE->set_heading('TAD');
+$PAGE->set_title('TAD Portál');
+$PAGE->set_heading('TAD Portál');
 
 $PAGE->requires->jquery();
 $PAGE->requires->js(new moodle_url('./static/scripts/datatables.js'), false);
