@@ -287,7 +287,7 @@ function ingest_tad_db($semester){
             $tad->save_to_db();
         } else {
             $tad = new DBTadObject(
-                $tadfile->coursecode,
+                $tadfile->coursename,
                 $tadfile->author,
                 0,
                 $tadfile->coursecode,
