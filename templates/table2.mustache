@@ -1,0 +1,88 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_banner/manage
+
+    Template to display the list of forum discussions.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * TODO
+
+    Example context (json):
+    {
+    }
+}}
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script>
+{{! <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+ }}
+{{! <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+ }}
+{{!  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/plug-ins/1.10.24/integration/font-awesome/dataTables.fontAwesome.css">
+ }}
+ <h1>TAD Portál</h1>
+<div class="container-fluid" style="margin: auto; padding: auto;">
+    <p class="announcement">
+        {{tad_announcement}}
+    </p>
+    <div id="table-container container-fluid">
+        <table table id="tad-table" class="display">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col" class="th essential-head">{{course_name_heading}}</th>
+                <th scope="col" class="th essential-head coursecode">{{course_code_heading}}</th>
+                <th scope="col" class="th secondary">{{semester_heading}}</th>
+                <th scope="col" class="th secondary">{{department_heading}}</th>
+                <th scope="col" class="th secondary">{{corriculum_name_heading}}</th>
+                <th scope="col" class="th essential-head no-sort">{{file_heading}}</th>
+            </tr>
+            </thead>
+            {{#rows}}
+            <tr class="tr" style="width: auto;">
+                <td style="word-wrap: break-word;" class="tad-column essential">
+                    {{fullname}}
+                </td>
+                <td style="word-wrap: break-word;" class="tad-column essential">
+                    {{coursename}}
+                </td>
+                <td style="word-wrap: break-word;" class="tad-column secondary">
+                    {{semester}}
+                </td>
+                <td style="word-wrap: break-word;" class="tad-column secondary">
+                    {{department}}
+                </td>
+                <td style="word-wrap: break-word;" class="tad-column secondary ">
+                    {{corriculum_name}}
+                </td>
+                <td style="word-wrap: break-word;" class="tad-column essential">
+                    <a href="{{url}}" target="_blank">Letöltés</a>
+                </td>
+            </tr>
+            {{/rows}}
+        </table>
+    </div>
+<div id="pagination-container">
+    <div class="row  justify-content-md-center" id="pagination-row">
+        <div class="btn-toolbar" id="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups"></div>
+    </div>
+</div>

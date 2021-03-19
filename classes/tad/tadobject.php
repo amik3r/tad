@@ -23,7 +23,7 @@
 
 class TadObject {
     function __construct(
-            $author, 
+            $author,
             $coursename, 
             $semester, 
             $department, 
@@ -31,54 +31,44 @@ class TadObject {
             $timecreated, 
             $filename, 
             $url, 
-            $id = 0, 
-            $corriculum_code, 
-            $corriculum_name
+            $id = 0
         ) {
         $this->author           = $author;
         $this->coursename       = $coursename;
         $this->semester         = $semester;
-        $this->department           = $department;
+        $this->department       = $department;
+        $this->departmentcode   = substr($this->coursename, 3, 4);
         $this->fullname         = $fullname;
         $this->timecreated      = date("Y-m-d h:i",intval($timecreated));
         $this->filename         = $filename;
         $this->url              = $url;
         $this->id               = $id;
-        $this->corriculum_code  = $corriculum_code;
-        $this->corriculum_name  = $corriculum_name;
+        $this->corriculum_names = $this->get_corriculum_names();
     }
+
+    private function get_corriculum_names(){
+        global $DB;
+        $corriculumnames = [];
+        if($data = $DB->get_records_sql('SELECT name from {tad_corriculum} WHERE ' . $DB->sql_like('coursecode', '?'), array($this->coursename.'%'))){
+            foreach ($data as $d) {
+                $corriculumnames[] = $d->name;
+            }
+            return $corriculumnames;
+        } else {
+            return ['-'];
+        }
+    }
+
     public function get_as_templatecontext(){
         return array(
             'coursename'            => $this->coursename, 
             'semester'              => $this->semester, 
             'fullname'              => $this->fullname,   
-            'department'                => $this->department,     
+            'department'            => $this->department,     
             'timecreated'           => $this->timecreated,
             'filename'              => $this->filename,   
             'url'                   => $this->url,
             'id'                    => $this->id,    
-            'corriculum_code'       => $this->corriculum_code,    
-            'corriculum_name'       => $this->corriculum_name,    
         );
-    }
-    public function save_to_db(){                                                                                                
-        global $DB;
-        $dbobj = new stdClass();
-        $dbobj->id             = $this->id;
-        $dbobj->name           = $this->fullname;
-        $dbobj->author         = $this->author;
-        $dbobj->editable       = false;
-        $dbobj->coursecode     = $this->coursename;
-        $dbobj->dlurl          = $this->url->out(false);
-        $dbobj->semester       = $this->semester;
-        $dbobj->timecreated    = $this->timecreated;
-        $dbobj->timerelevant   = $this->timecreated;
-        $dbobj->version        = 1;
-
-        if(!$DB->insert_record('tad', $dbobj)){
-            return false;
-        }
-        echo $dbobj->name . " added to db" . "<br>";
-        return true;
     }
 }

@@ -23,43 +23,34 @@
 global $DB;
 global $USER;
 
-
 require_once(__DIR__ . '/../../config.php');
-require_once(__DIR__ . '/locallib.php');
-require_once($CFG->dirroot . '/local/tad/classes/form/upload.php');
+require_once($CFG->dirroot . '/local/tad/classes/form/upload_course_list.php');
+require_once(__DIR__    . '/locallib.php');
 
 require_login();
 
 $PAGE->set_context(\context_system::instance());
-$PAGE->set_url(new moodle_url('/local/tad/upload.php'));
-$PAGE->set_title('TAD Upload');
-$PAGE->set_heading('TAD Upload');
+$PAGE->set_url(new moodle_url('/local/tad/upload_course_csv.php'));
+$PAGE->set_title(get_string('csv_upload_label', 'local_tad'));
+$PAGE->set_heading(get_string('csv_upload_label', 'local_tad'));
 
-$context = $PAGE->context;
-if (!has_capability('local/tad:manager', $context)) {
-    redirect($CFG->wwwroot . '/local/tad/view.php' );
-}
-$mform = new upload();
-
+$mform = new uploadCourseList();
 if ($mform->is_cancelled()) {
+    // Go back to view if cancelled
     redirect($CFG->wwwroot . '/local/tad/view.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
 } else if ($fromform = $mform->get_data()) {
-    // instert new data into DB
+    // clean up previous csv files
+    $fs = get_file_storage();
+    //$fs->delete_area_files(1,'local_tad','csv_temp');
     if ($data = $mform->get_data()) {
-        $semester = $fromform->semester;
-        // Set semester to admin setting value
-        if(is_null($semester)){
-            $semester = get_config('local_tad', 'semester');
-        }
-        // remove slashes
-        $semester = str_replace('/','',$semester);
+        $separator = $data->separator;
         try{
-            file_save_draft_area_files($data->attachment, $PAGE->context->id, 'local_tad', 'attachment', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 5000));
-            ingest_tad_db($semester);
-            redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_SUCCESS);
+            file_save_draft_area_files($data->attachment, 1, 'local_tad', 'csv_temp', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 1));
+            if (!parse_csv_file($separator)){
+                redirect($CFG->wwwroot . '/local/tad/view.php', get_string("csv_parse_error", "local_tad", \core\output\notification::NOTIFY_ERROR));
+            };
+            redirect($CFG->wwwroot . '/local/tad/view.php',  get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_INFO);
         } catch(Throwable $th) {
-            var_dump($th);
-            die;
             redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
         };
     };

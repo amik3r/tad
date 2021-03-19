@@ -23,6 +23,9 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
+$string['pluginname'] = 'TAD portál';
+
+
 // Settings page labels
 $string['settings_pluginname'] = 'TAD';
 $string['settings_semester_label'] = 'Félév';
@@ -57,7 +60,7 @@ $string['time_created_heading'] = 'Létrehozva';
 $string['id_heading'] = 'ID';
 // aktuális
 $string['corriculum_code_heading'] = 'Tanterv kód';
-$string['corriculum_name_heading'] = 'Tanterv név';
+$string['corriculum_name_heading'] = 'Szak';
 $string['author_heading'] = 'Szerző';
 $string['course_code_heading'] = 'Tárgykód';
 $string['semester_heading'] = 'Félév';
@@ -67,6 +70,7 @@ $string['file_heading'] = 'Letöltés';
 
 // Misc HTML content
 $string['label_noresult'] = 'Nincs találat!';
-
 $string['semester_select_label'] = 'Félév';
 $string['filterlabel'] = 'Szűrés';
+$string['corr_default_label'] = 'Szakok, melyben a tárgy szerepel';
+$string['tad_announcement'] = 'A TAD Portál kisérleti verziója, amely egyelőre a 2020/2021 tavaszi félév tantárgyi adatlapjait tartalmazza.';

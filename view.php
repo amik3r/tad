@@ -26,16 +26,17 @@ global $USER;
 require_once(__DIR__    . '/../../config.php');
 require_once(__DIR__    . '/classes/form/semester_select.php');
 require_once(__DIR__    . '/locallib.php');
-require_once(__DIR__    . '/classes/tad/tadfileobject.php');
-require_once(__DIR__    . '/classes/tad/tadobject.php');
+
 $PAGE->set_context(\context_system::instance());
 $semesterstr = $PAGE->url->get_param('semester');
 $PAGE->set_url(new moodle_url('/local/tad/view.php'));
-$PAGE->set_title('TAD');
-$PAGE->set_heading('TAD');
+$PAGE->set_title('TAD Portál');
+$PAGE->set_heading('TAD Portál');
 
 $PAGE->requires->jquery();
-$PAGE->requires->js(new moodle_url('./scripts/script.js'), false);
+$PAGE->requires->js(new moodle_url('./static/scripts/datatables.js'), false);
+$PAGE->requires->css(new moodle_url('./static/style/view.css'));
+$PAGE->requires->css(new moodle_url('./static/style/datatables.css'));
 
 $CFG->cachejs = false;
 require_once($CFG->libdir.'/adminlib.php');
@@ -49,5 +50,5 @@ if ($semesterstr) {
 }
 
 echo $OUTPUT->header();
-echo $OUTPUT->render_from_template('local_tad/table', $templatecontent);
+echo $OUTPUT->render_from_template('local_tad/table2', $templatecontent);
 echo $OUTPUT->footer();

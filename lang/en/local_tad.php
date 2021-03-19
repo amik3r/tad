@@ -24,6 +24,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['pluginname'] = 'TAD portal';
+
+
+
 // Settings page labels
 $string['settings_pluginname'] = 'TAD';
 $string['settings_semester_label'] = 'Félév';
@@ -62,11 +66,14 @@ $string['time_created_heading']         = 'Time Created';
 $string['file_heading']                 = 'Download';
 $string['id_heading']                   = 'ID';
 $string['semester_heading']             = 'Semester';
-$string['corriculum_code_heading']      = 'Corriculum Code';
-$string['corriculum_name_heading']      = 'Corriculum Name';
+$string['corriculum_code_heading']      = 'Programme Code';
+$string['corriculum_name_heading']      = 'Programme name';
 
 // Misc HTML content
 $string['label_noresult'] = 'No results!';
 $string['semester_select_label'] = 'Semester';
 $string['filterlabel'] = 'Filter';
+$string['corr_default_label'] = 'Programmes, which the course is part of';
+
+$string['tad_announcement'] = 'Early version of the TAD Portal, which contains Course Data Forms from the 2020/2021/2 semester.';
 
