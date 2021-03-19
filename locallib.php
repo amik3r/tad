@@ -211,6 +211,7 @@ function construct_view_table($lang, $semesterarg=null){
     }
 
     $fulltemplatecontext = array(
+        'tad_announcement'          => get_string('tad_announcement', 'local_tad'),
         'id_heading'                => get_string('id_heading', "local_tad"),
         'course_code_heading'       => get_string('course_code_heading', "local_tad"),
         'course_name_heading'       => get_string('course_name_heading', "local_tad"),

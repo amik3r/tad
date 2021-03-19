@@ -70,3 +70,4 @@ $string['label_noresult'] = 'Nincs találat!';
 $string['semester_select_label'] = 'Félév';
 $string['filterlabel'] = 'Szűrés';
 $string['corr_default_label'] = 'Szakok, melyben a tárgy szerepel';
+$string['tad_announcement'] = 'A TAD Portál kisérleti verziója, amely egyelőre a 2020/2021 tavaszi félév tantárgyi adatlapjait tartalmazza.';
