@@ -34,6 +34,11 @@ $PAGE->set_url(new moodle_url('/local/tad/upload_csv.php'));
 $PAGE->set_title(get_string('csv_upload_label', 'local_tad'));
 $PAGE->set_heading(get_string('csv_upload_label', 'local_tad'));
 
+$context = $PAGE->context;
+if (!has_capability('local/tad:manager', $context)) {
+    redirect($CFG->wwwroot . '/local/tad/view.php' );
+}
+
 $mform = new uploadCsv();
 if ($mform->is_cancelled()) {
     // Go back to view if cancelled

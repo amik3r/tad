@@ -35,6 +35,10 @@ $PAGE->set_url(new moodle_url('/local/tad/upload.php'));
 $PAGE->set_title('TAD Upload');
 $PAGE->set_heading('TAD Upload');
 
+$context = $PAGE->context;
+if (!has_capability('local/tad:manager', $context)) {
+    redirect($CFG->wwwroot . '/local/tad/view.php' );
+}
 $mform = new upload();
 
 if ($mform->is_cancelled()) {
