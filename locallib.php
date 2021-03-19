@@ -121,8 +121,9 @@ function get_semester_urls($semesterarray){
 }
 
 // Construct the whole view
-function construct_view_table($lang, $semesterarg=null){
+function construct_view_table($lang, $semesterarg='20202102'){
     global $DB;
+    global $PAGE;
 	if(!$lang){
 		$lang='en';
 	}
@@ -150,7 +151,6 @@ function construct_view_table($lang, $semesterarg=null){
         FROM {tad_corriculum} corr
         INNER JOIN {tad} tad ON corr.coursecode = tad.coursecode
         AND corr.coursecode = :coursecode
-        AND tad.semester = :semester
         ORDER BY coursecode ASC
     ";
     $semesterlistsql = "
@@ -164,9 +164,10 @@ function construct_view_table($lang, $semesterarg=null){
     $tadfiles = $DB->get_records('tad');
 
     foreach ($tadfiles as $tadfile) {
+
         // collect data on course
         $coursedata = get_course_data($coursedatasql, $tadfile, $semesterarg);
-        if($coursedata){
+	if($coursedata){
             // get department name
             $departmentname = get_department_names($lang, $tadfile);
             // reparse semester str for tha drips
@@ -190,9 +191,9 @@ function construct_view_table($lang, $semesterarg=null){
                 array_push($templatecontent, $temp);
             }
         } else {
-            continue;
+            //continue;
             /* $departmentname = get_department_names($lang, $tadfile);
-            // reparse semester str for tha drips
+            // reparse semester str for tha drips*/
             $semesterstr = $PAGE->url->get_param('semester');
             $tad = new TadObject(
                 '',
@@ -205,7 +206,7 @@ function construct_view_table($lang, $semesterarg=null){
                 $tadfile->dlurl,
                 0,
             );
-            array_push($templatecontent, $tad->get_as_templatecontext());*/
+            array_push($templatecontent, $tad->get_as_templatecontext());
         }
     }
 
