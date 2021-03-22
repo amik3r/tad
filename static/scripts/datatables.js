@@ -69,7 +69,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
             var searchhead = $('thead tr').clone(true).appendTo('thead');
             searchhead.addClass('search-header')
             $('thead tr:eq(1) th').each(function(i) {
-                $(this).html('<input type="text" type="search" placeholder=""/>');
+                var elem = $(this)
+                if (elem.hasClass('no-sort')) {
+                    elem.css("height", "30px")
+                    elem.css("height", "30px")
+                    elem.css('background-color', 'white')
+                    elem.html('');
+                    return;
+                }
+                elem.css({
+                    "background-color": "white",
+                    "height": "10px",
+                    "margin": "0px"
+                })
+                $(this).html('<input type="text" type="search" class="subsearch" placeholder="Search"/>');
                 $('input', this).on('keyup change', function() {
                     if (table.column(i).search() !== this.value) {
                         table
