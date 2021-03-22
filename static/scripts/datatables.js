@@ -28,17 +28,46 @@ function addBtn(){
 document.addEventListener("DOMContentLoaded", function(event) {
     $(document).ready( function () {
         if (lang == 'hu'){
+            // Setup - add a text input to each footer cell
+            $('#thead thead tr').clone(true).appendTo( '#thead thead' );
+            $('#thead thead tr:eq(1) th').each( function (i) {
+                var title = $(this).text();
+                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+            
+                $( 'input', this ).on( 'keyup change', function () {
+                    if ( table.column(i).search() !== this.value ) {
+                        table
+                            .column(i)
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+            } );
             $('#tad-table').DataTable( 
                 {
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Hungarian.json"
-                    },
-                    columnDefs: [
-                        { targets: 'no-sort', orderable: false }
-                    ]
-                } 
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Hungarian.json"
+                },
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false }
+                ],
+                }
             );
         } else {
+            $('#thead thead tr').clone(true).appendTo( '#thead thead' );
+            $('#thead thead tr:eq(1) th').each( function (i) {
+                var title = $(this).text();
+                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+            
+                $( 'input', this ).on( 'keyup change', function () {
+                    if ( table.column(i).search() !== this.value ) {
+                        table
+                            .column(i)
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+            } );
             $('#tad-table').DataTable( 
                 {
                     "language": {

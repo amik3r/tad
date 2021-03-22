@@ -196,7 +196,7 @@ function construct_view_table($lang, $semesterarg='20202102'){
             }
         } else {
             //continue;
-            /* $departmentname = get_department_names($lang, $tadfile);
+            $departmentname = get_department_names($lang, $tadfile);
             // reparse semester str for tha drips*/
             $semesterstr = $PAGE->url->get_param('semester');
             $tad = new TadObject(
