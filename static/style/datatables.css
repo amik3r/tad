@@ -383,7 +383,6 @@ table.dataTable td {
 .dataTables_wrapper .dataTables_filter {
     float: left;
     text-align: left;
-    display: none;
 }
 
 .dataTables_wrapper .dataTables_filter input {
@@ -483,7 +482,6 @@ table.dataTable td {
 .dataTables_wrapper .dataTables_processing,
 .dataTables_wrapper .dataTables_paginate {
     color: #000000;
-    display: none;
 }
 
 .dataTables_wrapper .dataTables_scroll {
@@ -549,6 +547,5 @@ table.dataTable td {
     }
     .dataTables_wrapper .dataTables_filter {
         margin-top: 0.5em;
-        display: none;
     }
 }
