@@ -27,19 +27,20 @@ require_once(__DIR__ . '/classes/tad/tadobject.php');
 require_once(__DIR__ . '/classes/tad/departmentobject.php');
 require_once(__DIR__ . '/classes/db/db_tadobject.php');
 
-function get_all_temp_tad_files(){
+function get_tad_files(){
     global $DB;
     $filesql = "
         SELECT * FROM {files}
         WHERE filename 
             LIKE :filepattern
-        AND component LIKE :filearea
+        AND component LIKE :component
     ";
-    $rows = $DB->get_records_sql($filesql, ['filepattern' => "TAD%.pdf", 'filearea' => 'local_tad']);
+    $rows = $DB->get_records_sql($filesql, ['filepattern' => "TAD%.pdf", 'component' => 'local_tad']);
     return $rows;
 }
 
-function save_tad_files($semester = ''){
+/* function save_tad_files($semester = ''){
+    die;
     if (!$semester){
         $semester = get_config('local_tad', "semester");
     }
@@ -61,7 +62,7 @@ function save_tad_files($semester = ''){
             $f->delete();
         }
     }
-}
+} */
 
 function delete_temp_tad(){
     global $DB;
@@ -71,9 +72,10 @@ function delete_temp_tad(){
     };
     foreach ($files as $f) {
         $filename = $f->get_filename();
-        echo "deleting: " . $filename . "\n";
-        $f->delete();
-        echo "deleted: " . $filename . "\n\r";
+        if (substr_compare($filename, 'TAD_', 0, 4) == 0 ||substr_compare($filename, '.',0)){
+            $f->delete();
+            echo "\ndeleted: " . $filename . "\n\r";
+        }
     }
 }
 
@@ -135,7 +137,7 @@ function get_semester_urls($semesterarray){
 }
 
 // Construct the whole view
-function construct_view_table($lang, $semesterarg='20202102'){
+function construct_view_table($lang, $semesterarg=null){
     global $DB;
     global $PAGE;
 	if(!$lang){
@@ -165,6 +167,7 @@ function construct_view_table($lang, $semesterarg='20202102'){
         FROM {tad_corriculum} corr
         INNER JOIN {tad} tad ON corr.coursecode = tad.coursecode
         AND corr.coursecode = :coursecode
+        AND tad.semester = :semester
         ORDER BY coursecode ASC
     ";
     $semesterlistsql = "
@@ -178,10 +181,9 @@ function construct_view_table($lang, $semesterarg='20202102'){
     $tadfiles = $DB->get_records('tad');
 
     foreach ($tadfiles as $tadfile) {
-
         // collect data on course
-        $coursedata = get_course_data($coursedatasql, $tadfile, $semesterarg);
-	if($coursedata){
+        $coursedata = get_course_data($coursedatasql, $tadfile, null);
+	    if($coursedata){
             // get department name
             $departmentname = get_department_names($lang, $tadfile);
             // reparse semester str for tha drips
@@ -200,12 +202,12 @@ function construct_view_table($lang, $semesterarg='20202102'){
                 0
             );
             foreach ($tad->corriculum_names as $c) {
-		    $temp = $tad->get_as_templatecontext();
-		if (strcmp($c, '-') !== 0){
-                	$temp["corriculum_name"] = $c;
-		} else {
-                	$temp["corriculum_name"] = 'BME karra átoktatott';
-		}
+		        $temp = $tad->get_as_templatecontext();
+		        if (strcmp($c, '-') !== 0){
+                    $temp["corriculum_name"] = $c;
+		        } else {
+                    $temp["corriculum_name"] = 'BME karra átoktatott';
+		        }
                 array_push($templatecontent, $temp);
             }
         } else {
@@ -251,17 +253,31 @@ function construct_view_table($lang, $semesterarg='20202102'){
     return $fulltemplatecontext;
 }
 
+
+function is_duplicate_tad($tadfile, $semester){
+    global $DB;
+    $records = $DB->get_records('tad');
+    foreach ($records as $record) {
+        if (strcmp($tadfile->coursecode,$record->coursecode) == 0 && strcmp($semester,$record->semester) == 0){
+            return true;
+        }
+    }
+    return false;
+}
+
 function ingest_tad_db($semester){
-    // Clear temp
     global $DB;
     $coursedatasql = "
         SELECT name, code, coursename 
         FROM {tad_corriculum}
         WHERE coursecode = :coursecode
     ";
-    $tadfiles = get_all_temp_tad_files();
+    $tadfiles = get_tad_files();
     foreach ($tadfiles as $f) {
         $tadfile = new TadFileObject($f);
+        if (is_duplicate_tad($tadfile, $semester)){
+            continue;
+        }
         if($coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode])){
             $tad = new DBTadObject(
                 $coursedata->coursename,
@@ -275,7 +291,8 @@ function ingest_tad_db($semester){
             );
             $tad->save_to_db();
         } else {
-            $tad = new DBTadObject(
+            continue;
+           /*  $tad = new DBTadObject(
                 $tadfile->coursecode,
                 $tadfile->author,
                 0,
@@ -285,7 +302,7 @@ function ingest_tad_db($semester){
                 $tadfile->timecreated,
                 $tadfile->timecreated,
             );
-            $tad->save_to_db();
+            $tad->save_to_db(); */
         }
     }
     delete_temp_tad();

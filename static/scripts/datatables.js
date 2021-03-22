@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 columnDefs: [
                     { targets: 'no-sort', orderable: false, searchable: false }
                 ],
-                "bFilter": false,
                 orderCellsTop: true,
                 fixedHeader: true
             });
@@ -97,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/English.json"
                 },
-                "bFilter": false,
                 columnDefs: [
                     { targets: 'no-sort', orderable: false, searchable: false }
                 ],
