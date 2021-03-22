@@ -32,8 +32,9 @@ function get_tad_files(){
     $filesql = "
         SELECT * FROM {files}
         WHERE filename 
-            LIKE :filepattern
+        LIKE :filepattern
         AND component LIKE :component
+        AND filearea = 'attachment'
     ";
     $rows = $DB->get_records_sql($filesql, ['filepattern' => "TAD%.pdf", 'component' => 'local_tad']);
     return $rows;
@@ -65,9 +66,8 @@ function get_tad_files(){
 } */
 
 function delete_temp_tad(){
-    global $DB;
     $fs = get_file_storage();
-    if(!$files = $fs->get_area_files(5,'user','draft')){
+    if(!$files = $fs->get_area_files(1,'local_tad','temp')){
         return;
     };
     foreach ($files as $f) {
@@ -253,12 +253,41 @@ function construct_view_table($lang, $semesterarg=null){
     return $fulltemplatecontext;
 }
 
+function save_tad_files(){
+    $fs = get_file_storage();
+    $files = $fs->get_area_files(1, 'local_tad', 'temp');
+    $freshupload = array();
+    foreach ($files as $f) {
+        if ($f->get_filename() == '.'){
+            $f->delete();
+            continue;
+        }
+        array_push($freshupload, $f->get_filename());
+        $filerecord = array(
+            'contextid'     =>  1,
+            'component'     =>  'local_tad', 
+            'filearea'      =>  'attachment',
+            'itemid'        =>  0, 
+            'filepath'      =>  '/', 
+            'filename'      =>  $f->get_filename(),
+            'timecreated'   =>  time(), 'timemodified'=>time()
+        );
+        try{
+            $fs->create_file_from_storedfile($filerecord, $f);
+            $f->delete();
+        } catch (Throwable $th){
+            $f->delete();
+            continue;
+        }
+    }
+    return $freshupload;
+}
 
-function is_duplicate_tad($tadfile, $semester){
+function is_duplicate_tad($tadfile){
     global $DB;
     $records = $DB->get_records('tad');
     foreach ($records as $record) {
-        if (strcmp($tadfile->coursecode,$record->coursecode) == 0 && strcmp($semester,$record->semester) == 0){
+        if (strcmp($tadfile->coursecode, $record->coursecode) == 0 && strcmp($tadfile->semester, $record->semester) == 0){
             return true;
         }
     }
@@ -267,45 +296,44 @@ function is_duplicate_tad($tadfile, $semester){
 
 function ingest_tad_db($semester){
     global $DB;
+
     $coursedatasql = "
         SELECT name, code, coursename 
         FROM {tad_corriculum}
         WHERE coursecode = :coursecode
     ";
+    $processthis = save_tad_files();
+
     $tadfiles = get_tad_files();
     foreach ($tadfiles as $f) {
-        $tadfile = new TadFileObject($f);
-        if (is_duplicate_tad($tadfile, $semester)){
-            continue;
-        }
-        if($coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode])){
-            $tad = new DBTadObject(
-                $coursedata->coursename,
-                $tadfile->author,
-                0,
-                $tadfile->coursecode,
-                $tadfile->dllink,
-                $semester,
-                $tadfile->timecreated,
-                $tadfile->timecreated,
-            );
-            $tad->save_to_db();
-        } else {
-            continue;
-           /*  $tad = new DBTadObject(
-                $tadfile->coursecode,
-                $tadfile->author,
-                0,
-                $tadfile->coursecode,
-                $tadfile->dllink,
-                $semester,
-                $tadfile->timecreated,
-                $tadfile->timecreated,
-            );
-            $tad->save_to_db(); */
+        foreach ($processthis as $tad => $filename) {
+            $tadfile = new TadFileObject($f);
+            if (strcmp($tadfile->filename, $filename) !==0 ){
+                continue;
+            }
+            if (is_duplicate_tad($tadfile)){
+                continue;
+            }
+            if($coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode])){
+                create_tad_record($coursedata, $tadfile, $semester);
+            } else {
+                continue;
+            }
         }
     }
-    delete_temp_tad();
+}
+function create_tad_record($coursedata, $tadfile, $semester){
+    $tad = new DBTadObject(
+        $coursedata->coursename,
+        $tadfile->author,
+        0,
+        $tadfile->coursecode,
+        $tadfile->dllink,
+        $semester,
+        $tadfile->timecreated,
+        $tadfile->timecreated,
+    );
+    $tad->save_to_db();
 }
 
 function create_tad_corriculum_in_db($tad){
