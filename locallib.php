@@ -186,8 +186,12 @@ function construct_view_table($lang, $semesterarg='20202102'){
                 0
             );
             foreach ($tad->corriculum_names as $c) {
-                $temp = $tad->get_as_templatecontext();
-                $temp["corriculum_name"] = $c;
+		    $temp = $tad->get_as_templatecontext();
+		if (strcmp($c, '-') !== 0){
+                	$temp["corriculum_name"] = $c;
+		} else {
+                	$temp["corriculum_name"] = 'BME karra átoktatott';
+		}
                 array_push($templatecontent, $temp);
             }
         } else {

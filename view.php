@@ -38,6 +38,10 @@ $PAGE->requires->js(new moodle_url('./static/scripts/datatables.js'), false);
 $PAGE->requires->css(new moodle_url('./static/style/view.css'));
 $PAGE->requires->css(new moodle_url('./static/style/datatables.css'));
 
+
+// Temporary redirect
+redirect($CFG->wwwroot);
+
 $CFG->cachejs = false;
 require_once($CFG->libdir.'/adminlib.php');
 global $DB;
