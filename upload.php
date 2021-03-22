@@ -54,7 +54,7 @@ if ($mform->is_cancelled()) {
         // remove slashes
         $semester = str_replace('/','',$semester);
         try{
-            file_save_draft_area_files($data->attachment, $PAGE->context->id, 'local_tad', 'attachment', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 5000));
+            file_save_draft_area_files($data->attachment, $PAGE->context->id, 'local_tad', 'temp', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 5000));
             ingest_tad_db($semester);
             redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_SUCCESS);
         } catch(Throwable $th) {

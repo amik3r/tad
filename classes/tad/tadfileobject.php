@@ -40,7 +40,7 @@ class TadFileObject {
     }
     public function create_download_url(){
         global $DB;
-        if(!$filerecord = $DB->get_record('files', ["component" => 'local_tad', 'filename' => $this->filename])){
+        if(!$filerecord = $DB->get_record('files', ["component" => 'local_tad', 'filename' => $this->filename, 'filearea' => "attachment"])){
             return false;
         };
         $this->dllink = moodle_url::make_pluginfile_url(
