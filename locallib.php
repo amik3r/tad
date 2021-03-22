@@ -32,7 +32,7 @@ function get_all_temp_tad_files(){
     $filesql = "
         SELECT * FROM {files}
         WHERE filename 
-            LIKE :filepattern 
+            LIKE :filepattern
         AND component LIKE :filearea
     ";
     $rows = $DB->get_records_sql($filesql, ['filepattern' => "TAD%.pdf", 'filearea' => 'local_tad']);
@@ -60,6 +60,20 @@ function save_tad_files($semester = ''){
             }
             $f->delete();
         }
+    }
+}
+
+function delete_temp_tad(){
+    global $DB;
+    $fs = get_file_storage();
+    if(!$files = $fs->get_area_files(5,'user','draft')){
+        return;
+    };
+    foreach ($files as $f) {
+        $filename = $f->get_filename();
+        echo "deleting: " . $filename . "\n";
+        $f->delete();
+        echo "deleted: " . $filename . "\n\r";
     }
 }
 
@@ -237,38 +251,8 @@ function construct_view_table($lang, $semesterarg='20202102'){
     return $fulltemplatecontext;
 }
 
-// Gather and insert TAD data on file upload
-//function ingest_tad_db($semester){
-//    global $DB;
-//    $coursedatasql = "
-//        SELECT name, code, coursename 
-//        FROM {tad_corriculum}
-//        WHERE coursecode = :coursecode
-//    ";
-//    $tadfiles = get_all_temp_tad_files();
-//    foreach ($tadfiles as $f) {
-//        $tadfile = new TadFileObject($f);
-//        $coursedata = $DB->get_record_sql($coursedatasql, ['coursecode' => $tadfile->coursecode]);
-//        if($coursedata){
-//            $tad = new DBTadObject(
-//                $tadfile->author,
-//                $tadfile->coursecode,
-//                $semester,
-//                $tadfile->department,
-//                $coursedata->coursename,
-//                $tadfile->timecreated,
-//                $tadfile->filename,
-//                $tadfile->dllink,
-//                0,
-//                $coursedata->code,
-//                $coursedata->name
-//            );
-//                $tad->save_to_db();
-//        }
-//    }
-//}
-
 function ingest_tad_db($semester){
+    // Clear temp
     global $DB;
     $coursedatasql = "
         SELECT name, code, coursename 
@@ -304,6 +288,7 @@ function ingest_tad_db($semester){
             $tad->save_to_db();
         }
     }
+    delete_temp_tad();
 }
 
 function create_tad_corriculum_in_db($tad){
