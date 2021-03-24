@@ -32,13 +32,13 @@ $semesterstr = $PAGE->url->get_param('semester');
 $PAGE->set_url(new moodle_url('/local/tad/view.php'));
 $PAGE->set_title('TAD Portál');
 $PAGE->set_heading('TAD Portál');
+$CFG->cachejs = false;
 
 $PAGE->requires->jquery();
 $PAGE->requires->js(new moodle_url('./static/scripts/datatables.js'), false);
 $PAGE->requires->css(new moodle_url('./static/style/view.css'));
 $PAGE->requires->css(new moodle_url('./static/style/datatables.css'));
 
-$CFG->cachejs = false;
 require_once($CFG->libdir.'/adminlib.php');
 global $DB;
 if ($semesterstr) {
