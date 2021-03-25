@@ -43,11 +43,9 @@ $context = $PAGE->context;
 //require_capability('local/tad:manager', $context);
 if (!is_null($deletearray)){
     if (!delete_tad_entries($deletearray)){
-        var_dump($deletearray);
-        die;
         redirect($CFG->wwwroot . '/local/tad/admin.php');
     } else {
-        redirect($CFG->wwwroot . '/local/tad/admin.php');
+        //redirect($CFG->wwwroot . '/local/tad/admin.php');
     }
 } else {
     echo count($deletearray);
