@@ -409,6 +409,7 @@ function parse_csv_file($separator){
 }
 
 function delete_tad_entries($arr){
+    echo "nice";
     var_dump($arr);
     die;
     if (count($arr) < 1){
