@@ -30,7 +30,7 @@ require_login();
 
 
 
-$PAGE->set_url(new moodle_url('/local/tad/admin.php'));
+$PAGE->set_url(new moodle_url('/local/tad/delete.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('TAD Admin Site');
 $PAGE->set_heading('TAD Admin');
