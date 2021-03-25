@@ -413,6 +413,7 @@ function delete_tad_entries($arr){
     var_dump($arr);
 
     if (count($arr) == 0){
+        echo "fuck";
         return false;
     }
     try{
