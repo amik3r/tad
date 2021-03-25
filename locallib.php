@@ -422,17 +422,17 @@ function delete_tad_entries($arr){
         $fs = get_file_storage();
         if(!$files = $fs->get_area_files(1,'local_tad','attachment')){
             echo "<br> fsissue";
-            return false;
-        };
-        foreach ($files as $f) {
-            $filename = $f->get_filename();
-            foreach ($arr as $a) {
-                if (strcmp($filename.".pdf", $a) === 0){
-                    echo "deleting: " . $filename . "\n";
-                    $f->delete();
-                    echo "deleted: " . $filename . "\n\r";
-                } else {
-                    continue;
+        } else {
+            foreach ($files as $f) {
+                $filename = $f->get_filename();
+                foreach ($arr as $a) {
+                    if (strcmp($filename.".pdf", $a) === 0){
+                        echo "deleting: " . $filename . "\n";
+                        $f->delete();
+                        echo "deleted: " . $filename . "\n\r";
+                    } else {
+                        continue;
+                    }
                 }
             }
         }
