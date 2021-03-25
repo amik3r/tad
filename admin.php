@@ -22,7 +22,11 @@
 
 require_once(__DIR__ . '/../../config.php');
 require_once(__DIR__ . '/locallib.php');
+
+// From imports
 require_once($CFG->dirroot . '/local/tad/classes/form/upload.php');
+require_once($CFG->dirroot . '/local/tad/classes/form/upload_csv.php');
+
 
 require_login();
 
@@ -36,10 +40,11 @@ $context = $PAGE->context;
 if (!has_capability('local/tad:manager', $context)) {
     redirect($CFG->wwwroot . '/local/tad/view.php' );
 }
-$mform = new upload();
 
+// PDF uploader form
+$mform = new upload();
 if ($mform->is_cancelled()) {
-    redirect($CFG->wwwroot . '/local/tad/view.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
+    redirect($CFG->wwwroot . '/local/tad/admin.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
 } else if ($fromform = $mform->get_data()) {
     // instert new data into DB
     if ($data = $mform->get_data()) {
@@ -53,14 +58,37 @@ if ($mform->is_cancelled()) {
         try{
             file_save_draft_area_files($data->attachment, $PAGE->context->id, 'local_tad', 'temp', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 5000));
             ingest_tad_db($semester);
-            redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_SUCCESS);
+            redirect($CFG->wwwroot . '/local/tad/admin.php', get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_SUCCESS);
         } catch(Throwable $th) {
-            var_dump($th);
-            die;
-            redirect($CFG->wwwroot . '/local/tad/view.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
+            redirect($CFG->wwwroot . '/local/tad/admin.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
+        };
+    };
+};
+
+// CSV data uploader form
+$mfrom2 = new uploadCsv();
+if ($mform2->is_cancelled()) {
+    // Go back to view if cancelled
+    redirect($CFG->wwwroot . '/local/tad/admin.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
+} else if ($fromform = $mform2->get_data()) {
+    // clean up previous csv files
+    $fs = get_file_storage();
+    //$fs->delete_area_files(1,'local_tad','csv_temp');
+    if ($data = $mform2->get_data()) {
+        $separator = $data->separator;
+        try{
+            file_save_draft_area_files($data->attachment, 1, 'local_tad', 'csv_temp', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 1));
+            if (!parse_csv_file($separator)){
+                redirect($CFG->wwwroot . '/local/tad/admin.php', get_string("csv_parse_error", "local_tad", \core\output\notification::NOTIFY_ERROR));
+            };
+            redirect($CFG->wwwroot . '/local/tad/admin.php',  get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_INFO);
+        } catch(Throwable $th) {
+            redirect($CFG->wwwroot . '/local/tad/admin.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
         };
     };
 };
 echo $OUTPUT->header();
 $mform->display();
+echo "<hr>";
+$mform2->display();
 echo $OUTPUT->footer();
