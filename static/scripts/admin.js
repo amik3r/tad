@@ -19,7 +19,7 @@ function handleCheckboxSelect(e){
 function handleDeleteButton(e){
     const urlBase = window.location.hostname + '/local/tad/delete.php'
     console.log(urlBase);
-ű    var url = urlBase+"?todelete="+checkedArray.toString()
+    var url = urlBase+"?todelete="+checkedArray.toString()
     console.log(url);
     //window.location.href = url;
 }
