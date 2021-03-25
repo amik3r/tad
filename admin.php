@@ -26,9 +26,19 @@ require_once(__DIR__ . '/locallib.php');
 // From imports
 require_once($CFG->dirroot . '/local/tad/classes/form/upload.php');
 require_once($CFG->dirroot . '/local/tad/classes/form/upload_csv.php');
-
-
 require_login();
+
+$admins = get_admins();
+$isadmin = false;
+foreach($admins as $admin) {
+    if ($USER->id == $admin->id) {
+        $isadmin = true;
+        break;
+    }
+}
+if (!$isadmin){
+    redirect($CFG->wwwroot . '/local/tad/view.php' );
+}
 
 $url = $PAGE->url;
 try {
@@ -51,17 +61,7 @@ $context = $PAGE->context;
 
 
 //require_capability('local/tad:manager', $context);
-$admins = get_admins();
-$isadmin = false;
-foreach($admins as $admin) {
-    if ($USER->id == $admin->id) {
-        $isadmin = true;
-        break;
-    }
-}
-if (!$isadmin){
-    redirect($CFG->wwwroot . '/local/tad/view.php' );
-}
+
 //if (!has_capability('local/tad:manager', $context)) {
 //}
 
