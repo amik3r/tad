@@ -47,8 +47,6 @@ if (!is_null($deletearray)){
         die;
         redirect($CFG->wwwroot . '/local/tad/admin.php');
     } else {
-        echo 'nice';
-        die;
         redirect($CFG->wwwroot . '/local/tad/admin.php');
     }
 } else {
