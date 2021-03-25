@@ -51,7 +51,15 @@ $context = $PAGE->context;
 
 
 //require_capability('local/tad:manager', $context);
-if(!is_siteadmin()) {
+$admins = get_admins();
+$isadmin = false;
+foreach($admins as $admin) {
+    if ($USER->id == $admin->id) {
+        $isadmin = true;
+        break;
+    }
+}
+if (!$isadmin){
     redirect($CFG->wwwroot . '/local/tad/view.php' );
 }
 //if (!has_capability('local/tad:manager', $context)) {
