@@ -28,17 +28,7 @@ require_once($CFG->dirroot . '/local/tad/classes/form/upload.php');
 require_once($CFG->dirroot . '/local/tad/classes/form/upload_csv.php');
 require_login();
 
-$admins = get_admins();
-$isadmin = false;
-foreach($admins as $admin) {
-    if ($USER->id == $admin->id) {
-        $isadmin = true;
-        break;
-    }
-}
-if (!$isadmin){
-    redirect($CFG->wwwroot . '/local/tad/view.php' );
-}
+
 
 $url = $PAGE->url;
 try {
@@ -59,11 +49,10 @@ $PAGE->requires->css(new moodle_url('./static/style/view.css'));
 $PAGE->requires->css(new moodle_url('./static/style/datatables.css'));
 $context = $PAGE->context;
 
-
 //require_capability('local/tad:manager', $context);
-
-//if (!has_capability('local/tad:manager', $context)) {
-//}
+if (!has_capability('local/tad:manager', $context)) {
+    redirect($CFG->wwwroot . '/local/tad/view.php' );
+}
 
 if (count($deletearray) >= 1){
     if (!delete_tad_entries($deletearray)){
