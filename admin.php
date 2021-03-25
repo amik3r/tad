@@ -32,7 +32,7 @@ $PAGE->set_title('TAD Admin Site');
 $PAGE->set_heading('TAD Admin');
 
 $context = $PAGE->context;
-require_capability('local/tad:manager', $context);
+//require_capability('local/tad:manager', $context);
 if (!has_capability('local/tad:manager', $context)) {
     redirect($CFG->wwwroot . '/local/tad/view.php' );
 }
