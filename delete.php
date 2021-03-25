@@ -24,8 +24,6 @@ require_once(__DIR__ . '/../../config.php');
 require_once(__DIR__ . '/locallib.php');
 
 // From imports
-require_once($CFG->dirroot . '/local/tad/classes/form/upload.php');
-require_once($CFG->dirroot . '/local/tad/classes/form/upload_csv.php');
 require_login();
 
 $url = $PAGE->url;
@@ -39,13 +37,7 @@ $PAGE->set_url(new moodle_url('/local/tad/delete.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('TAD Admin Site');
 $PAGE->set_heading('TAD Admin');
-$PAGE->requires->jquery();
-$PAGE->requires->js(new moodle_url('./static/scripts/datatables.js'), false);
-$PAGE->requires->js(new moodle_url('./static/scripts/admin.js'), false);
-$PAGE->requires->css(new moodle_url('./static/style/view.css'));
-$PAGE->requires->css(new moodle_url('./static/style/datatables.css'));
 $context = $PAGE->context;
-
 
 
 require_capability('local/tad:manager', $context);
