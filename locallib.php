@@ -413,7 +413,7 @@ function delete_tad_entries($arr){
     var_dump($arr);
 
     if (count($arr) == 0){
-        echo "fuck";
+        echo "arraylength issue";
         return false;
     }
     try{
@@ -421,7 +421,8 @@ function delete_tad_entries($arr){
         // Delete the files
         $fs = get_file_storage();
         if(!$files = $fs->get_area_files(1,'local_tad','attachment')){
-            return;
+            echo "<br> fsissue";
+            return false;
         };
         foreach ($files as $f) {
             $filename = $f->get_filename();
