@@ -28,7 +28,7 @@ require_login();
 
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_url(new moodle_url('/local/tad/admin.php'));
-$PAGE->set_title('TAD Admin');
+$PAGE->set_title('TAD Admin Site');
 $PAGE->set_heading('TAD Admin');
 
 $context = $PAGE->context;
