@@ -51,7 +51,7 @@ $context = $PAGE->context;
 
 
 //require_capability('local/tad:manager', $context);
-if(!has_capability('moodle/site:config', $coursecontext)) {
+if(!has_capability('moodle/site:config', $context)) {
     redirect($CFG->wwwroot . '/local/tad/view.php' );
 }        
 //if (!has_capability('local/tad:manager', $context)) {
