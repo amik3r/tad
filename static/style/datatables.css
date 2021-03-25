@@ -2,6 +2,10 @@
  * Table styles
  */
 
+ input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: searchfield-cancel-button;
+}
+
 table.dataTable {
     width: 100%;
     margin: 0 auto;

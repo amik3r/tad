@@ -23,35 +23,27 @@
 $capabilities = array(
     'local/tad:manager' => array(
         'riskbitmask' => RISK_SPAM,
-        'captype' => 'edit',
+        'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' =>  [
-            'teacher' => CAP_ALLOW
-        ]
+        'archetypes' =>  array()
     ),
     'local/tad:approver' => array(
         'riskbitmask' => RISK_SPAM,
-        'captype' => 'edit',
+        'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' =>  [
-            'teacher' => CAP_ALLOW
-        ]
+        'archetypes' =>  array()
     ),
     'local/tad:editor' => array(
         'riskbitmask' => RISK_SPAM,
-        'captype' => 'edit',
+        'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' =>  [
-            'teacher' => CAP_ALLOW
-        ]
+        'archetypes' =>  array()
     ),
     'local/tad:reviewer' => array(
         'riskbitmask' => RISK_SPAM,
-        'captype' => 'edit',
+        'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' =>  [
-            'teacher' => CAP_ALLOW
-        ]
+        'archetypes' =>  array()
     )
 );
 
