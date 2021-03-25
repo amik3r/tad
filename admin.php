@@ -54,7 +54,7 @@ require_capability('local/tad:manager', $context);
 //    redirect($CFG->wwwroot . '/local/tad/view.php' );
 //}
 
-if (count($deletearray) >= 1){
+if (is_null($deletearray) || count($deletearray) >= 1){
     if (!delete_tad_entries($deletearray)){
         redirect($CFG->wwwroot . '/local/tad/admin.php');
     } else {
