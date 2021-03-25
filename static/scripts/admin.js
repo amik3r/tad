@@ -1,3 +1,3 @@
-function handleCheckboxSelect(e){
+function handleCheckboxSelect(){
     console.log(e.target.value);
 }
