@@ -48,7 +48,6 @@ if (!is_null($deletearray)){
         //redirect($CFG->wwwroot . '/local/tad/admin.php');
     }
 } else {
-    echo count($deletearray);
 }
 
 echo $OUTPUT->header();

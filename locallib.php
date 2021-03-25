@@ -409,11 +409,7 @@ function parse_csv_file($separator){
 }
 
 function delete_tad_entries($arr){
-    echo "nice" . count($arr);
-    var_dump($arr);
-
     if (count($arr) == 0){
-        echo "arraylength issue";
         return false;
     }
     try{
@@ -421,15 +417,12 @@ function delete_tad_entries($arr){
         // Delete the files
         $fs = get_file_storage();
         if(!$files = $fs->get_area_files(1,'local_tad','attachment')){
-            echo "<br> fsissue";
         } else {
             foreach ($files as $f) {
                 $filename = $f->get_filename();
                 foreach ($arr as $a) {
                     if (strcmp($filename.".pdf", $a) === 0){
-                        echo "deleting: " . $filename . "\n";
                         $f->delete();
-                        echo "deleted: " . $filename . "\n\r";
                     } else {
                         continue;
                     }
@@ -439,7 +432,6 @@ function delete_tad_entries($arr){
         // Delete the records
         foreach ($arr as $a) {
             $coursecode = explode('_',$a)[1];
-            echo $coursecode . "<br>";
             $ids = array();
             try {
                 $rec = $DB->get_records_sql('SELECT id FROM {tad} WHERE ' . $DB->sql_like('coursecode', ':coursecode', $casesensitive=false ), array('coursecode' => $coursecode));
@@ -449,7 +441,6 @@ function delete_tad_entries($arr){
             }
             foreach ($ids as $id) {
                 try{
-                    echo "deleting: " . $coursecode . "<br>";
                     $DB->delete_records('tad',  ['id' => $id]);
                 } catch (Throwable $th){}
             }
