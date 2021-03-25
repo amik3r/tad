@@ -35,6 +35,11 @@ $PAGE->set_url(new moodle_url('/local/tad/admin.php'));
 $PAGE->set_title('TAD Admin Site');
 $PAGE->set_heading('TAD Admin');
 
+$PAGE->requires->jquery();
+$PAGE->requires->js(new moodle_url('./static/scripts/datatables.js'), false);
+$PAGE->requires->css(new moodle_url('./static/style/view.css'));
+$PAGE->requires->css(new moodle_url('./static/style/datatables.css'));
+
 $context = $PAGE->context;
 //require_capability('local/tad:manager', $context);
 if (!has_capability('local/tad:manager', $context)) {
@@ -88,7 +93,16 @@ if ($mform2->is_cancelled()) {
     };
 };
 echo $OUTPUT->header();
+
 $mform->display();
 echo "<hr>";
 $mform2->display();
+echo "<hr>";
+
+$templatecontent = construct_view_table(current_language(), get_config('local_tad', 'semester'));
+$templatecontent['url'] = $PAGE->url;
+
+echo "<hr>";
+echo $OUTPUT->render_from_template('local_tad/admintable', $templatecontent);
+
 echo $OUTPUT->footer();

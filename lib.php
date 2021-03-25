@@ -52,3 +52,13 @@ function local_tad_pluginfile($course = null, $cm = null, $context, $filearea, $
     // Send file to user
     send_stored_file($file, 86400, 0, $forcedownload, array());
 }
+
+global $DB;
+global $USER;
+require_once(__DIR__    . '/../../config.php');
+require_once(__DIR__    . '/classes/form/semester_select.php');
+require_once(__DIR__    . '/locallib.php');
+
+if (!has_capability('local/tad:reviewer', $PAGE->context)){
+    redirect($CFG->wwwroot . '/local/tad','nice');
+}
