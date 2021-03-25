@@ -49,10 +49,10 @@ $PAGE->requires->css(new moodle_url('./static/style/view.css'));
 $PAGE->requires->css(new moodle_url('./static/style/datatables.css'));
 $context = $PAGE->context;
 
-//require_capability('local/tad:manager', $context);
-if (!has_capability('local/tad:manager', $context)) {
-    redirect($CFG->wwwroot . '/local/tad/view.php' );
-}
+require_capability('local/tad:manager', $context);
+//if (!has_capability('local/tad:manager', $context)) {
+//    redirect($CFG->wwwroot . '/local/tad/view.php' );
+//}
 
 if (count($deletearray) >= 1){
     if (!delete_tad_entries($deletearray)){
