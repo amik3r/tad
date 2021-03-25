@@ -402,6 +402,8 @@ function parse_csv_file($separator){
         }
         return true;
     } catch (Throwable $th) {
+        var_dump($th);
+        die;
         return false;
     }
 }
