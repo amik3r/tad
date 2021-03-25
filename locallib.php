@@ -449,7 +449,7 @@ function delete_tad_entries($arr){
                 } catch (Throwable $th){}
             }
         }
-        return true;
+        return $arr;
     } catch (Throwable $th){
         return false;
     }

@@ -28,8 +28,6 @@ require_once($CFG->dirroot . '/local/tad/classes/form/upload.php');
 require_once($CFG->dirroot . '/local/tad/classes/form/upload_csv.php');
 require_login();
 
-
-
 $PAGE->set_url(new moodle_url('/local/tad/admin.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('TAD Admin Site');
