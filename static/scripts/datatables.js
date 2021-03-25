@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                         "lengthMenu": "_MENU_ találat oldalanként",
                         "loadingRecords": "Betöltés...",
                         "processing": "Feldolgozás...",
-                        "search": "",
+                        "search": ":",
                         "zeroRecords": "Nincs a keresésnek megfelelő találat",
                         "paginate": {
                             "first": "Első",
