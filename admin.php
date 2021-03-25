@@ -30,14 +30,6 @@ require_login();
 
 
 
-$url = $PAGE->url;
-try {
-    $params = $url->get_param('todelete');
-    $deletearray = explode(',' ,$params);
-} catch(Throwable $th){
-    $deletearray = '';
-};
-
 $PAGE->set_url(new moodle_url('/local/tad/admin.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('TAD Admin Site');
@@ -48,6 +40,14 @@ $PAGE->requires->js(new moodle_url('./static/scripts/admin.js'), false);
 $PAGE->requires->css(new moodle_url('./static/style/view.css'));
 $PAGE->requires->css(new moodle_url('./static/style/datatables.css'));
 $context = $PAGE->context;
+
+$url = $PAGE->url;
+try {
+    $params = $url->get_param('todelete');
+    $deletearray = explode(',' ,$params);
+} catch(Throwable $th){
+    $deletearray = '';
+};
 
 require_capability('local/tad:manager', $context);
 //if (!has_capability('local/tad:manager', $context)) {
