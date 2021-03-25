@@ -17,7 +17,7 @@ function handleCheckboxSelect(e){
 }
 
 function handleDeleteButton(e){
-    const urlBase = 'http://localhost/moodle/local/tad/admin.php'
+    const urlBase = window.location.href
     console.log(checkedArray);
     var url = urlBase+"?todelete="+checkedArray.toString()
     console.log(url);
