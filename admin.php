@@ -30,21 +30,38 @@ require_once($CFG->dirroot . '/local/tad/classes/form/upload_csv.php');
 
 require_login();
 
-$PAGE->set_context(\context_system::instance());
+$url = $PAGE->url;
+try {
+    $params = $url->get_param('todelete');
+    $deletearray = explode(',' ,$params);
+} catch(Throwable $th){
+    $deletearray = '';
+};
+
 $PAGE->set_url(new moodle_url('/local/tad/admin.php'));
+$PAGE->set_context(\context_system::instance());
 $PAGE->set_title('TAD Admin Site');
 $PAGE->set_heading('TAD Admin');
-
 $PAGE->requires->jquery();
 $PAGE->requires->js(new moodle_url('./static/scripts/datatables.js'), false);
 $PAGE->requires->js(new moodle_url('./static/scripts/admin.js'), false);
 $PAGE->requires->css(new moodle_url('./static/style/view.css'));
 $PAGE->requires->css(new moodle_url('./static/style/datatables.css'));
-
 $context = $PAGE->context;
+
+
 //require_capability('local/tad:manager', $context);
 if (!has_capability('local/tad:manager', $context)) {
     redirect($CFG->wwwroot . '/local/tad/view.php' );
+}
+
+if (count($deletearray) >= 1){
+    if (!delete_tad_entries($deletearray)){
+        redirect($CFG->wwwroot . '/local/tad/admin.php', \core\output\notification::NOTIFY_ERROR);
+    } else {
+    }
+} else {
+    echo count($deletearray);
 }
 
 // PDF uploader form
@@ -93,17 +110,15 @@ if ($mform2->is_cancelled()) {
         };
     };
 };
-echo $OUTPUT->header();
 
+
+echo $OUTPUT->header();
 $mform->display();
 echo "<hr>";
 $mform2->display();
 echo "<hr>";
-
 $templatecontent = construct_view_table(current_language(), get_config('local_tad', 'semester'));
 $templatecontent['url'] = $PAGE->url;
-
 echo "<hr>";
 echo $OUTPUT->render_from_template('local_tad/admintable', $templatecontent);
-
 echo $OUTPUT->footer();
