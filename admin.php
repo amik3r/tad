@@ -56,9 +56,9 @@ if (!has_capability('local/tad:manager', $context)) {
 
 if (count($deletearray) >= 1){
     if (!delete_tad_entries($deletearray)){
-        redirect($CFG->wwwroot . '/local/tad/admin.php', get_string(\core\output\notification::NOTIFY_ERROR));
+        redirect($CFG->wwwroot . '/local/tad/admin.php');
     } else {
-        redirect($CFG->wwwroot . '/local/tad/admin.php', get_string(\core\output\notification::NOTIFY_ERROR));
+        redirect($CFG->wwwroot . '/local/tad/admin.php');
     }
 } else {
     echo count($deletearray);
