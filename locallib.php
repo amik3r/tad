@@ -78,7 +78,6 @@ function delete_temp_tad(){
         }
     }
 }
-
 // Construct helpers
 
 // Get semester data of TAD
@@ -322,6 +321,7 @@ function ingest_tad_db($semester){
         }
     }
 }
+
 function create_tad_record($coursedata, $tadfile, $semester){
     $tad = new DBTadObject(
         $coursedata->coursename,
