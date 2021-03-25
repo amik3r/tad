@@ -66,7 +66,7 @@ if ($mform->is_cancelled()) {
 };
 
 // CSV data uploader form
-$mfrom2 = new uploadCsv();
+$mform2 = new uploadCsv();
 if ($mform2->is_cancelled()) {
     // Go back to view if cancelled
     redirect($CFG->wwwroot . '/local/tad/admin.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
