@@ -40,7 +40,7 @@ $PAGE->set_heading('TAD Admin');
 $context = $PAGE->context;
 
 
-require_capability('local/tad:manager', $context);
+//require_capability('local/tad:manager', $context);
 if (!is_null($deletearray)){
     if (!delete_tad_entries($deletearray)){
         redirect($CFG->wwwroot . '/local/tad/admin.php');
