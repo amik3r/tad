@@ -36,6 +36,7 @@ $PAGE->set_title('TAD Upload');
 $PAGE->set_heading('TAD Upload');
 
 $context = $PAGE->context;
+require_capability('local/tad:manager', $context);
 if (!has_capability('local/tad:manager', $context)) {
     redirect($CFG->wwwroot . '/local/tad/view.php' );
 }
