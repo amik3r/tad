@@ -22,7 +22,7 @@ function handleDeleteButton(e){
     console.log(checkedArray);
     var url = urlBase+"?todelete="+checkedArray.toString()
     console.log(url);
-    window.location.replace(url);
+    window.location.href = url;
 }
 
 
