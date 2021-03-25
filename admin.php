@@ -27,9 +27,9 @@ require_once($CFG->dirroot . '/local/tad/classes/form/upload.php');
 require_login();
 
 $PAGE->set_context(\context_system::instance());
-$PAGE->set_url(new moodle_url('/local/tad/upload.php'));
-$PAGE->set_title('TAD Upload');
-$PAGE->set_heading('TAD Upload');
+$PAGE->set_url(new moodle_url('/local/tad/admin.php'));
+$PAGE->set_title('TAD Admin');
+$PAGE->set_heading('TAD Admin');
 
 $context = $PAGE->context;
 require_capability('local/tad:manager', $context);
