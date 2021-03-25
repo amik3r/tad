@@ -51,11 +51,11 @@ $context = $PAGE->context;
 
 
 //require_capability('local/tad:manager', $context);
-if (!has_capability('local/tad:manager', $context)) {
-    if(!has_capability('moodle/site:config', $coursecontext)) {
-        redirect($CFG->wwwroot . '/local/tad/view.php' );
-    }        
-}
+if(!has_capability('moodle/site:config', $coursecontext)) {
+    redirect($CFG->wwwroot . '/local/tad/view.php' );
+}        
+//if (!has_capability('local/tad:manager', $context)) {
+//}
 
 if (count($deletearray) >= 1){
     if (!delete_tad_entries($deletearray)){
