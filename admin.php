@@ -67,9 +67,9 @@ if (!$isadmin){
 
 if (count($deletearray) >= 1){
     if (!delete_tad_entries($deletearray)){
-        redirect($CFG->wwwroot . '/local/tad/admin.php', \core\output\notification::NOTIFY_ERROR);
+        redirect($CFG->wwwroot . '/local/tad/admin.php', get_string(\core\output\notification::NOTIFY_ERROR));
     } else {
-        redirect($CFG->wwwroot . '/local/tad/admin.php', \core\output\notification::NOTIFY_ERROR);
+        redirect($CFG->wwwroot . '/local/tad/admin.php', get_string(\core\output\notification::NOTIFY_ERROR));
     }
 } else {
     echo count($deletearray);
