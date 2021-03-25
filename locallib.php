@@ -78,7 +78,6 @@ function delete_temp_tad(){
         }
     }
 }
-
 // Construct helpers
 
 // Get semester data of TAD
@@ -322,6 +321,7 @@ function ingest_tad_db($semester){
         }
     }
 }
+
 function create_tad_record($coursedata, $tadfile, $semester){
     $tad = new DBTadObject(
         $coursedata->coursename,
@@ -402,6 +402,51 @@ function parse_csv_file($separator){
         }
         return true;
     } catch (Throwable $th) {
+        var_dump($th);
+        die;
+        return false;
+    }
+}
+
+function delete_tad_entries($arr){
+    if (count($arr) == 0){
+        return false;
+    }
+    try{
+        global $DB;
+        // Delete the files
+        $fs = get_file_storage();
+        if(!$files = $fs->get_area_files(1,'local_tad','attachment')){
+        } else {
+            foreach ($files as $f) {
+                $filename = $f->get_filename();
+                foreach ($arr as $a) {
+                    if (strcmp($filename.".pdf", $a) === 0){
+                        $f->delete();
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        }
+        // Delete the records
+        foreach ($arr as $a) {
+            $coursecode = explode('_',$a)[1];
+            $ids = array();
+            try {
+                $rec = $DB->get_records_sql('SELECT id FROM {tad} WHERE ' . $DB->sql_like('coursecode', ':coursecode', $casesensitive=false ), array('coursecode' => $coursecode));
+            } catch (Throwable $th){}
+            foreach ($rec as $r) {
+                array_push($ids, $r->id);
+            }
+            foreach ($ids as $id) {
+                try{
+                    $DB->delete_records('tad',  ['id' => $id]);
+                } catch (Throwable $th){}
+            }
+        }
+        return $arr;
+    } catch (Throwable $th){
         return false;
     }
 }
