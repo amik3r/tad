@@ -26,6 +26,7 @@ require_once(__DIR__ . '/locallib.php');
 // From imports
 require_once($CFG->dirroot . '/local/tad/classes/form/upload.php');
 require_once($CFG->dirroot . '/local/tad/classes/form/upload_csv.php');
+require_once($CFG->dirroot . '/local/tad/classes/form/upload_dummy_tad.php');
 require_login();
 
 $PAGE->set_url(new moodle_url('/local/tad/admin.php'));
@@ -99,11 +100,36 @@ if ($mform2->is_cancelled()) {
         $separator = $data->separator;
         try{
             file_save_draft_area_files($data->attachment, 1, 'local_tad', 'csv_temp', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 1));
-            if (!parse_csv_file($separator)){
+            if (!parse_corriculum_csv_file($separator)){
                 redirect($CFG->wwwroot . '/local/tad/admin.php', get_string("csv_parse_error", "local_tad", \core\output\notification::NOTIFY_ERROR));
             };
             redirect($CFG->wwwroot . '/local/tad/admin.php',  get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_INFO);
         } catch(Throwable $th) {
+            redirect($CFG->wwwroot . '/local/tad/admin.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
+        };
+    };
+};
+
+// CSV dummy TAD data uploader
+$mform3 = new uploadDummyTad();
+if ($mform3->is_cancelled()) {
+    // Go back to view if cancelled
+    redirect($CFG->wwwroot . '/local/tad/admin.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
+} else if ($fromform = $mform3->get_data()) {
+    // clean up previous csv files
+    $fs = get_file_storage();
+    //$fs->delete_area_files(1,'local_tad','csv_temp');
+    if ($data = $mform3->get_data()) {
+        $separator = $data->separator;
+        try{
+            file_save_draft_area_files($data->attachment, 1, 'local_tad', 'csv_temp', $data->attachment, array('subdirs' => 0, 'maxbytes' => 500000000, 'maxfiles' => 1));
+            if (!parse_dummy_tad_csv_file($separator)){
+                redirect($CFG->wwwroot . '/local/tad/admin.php', get_string("csv_parse_error", "local_tad", \core\output\notification::NOTIFY_ERROR));
+            };
+            redirect($CFG->wwwroot . '/local/tad/admin.php',  get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_INFO);
+        } catch(Throwable $th) {
+            var_dump($th);
+            die;
             redirect($CFG->wwwroot . '/local/tad/admin.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
         };
     };
@@ -115,8 +141,10 @@ $mform->display();
 echo "<hr>";
 $mform2->display();
 echo "<hr>";
+echo '<h3>Dummy TAD uploader</h1>';
+$mform3->display();
+echo "<hr>";
 $templatecontent = construct_view_table(current_language(), get_config('local_tad', 'semester'));
-$templatecontent['url'] = $PAGE->url;
 echo "<hr>";
 echo $OUTPUT->render_from_template('local_tad/admintable', $templatecontent);
 echo $OUTPUT->footer();

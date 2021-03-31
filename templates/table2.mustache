@@ -45,7 +45,7 @@
     <p class="announcement">
         {{tad_announcement}}
     </p>
-    <div id="table-container container-fluid">
+    <div id="table-container container">
         <table table id="tad-table" class="display">
             <thead class="thead-light" id="thead">
             <tr>
@@ -54,7 +54,7 @@
                 <th scope="col" class="secondary">{{semester_heading}}</th>
                 <th scope="col" class="secondary">{{department_heading}}</th>
                 <th scope="col" class="secondary">{{corriculum_name_heading}}</th>
-                <th scope="col" class="essential-head no-sort">{{file_heading}}</th>
+                <th scope="col" class="essential-head">{{file_heading}}</th>
             </tr>
             </thead>
             {{#rows}}
@@ -75,11 +75,14 @@
                     {{corriculum_name}}
                 </td>
                 <td style="word-wrap: break-word;" class="tad-column essential">
-                    <a href="{{url}}" target="_blank">Letöltés</a>
+                    {{{url}}}
                 </td>
             </tr>
             {{/rows}}
         </table>
+        <div class="kiskutya">
+
+        </div>
     </div>
 <div id="pagination-container">
     <div class="row  justify-content-md-center" id="pagination-row">

@@ -35,7 +35,6 @@ class langselect extends moodleform {
         // This will select the colour blue.
         $select->setSelected('Magyar');
         $mform->setDefault('language','Magyar');
-
         $this->add_action_buttons($cancel = false, $submitlabel=get_string('filterlabel', 'local_tad'));
     }
 }

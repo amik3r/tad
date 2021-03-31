@@ -26,6 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'TAD portal';
 
+$string['csv_tad_upload_label'] = 'csv_tad_upload_label';
 
 
 // Settings page labels
@@ -68,6 +69,10 @@ $string['id_heading']                   = 'ID';
 $string['semester_heading']             = 'Semester';
 $string['corriculum_code_heading']      = 'Programme Code';
 $string['corriculum_name_heading']      = 'Programme name';
+$string['lang_heading']                 = 'Language';
+
+$string['upload_in_progress'] = 'Upload in progress';
+$string['tad_not_available'] = 'Not available';
 
 // Misc HTML content
 $string['label_noresult'] = 'No results!';

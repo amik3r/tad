@@ -19,9 +19,21 @@
  * @copyright 2020, You Name <your@email.address>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- 
-defined('MOODLE_INTERNAL') || die();
- 
-$plugin->version = '202103311';
-$plugin->requires = '2017110900';
-$plugin->component = 'local_tad';
+
+use tool_customlang\local\mlang\langstring;
+
+//moodleform is defined in formslib.php
+require_once("$CFG->libdir/formslib.php");
+
+class uploadDummyTad extends moodleform {
+    public function definition() {
+        $mform = $this->_form;
+        $mform->addElement('filemanager', 'attachment', get_string("csv_tad_upload_label", "local_tad"), null,
+                    array('subdirs' => 0, 'maxbytes' => 0, 'areamaxbytes' => 1048576000, 'maxfiles' => 1,
+                          'accepted_types' => '*', 'return_types'=> 1 | 2));
+        $mform->addElement('text', 'separator', get_string('csv_separator_label', 'local_tad'));
+        $mform->setType('separator', PARAM_NOTAGS);
+        $mform->setDefault('separator', ',');
+        $this->add_action_buttons();
+    }
+}
