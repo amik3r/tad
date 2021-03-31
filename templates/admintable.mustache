@@ -40,11 +40,7 @@
  }}
 {{!  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/plug-ins/1.10.24/integration/font-awesome/dataTables.fontAwesome.css">
  }}
- <h1>TAD Portál</h1>
 <div class="container-fluid" style="margin: auto; padding: auto;">
-    <p class="announcement">
-        {{tad_announcement}}
-    </p>
     <div id="table-container container-fluid">
         <table table id="tad-table" class="display">
             <thead class="thead-light" id="thead">
@@ -54,7 +50,7 @@
                 <th scope="col" class="secondary">{{semester_heading}}</th>
                 <th scope="col" class="secondary">{{department_heading}}</th>
                 <th scope="col" class="secondary">{{corriculum_name_heading}}</th>
-                <th scope="col" class="essential-head no-sort">{{file_heading}}</th>
+                <th scope="col" class="essential-head no-sort">Select</th>
             </tr>
             </thead>
             {{#rows}}
@@ -74,8 +70,8 @@
                 <td style="word-wrap: break-word;" class="tad-column secondary ">
                     {{corriculum_name}}
                 </td>
-                <td style="word-wrap: break-word;" class="tad-column essential">
-                    <a href="{{url}}" target="_blank">Letöltés</a>
+                <td style="word-wrap: break-word;" class="tad-column essential" style="align-items: center;">
+                    <input type="checkbox" class="checkbox" value="TAD_{{{coursename}}}">
                 </td>
             </tr>
             {{/rows}}
@@ -85,4 +81,9 @@
     <div class="row  justify-content-md-center" id="pagination-row">
         <div class="btn-toolbar" id="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups"></div>
     </div>
+</div>
+<div class="control-group">
+    <button type="button" id="delete-button" class="btn btn-primary">Delete selected</button>
+    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-primary">Primary</button>
 </div>

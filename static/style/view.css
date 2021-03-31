@@ -2,6 +2,12 @@ thead {
     height: 30px;
 }
 
+thead input {
+    width: 100%;
+}
+
+
+
 th {
     text-align: center;
     font-size: 120%;
@@ -15,35 +21,35 @@ tr {
     width: fit-content;
 }
 
-.dropdown.custom-select{
+.dropdown.custom-select {
     padding: 0px;
     width: 100%;
     word-break: break-all;
-    height:50px;
+    height: 50px;
     line-height: 40px;
-    background:inherit;
+    background: inherit;
 }
 
-
-.no-sort{
+.no-sort {
     text-align: center;
     max-width: 5rem;
 }
 
-.coursecode{
+.coursecode {
     width: calc(fit-content + 20px);
 }
-
 
 .thead-light {
     background-color: #4F957D;
     color: white;
 }
 
+
 /* Ipad and above */
+
 @media screen and (max-width: 768px) {
-    .secondary{
-      display: none;
+    .secondary {
+        display: none;
     }
     .essential {
         padding: 0px;
@@ -51,10 +57,9 @@ tr {
     }
 }
 
-
 @media screen and (max-width: 630px) {
-    .secondary{
-      display: none;
+    .secondary {
+        display: none;
     }
     .essential {
         max-width: 210px;
@@ -62,15 +67,17 @@ tr {
     .essential-head {
         max-width: 210px;
     }
-    .no-sort{
+    .no-sort {
         max-width: 100px;
     }
 }
 
+
 /* iPhone 7 and below */
+
 @media screen and (max-width: 376px) {
-    .secondary{
-      display: none;
+    .secondary {
+        display: none;
     }
     .essential-head {
         padding: 0px;
@@ -82,7 +89,7 @@ tr {
         max-width: 90px;
     }
 }
- 
+
 table.dataTable thead th.sorting:after,
 table.dataTable thead th.sorting_asc:after,
 table.dataTable thead th.sorting_desc:after {
@@ -99,14 +106,25 @@ table.dataTable thead th.sorting:after {
 table.dataTable thead th.sorting_asc:after {
     content: "↾";
 }
+
 table.dataTable thead th.sorting_desc:after {
     content: "⇃";
 }
 
-table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:after, table.dataTable thead th.sorting_desc:after {
+table.dataTable thead th.sorting:after,
+table.dataTable thead th.sorting_asc:after,
+table.dataTable thead th.sorting_desc:after {
     position: inherit;
     display: inline;
 }
-table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:after, table.dataTable thead th.sorting_desc:after {
+
+table.dataTable thead th.sorting:after,
+table.dataTable thead th.sorting_asc:after,
+table.dataTable thead th.sorting_desc:after {
     right: -.5em;
+}
+
+th.white {
+    width: 30px;
+    background-color: white !important;
 }
