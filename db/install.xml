@@ -52,5 +52,51 @@
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
       </KEYS>
     </TABLE>
+
+
+    <!-- Custom TADs -->
+    <TABLE NAME="tad_section_1" COMMENT="1st section of a TAD">
+      <FIELDS>
+        <FIELD NAME="id"                  TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="coursename"          TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="coursename_en"       TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="coursecode"          TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="coursetype"          TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="coursetype_en"       TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="lecture"             TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="practice"            TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="laboratory"          TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="assesmenttype"       TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="assesmenttype_en"    TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="credits"             TYPE="int" LENGTH="2" NOTNULL="true"    </FIELD>
+        <FIELD NAME="courseleadername"    TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="courseleaderrank"    TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="courseleaderrank_en" TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="courseleadercontact" TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="ou"                  TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="ou_en"               TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="website"             TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="lang"                TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="corriculumrole"      TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="corriculumrole_en"   TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="strong"              TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="weak"                TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="paralell"            TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="exclusive"           TYPE="string" NOTNULL="true"            </FIELD>
+        <FIELD NAME="validuntil"          TYPE="int" LENGTH="10" NOTNULL="true"    </FIELD>
+        <FIELD NAME="parent"              TYPE="int" LENGTH="10" NOTNULL="true"   </FIELD>
+        <FIELD NAME="locked"              TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"   </FIELD>
+        <FIELD NAME="draft"               TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  </FIELD>
+        <FIELD NAME="published"           TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  </FIELD>
+        <FIELD NAME="created_by"          TYPE="int" LENGTH="10" NOTNULL="true"   </FIELD>
+        <FIELD NAME="version"             TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"  </FIELD>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
   </TABLES>
+
+
+
 </XMLDB>

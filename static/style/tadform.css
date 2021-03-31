@@ -1,0 +1,54 @@
+.d-inline{
+    display: block !important;
+}
+
+.word-break{
+    word-break: keep-all !important;
+}
+
+.section1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_row_group{
+    height: max-content;
+    display: flexbox;
+    justify-content:left;
+    align-items: baseline;
+    font-size: 90%;
+}
+
+.form_row_group label{
+    margin-left: 10px;
+}
+
+.section1_1{
+    display: flex;
+    justify-content:left;
+    align-items: baseline;
+}
+
+.section1_1 label {
+    font-size: 90%;
+}
+
+.section1.d-inline label {
+    display: flex !important;
+}
+
+.section1.word-break {
+    word-break: normal !important;
+}
+
+table {
+    overflow:auto;
+}
+
+table td {
+    height: max-content;
+    vertical-align: middle;
+}
+.form-control input{
+    margin: auto;
+}

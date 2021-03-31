@@ -16,25 +16,28 @@
  
 /**
  * @package   local_tad
- * @copyright 2020, You Name <your@email.address>
+ * @copyright 2021, Antal Miklós <antal.miklos@gtk.bme.hu>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__    . '/../../../config.php');
 
-//moodleform is defined in formslib.php
-require_once("$CFG->libdir/formslib.php");
-class semester_select extends moodleform {
-    public function definition() {
-        $mform = $this->_form;
-
-        $options = array(
-            '2020/21/02' => '2020/21/02',
-            '2021/22/01' => '2021/22/01'
-        );
-        $select = $mform->addElement('select', 'semester', get_string('semester_select_label', 'local_tad'), $options);
-        // This will select the colour blue.
-        $select->setSelected('2020/21/02');
-        $mform->setDefault('semester','2020/21/02');
-
-        $this->add_action_buttons($cancel = false, $submitlabel=get_string('filterlabel', 'local_tad'));
+function get_all_courses(){
+    global $DB;
+    $missing = 0;
+    $ok = 0;
+    $courses = $DB->get_records_sql("SELECT coursecode from {tad_corriculum} WHERE coursecode LIKE '%BMEGT70%'", array());
+    foreach ($courses as $course) {
+        if (!$DB->get_record('tad', array('coursecode' => $course->coursecode))){
+            echo 'missing: ' . $course->coursecode . "\n";
+            $missing += 1;
+        } else {
+            echo 'OK: ' . $course->coursecode . "\n";
+            $ok += 1;
+        }
     }
+    echo "all: " . count($courses) . "\n";
+    echo "OK: " . $ok . "\n";
+    echo "Missing: " . $missing . "\n";
 }
+get_all_courses();

@@ -77,3 +77,29 @@ $string['corr_default_label'] = 'Programmes, which the course is part of';
 
 $string['tad_announcement'] = 'Early version of the TAD Portal, which contains Course Data Forms from the 2020/2021/2 semester.';
 
+// TAD EDITOR
+// Section 1
+$string['1_1'] = 'Course name';
+$string['1_2'] = 'Course code';
+$string['1_3'] = 'Course type';
+$string['1_4'] = 'Kurzustípusok és óraszámok';
+$string['1_4_1'] = 'Lecture';
+$string['1_4_2'] = 'Practice';
+$string['1_4_3'] = 'Laboratory';
+$string['1_5'] = 'Type of assessment';
+$string['1_6'] = 'Number of credits';
+$string['1_7'] = 'Course leader';
+$string['1_8'] = 'Organizational unit for the subject';
+$string['1_9'] = 'Subject website';
+$string['1_10'] = 'Language of teaching';
+$string['1_11'] = 'Curriculum role of the subject, recommended semester';
+$string['1_12'] = 'Pre-requisites';
+$string['1_12_1'] = 'strong';
+$string['1_12_2'] = 'weak';
+$string['1_12_3'] = 'paralell';
+$string['1_12_4'] = 'exclusive';
+$string['1_13'] = 'A tantárgyleírás érvényessége';
+
+$string['section1_approve_label'] = '1. rész jóváhagyása';
+$string['tadform_missing_field_label'] = 'Kötelező megadni';
+$string['tadform_invalid_code_label'] = 'Helytelen adat';

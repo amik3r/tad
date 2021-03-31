@@ -39,6 +39,7 @@ $PAGE->requires->js(new moodle_url('./static/scripts/datatables.js'), false);
 $PAGE->requires->css(new moodle_url('./static/style/view.css'));
 $PAGE->requires->css(new moodle_url('./static/style/datatables.css'));
 
+
 require_once($CFG->libdir.'/adminlib.php');
 global $DB;
 if ($semesterstr) {

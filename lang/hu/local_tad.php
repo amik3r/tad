@@ -75,3 +75,31 @@ $string['filterlabel'] = 'Szűrés';
 $string['empty_corr_label'] = 'Átoktatás';
 $string['corr_default_label'] = 'Szakok, melyben a tárgy szerepel';
 $string['tad_announcement'] = 'A TAD Portál kisérleti verziója, amely egyelőre a 2020/2021 tavaszi félév tantárgyi adatlapjait tartalmazza.';
+
+
+
+// TAD EDITOR
+// Section 1
+$string['1_1'] = 'Tantárgy neve';
+$string['1_2'] = 'Azonosító';
+$string['1_3'] = 'A tantárgy jellege';
+$string['1_4'] = 'Kurzustípusok és óraszámok';
+$string['1_4_1'] = 'Előadás';
+$string['1_4_2'] = 'Gyakorlat';
+$string['1_4_3'] = 'Laboratórium';
+$string['1_5'] = 'Tanulmányi teljesítményértékelés (minőségértékelés) típusa';
+$string['1_6'] = 'Kreditszám';
+$string['1_7'] = 'Tantárgyfelelős';
+$string['1_8'] = 'Tantárgyat gondozó oktatási szervezeti egység';
+$string['1_9'] = 'A tantárgy weblapja';
+$string['1_10'] = 'A tantárgy oktatásának nyelve';
+$string['1_11'] = 'A tantárgy tantervi szerepe, ajánlott féléve';
+$string['1_12'] = 'Közvetlen előkövetelmények';
+$string['1_12_1'] = 'Erős';
+$string['1_12_2'] = 'Gyenge';
+$string['1_12_3'] = 'Párhuzamos';
+$string['1_12_4'] = 'Kizáró feltételek';
+$string['1_13'] = 'A tantárgyleírás érvényessége';
+
+$string['section1_approve_label'] = 'Szekció jóváhagyása';
+$string['tadform_missing_field_label'] = 'Kötelező megadni';

@@ -44,6 +44,12 @@ $capabilities = array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' =>  array()
+    ),
+    'local/tad:viewer' => array(
+        'riskbitmask' => RISK_SPAM,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' =>  array()
     )
 );
 
@@ -51,3 +57,4 @@ $string['tad:manager'] = get_string('access:manager', 'local_tad');
 $string['tad:approver'] = get_string('access:approver', 'local_tad');
 $string['tad:editor'] = get_string('access:editor', 'local_tad');
 $string['tad:reviewer'] = get_string('access:reviewer', 'local_tad');
+$string['tad:viewer'] = get_string('access:viewer', 'local_tad');

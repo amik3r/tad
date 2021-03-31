@@ -48,19 +48,6 @@ try {
 };
 
 require_capability('local/tad:manager', $context);
-//if (!has_capability('local/tad:manager', $context)) {
-//    redirect($CFG->wwwroot . '/local/tad/view.php' );
-//}
-
-//if (is_null($deletearray) || count($deletearray) >= 1){
-//    if (!delete_tad_entries($deletearray)){
-//        redirect($CFG->wwwroot . '/local/tad/admin.php');
-//    } else {
-//        redirect($CFG->wwwroot . '/local/tad/admin.php');
-//    }
-//} else {
-//    echo count($deletearray);
-//}
 
 // PDF uploader form
 $mform = new upload();
