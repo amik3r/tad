@@ -6,7 +6,12 @@ thead input {
     width: 100%;
 }
 
-
+.tad-column a {
+    color: #4F957D;
+}
+.tad-column a:hover {
+    color: #73dbb7;
+}
 
 th {
     text-align: center;
