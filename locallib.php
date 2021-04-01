@@ -397,7 +397,7 @@ function parse_corriculum_csv_file($separator){
         $cont = explode(PHP_EOL, $filecontent);
         foreach ($cont as $line) {
             // split line on separator, encode stuff
-            $linecont = explode($separator, mb_convert_encoding($line, "UTF-8", "auto"));
+            $linecont = explode($separator, utf8_encode($line));
             // check if line is empty
             if ($linecont[0] == ''|| $linecont[1] == ''){} 
             else {
