@@ -73,6 +73,7 @@ $string['lang_heading']                 = 'Language';
 
 $string['upload_in_progress'] = 'Upload in progress';
 $string['tad_not_available'] = 'Not available';
+$string['cross_teaching'] = 'Cross teaching';
 
 // Misc HTML content
 $string['label_noresult'] = 'No results!';

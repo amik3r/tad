@@ -229,7 +229,7 @@ function construct_view_table($lang, $semesterarg=null){
             } else if (strcmp($tadfile->dlurl, 'not_available') === 0){
                 $dlink = '<p>' . get_string('tad_not_available', 'local_tad'). '</p>';
             } else if (strcmp($tadfile->dlurl, 'cross') === 0){
-                $dlink = '<p>' . get_string('tad_not_available', 'local_tad'). '</p>';
+                $dlink = '<p>' . get_string('cross_teaching', 'local_tad'). '</p>';
             } else {
                 $dlink = '<a href="' .$tadfile->dlurl. '" target="_blank">'. get_string('file_heading', 'local_tad') . '</a>';
             }

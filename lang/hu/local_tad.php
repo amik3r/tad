@@ -72,6 +72,7 @@ $string['lang_heading']      = 'Nyelv';
 
 $string['upload_in_progress'] = 'Feltöltés alatt';
 $string['tad_not_available'] = 'Nem elérhető';
+$string['cross_teaching'] = 'Beoktatott tárgy';
 
 
 // Misc HTML content
