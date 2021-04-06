@@ -19,9 +19,22 @@
  * @copyright 2020, You Name <your@email.address>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- 
-defined('MOODLE_INTERNAL') || die();
- 
-$plugin->version = '202103311';
-$plugin->requires = '2017110900';
-$plugin->component = 'local_tad';
+use tool_customlang\local\mlang\langstring;
+
+//moodleform is defined in formslib.php
+require_once("$CFG->libdir/formslib.php");
+class langselect extends moodleform {
+    public function definition() {
+        $mform = $this->_form;
+
+        $options = array(
+            'Magyar' => 'hu',
+            'English' => 'en'
+        );
+        $select = $mform->addElement('select', 'language', '', $options);
+        // This will select the colour blue.
+        $select->setSelected('Magyar');
+        $mform->setDefault('language','Magyar');
+        $this->add_action_buttons($cancel = false, $submitlabel=get_string('filterlabel', 'local_tad'));
+    }
+}

@@ -20,16 +20,19 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+
+
+require_once(__DIR__    . '/../../config.php');
+$PAGE->set_url(new moodle_url('/local/tad/view.php',['lang' => $PAGE->url->get_param('lang')]));
+
 global $DB;
 global $USER;
 
-require_once(__DIR__    . '/../../config.php');
-require_once(__DIR__    . '/classes/form/semester_select.php');
+require_once(__DIR__    . '/classes/view/langselect.php');
 require_once(__DIR__    . '/locallib.php');
 
 $PAGE->set_context(\context_system::instance());
-$semesterstr = $PAGE->url->get_param('semester');
-$PAGE->set_url(new moodle_url('/local/tad/view.php'));
+$langurlparam = $PAGE->url->get_param('lang');
 $PAGE->set_title('TAD Portál');
 $PAGE->set_heading('TAD Portál');
 $CFG->cachejs = false;
@@ -49,6 +52,20 @@ if ($semesterstr) {
     $templatecontent = construct_view_table(current_language(), get_config('local_tad', 'semester'));
     $templatecontent['url'] = $PAGE->url;
 }
+
+$mform = new langselect();
+if ($fromform = $mform->get_data()) {
+    // instert new data into DB
+    if ($data = $mform->get_data()) {
+        $lang = $fromform->lang;
+        // remove slashes
+        try{
+            redirect($CFG->wwwroot . '/local/tad/admin.php', get_string("upload_successful", "local_tad"), \core\output\notification::NOTIFY_SUCCESS);
+        } catch(Throwable $th) {
+            redirect($CFG->wwwroot . '/local/tad/admin.php', get_string("upload_failed", "local_tad", \core\output\notification::NOTIFY_ERROR));
+        };
+    };
+};
 
 echo $OUTPUT->header();
 echo $OUTPUT->render_from_template('local_tad/table2', $templatecontent);

@@ -25,6 +25,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'TAD portál';
 
+$string['csv_tad_upload_label'] = 'csv_tad_upload_label';
 
 // Settings page labels
 $string['settings_pluginname'] = 'TAD';
@@ -67,6 +68,11 @@ $string['semester_heading'] = 'Félév';
 $string['department_heading'] = 'Tanszék';
 $string['course_name_heading'] = 'Tárgynév';
 $string['file_heading'] = 'Letöltés';
+$string['lang_heading']      = 'Nyelv';
+
+$string['upload_in_progress'] = 'Feltöltés alatt';
+$string['tad_not_available'] = 'Nem elérhető';
+
 
 // Misc HTML content
 $string['label_noresult'] = 'Nincs találat!';

@@ -143,14 +143,6 @@ function construct_view_table($lang, $semesterarg=null){
 		$lang='en';
 	}
 
-    $corriculumnamesql = "
-        SELECT
-            name, 
-            code        
-        FROM {tad_corriculum}
-        WHERE coursecode = :coursecode
-    ";
-
     $coursedatasql = "
         SELECT
             corr.name, 
@@ -188,6 +180,18 @@ function construct_view_table($lang, $semesterarg=null){
             // reparse semester str for tha drips
             $semesterstring = substr($coursedata->semester, 0, 4) . '/' . substr($coursedata->semester,4);
             $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
+
+            // Create placeholder links
+            if (strcmp($coursedata->dlurl, 'uploading') === 0){
+                $dlink = '<p>' . get_string('upload_in_progress', 'local_tad'). '</p>';
+            } else if (strcmp($coursedata->dlurl, 'not_available') === 0){
+                $dlink = '<p>' . get_string('tad_not_available', 'local_tad'). '</p>';
+            } else if (strcmp($coursedata->dlurl, 'cross') === 0){
+                $dlink = '<p>' . get_string('tad_not_available', 'local_tad'). '</p>';
+            } else {
+                $dlink = '<a href="' .$coursedata->dlurl. '" target="_blank">'. get_string('file_heading', 'local_tad') . '</a>';
+            }
+
             // consctruct TAD as object
             $tad = new TadObject(
                 $coursedata->author,
@@ -197,9 +201,10 @@ function construct_view_table($lang, $semesterarg=null){
                 str_replace('"','',$coursedata->tadname),
                 $coursedata->timecreated,
                 'irrelevant',
-                $coursedata->dlurl,
+                $dlink,
                 0
             );
+
             foreach ($tad->corriculum_names as $c) {
 		        $temp = $tad->get_as_templatecontext();
 		        if (strcmp($c, '-') !== 0){
@@ -210,25 +215,47 @@ function construct_view_table($lang, $semesterarg=null){
                 array_push($templatecontent, $temp);
             }
         } else {
+            //var_dump($tadfile);
             //continue;
+            // get department name
             $departmentname = get_department_names($lang, $tadfile);
-            // reparse semester str for tha drips*/
-            $semesterstr = $PAGE->url->get_param('semester');
+            // reparse semester str for tha drips
+            $semesterstring = substr($tadfile->semester, 0, 4) . '/' . substr($tadfile->semester,4);
+            $semesterstring = substr($semesterstring, 0, 7) . '/' . substr($semesterstring, 7);
+
+            // Create placeholder links
+            if (strcmp($tadfile->dlurl, 'uploading') === 0){
+                $dlink = '<p>' . get_string('upload_in_progress', 'local_tad'). '</p>';
+            } else if (strcmp($tadfile->dlurl, 'not_available') === 0){
+                $dlink = '<p>' . get_string('tad_not_available', 'local_tad'). '</p>';
+            } else if (strcmp($tadfile->dlurl, 'cross') === 0){
+                $dlink = '<p>' . get_string('tad_not_available', 'local_tad'). '</p>';
+            } else {
+                $dlink = '<a href="' .$tadfile->dlurl. '" target="_blank">'. get_string('file_heading', 'local_tad') . '</a>';
+            }
             $tad = new TadObject(
                 '',
                 $tadfile->coursecode,
-                $semesterstr,
+                $semesterstring,
                 $departmentname,
-                'hiba',
-                'hiba',
+                str_replace('"','',$tadfile->name),
+                $tadfile->timecreated,
                 'irrelevant',
-                $tadfile->dlurl,
+                $dlink,
                 0,
-            );
-            array_push($templatecontent, $tad->get_as_templatecontext());
+            );foreach ($tad->corriculum_names as $c) {
+		        $temp = $tad->get_as_templatecontext();
+		        if (strcmp($c, '-') !== 0){
+                    $temp["corriculum_name"] = $c;
+		        } else {
+                    $temp["corriculum_name"] = 'BME karra átoktatott';
+		        }
+                array_push($templatecontent, $temp);
+            }
+            //array_push($templatecontent, $tad->get_as_templatecontext());
         }
     }
-
+    
     $fulltemplatecontext = array(
         'tad_announcement'          => get_string('tad_announcement', 'local_tad'),
         'id_heading'                => get_string('id_heading', "local_tad"),
@@ -343,8 +370,16 @@ function create_tad_corriculum_in_db($tad){
     };
 }
 
+function create_dummy_tad_in_db($tad){
+    global $DB;
+    if(!$DB->insert_record('tad', $tad)){
+        return false;
+    };
+    return true;
+}
+
 // Parse corriculum csv file
-function parse_csv_file($separator){
+function parse_corriculum_csv_file($separator){
     global $DB;
     // read csv file
     $checkmultiple = false;
@@ -448,5 +483,51 @@ function delete_tad_entries($arr){
         return $arr;
     } catch (Throwable $th){
         return false;
+    }
+}
+
+// Parse corriculum csv file
+function parse_dummy_tad_csv_file($separator){
+    // read csv file
+    $fs = get_file_storage();
+    try {
+        $files = $fs->get_area_files(1, 'local_tad', 'csv_temp');
+        // last element of pesky arrays
+        $file = end($files);
+        $filecontent = $file->get_content();
+        // split on newline
+        $cont = explode(PHP_EOL, $filecontent);
+        foreach ($cont as $line) {
+            // split line on separator, encode stuff
+            $linecont = explode($separator, utf8_encode($line));
+            // check if line is empty
+            if (!$linecont[0] == '' && !$linecont[1] == ''){
+                $tad               = new stdClass();
+                $tad->name         = $linecont[0];
+                $tad->author       = $linecont[1];
+                $tad->editable     = $linecont[2];
+                $tad->coursecode   = $linecont[3];
+                $tad->dlurl        = $linecont[4];
+                $tad->semester     = intval($linecont[5]);
+                $tad->timerelevant = intval($linecont[6]);
+                $tad->timecreated  = intval($linecont[7]);
+                $tad->version      = intval($linecont[8]);
+                try{
+                    create_dummy_tad_in_db($tad);
+                    $file->delete();
+                } catch (Throwable $th){
+                    var_dump($th);
+                    die;
+                }
+                };
+            }
+            // Delete csv file
+            $file->delete();
+            die;
+            return true;
+    } catch(Throwable $th){
+        $file->delete();
+        var_dump($th);
+        die;
     }
 }

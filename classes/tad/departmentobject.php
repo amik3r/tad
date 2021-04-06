@@ -32,6 +32,10 @@ class Department{
         "GT51"	=> "Műszaki Pedagógia Tanszék",
         "GT52"	=> "Ergonómia és Pszichológia Tanszék",
         "GT55"	=> "Üzleti Jog Tanszék",
+        "GT61"	=> "Idegen Nyelvi Központ",
+        "GT62"	=> "Idegen Nyelvi Központ",
+        "GT63"	=> "Idegen Nyelvi Központ",
+        "GT65"	=> "Idegen Nyelvi Központ",
         "GT70"	=> "Testnevelési Központ",
         "GTDH"  => "Dékáni Hivatal"
     );
