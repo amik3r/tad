@@ -107,5 +107,16 @@ $string['1_12_3'] = 'Párhuzamos';
 $string['1_12_4'] = 'Kizáró feltételek';
 $string['1_13'] = 'A tantárgyleírás érvényessége';
 
+$string['2_1']      = 'Célkitűzések';
+$string['2_2']      = 'Tanulmányi eredmények';
+$string['2_2_1']    = 'Tudás';
+$string['2_2_2']    = 'Képesség';
+$string['2_2_3']    = 'Attitűd';
+$string['2_2_4']    = 'Önállóság és felelősség';
+$string['2_3']      = 'Oktatásmódszertan';
+$string['2_4_1']    = 'Tanulástámogató anyagok';
+$string['2_4_2']    = 'Tankönyvek, jegyzetek, letölthető anyagok';
+
+
 $string['section1_approve_label'] = 'Szekció jóváhagyása';
 $string['tadform_missing_field_label'] = 'Kötelező megadni';

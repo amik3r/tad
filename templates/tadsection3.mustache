@@ -1,0 +1,231 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_banner/manage
+
+    Template to display the list of forum discussions.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * TODO
+
+    Example context (json):
+    {
+    }
+}}
+<div class="container">
+    <h2>II. TANTÁRGYKÖVETELMÉNYEK</h2>
+    <h3>3.  A TANULMÁNYI TELJESÍTMÉNY ELLENŐRZÉSE ÉS ÉRTKELÉSE</h1>
+    <hr>
+    <label for="id_s_2_1">3.1 Általános szabályok - General rules</label>
+    <div class='row'>
+        <div class='col-sm-12  col-md'>
+            <textarea type="textarea" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='magyar' {{readonly}}></textarea>
+        </div>
+        <div class='col-sm-12  col-md'>
+            <textarea type="textarea" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='angol' {{readonly}}></textarea>
+        </div>
+    </div>
+    <hr>
+    <label for="">3.2 Teljesítményértékelési módszerek - Assessment methods</label>
+    <div class='row'>
+        <div class='col-sm-12  col-md'>
+            <textarea type="textarea" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='magyar' {{readonly}}></textarea>
+        </div>
+        <div class='col-sm-12  col-md'>
+            <textarea type="textarea" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='angol' {{readonly}}></textarea>
+        </div>
+    </div>
+    <hr>
+    <label for="">3.3 Szorgalmi időszakban végzett teljesítményértékelések részaránya a minősítésben - Proportion of mid-term performance assessments in final grading</label>
+    <div class="performance-list">
+        <div class="alert-container" id="alert-container" style="justify-content: center; border: 3px solid red; border-radius: 8px; display: none; padding: 10px;">
+            <strong>
+                A megadott értékek összege nem 100%!
+            </strong>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md">
+                <label>Típus (magyar)</label>
+            </div>
+            <div class="col-sm-12 col-md">
+                <label>Típus (angol)</label>
+            </div>
+            <div class="col-sm-12 col-md">
+                <label>Százalék</label>
+            </div>
+        </div>
+        <ol id="performance-list" style="padding: 0px;">
+            <li class="oc_1_1">
+                <div class="row">
+                    <div class="col-sm-12 col-md">
+                        <input type="textarea" placeholder="" class="form-control performance" {{readonly}}/>
+                    </div>
+                    <div class="col-sm-12 col-md">
+                        <input type="textarea" placeholder="" class="form-control performance" {{readonly}}/>
+                    </div>
+                    <div class="col-sm-12 col-md">
+                        <input type="text" placeholder="" class="form-control performance-number-field" onchange="handlePerformanceCheck()" {{readonly}} />
+                    </div>
+                </div>
+            </li>
+        </ol>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 btn btn-primary"  onclick="handleNewOutcome('performance-list', 'performance')" {{readonly}}>
+                    <span>Új sor hozzáadása</span>
+                </div>
+                <div class="col-sm-6 btn btn-info delete-button"  onclick="handleRowDelete('performance-list')" {{readonly}}>
+                    <span>Utolsó sor törlése</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <label for="">3.4 Érdemjegy-megállapítás </label>
+    <div class='row'>
+        <div class='col-sm-12  col-md'>
+            <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="jeles (5) - Excellent [A]" {{readonly}} />
+        </div>
+        <div class='col-sm-12  col-md'>
+            <input type="text" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='százalék' {{readonly}} />
+        </div>
+    </div>
+    <div class="row">
+        <div class='col-sm-12  col-md'>
+            <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="jeles (5) - Very Good [B]" {{readonly}} />
+        </div>
+        <div class='col-sm-12  col-md'>
+            <input type="text" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='százalék' {{readonly}} />
+        </div>
+    </div>
+    <div class="row">
+        <div class='col-sm-12  col-md'>
+            <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="jó (4) - Good [C]" {{readonly}} />
+        </div>
+        <div class='col-sm-12  col-md'>
+            <input type="text" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='százalék' {{readonly}} />
+        </div>
+    </div>
+    <div class="row">
+        <div class='col-sm-12  col-md'>
+            <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="közepes (3) - Satisfactory [D]" {{readonly}} />
+        </div>
+        <div class='col-sm-12  col-md'>
+            <input type="text" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='százalék' {{readonly}} />
+        </div>
+    </div>
+    <div class="row">
+        <div class='col-sm-12  col-md'>
+            <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="elégséges (2) - Pass [E]" {{readonly}} />
+        </div>
+        <div class='col-sm-12  col-md'>
+            <input type="text" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='százalék' {{readonly}} />
+        </div>
+    </div>
+    <div class="row">
+        <div class='col-sm-12  col-md'>
+            <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="elégtelen (1) - Fail [F]" {{readonly}} />
+        </div>
+        <div class='col-sm-12  col-md'>
+            <input type="text" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='százalék' {{readonly}} />
+        </div>
+    </div>
+    <hr>
+    <label for="">3.5 Javítás és pótlás</label>
+    <div class="retake">
+        <ol id="retake" style="padding: 0px;">
+            <li class="oc_1_1">
+                <div class="row">
+                    <div class="col-sm-12 col-md">
+                        <textarea type="textarea" placeholder="magyar" class="form-control"></textarea>
+                    </div>
+                    <div class="col-sm-12 col-md">
+                        <textarea type="textarea" placeholder="angol" class="form-control"></textarea>
+                    </div>
+                </div>
+            </li>
+        </ol>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 btn btn-primary"  onclick="handleNewOutcome('retake', 'dual')" {{readonly}}>
+                    <span>Új sor hozzáadása</span>
+                </div>
+                <div class="col-sm-6 btn btn-info delete-button"  onclick="handleRowDelete('retake')" {{readonly}}>
+                    <span>Utolsó sor törlése</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <label for="">3.6 A tantárgy elvégzéséhez szükséges tanulmányi munka - Working hours needed to complete the course</label>
+    <div class="workinghours">
+        <ol id="workinghours" style="padding: 0px;">
+            <li class="oc_1_1">
+                <div class="row">
+                    <div class="col-sm-12 col-md">
+                        <input type="text" placeholder="" class="form-control"/>
+                    </div>
+                    <div class="col-sm-12 col-md">
+                        <input type="textarea" placeholder="" class="form-control workinghours" {{readonly}}/>
+                    </div>
+                    <div class="col-sm-12 col-md">
+                        <input type="text" placeholder="" class="form-control workinghours-number-field" onchange="handleWorkingHoursChange()"/>
+                    </div>
+                </div>
+            </li>
+        </ol>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 btn btn-primary"  onclick="handleNewOutcome('workinghours', 'performance', fieldPrefix='workinghours')" {{readonly}}>
+                    <span>Új sor hozzáadása</span>
+                </div>
+                <div class="col-sm-6 btn btn-info delete-button"  onclick="handleRowDelete('workinghours')" {{readonly}}>
+                    <span>Utolsó sor törlése</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <label for="" style="padding-top: 1rem;">3.7 A tantárgykövetelmények jóváhagyása és érvényessége- Approval and validity of subject requirements</label>
+    <div class='row'>
+        <div class='col-sm-12  col-md'>
+            <textarea type="textarea" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='magyar' {{readonly}}></textarea>
+        </div>
+        <div class='col-sm-12  col-md'>
+            <textarea type="textarea" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='angol' {{readonly}}></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-sm-12  col-md">
+            <div>
+                <label for="id_s_1_9">Jóváhagyás dátuma</label>
+                <input type="date" name="s_1_13_1" id="id_s_1_13_1" class="form-control" placeholder="angol" {{readonly}}>
+            </div>
+        </div>
+        <div class=" col-sm-12  col-md">
+            <div>
+                <label for="id_s_1_9">Érvényesség vége</label>
+                <input type="date" name="s_1_13_2" id="id_s_1_13_2" class="form-control" placeholder="angol" {{readonly}}>
+            </div>
+        </div>
+    </div>
+</div>

@@ -23,7 +23,7 @@
 //moodleform is defined in formslib.php
 require_once("$CFG->libdir/formslib.php");
 
-class createTadForm extends moodleform {
+class tadSection_1 extends moodleform {
     public $readonly;
     public $approveable;
     public function definition() {

@@ -22,9 +22,9 @@
 
 
 require_once(__DIR__ . '/../../config.php');
-require_once(__DIR__ . '/locallib.php');
+require_once(__DIR__ . '../locallib.php');
 
-$PAGE->set_url(new moodle_url('/local/tad/create.php', ['section' => $PAGE->url->get_param('section')]));
+$PAGE->set_url(new moodle_url('/local/tad/section2.php', ['section' => $PAGE->url->get_param('section')]));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('TAD Létrehozása');
 $PAGE->set_heading('TAD Létrehozása');
@@ -45,7 +45,6 @@ require_once($CFG->dirroot . '/local/tad/classes/form/tadSection4.php');
 
 $PAGE->requires->js(new moodle_url('./static/scripts/section2.js'));
 
-
 // See if can edit form
 $canedit = false;
 $canapprove = false;
@@ -60,45 +59,12 @@ $canedit = true;
 
 $section = intval($PAGE->url->get_param('section'));
 
-if (!$section || $section == 1){
-    $mform = new tadSection_1();
-    $mform->set_data(['approvable' => ($canapprove ? 'required' : 'disabled'), 'editable' => ($canedit ? 'required' : 'disabled')]);
-    if ($mform->is_cancelled()) {
-        redirect($CFG->wwwroot . '/local/tad/create.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
-    } else if ($formdata = $mform->get_data()) {
-        create_tad_from_formdata($formdata);
-    }
-} else if($section == 2){
-    $mform = new tadSection2();
-    $mform->set_data(['approvable' => ($canapprove ? 'required' : 'disabled'), 'editable' => ($canedit ? 'required' : 'disabled')]);
-    if ($mform->is_cancelled()) {
-        echo 'canc';
-        die;
-        redirect($CFG->wwwroot . '/local/tad/create.php?section=2',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
-    } else if ($formdata = $mform->get_data()) { 
-        var_dump($formdata);
-        die;           
-        create_tad_from_formdata($formdata);
-    }
-} else if($section == 3){
-    $mform = new tadSection3();
-    $mform->set_data(['approvable' => ($canapprove ? 'required' : 'disabled'), 'editable' => ($canedit ? 'required' : 'disabled')]);
-    if ($mform->is_cancelled()) {
-        redirect($CFG->wwwroot . '/local/tad/create.php?section=3',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
-    } else if ($formdata = $mform->get_data()) {
-        create_tad_from_formdata($formdata);
-    } 
-} else if($section == 4){
-    $mform = new tadSection4();
-    $mform->set_data(['approvable' => ($canapprove ? 'required' : 'disabled'), 'editable' => ($canedit ? 'required' : 'disabled')]);
-    if ($mform->is_cancelled()) {
-        redirect($CFG->wwwroot . '/local/tad/create.php?section=4',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
-    } else if ($formdata = $mform->get_data()) {
-        create_tad_from_formdata($formdata);
-    } 
-} else if($section > 4){
-    echo "not found";
-    die;
+$mform = new tadSection2();
+$mform->set_data(['approvable' => ($canapprove ? 'required' : 'disabled'), 'editable' => ($canedit ? 'required' : 'disabled')]);
+if ($mform->is_cancelled()) {
+    redirect($CFG->wwwroot . '/local/tad/section2.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
+} else if ($formdata = $mform->get_data()) {        
+    create_tad_from_formdata($formdata);
 }
 
 echo $OUTPUT->header();

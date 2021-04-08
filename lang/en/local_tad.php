@@ -105,6 +105,16 @@ $string['1_12_3'] = 'paralell';
 $string['1_12_4'] = 'exclusive';
 $string['1_13'] = 'A tantárgyleírás érvényessége';
 
+$string['2_1']      =   'Objectives';
+$string['2_2']      =   'Learning outcomes';
+$string['2_2_1']    =   'Knowledge';
+$string['2_2_2']    =   'Ability';
+$string['2_2_3']    =   'Attitude';
+$string['2_2_4']    =   'Autonomy and responsibility';
+$string['2_3']      =   'Methodology of teaching';
+$string['2_4_1']    =   'Materials supporting learning';
+$string['2_4_2']    =   'Textbooks, notes, other downloadable content';
+
 $string['section1_approve_label'] = '1. rész jóváhagyása';
 $string['tadform_missing_field_label'] = 'Kötelező megadni';
 $string['tadform_invalid_code_label'] = 'Helytelen adat';

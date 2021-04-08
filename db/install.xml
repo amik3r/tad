@@ -23,21 +23,6 @@
       </KEYS>
     </TABLE>
 
-    <!-- Course data -->
-    <TABLE NAME="tad_course" COMMENT="course data">
-      <FIELDS>
-        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="coursecode" TYPE="text" NOTNULL="true"/>
-        <FIELD NAME="enname" TYPE="text" NOTNULL="false"/>
-        <FIELD NAME="huname" TYPE="text" NOTNULL="true"/>
-        <FIELD NAME="hudepartment" TYPE="text" NOTNULL="true"/>
-        <FIELD NAME="endepartment" TYPE="text" NOTNULL="true"/>
-        <FIELD NAME="semester" TYPE="text" NOTNULL="true"/>
-      </FIELDS>
-      <KEYS>
-        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-      </KEYS>
-    </TABLE>
     <!-- Corriculum data -->
     <TABLE NAME="tad_corriculum" COMMENT="corriculum data">
       <FIELDS>
@@ -58,43 +43,124 @@
     <TABLE NAME="tad_section_1" COMMENT="1st section of a TAD">
       <FIELDS>
         <FIELD NAME="id"                  TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="coursename"          TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="coursename_en"       TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="coursecode"          TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="coursetype"          TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="coursetype_en"       TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="lecture"             TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="practice"            TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="laboratory"          TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="assesmenttype"       TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="assesmenttype_en"    TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="credits"             TYPE="int" LENGTH="2" NOTNULL="true"    </FIELD>
-        <FIELD NAME="courseleadername"    TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="courseleaderrank"    TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="courseleaderrank_en" TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="courseleadercontact" TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="ou"                  TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="ou_en"               TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="website"             TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="lang"                TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="corriculumrole"      TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="corriculumrole_en"   TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="strong"              TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="weak"                TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="paralell"            TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="exclusive"           TYPE="string" NOTNULL="true"            </FIELD>
-        <FIELD NAME="validuntil"          TYPE="int" LENGTH="10" NOTNULL="true"    </FIELD>
-        <FIELD NAME="parent"              TYPE="int" LENGTH="10" NOTNULL="true"   </FIELD>
-        <FIELD NAME="locked"              TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"   </FIELD>
-        <FIELD NAME="draft"               TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  </FIELD>
-        <FIELD NAME="published"           TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  </FIELD>
-        <FIELD NAME="created_by"          TYPE="int" LENGTH="10" NOTNULL="true"   </FIELD>
-        <FIELD NAME="version"             TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"  </FIELD>
+        <FIELD NAME="coursename"          TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="coursename_en"       TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="coursecode"          TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="coursetype"          TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="coursetype_en"       TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="lecture"             TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="practice"            TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="laboratory"          TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="assesmenttype"       TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="assesmenttype_en"    TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="credit"              TYPE="int" LENGTH="2" NOTNULL="true"               />
+        <FIELD NAME="courseleadername"    TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="courseleaderrank"    TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="courseleaderrank_en" TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="courseleadercontact" TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="ou"                  TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="ou_en"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="website"             TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="lang"                TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="corriculumrole"      TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="corriculumrole_en"   TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="strong"              TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="weak"                TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="paralell"            TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="exclusive"           TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="validity"             TYPE="int" LENGTH="10" NOTNULL="true"              />
+        <FIELD NAME="validity_en"             TYPE="int" LENGTH="10" NOTNULL="true"              />
+        <FIELD NAME="validby"             TYPE="int" LENGTH="10" NOTNULL="true"              />
+        <FIELD NAME="validuntil"          TYPE="int" LENGTH="10" NOTNULL="true"              />
+        <FIELD NAME="parent"              TYPE="int" LENGTH="10" NOTNULL="true"              />
+        <FIELD NAME="locked"              TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
+        <FIELD NAME="draft"               TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
+        <FIELD NAME="published"           TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
+        <FIELD NAME="created_by"          TYPE="int" LENGTH="10" NOTNULL="true"              />
+        <FIELD NAME="version"             TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"  />
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
       </KEYS>
     </TABLE>
+
+    <TABLE NAME="tad_section_2" COMMENT="1st section of a TAD">
+      <FIELDS>
+        <FIELD NAME="id"                  TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="objectives"          TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="objectives_en"       TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="outcomes_1"          TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="outcomes_2"          TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="outcomes_3"          TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="outcomes_4"          TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="outcomes_1_en"       TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="outcomes_2_en"       TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="outcomes_3_en"       TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="outcomes_4_en"       TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="methodology"         TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="methodology_en"      TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="supportmaterial"     TYPE="text" NOTNULL="true"                         />
+        <FIELD NAME="parent"              TYPE="int" LENGTH="10" NOTNULL="true"               />
+        <FIELD NAME="locked"              TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"   />
+        <FIELD NAME="draft"               TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"   />
+        <FIELD NAME="published"           TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"   />
+        <FIELD NAME="created_by"          TYPE="int" LENGTH="10" NOTNULL="true"               />
+        <FIELD NAME="version"             TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"   />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+
+    <!-- <TABLE NAME="tad_section_3" COMMENT="1st section of a TAD">
+      <FIELDS>
+        <FIELD NAME="id"                  TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="objectives"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="objectives_en"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_1"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_2"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_3"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_4"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_1_en"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_2_en"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_3_en"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_4_en"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="parent"              TYPE="int" LENGTH="10" NOTNULL="true"              />
+        <FIELD NAME="locked"              TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
+        <FIELD NAME="draft"               TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
+        <FIELD NAME="published"           TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
+        <FIELD NAME="created_by"          TYPE="int" LENGTH="10" NOTNULL="true"              />
+        <FIELD NAME="version"             TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"  />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+
+    <TABLE NAME="tad_section_4" COMMENT="1st section of a TAD">
+      <FIELDS>
+        <FIELD NAME="id"                  TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="objectives"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="objectives_en"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_1"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_2"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_3"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_4"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_1_en"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_2_en"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_3_en"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="outcomes_4_en"               TYPE="text" NOTNULL="true"                       />
+        <FIELD NAME="parent"              TYPE="int" LENGTH="10" NOTNULL="true"              />
+        <FIELD NAME="locked"              TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
+        <FIELD NAME="draft"               TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
+        <FIELD NAME="published"           TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
+        <FIELD NAME="created_by"          TYPE="int" LENGTH="10" NOTNULL="true"              />
+        <FIELD NAME="version"             TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"  />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE> -->
   </TABLES>
 
 
