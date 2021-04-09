@@ -22,9 +22,9 @@
 
 
 require_once(__DIR__ . '/../../config.php');
-require_once(__DIR__ . '../locallib.php');
+require_once(__DIR__ . '/locallib.php');
 
-$PAGE->set_url(new moodle_url('/local/tad/section2.php', ['section' => $PAGE->url->get_param('section')]));
+$PAGE->set_url(new moodle_url('/local/tad/section2.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('TAD Létrehozása');
 $PAGE->set_heading('TAD Létrehozása');

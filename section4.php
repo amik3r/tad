@@ -22,7 +22,7 @@
 
 
 require_once(__DIR__ . '/../../config.php');
-require_once(__DIR__ . '../locallib.php');
+require_once(__DIR__ . '/locallib.php');
 
 $PAGE->set_url(new moodle_url('/local/tad/section4.php', ['section' => $PAGE->url->get_param('section')]));
 $PAGE->set_context(\context_system::instance());
