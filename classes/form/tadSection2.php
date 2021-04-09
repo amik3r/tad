@@ -82,7 +82,7 @@ class tadSection2 extends moodleform {
         $required_data = $mform->getElement('required');
         $readonly = $readonly_data->_attributes['value'];
         $templatestuff = ['readonly' => $readonly, 'required' => $required_data];
-        $mform->addElement('html', $OUTPUT->render_from_template('local_tad/tadsection2', $templatestuff));
+        //$mform->addElement('html', $OUTPUT->render_from_template('local_tad/tadsection2', $templatestuff));
         if ($readonly !== 'disabled'){
             $this->add_action_buttons(); 
         }        

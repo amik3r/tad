@@ -64,5 +64,6 @@ if ($mform->is_cancelled()) {
 }
 
 echo $OUTPUT->header();
-$mform->display();
+echo $OUTPUT->render_from_template('local_tad/tadsection4');
+//$mform->display();
 echo $OUTPUT->footer();
