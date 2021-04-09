@@ -22,9 +22,9 @@
 
 
 require_once(__DIR__ . '/../../config.php');
-require_once(__DIR__ . '/locallib.php');
+require_once(__DIR__ . '../locallib.php');
 
-$PAGE->set_url(new moodle_url('/local/tad/create.php', ['section' => $PAGE->url->get_param('section')]));
+$PAGE->set_url(new moodle_url('/local/tad/section1.php', ['section' => $PAGE->url->get_param('section')]));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('TAD Létrehozása');
 $PAGE->set_heading('TAD Létrehozása');
@@ -41,12 +41,6 @@ $PAGE->requires->js(new moodle_url('./static/scripts/tadEditor.js'));
 //require_once($CFG->dirroot . '/local/tad/classes/form/createTadForm.php');
 //require_once($CFG->dirroot . '/local/tad/classes/form/createTadForm2.php');
 require_once($CFG->dirroot . '/local/tad/classes/form/tadSection1.php');
-require_once($CFG->dirroot . '/local/tad/classes/form/tadSection2.php');
-require_once($CFG->dirroot . '/local/tad/classes/form/tadSection3.php');
-require_once($CFG->dirroot . '/local/tad/classes/form/tadSection4.php');
-
-$PAGE->requires->js(new moodle_url('./static/scripts/section2.js'));
-
 
 // See if can edit form
 $canedit = false;
@@ -58,15 +52,18 @@ if (has_capability('local/tad:approver', $context)){
     $canapprove = true;
 }
 $canapprove = true;
-$canedit = true;
+$canedit = false;
 
 $section = intval($PAGE->url->get_param('section'));
 
+$mform = new tadSection_1();
+$mform->set_data(['editable' => ($canedit ? 'required' : '')]);
+if ($mform->is_cancelled()) {
+    redirect($CFG->wwwroot . '/local/tad/section1.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
+} else if ($formdata = $mform->get_data()) {        
+    create_tad_from_formdata($formdata);
+}
+
 echo $OUTPUT->header();
-echo $OUTPUT->render_from_template('local_tad/createhome', [
-    'section1link' => new moodle_url('section1.php'),
-    'section2link' => new moodle_url('section2.php'),
-    'section3link' => new moodle_url('section3.php'),
-    'section4link' => new moodle_url('section4.php')
-    ]);
+$mform->display();
 echo $OUTPUT->footer();

@@ -32,8 +32,9 @@ $context = $PAGE->context;
 $PAGE->requires->css(new moodle_url('./static/style/tadform.css'));
 $PAGE->requires->css(new moodle_url('./static/style/tadSection1.css'));
 $PAGE->requires->js(new moodle_url('./static/scripts/tadEditor.js'));
+// Enable!!!!!
 // Disable access to unauthorised personnel
-require_capability('local/tad:viewer', $context);
+//require_capability('local/tad:viewer', $context);
 
 // Load form when 'authencticated'
 //require_once($CFG->dirroot . '/local/tad/classes/form/createTadForm.php');
