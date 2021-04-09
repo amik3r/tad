@@ -23,6 +23,7 @@ function handleNewOutcome1(id){
     `
     disableSubmitButton()
     document.getElementById(id).innerHTML += fullNode
+    applySubmitDisabler()
 }
 function handleNewOutcome2(id){
     var firstNode = '<li ' + 'class="' + id + '">'
@@ -39,6 +40,7 @@ function handleNewOutcome2(id){
     `
     disableSubmitButton()
     document.getElementById(id).innerHTML += fullNode
+    applySubmitDisabler()
 }
 function handleNewOutcome3(id){
     var firstNode = '<li ' + 'class="' + id + '">'
@@ -55,6 +57,7 @@ function handleNewOutcome3(id){
     `
     disableSubmitButton()
     document.getElementById(id).innerHTML += fullNode
+    applySubmitDisabler()
 }
 
 function handleNewOutcome4(id){
@@ -72,6 +75,7 @@ function handleNewOutcome4(id){
     `
     disableSubmitButton()
     document.getElementById(id).innerHTML += fullNode
+    applySubmitDisabler()
 }
 function handleNewSupport(id){
     var firstNode = '<li ' + 'class="' + id + '">'
@@ -85,6 +89,7 @@ function handleNewSupport(id){
     `
     disableSubmitButton()
     document.getElementById(id).innerHTML += fullNode
+    applySubmitDisabler()
 }
 
 // section 2 scripts
@@ -117,7 +122,6 @@ function gatherOutcome1(){
     }
     outcome1.outcomes = arr
     document.getElementById('id_outcomes_value_1').value = JSON.stringify(outcome1)
-    console.log(document.getElementById('id_outcomes_value_1').value)
     //outcome1.outcomes.push(outcomeObject)
 }
 
@@ -134,7 +138,6 @@ function gatherOutcome2(){
     }
     outcome2.outcomes = arr
     document.getElementById('id_outcomes_value_2').value = JSON.stringify(outcome2)
-    console.log(document.getElementById('id_outcomes_value_2').value)
     //outcome1.outcomes.push(outcomeObject)
 }
 function gatherOutcome3(){
@@ -150,7 +153,6 @@ function gatherOutcome3(){
     }
     outcome3.outcomes = arr
     document.getElementById('id_outcomes_value_3').value = JSON.stringify(outcome3)
-    console.log(document.getElementById('id_outcomes_value_3').value)
 }
 function gatherOutcome4(){
     var arr = []
@@ -165,7 +167,6 @@ function gatherOutcome4(){
     }
     outcome4.outcomes = arr
     document.getElementById('id_outcomes_value_4').value = JSON.stringify(outcome4)
-    console.log(document.getElementById('id_outcomes_value_4').value)
 }
 function gatherSupport(){
     var arr = []
@@ -178,9 +179,7 @@ function gatherSupport(){
     }
     support.materials = arr
     document.getElementById('id_supportmaterial').value = JSON.stringify(support)
-    console.log(document.getElementById('id_supportmaterial').value)
 }
-
 
 function gatherSection2(){
     gatherOutcome1()

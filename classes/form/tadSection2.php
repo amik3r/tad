@@ -65,23 +65,26 @@ class tadSection2 extends moodleform {
 
         // Disabling elements based on access
         $mform->addElement('hidden', 'editable');
+        $mform->addElement('hidden', 'required');
         $mform->addElement('hidden', 'approvable');
         $mform->setType('editable', PARAM_NOTAGS);
         $mform->setDefault('editable', '');
+        $mform->setType('required', PARAM_NOTAGS);
+        $mform->setDefault('required', '');
         $mform->setType('approvable', PARAM_NOTAGS);
         $mform->setDefault('approvable', '');
-
     }
     public function definition_after_data() {
         global $OUTPUT;
         parent::definition_after_data();
         $mform =& $this->_form;
         $readonly_data = $mform->getElement('editable');
+        $required_data = $mform->getElement('required');
         $readonly = $readonly_data->_attributes['value'];
-        $templatestuff = ['readonly' => $readonly];
+        $templatestuff = ['readonly' => $readonly, 'required' => $required_data];
         $mform->addElement('html', $OUTPUT->render_from_template('local_tad/tadsection2', $templatestuff));
         if ($readonly !== 'disabled'){
             $this->add_action_buttons(); 
-        }
+        }        
     }
 }

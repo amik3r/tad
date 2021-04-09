@@ -55,12 +55,12 @@ if (has_capability('local/tad:approver', $context)){
     $canapprove = true;
 }
 $canapprove = true;
-$canedit = true;
+$canedit = false;
 
 $section = intval($PAGE->url->get_param('section'));
 
 $mform = new tadSection2();
-$mform->set_data(['approvable' => ($canapprove ? 'required' : 'disabled'), 'editable' => ($canedit ? 'required' : 'disabled')]);
+$mform->set_data(['editable' => ($canedit ? 'required' : '')]);
 if ($mform->is_cancelled()) {
     redirect($CFG->wwwroot . '/local/tad/section2.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
 } else if ($formdata = $mform->get_data()) {        

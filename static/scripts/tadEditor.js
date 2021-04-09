@@ -78,6 +78,7 @@ function getPerformanceRow(id, fieldPrefix){
         </div>
     </li>
     `
+    applySubmitDisabler()
     return fullNode
 }
 
@@ -148,6 +149,20 @@ function enableSubmitButton(){
     b.disabled = false
 }
 
+function applySubmitDisabler(){
+    var inputFields = document.getElementsByTagName('input')
+    for (let i = 0; i < inputFields.length; i++) {
+        const element = inputFields[i];
+        element.addEventListener('keydown', disableSubmitButton)
+    }
+    var textAreas = document.getElementsByTagName('textarea')
+    for (let i = 0; i < textAreas.length; i++) {
+        const element = textAreas[i];
+        element.addEventListener('keydown', disableSubmitButton)
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function(event) {
+    applySubmitDisabler()
     disableSubmitButton()
 });

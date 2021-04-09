@@ -43,10 +43,10 @@
     <label for="id_s_2_1">2.1 Célkitűzések - Objectives</label>
     <div class='row'>
         <div class='col-sm-12  col-md'>
-            <textarea type="textarea" name='objectives' id='id_objectives' class='form-control' placeholder='magyar' {{readonly}}></textarea>
+            <textarea type="textarea" name='objectives' id='id_objectives' class='form-control' placeholder='magyar' {{readonly}} {{required}}></textarea>
         </div>
         <div class='col-sm-12  col-md'>
-            <textarea type="textarea" name='objectives_en' id='id_objectives_en' class='form-control' placeholder='angol' {{readonly}}></textarea>
+            <textarea type="textarea" name='objectives_en' id='id_objectives_en' class='form-control' placeholder='angol' {{readonly}} {{required}}></textarea>
         </div>
     </div>
     <hr>
@@ -57,10 +57,10 @@
             <li class="outcomes_1">
                 <div class="row">
                     <div class="col-sm-12 col-md">
-                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_1"  {{readonly}}></textarea>
+                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_1"  {{readonly}} {{required}}></textarea>
                     </div>
                     <div class="col-sm-12 col-md">
-                        <textarea type="textarea" placeholder="angol" class="form-control outcome_1_en" {{readonly}}></textarea>
+                        <textarea type="textarea" placeholder="angol" class="form-control outcome_1_en" {{readonly}} {{required}}></textarea>
                     </div>
                 </div>
             </li>
@@ -83,10 +83,10 @@
             <li class="outcomes_2">
                 <div class="row">
                     <div class="col-sm-12 col-md">
-                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_2"  {{readonly}}></textarea>
+                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_2"  {{readonly}} {{required}}></textarea>
                     </div>
                     <div class="col-sm-12 col-md">
-                        <textarea type="textarea" placeholder="angol" class="form-control outcome_2_en"  {{readonly}}></textarea>
+                        <textarea type="textarea" placeholder="angol" class="form-control outcome_2_en"  {{readonly}} {{required}}></textarea>
                     </div>
                 </div>
             </li>
@@ -109,10 +109,10 @@
             <li class="outcomes_3">
                 <div class="row">
                     <div class="col-sm-12 col-md">
-                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_3"  {{readonly}}></textarea>
+                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_3"  {{readonly}} {{required}}></textarea>
                     </div>
                     <div class="col-sm-12 col-md">
-                        <textarea type="textarea" placeholder="angol" class="form-control outcome_3_en"  {{readonly}}></textarea>
+                        <textarea type="textarea" placeholder="angol" class="form-control outcome_3_en"  {{readonly}} {{required}}></textarea>
                     </div>
                 </div>
             </li>
@@ -135,20 +135,20 @@
             <li class="oc_1_1">
                 <div class="row">
                     <div class="col-sm-12 col-md">
-                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_4" {{readonly}}></textarea>
+                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_4" {{readonly}} {{required}}></textarea>
                     </div>
                     <div class="col-sm-12 col-md">
-                        <textarea type="textarea" placeholder="angol" class="form-control outcome_4_en" {{readonly}}></textarea>
+                        <textarea type="textarea" placeholder="angol" class="form-control outcome_4_en" {{readonly}} {{required}}></textarea>
                     </div>
                 </div>
             </li>
         </ol>
         <div class="container" >
             <div class="row">
-                <div class="col-sm-6 btn btn-primary"  onclick="handleNewOutcome4('outcomes_4')" {{readonly}}>
+                <div class="col-sm-6 btn btn-primary"  onclick="handleNewOutcome4('outcomes_4')" {{readonly}} {{required}}>
                     <span>Új sor hozzáadása</span>
                 </div>
-                <div class="col-sm-6 btn btn-info delete-button delete-button"  onclick="handleRowDelete('outcomes_4')" {{readonly}}>
+                <div class="col-sm-6 btn btn-info delete-button delete-button"  onclick="handleRowDelete('outcomes_4')" {{readonly}} {{required}}>
                     <span>Utolsó sor törlése</span>
                 </div>
             </div>
@@ -158,10 +158,10 @@
     <label for="">2.3 Oktatásmódszertan - Methodology of teaching</label>
     <div class='row'>
         <div class='col-sm-12  col-md'>
-            <textarea type="textarea" id="id_methodology" name="methodology" placeholder="magyar" class="form-control" {{readonly}}></textarea>
+            <textarea type="textarea" id="id_methodology" name="methodology" placeholder="magyar" class="form-control" {{readonly}} {{required}}></textarea>
         </div>
         <div class='col-sm-12  col-md'>
-            <textarea type="textarea" id="id_methodology_en" name="methodology_en" placeholder="angol" class="form-control" {{readonly}}></textarea>
+            <textarea type="textarea" id="id_methodology_en" name="methodology_en" placeholder="angol" class="form-control" {{readonly}} {{required}}></textarea>
         </div>
     </div>
     <hr>
@@ -171,17 +171,17 @@
             <li class="supportmaterials">
                 <div class="row">
                     <div class="col-sm-12 col-md">
-                        <input type="text" placeholder="" class="form-control supportmaterial" {{readonly}}/>
+                        <input type="text" placeholder="" class="form-control supportmaterial" {{readonly}} {{required}}/>
                     </div>
                 </div>
             </li>
         </ol>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 btn btn-primary" onclick="handleNewSupport('supportmaterials')" {{readonly}}>
+                <div class="col-sm-6 btn btn-primary" onclick="handleNewSupport('supportmaterials')" {{readonly}} {{required}}>
                     <span>Új sor hozzáadása</span>
                 </div>
-                <div class="col-sm-6 btn btn-info delete-button delete-button"  onclick="handleRowDelete('supportmaterials')" {{readonly}}>
+                <div class="col-sm-6 btn btn-info delete-button delete-button"  onclick="handleRowDelete('supportmaterials')" {{readonly}} {{required}}>
                     <span>Utolsó sor törlése</span>
                 </div>
             </div>
