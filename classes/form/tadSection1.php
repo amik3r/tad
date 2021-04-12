@@ -29,94 +29,129 @@ class tadSection_1 extends moodleform {
     public function definition() {
         $mform = $this->_form;
         $stringman = get_string_manager();
-        $mform->addElement('hidden', 's_1_2', $stringman->get_string('1_2', 'local_tad', null, 'hu') . "/" . $stringman->get_string('1_2', 'local_tad', null, 'en'));
-        $mform->setType('s_1_2', PARAM_NOTAGS);
-        $mform->setDefault('s_1_2', '');
-        $mform->addElement('hidden', 's_1_6', $stringman->get_string('1_6', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_6', PARAM_NOTAGS);
-        $mform->setDefault('s_1_6', '');
-        $mform->addElement('hidden', 's_1_7_1', $stringman->get_string('1_7', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_7_1', PARAM_NOTAGS);
-        $mform->setDefault('s_1_7_1', '');
-        $mform->addElement('hidden', 's_1_7_2_1', $stringman->get_string('1_7', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_7_2_1', PARAM_NOTAGS);
-        $mform->setDefault('s_1_7_2_1', '');
-        $mform->addElement('hidden', 's_1_7_2_2', $stringman->get_string('1_7', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_7_2_2', PARAM_NOTAGS);
-        $mform->setDefault('s_1_7_2_2', '');
-        $mform->addElement('hidden', 's_1_7_3', $stringman->get_string('1_7', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_7_3', PARAM_NOTAGS);
-        $mform->setDefault('s_1_7_3', '');
-        $mform->addElement('hidden', 's_1_9', $stringman->get_string('1_9', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_9', PARAM_NOTAGS);
-        $mform->setDefault('s_1_9', '');
-        $mform->addElement('hidden', 's_1_10', $stringman->get_string('1_10', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_10', PARAM_NOTAGS);
-        $mform->setDefault('s_1_10', '');
-        $mform->addElement('hidden', 's_1_12_1', $stringman->get_string('1_12_1', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_12_1', PARAM_NOTAGS);
-        $mform->setDefault('s_1_12_1', '');
-        $mform->addElement('hidden', 's_1_12_2', $stringman->get_string('1_12_2', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_12_2', PARAM_NOTAGS);
-        $mform->setDefault('s_1_12_2', '');
-        $mform->addElement('hidden', 's_1_12_3', $stringman->get_string('1_12_3', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_12_3', PARAM_NOTAGS);
-        $mform->setDefault('s_1_12_3', '');
-        $mform->addElement('hidden', 's_1_12_4', $stringman->get_string('1_12_4', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_12_4', PARAM_NOTAGS);
-        $mform->setDefault('s_1_12_4', '');
-        $mform->addElement('hidden', 's_1_4_1', $stringman->get_string('1_4_1', 'local_tad', null, 'hu'));
+        $mform->addElement('hidden', 'coursecode');
+        $mform->setType('coursecode', PARAM_NOTAGS);
+        $mform->setDefault('coursecode', '');
+        $mform->addElement('hidden', 'credit');
+        $mform->setType('credit', PARAM_NOTAGS);
+        $mform->setDefault('credit', '');
+        $mform->addElement('hidden', 'courseleadername');
+        $mform->setType('courseleadername', PARAM_NOTAGS);
+        $mform->setDefault('courseleadername', '');
+        $mform->addElement('hidden', 'courseleaderrank');
+        $mform->setType('courseleaderrank', PARAM_NOTAGS);
+        $mform->setDefault('courseleaderrank', '');
+        $mform->addElement('hidden', 'courseleaderrank_en');
+        $mform->setType('courseleaderrank_en', PARAM_NOTAGS);
+        $mform->setDefault('courseleaderrank_en', '');
+        $mform->addElement('hidden', 'courseleadercontact');
+        $mform->setType('courseleadercontact', PARAM_NOTAGS);
+        $mform->setDefault('courseleadercontact', '');
+        $mform->addElement('hidden', 'website');
+        $mform->setType('website', PARAM_NOTAGS);
+        $mform->setDefault('website', '');
+        $mform->addElement('hidden', 'lang');
+        $mform->setType('lang', PARAM_NOTAGS);
+        $mform->setDefault('lang', '');
+        $mform->addElement('hidden', 'strong');
+        $mform->setType('strong', PARAM_NOTAGS);
+        $mform->setDefault('strong', '');
+        $mform->addElement('hidden', 'weak');
+        $mform->setType('weak', PARAM_NOTAGS);
+        $mform->setDefault('weak', '');
+        $mform->addElement('hidden', 'paralell');
+        $mform->setType('paralell', PARAM_NOTAGS);
+        $mform->setDefault('paralell', '');
+        $mform->addElement('hidden', 'exclusive');
+        $mform->setType('exclusive', PARAM_NOTAGS);
+        $mform->setDefault('exclusive', '');
+        $mform->addElement('hidden', 'lecture');
         $mform->setType('s_1_4_1', PARAM_NOTAGS);
         $mform->setDefault('s_1_4_1', '');
-        $mform->addElement('hidden', 's_1_4_2', $stringman->get_string('1_4_2', 'local_tad', null, 'hu'));
+        $mform->addElement('hidden', 'practice');
         $mform->setType('s_1_4_2', PARAM_NOTAGS);
         $mform->setDefault('s_1_4_2', '');
-        $mform->addElement('hidden', 's_1_4_3', $stringman->get_string('1_4_3', 'local_tad', null, 'hu'));
+        $mform->addElement('hidden', 'laboratory');
         $mform->setType('s_1_4_3', PARAM_NOTAGS);
         $mform->setDefault('s_1_4_3', '');
-        $mform->addElement('hidden', 's_1_1', $stringman->get_string('1_1', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_1', PARAM_NOTAGS);
-        $mform->setDefault('s_1_1', '');
-        $mform->addElement('hidden', 's_1_1_en', $stringman->get_string('1_1', 'local_tad', null, 'en'));
-        $mform->setType('s_1_1_en', PARAM_NOTAGS);
-        $mform->setDefault('s_1_1_en', '');
-        $mform->addElement('hidden', 's_1_3', $stringman->get_string('1_3', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_3', PARAM_NOTAGS);
-        $mform->setDefault('s_1_3', '');
-        $mform->addElement('hidden', 's_1_3_en', $stringman->get_string('1_3', 'local_tad', null, 'en'));
-        $mform->setType('s_1_3_en', PARAM_NOTAGS);
-        $mform->setDefault('s_1_3_en', '');
-        $mform->addElement('hidden', 's_1_5', $stringman->get_string('1_5', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_5', PARAM_NOTAGS);
-        $mform->setDefault('s_1_5', '');
-        $mform->addElement('hidden', 's_1_5_en', $stringman->get_string('1_5', 'local_tad', null, 'en'));
-        $mform->setType('s_1_5_en', PARAM_NOTAGS);
-        $mform->setDefault('s_1_5_en', '');
-        $mform->addElement('hidden', 's_1_8', $stringman->get_string('1_8', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_8', PARAM_NOTAGS);
-        $mform->setDefault('s_1_8', '');
-        $mform->addElement('hidden', 's_1_8_en', $stringman->get_string('1_8', 'local_tad', null, 'en'));
-        $mform->setType('s_1_8_en', PARAM_NOTAGS);
-        $mform->setDefault('s_1_8_en', '');
-        $mform->addElement('hidden', 's_1_11', $stringman->get_string('1_11', 'local_tad', null, 'hu'));
-        $mform->setType('s_1_11', PARAM_NOTAGS);
-        $mform->setDefault('s_1_11', '');
-        $mform->addElement('hidden', 's_1_11_en', $stringman->get_string('1_11', 'local_tad', null, 'en'));
-        $mform->setType('s_1_11_en', PARAM_NOTAGS);
-        $mform->setDefault('s_1_11_en', '');
-        $mform->addElement('hidden', 's_1_13');
-        $mform->setType('s_1_13', PARAM_NOTAGS);
-        $mform->setDefault('s_1_13', '');
-        $mform->addElement('hidden', 's_1_13_en');
-        $mform->setType('s_1_13_en', PARAM_NOTAGS);
-        $mform->setDefault('s_1_13_en', '');
-        $mform->addElement('hidden', 's_1_13_1');
-        $mform->setType('s_1_13_1', PARAM_NOTAGS);
-        $mform->setDefault('s_1_13_1', '');
-        $mform->addElement('hidden', 's_1_13_2');
-        $mform->setType('s_1_13_2', PARAM_NOTAGS);
-        $mform->setDefault('s_1_13_2', '');
+        $mform->addElement('hidden', 'coursename');
+        $mform->setType('coursename', PARAM_NOTAGS);
+        $mform->setDefault('coursename', '');
+        $mform->addElement('hidden', 'coursename_en');
+        $mform->setType('coursename_en', PARAM_NOTAGS);
+        $mform->setDefault('coursename_en', '');
+        $mform->addElement('hidden', 'coursetype');
+        $mform->setType('coursetype', PARAM_NOTAGS);
+        $mform->setDefault('coursetype', '');
+        $mform->addElement('hidden', 'coursetype_en');
+        $mform->setType('coursetype_en', PARAM_NOTAGS);
+        $mform->setDefault('coursetype_en', '');
+        $mform->addElement('hidden', 'assesmenttype');
+        $mform->setType('assesmenttype', PARAM_NOTAGS);
+        $mform->setDefault('assesmenttype', '');
+        $mform->addElement('hidden', 'assesmenttype_en');
+        $mform->setType('assesmenttype_en', PARAM_NOTAGS);
+        $mform->setDefault('assesmenttype_en', '');
+        $mform->addElement('hidden', 'ou');
+        $mform->setType('ou', PARAM_NOTAGS);
+        $mform->setDefault('ou', '');
+        $mform->addElement('hidden', 'ou_en');
+        $mform->setType('ou_en', PARAM_NOTAGS);
+        $mform->setDefault('ou_en', '');
+        $mform->addElement('hidden', 'corriculumrole');
+        $mform->setType('corriculumrole', PARAM_NOTAGS);
+        $mform->setDefault('corriculumrole', '');
+        $mform->addElement('hidden', 'corriculumrole_en');
+        $mform->setType('corriculumrole_en', PARAM_NOTAGS);
+        $mform->setDefault('corriculumrole_en', '');
+        $mform->addElement('hidden', 'validity');
+        $mform->setType('validity', PARAM_NOTAGS);
+        $mform->setDefault('validity', '');
+        $mform->addElement('hidden', 'validity_en');
+        $mform->setType('validity_en', PARAM_NOTAGS);
+        $mform->setDefault('validity_en', '');
+        $mform->addElement('hidden', 'validby');
+        $mform->setType('validby', PARAM_NOTAGS);
+        $mform->setDefault('validby', '');
+        $mform->addElement('hidden', 'validuntil');
+        $mform->setType('validuntil', PARAM_NOTAGS);
+        $mform->setDefault('validuntil', '');
 
+        $mform->addElement('hidden', 'objectives');
+        $mform->setType('objectives', PARAM_NOTAGS);
+        $mform->setDefault('objectives', '');
+        $mform->addElement('hidden', 'objectives_en');
+        $mform->setType('objectives_en', PARAM_NOTAGS);
+        $mform->setDefault('objectives_en', '');
+
+        // 2.2.1
+        $mform->addElement('hidden', 'outcomes_value_1');
+        $mform->setType('outcomes_value_1', PARAM_NOTAGS);
+        $mform->setDefault('outcomes_value_1', '');
+        
+        // 2.2.2
+        $mform->addElement('hidden', 'outcomes_value_2');
+        $mform->setType('outcomes_value_2', PARAM_NOTAGS);
+        $mform->setDefault('outcomes_value_2', '');
+        // 2.2.3
+        $mform->addElement('hidden', 'outcomes_value_3');
+        $mform->setType('outcomes_value_3', PARAM_NOTAGS);
+        $mform->setDefault('outcomes_value_3', '');
+        // 2.2.4
+        $mform->addElement('hidden', 'outcomes_value_4');
+        $mform->setType('outcomes_value_4', PARAM_NOTAGS);
+        $mform->setDefault('outcomes_value_4', '');
+
+        $mform->addElement('hidden', 'methodology');
+        $mform->setType('methodology', PARAM_NOTAGS);
+        $mform->setDefault('methodology', '');
+        $mform->addElement('hidden', 'methodology_en');
+        $mform->setType('methodology_en', PARAM_NOTAGS);
+        $mform->setDefault('methodology_en', '');
+
+        $mform->addElement('hidden', 'supportmaterial');
+        $mform->setType('supportmaterial', PARAM_NOTAGS);
+        $mform->setDefault('supportmaterial', '');
         // Disabling elements based on access
         
         $mform->addElement('hidden', 'editable');
@@ -127,17 +162,20 @@ class tadSection_1 extends moodleform {
         $mform->setDefault('required', '');
         $mform->setType('approvable', PARAM_NOTAGS);
         $mform->setDefault('approvable', '');
-
     }
+    
     public function definition_after_data() {
         global $OUTPUT;
         parent::definition_after_data();
         $mform =& $this->_form;
         $readonly_data = $mform->getElement('editable');
-        $required_data = $mform->getElement('required');
+        //$required_data = $mform->getElement('required');
         $readonly = $readonly_data->_attributes['value'];
-        $templatestuff = ['readonly' => $readonly, 'required' => $required_data];
-        //$mform->addElement('html', $OUTPUT->render_from_template('local_tad/tadsection1', $templatestuff));
+        $templatestuff = ['readonly' => $readonly];
+        $mform->addElement(
+            'html', 
+            $OUTPUT->render_from_template('local_tad/tadsection1', $templatestuff)
+        );
         if ($readonly !== 'disabled'){
             $this->add_action_buttons(); 
         }

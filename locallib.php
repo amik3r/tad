@@ -534,12 +534,12 @@ function parse_dummy_tad_csv_file($separator){
 }
 
 function create_tad_from_formdata($formdata){
-    var_dump($formdata);
-    die;
     global $USER;
     global $DB;
     try{
         $tad = new tadSection1($formdata, $USER->id);
+        var_dump($formdata);
+        die;
         $DB->insert_record('tad_section_1', $tad);
         return true;
     } catch (Throwable $th){

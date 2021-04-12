@@ -23,51 +23,26 @@
 
 class tadSection1{
     function __construct($formdata, $userid) {
-        $this->coursename               = $formdata->s_1_1;
-        $this->coursename_en            = $formdata->s_1_1_en;
-        $this->coursecode               = $formdata->s_1_2;
-        $this->coursetype               = $formdata->s_1_3;
-        $this->coursetype_en            = $formdata->s_1_3_en;
-        $this->lecture                  = $formdata->s_1_4_1;
-        $this->practice                 = $formdata->s_1_4_2;
-        $this->laboratory               = $formdata->s_1_4_3;
-        $this->assesmenttype            = $formdata->s_1_5;
-        $this->assesmenttype_en         = $formdata->s_1_5_en;
-        $this->credit                   = intval($formdata->s_1_6);
-        $this->courseleadername         = $formdata->s_1_7_1;
-        $this->courseleaderrank         = $formdata->s_1_7_2_1;
-        $this->courseleaderrank_en      = $formdata->s_1_7_2_2;
-        $this->courseleadercontact      = $formdata->s_1_7_3;
-        $this->ou                       = $formdata->s_1_8;
-        $this->ou_en                    = $formdata->s_1_8_en;
-        $this->website                  = $formdata->s_1_9;
-        $this->lang                     = $formdata->s_1_10;
-        $this->corriculumrole           = $formdata->s_1_11;
-        $this->corriculumrole_en        = $formdata->s_1_11_en;
-        $this->strong                   = $formdata->s_1_12_1;
-        $this->weak                     = $formdata->s_1_12_2;
-        $this->paralell                 = $formdata->s_1_12_3;
-        $this->exclusive                = $formdata->s_1_12_4;
-        $this->validity                 = $formdata->s_1_13;
-        $this->validity_en              = $formdata->s_1_13_en;
-        $this->validby                  = strtotime($formdata->s_1_13_1);
-        $this->validuntil               = strtotime($formdata->s_1_13_2);
-
-        $this->parent           = 0;
-        $this->locked           = 0;
-        $this->draft            = 1;
-        $this->published        = 0;
-        $this->created_by       = intval($userid);
-        $this->version          = 1;
+        $this->data = $formdata;
+        unset($this->data->submitbutton);
+        $this->data->credit = intval($this->data->credit);
+        $this->data->validby      = strtotime($this->data->validby);
+        $this->data->validuntil   = strtotime($this->data->validuntil);
+        $this->data->parent       = intval(0);
+        $this->data->locked       = intval(0);
+        $this->data->draft        = intval(1);
+        $this->data->published    = intval(0);
+        $this->data->created_by   = intval($userid);
+        $this->data->version      = intval(1);
     }
     function get_all(){
-        return $this;
+        return $this->data;
     }
     function as_array(){
-        return (array) $this;
+        return (array) $this->data;
     }
     function dump(){
-        $v = (array) $this;
+        $v = (array) $this->data;
         var_dump($v);
         die;
     }

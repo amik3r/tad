@@ -32,6 +32,7 @@ $context = $PAGE->context;
 $PAGE->requires->css(new moodle_url('./static/style/tadform.css'));
 $PAGE->requires->css(new moodle_url('./static/style/tadSection1.css'));
 $PAGE->requires->js(new moodle_url('./static/scripts/tadEditor.js'));
+$PAGE->requires->js(new moodle_url('./static/scripts/section2.js'));
 
 // Enable!!!!!
 // Disable access to unauthorised personnel
@@ -65,6 +66,6 @@ if ($mform->is_cancelled()) {
 }
 
 echo $OUTPUT->header();
-echo $OUTPUT->render_from_template('local_tad/tadsection1', []);
-//$mform->display();
+//echo $OUTPUT->render_from_template('local_tad/tadsection1', []);
+$mform->display();
 echo $OUTPUT->footer();

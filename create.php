@@ -65,7 +65,6 @@ $section = intval($PAGE->url->get_param('section'));
 echo $OUTPUT->header();
 echo $OUTPUT->render_from_template('local_tad/createhome', [
     'section1link' => new moodle_url('section1.php'),
-    'section2link' => new moodle_url('section2.php'),
     'section3link' => new moodle_url('section3.php'),
     'section4link' => new moodle_url('section4.php')
     ]);
