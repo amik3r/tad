@@ -1,3 +1,16 @@
+div.content1 {
+    overflow-y: auto;
+}
+div.content2 {
+    overflow-y: auto;
+}
+div.content3 {
+    overflow-y: auto;
+}
+div.content4 {
+    overflow-y: auto;
+}
+
 .container > h3 {
     padding-top: 50px;
 }
@@ -100,6 +113,17 @@ p.add-button {
     text-align: left;
     outline: none;
   }
+.collapse4 {
+    background-color: #4F957D;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    margin: 0;
+    margin: 15px 0;
+    width: 100%;
+    border: 1px solid black;
+    text-align: left;
+    outline: none;
+  }
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapse1:hover {
     background-color:#63be9e;
@@ -108,6 +132,9 @@ p.add-button {
     background-color: #63be9e;
 }
 .active, .collapse3:hover {
+    background-color: #63be9e;
+}
+.active, .collapse4:hover {
     background-color: #63be9e;
 }
   
@@ -127,6 +154,13 @@ p.add-button {
     transition: max-height 0.2s ease-out;
 }
 .content3 {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+.content4 {
     padding: 0 18px;
     background-color: white;
     max-height: 0;

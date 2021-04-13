@@ -33,6 +33,8 @@ $PAGE->requires->css(new moodle_url('./static/style/tadform.css'));
 $PAGE->requires->css(new moodle_url('./static/style/tadSection1.css'));
 $PAGE->requires->js(new moodle_url('./static/scripts/tadEditor.js'));
 $PAGE->requires->js(new moodle_url('./static/scripts/section2.js'));
+$PAGE->requires->jquery();
+
 
 // Enable!!!!!
 // Disable access to unauthorised personnel
