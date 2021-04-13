@@ -71,36 +71,44 @@ p.add-button {
     background-color: #4F957D;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    padding: 5px;
     margin: 0;
-    margin-bottom: 30px;
-
+    margin: 15px 0;
     width: 100%;
     border: 1px solid black;
     text-align: left;
     outline: none;
-    font-size: 15px;
   }
 .collapse2 {
     background-color: #4F957D;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    padding: 5px;
     margin: 0;
-    margin: 30px 0;
-
+    margin: 15px 0;
     width: 100%;
     border: 1px solid black;
     text-align: left;
     outline: none;
-    font-size: 15px;
+  }
+.collapse3 {
+    background-color: #4F957D;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    margin: 0;
+    margin: 15px 0;
+    width: 100%;
+    border: 1px solid black;
+    text-align: left;
+    outline: none;
   }
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapse1:hover {
-    background-color: rgb(204, 204, 204);
+    background-color:#63be9e;
 }
 .active, .collapse2:hover {
-    background-color: rgb(204, 204, 204);
+    background-color: #63be9e;
+}
+.active, .collapse3:hover {
+    background-color: #63be9e;
 }
   
   /* Style the collapsible content. Note: hidden by default */
@@ -112,6 +120,13 @@ p.add-button {
     transition: max-height 0.2s ease-out;
 }
 .content2 {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+.content3 {
     padding: 0 18px;
     background-color: white;
     max-height: 0;

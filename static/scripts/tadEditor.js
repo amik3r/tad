@@ -194,10 +194,27 @@ function collapse2(){
       });
     }
 }
+function collapse3(){
+    var coll = document.getElementsByClassName("collapse3");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = document.getElementById('content3');
+        if (content.style.maxHeight){
+            content.style.maxHeight = null;
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+          }
+      });
+    }
+}
 
 document.addEventListener("DOMContentLoaded", function(event) {
     collapse1()
     collapse2()
+    collapse3()
     applySubmitDisabler()
     disableSubmitButton()
 });

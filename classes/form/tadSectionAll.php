@@ -23,7 +23,7 @@
 //moodleform is defined in formslib.php
 require_once("$CFG->libdir/formslib.php");
 
-class tadSection_1 extends moodleform {
+class tadSectionAll extends moodleform {
     public $readonly;
     public $approveable;
     public function definition() {
@@ -179,7 +179,7 @@ class tadSection_1 extends moodleform {
         $templatestuff = ['readonly' => $readonly];
         $mform->addElement(
             'html', 
-            $OUTPUT->render_from_template('local_tad/tadsection1', $templatestuff)
+            $OUTPUT->render_from_template('local_tad/tadall', $templatestuff)
         );
         if ($readonly !== 'disabled'){
             $this->add_action_buttons(); 
