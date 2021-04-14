@@ -14,48 +14,35 @@ div.content4 {
 input[type="submit"]{
     border: none !important;
     border-radius: 0px !important;
-    background-color: #4F957D !important;
+    background: #4F957D !important;
 }
 input[type="submit"]:hover{
-    border-color: #315a4c !important;
-
+    background: #315a4c !important;
 }
 
 input[type="submit"].btn-secondary{
-    background-color: #575757 !important;
+    background: #575757 !important;
 }
 input[type="submit"].btn-secondary:hover{
     background-color: #181818 !important;
 }
 
 input[type="submit"]:disabled {
-    background-color: #8eada2 !important;
-}
-
-.btn-primary{
-    background-color: #4F957D !important;
-    border: none;
-    border-radius: 0px;
-}
-
-.btn-secondary{
-    background-color: #575757 !important;
-    border: none !important;
-    border-radius: 0px !important;
+    background: #8eada2 !important;
 }
 
 div.btn-primary{
-    background-color: #4F957D !important;
+    background: #4F957D !important;
     border: none !important;
     border-radius: 0px !important;
 }
 
 div.btn-primary:hover{
-    border-color: #315a4c !important;
+    background: #315a4c !important;
 }
 
 div.btn-info{
-    background-color: #95904f !important;
+    background: #95904f !important;
     border: none !important;
     border-radius: 0px !important;
 }
