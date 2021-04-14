@@ -16,7 +16,7 @@ function handleNewOutcome1(id){
                 <textarea type="textarea" placeholder="magyar" value='' class="form-control outcome_1"></textarea>
             </div>
             <div class="col-sm-12 col-md">
-                <textarea type="textarea" placeholder="angol" value='' class="form-control outcome_1_en"></textarea>
+                <textarea type="textarea" placeholder="English" value='' class="form-control outcome_1_en"></textarea>
             </div>
         </div>
     </li>
@@ -33,7 +33,7 @@ function handleNewOutcome2(id){
                 <textarea type="textarea" placeholder="magyar" value='' class="form-control outcome_2"></textarea>
             </div>
             <div class="col-sm-12 col-md">
-                <textarea type="textarea" placeholder="angol" value='' class="form-control outcome_2_en"></textarea>
+                <textarea type="textarea" placeholder="English" value='' class="form-control outcome_2_en"></textarea>
             </div>
         </div>
     </li>
@@ -50,7 +50,7 @@ function handleNewOutcome3(id){
                 <textarea type="textarea" placeholder="magyar" value='' class="form-control outcome_3"></textarea>
             </div>
             <div class="col-sm-12 col-md">
-                <textarea type="textarea" placeholder="angol" value='' class="form-control outcome_3_en"></textarea>
+                <textarea type="textarea" placeholder="English" value='' class="form-control outcome_3_en"></textarea>
             </div>
         </div>
     </li>
@@ -68,7 +68,7 @@ function handleNewOutcome4(id){
                 <textarea type="textarea" placeholder="magyar" value='' class="form-control outcome_4"></textarea>
             </div>
             <div class="col-sm-12 col-md">
-                <textarea type="textarea" placeholder="angol" value='' class="form-control outcome_4_en"></textarea>
+                <textarea type="textarea" placeholder="English" value='' class="form-control outcome_4_en"></textarea>
             </div>
         </div>
     </li>

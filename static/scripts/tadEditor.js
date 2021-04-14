@@ -15,7 +15,7 @@ var dualColRowInput = `
             <textarea type="textarea" placeholder="magyar" class="form-control"></textarea>
         </div>
         <div class="col-sm-12 col-md">
-            <textarea type="textarea" placeholder="angol" class="form-control"></textarea>
+            <textarea type="textarea" placeholder="English" class="form-control"></textarea>
         </div>
     </div>
 </li>
@@ -29,7 +29,7 @@ function getDualColRowInput(id, className='', eventlistenerType='', eventlistene
                 <textarea type="textarea" placeholder="magyar" class="form-control ${className}"></textarea>
             </div>
             <div class="col-sm-12 col-md">
-                <textarea type="textarea" placeholder="angol" class="form-control ${className}"></textarea>
+                <textarea type="textarea" placeholder="English" class="form-control ${className}"></textarea>
             </div>
         </div>
     </li>
