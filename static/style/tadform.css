@@ -47,6 +47,10 @@ div.btn-info{
     border-radius: 0px !important;
 }
 
+div.btn-info:hover{
+    background: #686537 !important;
+}
+
 .container > h3 {
     padding-top: 50px;
 }
