@@ -12,52 +12,52 @@ div.content4 {
 }
 
 input[type="submit"]{
-    border: none;
-    border-radius: 0px;
-    background-color: #4F957D;
+    border: none !important;
+    border-radius: 0px !important;
+    background-color: #4F957D !important;
 }
 input[type="submit"]:hover{
-    border-color: #315a4c;
+    border-color: #315a4c !important;
 
 }
 
 input[type="submit"].btn-secondary{
-    background-color: #575757;
+    background-color: #575757 !important;
 }
 input[type="submit"].btn-secondary:hover{
-    background-color: #181818;
+    background-color: #181818 !important;
 }
 
 input[type="submit"]:disabled {
-    background-color: #8eada2;
+    background-color: #8eada2 !important;
 }
 
 .btn-primary{
-    background-color: #4F957D;
+    background-color: #4F957D !important;
     border: none;
     border-radius: 0px;
 }
 
 .btn-secondary{
-    background-color: #575757;
-    border: none;
-    border-radius: 0px;
+    background-color: #575757 !important;
+    border: none !important;
+    border-radius: 0px !important;
 }
 
 div.btn-primary{
-    background-color: #4F957D;
-    border: none;
-    border-radius: 0px;
+    background-color: #4F957D !important;
+    border: none !important;
+    border-radius: 0px !important;
 }
 
 div.btn-primary:hover{
-    border-color: #315a4c;
+    border-color: #315a4c !important;
 }
 
 div.btn-info{
-    background-color: #95904f;
-    border: none;
-    border-radius: 0px;
+    background-color: #95904f !important;
+    border: none !important;
+    border-radius: 0px !important;
 }
 
 .container > h3 {
