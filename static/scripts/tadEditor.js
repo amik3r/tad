@@ -84,7 +84,7 @@ function getPerformanceRow(id, fieldPrefix){
 
 function handleNewOutcome(id, colcount, fieldPrefix="", className='', eventlistenerType='', evenlistenerFunc=''){
     if (colcount === "dual"){
-        document.getElementById(id).innerHTML += getDualColRowInput(id, classname, eventlistenerType, evenlistenerFunc)
+        document.getElementById(id).innerHTML += getDualColRowInput(id, className, eventlistenerType, evenlistenerFunc)
     } else if (colcount === 'performance'){
         document.getElementById(id).innerHTML += getPerformanceRow(id, fieldPrefix)
     } else {
@@ -123,19 +123,6 @@ function handlePerformanceCheck(){
         alertContainer.style.display = "flex"
         alertContainer.style.backgroundColor = "#ffaaaa"
     }
-}
-
-function handleWorkingHoursChange(){
-    var sum = 0
-    var list = document.getElementById('workinghours')
-    var listItems = list.getElementsByClassName('workinghours-number-field')
-    for (var i=0;i<listItems.length;i++){
-        sum += parseInt(listItems[i].value)
-    }
-    var sumLabel = document.getElementById('workinghours-sum')
-    sumLabel.textContent = 'Összesen: ' + `${sum}`
-    console.log(list[0].parentNode);
-
 }
 
 
@@ -227,6 +214,10 @@ function collapse4(){
           }
       });
     }
+}
+
+function gatherExamProportions() {
+
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {

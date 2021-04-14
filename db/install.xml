@@ -40,6 +40,7 @@
 
 
     <!-- Custom TADs -->
+    <!-- Section1 -->
     <TABLE NAME="tad_section_1" COMMENT="1st section of a TAD">
       <FIELDS>
         <FIELD NAME="id"                  TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
@@ -77,7 +78,6 @@
         <FIELD NAME="draft"               TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
         <FIELD NAME="published"           TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
         <FIELD NAME="created_by"          TYPE="int" LENGTH="10" NOTNULL="true"              />
-        <FIELD NAME="version"             TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"  />
         <FIELD NAME="objectives"          TYPE="text" NOTNULL="true"                          />
         <FIELD NAME="objectives_en"       TYPE="text" NOTNULL="true"                          />
         <FIELD NAME="outcome_1"           TYPE="text" NOTNULL="true"                          />
@@ -87,7 +87,6 @@
         <FIELD NAME="methodology"         TYPE="text" NOTNULL="true"                          />
         <FIELD NAME="methodology_en"      TYPE="text" NOTNULL="true"                          />
         <FIELD NAME="supportmaterial"     TYPE="text" NOTNULL="true"                          />
-        <FIELD NAME="parent"              TYPE="int" LENGTH="10" NOTNULL="true"               />
         <FIELD NAME="locked"              TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"   />
         <FIELD NAME="draft"               TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"   />
         <FIELD NAME="published"           TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"   />
@@ -98,58 +97,44 @@
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
       </KEYS>
     </TABLE>
-
-    <!-- <TABLE NAME="tad_section_3" COMMENT="1st section of a TAD">
+    <!-- Section 2 -->
+    <TABLE NAME="tad_section_2" COMMENT="2nd section of a TAD">
       <FIELDS>
         <FIELD NAME="id"                  TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="objectives"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="objectives_en"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_1"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_2"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_3"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_4"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_1_en"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_2_en"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_3_en"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_4_en"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="parent"              TYPE="int" LENGTH="10" NOTNULL="true"              />
-        <FIELD NAME="locked"              TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
-        <FIELD NAME="draft"               TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
-        <FIELD NAME="published"           TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
-        <FIELD NAME="created_by"          TYPE="int" LENGTH="10" NOTNULL="true"              />
-        <FIELD NAME="version"             TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"  />
+        <FIELD NAME="rules"               TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="rules_en"               TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="assesment_methods_hu"   TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="assesment_methods_en"   TYPE="text" NOTNULL="true"                          />
+        <!-- JSON object {"types": [{"hu": [{"exam1": "percent1"}, {"exam1": "percent2"}], "en": [{"exam1": "optional"}, {"exam1": "optional"}]}]"} -->
+        <FIELD NAME="midterm_proportions" TYPE="text" NOTNULL="true"                          />
+        <!-- JSON object {"types": [{"hu": [{"exam1": "percent1"}, {"exam1": "percent2"}], "en": [{"exam1": "optional"}, {"exam1": "optional"}]}]"} -->
+        <FIELD NAME="exam_proportions"    TYPE="text" NOTNULL="true"                          />
+        
+        <FIELD NAME="excellent"           TYPE="int" LENGTH="3" NOTNULL="true"               />
+        <FIELD NAME="very_good"           TYPE="int" LENGTH="3" NOTNULL="true"               />
+        <FIELD NAME="good"                TYPE="int" LENGTH="3" NOTNULL="true"               />
+        <FIELD NAME="satisfactory"        TYPE="int" LENGTH="3" NOTNULL="true"               />
+        <FIELD NAME="pass"                TYPE="int" LENGTH="3" NOTNULL="true"               />
+        <FIELD NAME="fail"                TYPE="int" LENGTH="3" NOTNULL="true"               />
+        <FIELD NAME="retake"              TYPE="text" NOTNULL="true"                          />
+        <FIELD NAME="retake_en"           TYPE="text" NOTNULL="true"                          />
+        <!-- JSON object {"activities":[{"activity": {"hu": "hu", "en": "optional", "hours": numberofhours}}, ...} -->
+        <FIELD NAME="workhours_activity"  TYPE="text" NOTNULL="true"               />
+
+        <FIELD NAME="validity"            TYPE="int" LENGTH="10" NOTNULL="true"               />
+        <FIELD NAME="validity_en"         TYPE="int" LENGTH="10" NOTNULL="true"               />
+        <FIELD NAME="validby"             TYPE="int" LENGTH="10" NOTNULL="true"               />
+        <FIELD NAME="validuntil"          TYPE="int" LENGTH="10" NOTNULL="true"               />
+        <FIELD NAME="locked"              TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"   />
+        <FIELD NAME="draft"               TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"   />
+        <FIELD NAME="published"           TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"   />
+        <FIELD NAME="created_by"          TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"   />
+        <FIELD NAME="parent"              TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"   />
+        <FIELD NAME="version"             TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"   />
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
       </KEYS>
     </TABLE>
-
-    <TABLE NAME="tad_section_4" COMMENT="1st section of a TAD">
-      <FIELDS>
-        <FIELD NAME="id"                  TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="objectives"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="objectives_en"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_1"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_2"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_3"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_4"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_1_en"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_2_en"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_3_en"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="outcomes_4_en"               TYPE="text" NOTNULL="true"                       />
-        <FIELD NAME="parent"              TYPE="int" LENGTH="10" NOTNULL="true"              />
-        <FIELD NAME="locked"              TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
-        <FIELD NAME="draft"               TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
-        <FIELD NAME="published"           TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"  />
-        <FIELD NAME="created_by"          TYPE="int" LENGTH="10" NOTNULL="true"              />
-        <FIELD NAME="version"             TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"  />
-      </FIELDS>
-      <KEYS>
-        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-      </KEYS>
-    </TABLE> -->
   </TABLES>
-
-
-
 </XMLDB>
