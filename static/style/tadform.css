@@ -1,21 +1,14 @@
 div.content1 {
     overflow-y: auto;
-    color: white;
 }
 div.content2 {
     overflow-y: auto;
-    color: white;
-
 }
 div.content3 {
     overflow-y: auto;
-    color: white;
-
 }
 div.content4 {
     overflow-y: auto;
-    color: white;
-
 }
 
 input[type="submit"]{
@@ -133,7 +126,8 @@ p.add-button {
 }
 
 h4 {
-    font-size: 50%;
+    font-size: 1.2rem !important;
+    color: white !important;
 }
 
 .collapse1 {
@@ -146,7 +140,9 @@ h4 {
     border: 1px solid black;
     text-align: left;
     outline: none;
-  }
+    padding: 10px;
+    font-size: 1.2rem !important;
+}
 .collapse2 {
     background-color: #4F957D;
     color: rgb(255, 255, 255);
@@ -157,6 +153,8 @@ h4 {
     border: 1px solid black;
     text-align: left;
     outline: none;
+    padding: 10px;
+    font-size: 1.2rem !important;
   }
 .collapse3 {
     background-color: #4F957D;
@@ -168,7 +166,9 @@ h4 {
     border: 1px solid black;
     text-align: left;
     outline: none;
-  }
+    padding: 10px;
+    font-size: 1.2rem !important;
+}
 .collapse4 {
     background-color: #4F957D;
     color: rgb(255, 255, 255);
@@ -179,19 +179,21 @@ h4 {
     border: 1px solid black;
     text-align: left;
     outline: none;
+    padding: 10px;
+    font-size: 1.2rem !important;
   }
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapse1:hover {
-    background-color:#63be9e;
+    background-color:#315a4c;
 }
 .active, .collapse2:hover {
-    background-color: #63be9e;
+    background-color: #315a4c;
 }
 .active, .collapse3:hover {
-    background-color: #63be9e;
+    background-color: #315a4c;
 }
 .active, .collapse4:hover {
-    background-color: #63be9e;
+    background-color: #315a4c;
 }
   
   /* Style the collapsible content. Note: hidden by default */
