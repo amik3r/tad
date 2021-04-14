@@ -1,14 +1,21 @@
 div.content1 {
     overflow-y: auto;
+    color: white;
 }
 div.content2 {
     overflow-y: auto;
+    color: white;
+
 }
 div.content3 {
     overflow-y: auto;
+    color: white;
+
 }
 div.content4 {
     overflow-y: auto;
+    color: white;
+
 }
 
 input[type="submit"]{
