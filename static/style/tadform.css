@@ -11,6 +11,55 @@ div.content4 {
     overflow-y: auto;
 }
 
+input[type="submit"]{
+    border: none;
+    border-radius: 0px;
+    background-color: #4F957D;
+}
+input[type="submit"]:hover{
+    border-color: #315a4c;
+
+}
+
+input[type="submit"].btn-secondary{
+    background-color: #575757;
+}
+input[type="submit"].btn-secondary:hover{
+    background-color: #181818;
+}
+
+input[type="submit"]:disabled {
+    background-color: #8eada2;
+}
+
+.btn-primary{
+    background-color: #4F957D;
+    border: none;
+    border-radius: 0px;
+}
+
+.btn-secondary{
+    background-color: #575757;
+    border: none;
+    border-radius: 0px;
+}
+
+div.btn-primary{
+    background-color: #4F957D;
+    border: none;
+    border-radius: 0px;
+}
+
+div.btn-primary:hover{
+    border-color: #315a4c;
+}
+
+div.btn-info{
+    background-color: #95904f;
+    border: none;
+    border-radius: 0px;
+}
+
 .container > h3 {
     padding-top: 50px;
 }

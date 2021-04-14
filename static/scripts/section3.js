@@ -14,8 +14,9 @@ function handleNewMidterm(){
         </div>
     </li>
     `
-    applySubmitDisabler()
+    disableSubmitButton()
     document.getElementById('midterm').innerHTML += node;
+    applySubmitDisabler()
 }
 
 function handleNewExam(){
@@ -34,8 +35,9 @@ function handleNewExam(){
         </div>
     </li>
     `
-    applySubmitDisabler()
+    disableSubmitButton()
     document.getElementById('exam').innerHTML += node;
+    applySubmitDisabler()
 }
 function handleNewRetake(){
     const node = `
@@ -50,8 +52,9 @@ function handleNewRetake(){
         </div>
     </li>
     `
-    applySubmitDisabler()
+    disableSubmitButton()
     document.getElementById('retake').innerHTML += node;
+    applySubmitDisabler()
 }
 function handleNewTopic(){
     const node = `
@@ -66,8 +69,9 @@ function handleNewTopic(){
         </div>
     </li>
     `
-    applySubmitDisabler()
+    disableSubmitButton()
     document.getElementById('topics').innerHTML += node;
+    applySubmitDisabler()
 }
 function handleNewTutor(){
     const node = `
@@ -85,6 +89,7 @@ function handleNewTutor(){
         </div>
     </li>
     `
-    applySubmitDisabler()
+    disableSubmitButton()
     document.getElementById('tutors').innerHTML += node;
+    applySubmitDisabler()
 }

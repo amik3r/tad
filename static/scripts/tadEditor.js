@@ -127,6 +127,7 @@ function handlePerformanceCheck(){
 
 
 function disableSubmitButton(){
+    console.log('disabled');
     var b = document.getElementsByName('submitbutton')
     b = b[0]
     b.disabled = true
@@ -216,9 +217,6 @@ function collapse4(){
     }
 }
 
-function gatherExamProportions() {
-
-}
 
 document.addEventListener("DOMContentLoaded", function(event) {
     collapse1()
