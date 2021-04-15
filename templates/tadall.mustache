@@ -363,28 +363,17 @@
         <hr>
         <label for="">3.3 Szorgalmi időszakban végzett teljesítményértékelések részaránya a minősítésben - Proportion of mid-term performance assessments in final grading</label>
         <div class="midterm-list">
-            <div class="row">
-                <div class="col-sm-12 col-md">
-                    <label>Típus (magyar)</label>
-                </div>
-                <div class="col-sm-12 col-md">
-                    <label>Típus (English (optional))</label>
-                </div>
-                <div class="col-sm-12 col-md">
-                    <label>Százalék</label>
-                </div>
-            </div>
             <ol id="midterm" style="padding: 0px;">
                 <li class="oc_1_1">
                     <div class="row">
                         <div class="col-sm-12 col-md">
-                            <input type="textarea" placeholder="" class="form-control midterm-hu" {{readonly}} {{required}}/>
+                            <input type="textarea" placeholder="Típus (magyar)" class="form-control midterm-hu" {{readonly}} {{required}}/>
                         </div>
                         <div class="col-sm-12 col-md">
-                            <input type="textarea" placeholder="" class="form-control midterm-en" {{readonly}} {{required}}/>
+                            <input type="textarea" placeholder="Type (optional)" class="form-control midterm-en" {{readonly}} {{required}}/>
                         </div>
                         <div class="col-sm-12 col-md">
-                            <input type="text" placeholder="" class="form-control midterm-percent" onchange="handlePerformanceCheck()" {{readonly}} {{required}} />
+                            <input type="text" placeholder="Százalék/percent" class="form-control midterm-percent" onchange="handlePerformanceCheck()" {{readonly}} {{required}} />
                         </div>
                     </div>
                 </li>
@@ -403,28 +392,17 @@
         <hr>
         <label for="">3.4 Vizsgaelemek részaránya a minősítésben</label>
         <div class="exam">
-            <div class="row">
-                <div class="col-sm-12 col-md">
-                    <label>Típus (magyar)</label>
-                </div>
-                <div class="col-sm-12 col-md">
-                    <label>Típus (English (optional))</label>
-                </div>
-                <div class="col-sm-12 col-md">
-                    <label>Százalék</label>
-                </div>
-            </div>
             <ol id="exam" style="padding: 0px;">
                 <li class="oc_1_1">
                     <div class="row">
                         <div class="col-sm-12 col-md">
-                            <input type="textarea" placeholder="" class="form-control exam-hu" {{readonly}} {{required}}/>
+                            <input type="textarea" placeholder="Típus (magyar)" class="form-control exam-hu" {{readonly}} {{required}}/>
                         </div>
                         <div class="col-sm-12 col-md">
-                            <input type="textarea" placeholder="" class="form-control exam-en" {{readonly}} {{required}}/>
+                            <input type="textarea" placeholder="Type (optional)" class="form-control exam-en" {{readonly}} {{required}}/>
                         </div>
                         <div class="col-sm-12 col-md">
-                            <input type="text" placeholder="" class="form-control exam-percent" onchange="handlePerformanceCheck()" {{readonly}} {{required}} />
+                            <input type="text" placeholder="Százalék/percent" class="form-control exam-percent" onchange="handleExamChange()" {{readonly}} {{required}}/>
                         </div>
                     </div>
                 </li>
@@ -441,63 +419,63 @@
             </div>
         </div>
         <hr>
-        <label for="id_s_2_1">3.5  Az aláírás megszerzésének feltétele, az aláírás érvényessége</label>
+        <label for="id_signature">3.5  Az aláírás megszerzésének feltétele, az aláírás érvényessége</label>
         <div class='row'>
             <div class='col-sm-12  col-md'>
-                <textarea type="textarea" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='magyar' {{readonly}} {{required}}></textarea>
+                <textarea type="textarea" name='signature' id='id_signature' class='form-control' placeholder='magyar' {{readonly}} {{required}}></textarea>
             </div>
             <div class='col-sm-12  col-md'>
-                <textarea type="textarea" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='English (optional)' {{readonly}} {{required}}></textarea>
+                <textarea type="textarea" name='signature_en' id='id_signature_en' class='form-control' placeholder='English (optional)' {{readonly}} {{required}}></textarea>
             </div>
         </div>
         <hr>
-        <label for="">3.6 Érdemjegy-megállapítás - Grading</label>
+        <label for="id_excellent">3.6 Érdemjegy-megállapítás - Grading</label>
         <div class='row'>
             <div class='col-sm-12  col-md'>
-                <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="jeles (5) - Excellent [A]" {{readonly}} {{required}} />
+                <input type="text" name='placeholder_1' id='placeholder_1' class='form-control' placeholder='' value="jeles (5) - Excellent [A]" disabled />
             </div>
             <div class='col-sm-12  col-md'>
-                <input type="text" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='százalék' {{readonly}} {{required}} />
-            </div>
-        </div>
-        <div class="row">
-            <div class='col-sm-12  col-md'>
-                <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="jeles (5) - Very Good [B]" {{readonly}} {{required}} />
-            </div>
-            <div class='col-sm-12  col-md'>
-                <input type="text" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='százalék' {{readonly}} {{required}} />
+                <input type="text" name='id_excellent' id='id_excellent' class='form-control' placeholder='százalék' {{readonly}} {{required}} />
             </div>
         </div>
         <div class="row">
             <div class='col-sm-12  col-md'>
-                <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="jó (4) - Good [C]" {{readonly}} {{required}} />
+                <input type="text" name='placeholder_2' id='placeholder_2' class='form-control' placeholder='' value="jeles (5) - Very Good [B]" disabled />
             </div>
             <div class='col-sm-12  col-md'>
-                <input type="text" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='százalék' {{readonly}} {{required}} />
-            </div>
-        </div>
-        <div class="row">
-            <div class='col-sm-12  col-md'>
-                <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="közepes (3) - Satisfactory [D]" {{readonly}} {{required}} />
-            </div>
-            <div class='col-sm-12  col-md'>
-                <input type="text" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='százalék' {{readonly}} {{required}} />
+                <input type="text" name='very_good' id='id_very_good' class='form-control' placeholder='százalék' {{readonly}} {{required}} />
             </div>
         </div>
         <div class="row">
             <div class='col-sm-12  col-md'>
-                <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="elégséges (2) - Pass [E]" {{readonly}} {{required}} />
+                <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="jó (4) - Good [C]" disabled />
             </div>
             <div class='col-sm-12  col-md'>
-                <input type="text" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='százalék' {{readonly}} {{required}} />
+                <input type="text" name='good' id='id_good' class='form-control' placeholder='százalék' {{readonly}} {{required}} />
             </div>
         </div>
         <div class="row">
             <div class='col-sm-12  col-md'>
-                <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="elégtelen (1) - Fail [F]" {{readonly}} {{required}} />
+                <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="közepes (3) - Satisfactory [D]" disabled />
             </div>
             <div class='col-sm-12  col-md'>
-                <input type="text" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='százalék' {{readonly}} {{required}} />
+                <input type="text" name='satisfactory' id='id_satisfactory' class='form-control' placeholder='százalék' {{readonly}} {{required}} />
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-12  col-md'>
+                <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="elégséges (2) - Pass [E]" disabled />
+            </div>
+            <div class='col-sm-12  col-md'>
+                <input type="text" name='pass' id='id_pass' class='form-control' placeholder='százalék' {{readonly}} {{required}} />
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-12  col-md'>
+                <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="elégtelen (1) - Fail [F]" disabled />
+            </div>
+            <div class='col-sm-12  col-md'>
+                <input type="text" name='fail' id='id_fail' class='form-control' placeholder='százalék' {{readonly}} {{required}} />
             </div>
         </div>
         <hr>
@@ -558,23 +536,23 @@
         <label for="" style="padding-top: 1rem;">3.9 A tantárgykövetelmények jóváhagyása és érvényessége - Approval and validity of subject requirements</label>
         <div class='row'>
             <div class='col-sm-12  col-md'>
-                <textarea type="textarea" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='magyar' {{readonly}} {{required}}></textarea>
+                <textarea type="textarea" name='validity_2' id='id_validity_2' class='form-control' placeholder='magyar' {{readonly}} {{required}}></textarea>
             </div>
             <div class='col-sm-12  col-md'>
-                <textarea type="textarea" name='s_2_1' id='id_s_2_1_en' class='form-control' placeholder='English (optional)' {{readonly}} {{required}}></textarea>
+                <textarea type="textarea" name='validity_en_2' id='id_validity_en_2' class='form-control' placeholder='English (optional)' {{readonly}} {{required}}></textarea>
             </div>
         </div>
         <div class="row">
             <div class=" col-sm-12  col-md">
                 <div>
                     <label for="id_s_1_9">Jóváhagyás dátuma</label>
-                    <input type="date" name="s_1_13_1" id="id_s_1_13_1" class="form-control" placeholder="English (optional)" {{readonly}} {{required}}>
+                    <input type="date" name="validby_2" id="id_validby_2" class="form-control" placeholder="English (optional)" {{readonly}} {{required}}>
                 </div>
             </div>
             <div class=" col-sm-12  col-md">
                 <div>
                     <label for="id_s_1_9">Érvényesség vége</label>
-                    <input type="date" name="s_1_13_2" id="id_s_1_13_2" class="form-control" placeholder="English (optional)" {{readonly}} {{required}}>
+                    <input type="date" name="validuntil_2" id="id_validuntil_2" class="form-control" placeholder="English (optional)" {{readonly}} {{required}}>
                 </div>
             </div>
         </div>

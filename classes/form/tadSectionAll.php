@@ -117,6 +117,7 @@ class tadSectionAll extends moodleform {
         $mform->setType('validuntil', PARAM_NOTAGS);
         $mform->setDefault('validuntil', '');
 
+        // 2.1
         $mform->addElement('hidden', 'objectives');
         $mform->setType('objectives', PARAM_NOTAGS);
         $mform->setDefault('objectives', '');
@@ -152,10 +153,129 @@ class tadSectionAll extends moodleform {
         $mform->addElement('hidden', 'supportmaterial');
         $mform->setType('supportmaterial', PARAM_NOTAGS);
         $mform->setDefault('supportmaterial', '');
-        // Disabling elements based on access
-        
 
-        /// II. rész
+        // --------------------------------------------------------------------
+        // ------------------------------- II.---------------------------------
+        // --------------------------------------------------------------------
+        // --------------------------------------------------------------------
+
+        $mform->addElement('hidden', 'rules');
+        $mform->setType('rules', PARAM_NOTAGS);
+        $mform->setDefault('rules', '');
+
+        $mform->addElement('hidden', 'rules_en');
+        $mform->setType('rules_en', PARAM_NOTAGS);
+        $mform->setDefault('rules_en', '');
+
+        $mform->addElement('hidden', 'assesment_methods_hu');
+        $mform->setType('assesment_methods_hu', PARAM_NOTAGS);
+        $mform->setDefault('assesment_methods_hu', '');
+
+        $mform->addElement('hidden', 'assesment_methods_en');
+        $mform->setType('assesment_methods_en', PARAM_NOTAGS);
+        $mform->setDefault('assesment_methods_en', '');
+
+        $mform->addElement('hidden', 'midterm_proportions');
+        $mform->setType('midterm_proportions', PARAM_NOTAGS);
+        $mform->setDefault('midterm_proportions', '');
+
+        $mform->addElement('hidden', 'exam_proportions');
+        $mform->setType('exam_proportions', PARAM_NOTAGS);
+        $mform->setDefault('exam_proportions', '');
+
+        $mform->addElement('hidden', 'signature');
+        $mform->setType('signature', PARAM_NOTAGS);
+        $mform->setDefault('signature', '');
+
+        $mform->addElement('hidden', 'signature_en');
+        $mform->setType('signature_en', PARAM_NOTAGS);
+        $mform->setDefault('signature_en', '');
+
+        $mform->addElement('hidden', 'excellent');
+        $mform->setType('excellent', PARAM_NOTAGS);
+        $mform->setDefault('excellent', '');
+
+        $mform->addElement('hidden', 'very_good');
+        $mform->setType('very_good', PARAM_NOTAGS);
+        $mform->setDefault('very_good', '');
+
+        $mform->addElement('hidden', 'good');
+        $mform->setType('good', PARAM_NOTAGS);
+        $mform->setDefault('good', '');
+
+        $mform->addElement('hidden', 'satisfactory');
+        $mform->setType('satisfactory', PARAM_NOTAGS);
+        $mform->setDefault('satisfactory', '');
+
+        $mform->addElement('hidden', 'pass');
+        $mform->setType('pass', PARAM_NOTAGS);
+        $mform->setDefault('pass', '');
+
+        $mform->addElement('hidden', 'fail');
+        $mform->setType('fail', PARAM_NOTAGS);
+        $mform->setDefault('fail', '');
+
+        $mform->addElement('hidden', 'retake');
+        $mform->setType('retake', PARAM_NOTAGS);
+        $mform->setDefault('retake', '');
+
+        $mform->addElement('hidden', 'retake_en');
+        $mform->setType('retake_en', PARAM_NOTAGS);
+        $mform->setDefault('retake_en', '');
+
+        $mform->addElement('hidden', 'workhours_activity');
+        $mform->setType('workhours_activity', PARAM_NOTAGS);
+        $mform->setDefault('workhours_activity', '');
+
+        $mform->addElement('hidden', 'validity_2');
+        $mform->setType('validity_2', PARAM_NOTAGS);
+        $mform->setDefault('validity_2', '');
+
+        $mform->addElement('hidden', 'validity_en_2');
+        $mform->setType('validity_en_2', PARAM_NOTAGS);
+        $mform->setDefault('validity_en_2', '');
+
+        $mform->addElement('hidden', 'validby_2');
+        $mform->setType('validby_2', PARAM_NOTAGS);
+        $mform->setDefault('validby_2', '');
+
+        $mform->addElement('hidden', 'validuntil_2');
+        $mform->setType('validuntil_2', PARAM_NOTAGS);
+        $mform->setDefault('validuntil_2', '');
+
+
+        // --------------------------------------------------------------------
+        // ------------------------------ III.---------------------------------
+        // --------------------------------------------------------------------
+        // --------------------------------------------------------------------
+
+        $mform->addElement('hidden', 'topics_summary');
+        $mform->setType('topics_summary', PARAM_NOTAGS);
+        $mform->setDefault('topics_summary', '');
+
+        $mform->addElement('hidden', 'topics');
+        $mform->setType('topics', PARAM_NOTAGS);
+        $mform->setDefault('topics', '');
+
+        $mform->addElement('hidden', 'lecturers');
+        $mform->setType('lecturers', PARAM_NOTAGS);
+        $mform->setDefault('lecturers', '');
+
+        $mform->addElement('hidden', 'validity_3');
+        $mform->setType('validity_3', PARAM_NOTAGS);
+        $mform->setDefault('validity_3', '');
+
+        $mform->addElement('hidden', 'validity_en_3');
+        $mform->setType('validity_en_3', PARAM_NOTAGS);
+        $mform->setDefault('validity_en_3', '');
+
+        $mform->addElement('hidden', 'validby_3');
+        $mform->setType('validby_3', PARAM_NOTAGS);
+        $mform->setDefault('validby_3', '');
+
+        $mform->addElement('hidden', 'validuntil_3');
+        $mform->setType('validuntil_3', PARAM_NOTAGS);
+        $mform->setDefault('validuntil_3', '');
 
 
 

@@ -25,7 +25,7 @@ require_once(__DIR__ . '../../../config.php');
 require_once(__DIR__ . '/classes/tad/tadfileobject.php');
 require_once(__DIR__ . '/classes/tad/tadobject.php');
 require_once(__DIR__ . '/classes/tad/departmentobject.php');
-require_once(__DIR__ . '/classes/tad/section1.php');
+require_once(__DIR__ . '/classes/tad/tadAllSections.php');
 require_once(__DIR__ . '/classes/db/db_tadobject.php');
 
 function get_tad_files(){
@@ -535,13 +535,9 @@ function parse_dummy_tad_csv_file($separator){
 
 function create_tad_from_formdata($formdata){
     global $USER;
-    global $DB;
     try{
-        $tad = new tadSection1($formdata, $USER->id);
-        var_dump($formdata);
-        die;
-        $DB->insert_record('tad_section_1', $tad);
-        return true;
+        $tad = new tadAllSections($formdata, $USER->id);
+        $tad->dump();
     } catch (Throwable $th){
         var_dump($th);
         die;
