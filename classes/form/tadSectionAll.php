@@ -26,9 +26,9 @@ require_once("$CFG->libdir/formslib.php");
 class tadSectionAll extends moodleform {
     public $readonly;
     public $approveable;
+    public $templatestuff;
     public function definition() {
         $mform = $this->_form;
-        $stringman = get_string_manager();
         $mform->addElement('hidden', 'coursecode');
         $mform->setType('coursecode', PARAM_NOTAGS);
         $mform->setDefault('coursecode', '');
@@ -253,6 +253,10 @@ class tadSectionAll extends moodleform {
         $mform->setType('topics_summary', PARAM_NOTAGS);
         $mform->setDefault('topics_summary', '');
 
+        $mform->addElement('hidden', 'topics_summary_en');
+        $mform->setType('topics_summary_en', PARAM_NOTAGS);
+        $mform->setDefault('topics_summary_en', '');
+
         $mform->addElement('hidden', 'topics');
         $mform->setType('topics', PARAM_NOTAGS);
         $mform->setDefault('topics', '');
@@ -296,10 +300,10 @@ class tadSectionAll extends moodleform {
         $readonly_data = $mform->getElement('editable');
         //$required_data = $mform->getElement('required');
         $readonly = $readonly_data->_attributes['value'];
-        $templatestuff = ['readonly' => $readonly];
+        var_dump($this->templatestuff);
         $mform->addElement(
             'html', 
-            $OUTPUT->render_from_template('local_tad/tadall', $templatestuff)
+            $OUTPUT->render_from_template('local_tad/tadall', $this->templatestuff)
         );
         if ($readonly !== 'disabled'){
             $this->add_action_buttons(); 

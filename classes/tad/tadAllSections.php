@@ -29,20 +29,20 @@ require_once (__DIR__ . '/section3.php');
 class tadAllSections{
     function __construct($formdata, $userid) {
         $this->data = $formdata;
-        $this->section1Obj = new tadSection1($this->data, $userid);
-        $this->record_data();
+        $this->section1Obj = new tadSection1($formdata, $userid);
+        $this->record_data($userid);
     }
 
-    function record_data(){
+    function record_data($userid){
         global $DB;
-        $parentid = $DB->insert_record('tad_section_1', $this->section1Obj->as_array());
-        $this->section2Obj = new tadSection2($this->data, $this->section1Obj->created_by);
-        $this->section2Obj->parent = $parentid;
-        $this->section3Obj = new tadSection3($this->data, $this->section1Obj->created_by);
-        $this->section3Obj->parent = $parentid;
-        var_dump($this->section1Obj->as_array());
-        var_dump($this->section2Obj->as_array());
-        var_dump($this->section3Obj->as_array());
+        $parentid = $DB->insert_record('tad_section_one', $this->section1Obj->as_array());
+        $this->section2Obj = new tadSection2($this->data, $userid, $parentid);
+        $this->section3Obj = new tadSection3($this->data, $userid, $parentid);
+        $this->section2Obj->insert_to_db();
+        $this->section3Obj->insert_to_db();
+        //var_dump($this->section1Obj->as_array());
+        //var_dump($this->section2Obj->as_array());
+        //var_dump($this->section3Obj->as_array());
         $this->dump();
     }
 
@@ -54,7 +54,7 @@ class tadAllSections{
     }
     function dump(){
         $v = (array) $this->data;
-        var_dump($v);
-        die;
+        //var_dump($v);
+        //die;
     }
 }

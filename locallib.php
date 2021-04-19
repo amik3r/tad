@@ -544,3 +544,108 @@ function create_tad_from_formdata($formdata){
         return false;
     }
 }
+
+function gatherTadSection1($id){
+    global $DB;
+    try{
+        $data = $DB->get_record('tad_section_one', ["id" => $id]);
+    } catch (Throwable $th){
+        return false;
+    }
+    return $data;
+}
+function gatherTadSection2($parent){
+    global $DB;
+    try{
+        $data = $DB->get_record('tad_section2', ["parent" => $parent]);
+    } catch (Throwable $th){
+        return false;
+    }
+    return $data;
+}
+
+function gatherTadSection3($parent){
+    global $DB;
+    try{
+        $data = $DB->get_record('tad_section3', ["parent" => $parent]);
+    } catch (Throwable $th){
+        var_dump($th);
+        die;
+        return false;
+    }
+    return $data;
+}
+
+function gatherTadData($id){
+    $section1 = gatherTadSection1($id);
+    $section2 = gatherTadSection2($section1->id);
+    $section3 = gatherTadSection3($section1->id);
+    $data = array_merge((array)$section1, (array)$section2, (array)$section3);
+    try{
+        //var_dump($topics);
+        $topics = json_decode($data['topics']);
+        $data['topics']  = (array) $topics->topics;
+    } catch (Throwable $th){
+        return false;
+    }
+    try{
+        //var_dump($topics);
+        $lecturers = json_decode($data['lecturers']);
+        $data['lecturers']  = (array) $lecturers->lecturers;
+    } catch (Throwable $th){
+        return false;
+    }
+
+    try{
+        //var_dump($topics);
+        $outcome_1 = json_decode($data['outcome_1']);
+        $data['outcome_1']  = (array) $outcome_1->outcomes;
+        //die;
+    } catch (Throwable $th){
+        return false;
+    }
+
+    try{
+        //var_dump($topics);
+        $outcome_2 = json_decode($data['outcome_2']);
+        $data['outcome_2']  = (array) $outcome_2->outcomes;
+        //die;
+    } catch (Throwable $th){
+        return false;
+    }
+    try{
+        //var_dump($topics);
+        $outcome_3 = json_decode($data['outcome_3']);
+        $data['outcome_3']  = (array) $outcome_3->outcomes;
+        //die;
+    } catch (Throwable $th){
+        return false;
+    }
+    try{
+        //var_dump($topics);
+        $outcome_4 = json_decode($data['outcome_4']);
+        $data['outcome_4']  = (array) $outcome_4->outcomes;
+        //die;
+    } catch (Throwable $th){
+        return false;
+    }
+    try{
+        //var_dump($topics);
+        $supportmaterial = json_decode($data['supportmaterial']);
+        $data['supportmaterial']  = (array) $supportmaterial->materials;
+        //die;
+    } catch (Throwable $th){
+        return false;
+    }
+
+    try{
+        //var_dump($topics);
+        $workhours_activity = json_decode($data['workhours_activity']);
+        $data['workhours_activity']  = (array) $workhours_activity->workinghours;
+        var_dump($data['workhours_activity']);
+        //die;
+    } catch (Throwable $th){
+        return false;
+    }
+    return $data;
+}

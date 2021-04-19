@@ -6,8 +6,6 @@ function docReady(fn) {
     }
 }
 
-
-
 function handleNewOutcome1(id){
     var firstNode = '<li ' + 'class="' + id + '">'
     var fullNode = firstNode + `
@@ -170,10 +168,10 @@ function gatherOutcome4(){
 }
 function gatherSupport(){
     var arr = []
-    var support = document.getElementsByClassName('supportmaterial')
-    for (let i = 0; i < support.length; i++) {
+    var supportElements = document.getElementsByClassName('supportmaterial')
+    for (let i = 0; i < supportElements.length; i++) {
         var a = {
-            hu: support[i].value, 
+            hu: supportElements[i].value, 
         }
         arr.push(a)
     }
@@ -187,5 +185,8 @@ function gatherSection2(){
     gatherOutcome3()
     gatherOutcome4()
     gatherSupport()
-    enableSubmitButton()
+    console.log(outcome1);
+    console.log(outcome2);
+    console.log(outcome3);
+    console.log(outcome4);
 }

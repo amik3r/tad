@@ -24,7 +24,7 @@
 require_once(__DIR__ . '/../../config.php');
 require_once(__DIR__ . '/locallib.php');
 
-$PAGE->set_url(new moodle_url('/local/tad/editall.php'));
+$PAGE->set_url(new moodle_url('/local/tad/editall.php'), ['id' => $PAGE->url->get_param('id')]);
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('TAD Létrehozása');
 $PAGE->set_heading('TAD Létrehozása');
@@ -34,6 +34,7 @@ $PAGE->requires->css(new moodle_url('./static/style/tadSection1.css'));
 $PAGE->requires->js(new moodle_url('./static/scripts/tadEditor.js'));
 $PAGE->requires->js(new moodle_url('./static/scripts/section2.js'));
 $PAGE->requires->js(new moodle_url('./static/scripts/section3.js'));
+$PAGE->requires->js(new moodle_url('./static/scripts/section4.js'));
 $PAGE->requires->jquery();
 
 
@@ -60,15 +61,33 @@ $canedit = false;
 
 $section = intval($PAGE->url->get_param('section'));
 
+
+
+
 $mform = new tadSectionAll();
+if ($id = $PAGE->url->get_param('id')){
+    $editing = true;
+    $data = gatherTadData($id);
+    //var_dump($data);
+    $data['validby'] = gmdate("Y-m-d",intval($data['validby']));
+    $data['validuntil'] = gmdate("Y-m-d",intval($data['validuntil']));
+    $data['validby_2'] = gmdate("Y-m-d",intval($data['validby_2']));
+    $data['validuntil_2'] = gmdate("Y-m-d",intval($data['validuntil_2']));
+    $data['validby_3'] = gmdate("Y-m-d",intval($data['validby_3']));
+    $data['validuntil_3'] = gmdate("Y-m-d",intval($data['validuntil_3']));
+    $mform->templatestuff = ["data" => $data];
+}
 $mform->set_data(['editable' => ($canedit ? 'required' : '')]);
 if ($mform->is_cancelled()) {
     redirect($CFG->wwwroot . '/local/tad/editall.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
-} else if ($formdata = $mform->get_data()) {        
+} else if ($formdata = $mform->get_data()) {    
     create_tad_from_formdata($formdata);
 }
 
 echo $OUTPUT->header();
+if ($editing){
+    echo "<h1>Szerkesztő nézet</h1><br>";
+} 
 //echo $OUTPUT->render_from_template('local_tad/tadsection1', []);
 $mform->display();
 echo $OUTPUT->footer();

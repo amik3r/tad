@@ -22,13 +22,18 @@
  */
 
 class tadSection3{
-    function __construct($formdata, $userid) {
+    function __construct($formdata, $userid, $parent) {
         $this->data = $formdata;
         unset($this->data->submitbutton);
-        $this->data->credit       = intval($this->data->credit);
-        $this->data->validby      = strtotime($this->data->validby);
-        $this->data->validuntil   = strtotime($this->data->validuntil);
-        $this->data->parent       = intval(0);
+        $this->data->topics       = $formdata->topics;
+        $this->data->lecturers    = $formdata->lecturers;
+        
+        $this->data->validity     = $formdata->validity_3;
+        $this->data->validity_en  = $formdata->validity_en_3;
+        $this->data->validby      = $formdata->validby_3;
+        $this->data->validuntil   = $formdata->validuntil_3;
+
+        $this->data->parent       = intval($parent);
         $this->data->locked       = intval(0);
         $this->data->draft        = intval(1);
         $this->data->published    = intval(0);
@@ -45,5 +50,10 @@ class tadSection3{
         $v = (array) $this->data;
         var_dump($v);
         die;
+    }
+    function insert_to_db(){
+        global $DB;
+        $recordid = $DB->insert_record('tad_section3', $this->as_array());
+        return $recordid;
     }
 }

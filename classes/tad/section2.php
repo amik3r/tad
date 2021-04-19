@@ -23,33 +23,36 @@
 
 class tadSection2{
     function __construct($formdata, $userid, $parent) {
-        $this->data->rules =                    $this->formdata->rules;
-        $this->data->rules_en =                 $this->formdata->rules_en;
-        $this->data->assesment_methods_hu =     $this->formdata->assesment_methods_hu;                   
-        $this->data->assesment_methods_en =     $this->formdata->assesment_methods_en;
-        $this->data->midterm_proportions =      $this->formdata->midterm_proportions;
-        $this->data->exam_proportions =         $this->formdata->exam_proportions;
+        $this->data->rules =                    $formdata->rules;
+        $this->data->rules_en =                 $formdata->rules_en;
+        $this->data->assesment_methods_hu =     $formdata->assesment_methods_hu;                   
+        $this->data->assesment_methods_en =     $formdata->assesment_methods_en;
+        $this->data->midterm_proportions =      $formdata->midterm_proportions;
+        $this->data->exam_proportions =         $formdata->exam_proportions;
         
-        $this->data->excellent =                intval($this->formdata->excellent);
-        $this->data->very_good =                intval($this->formdata->very_good);
-        $this->data->good =                     intval($this->formdata->good);
-        $this->data->satisfactory =             intval($this->formdata->satisfactory);
-        $this->data->pass =                     intval($this->formdata->pass);
-        $this->data->fail =                     intval($this->formdata->fail);
+        $this->data->excellent =                intval($formdata->excellent);
+        $this->data->very_good =                intval($formdata->very_good);
+        $this->data->good =                     intval($formdata->good);
+        $this->data->satisfactory =             intval($formdata->satisfactory);
+        $this->data->pass =                     intval($formdata->pass);
+        $this->data->fail =                     intval($formdata->fail);
 
-        $this->data->retake =                   $this->formdata->retake;
-        $this->data->retake_en =                $this->formdata->retake_en;
-        $this->data->signature =                $this->formdata->signature;
-        $this->data->workhours_activity =       $this->formdata->workhours_activity;
-        $this->data->validity =                 $this->formdata->validity_2;
-        $this->data->validity_en =              $this->formdata->validity_en_2;
-        $this->data->validby =                  intval($this->formdata->validby_2);
-        $this->data->validuntil =               intval($this->formdata->validuntil_2);
+        $this->data->retake =                   $formdata->retake;
+        $this->data->retake_en =                $formdata->retake_en;
+        $this->data->signature =                $formdata->signature;
+        $this->data->signature_en =             $formdata->signature_en;
+        $this->data->workhours_activity =       $formdata->workhours_activity;
 
-        $this->data->locked                   = intval(0);
-        $this->data->draft                    = intval(1);
-        $this->data->published                = intval(0);
-        $this->data->created_by               = $userid;
+        $this->data->validity =                 $formdata->validity_2;
+        $this->data->validity_en =              $formdata->validity_en_2;
+        $this->data->validby =                  $formdata->validby_2;
+        $this->data->validuntil =               $formdata->validuntil_2;
+
+        $this->data->parent =                   $parent;
+        $this->data->locked =                   intval(0);
+        $this->data->draft =                    intval(1);
+        $this->data->published =                intval(0);
+        $this->data->created_by =               $userid;
     }
     function get_all(){
         return $this->data;
@@ -61,5 +64,10 @@ class tadSection2{
         $v = (array) $this->data;
         var_dump($v);
         die;
+    }
+    function insert_to_db(){
+        global $DB;
+        $recordid = $DB->insert_record('tad_section2', $this->as_array());
+        return $recordid;
     }
 }
