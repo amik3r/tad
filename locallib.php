@@ -533,15 +533,43 @@ function parse_dummy_tad_csv_file($separator){
     }
 }
 
-function create_tad_from_formdata($formdata){
+function update_tad_from_formdata($id, $formdata){
     global $USER;
+    global $DB;
     try{
-        $tad = new tadAllSections($formdata, $USER->id);
-        $tad->dump();
+        $tad = new tadSection1($formdata, $USER->id);
+        $tad->id = $id;
+        $DB->update_record('tad_section_one', $tad);
     } catch (Throwable $th){
         var_dump($th);
         die;
         return false;
+    }
+}
+
+function create_tad_from_formdata($formdata, $id=null, $clone=false){
+    global $USER;
+    global $DB;
+
+    if (!isset($id) || $clone){
+        $tad = new tadAllSections($formdata, $USER->id);
+        try{
+            $tad->record_data($tad->userid);
+        } catch (Throwable $th){
+            die;
+            return false;
+        }
+    } else {
+        $tad = new tadSection1($formdata, $USER->id);
+        try{
+            $tad = $tad->data;
+            $tad->id = intval($id);
+            $DB->update_record('tad_section_one', $tad);
+
+        } catch (Throwable $th){
+            var_dump($th);
+            die;
+        }
     }
 }
 
@@ -640,12 +668,56 @@ function gatherTadData($id){
 
     try{
         //var_dump($topics);
-        $workhours_activity = json_decode($data['workhours_activity']);
-        $data['workhours_activity']  = (array) $workhours_activity->workinghours;
-        var_dump($data['workhours_activity']);
+        $exam_proportions = json_decode($data['exam_proportions']);
+        $data['exam_proportions']  = (array) $exam_proportions->exams;
         //die;
     } catch (Throwable $th){
         return false;
     }
+    try{
+        //var_dump($topics);
+        $midterm_proportions = json_decode($data['midterm_proportions']);
+        $data['midterm_proportions']  = (array) $midterm_proportions->midterms;
+        //die;
+    } catch (Throwable $th){
+        return false;
+    }
+    try{
+        //var_dump($topics);
+        $workhours_activity = json_decode($data['workhours_activity']);
+        $data['workhours_activity']  = (array) $workhours_activity->workinghours;
+        //die;
+    } catch (Throwable $th){
+        return false;
+    }
+    try{
+        //var_dump($topics);
+        $topic_summary = json_decode($data['topics_summary']);
+        $data['topic_summary_en']  = $topic_summary->topics[0]->en;
+        $data['topic_summary_hu']  = $topic_summary->topics[0]->hu;
+    } catch (Throwable $th){
+        return false;
+    }
     return $data;
+}
+
+function get_all_custom_tads(){
+    global $DB;
+    $tads = $DB->get_records('tad_section_one');
+    $arr = ['tads' => []]; 
+    foreach ($tads as $t) {
+        $tad = new stdClass();
+        $tad->id = $t->id;
+        $tad->coursename = $t->coursename;
+        $tad->coursename_en = $t->coursename_en;
+        $tad->coursecode = $t->coursecode;
+        $tad->created_by = $DB->get_record('user', ['id' => $t->created_by]);
+        $tad->created_by = $tad->created_by->lastname . ' ' . $tad->created_by->firstname;
+        $tad->editlink = new moodle_url('/local/tad/editall.php', ['id' => $t->id]);
+        $tad->editlink = $tad->editlink->out();
+        $tad->clonelink = new moodle_url('/local/tad/editall.php', ['id' => $t->id, 'clone' => 'true']);
+        $tad->clonelink = $tad->clonelink->out();
+        array_push($arr['tads'], (array) $tad);
+    }
+    return $arr;
 }

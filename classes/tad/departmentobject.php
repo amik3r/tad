@@ -40,19 +40,19 @@ class Department{
         "GTDH"  => "Dékáni Hivatal"
     );
     private $departmentarray = array(
-        'Department of Ergonomics and Psychology         ' => 'Ergonómia és Pszichológia Tanszék',
-        'Department of Philosophy and History of Science ' => 'Filozófia és Tudománytörténet Tanszék',
-        'Centre of Modern Languages                      ' => 'Idegen Nyelvi Központ',
-        'Department of Environmental Economics           ' => 'Környezetgazdaságtan Tanszék',
-        'Department of Economics                         ' => 'Közgazdaságtan Tanszék',
-        'Department of Management and Business Economics ' => 'Menedzsment és Vállalkozásgazdaságtan Tanszék',
-        'Institute of Continuing Engineering Education   ' => 'Mérnöktovábbképző Intézet',
-        'Department of Technical Education               ' => 'Műszaki Pedagógia Tanszék',
-        'Department of Sociology and Communication       ' => 'Szociológia és Kommunikáció Tanszék',
-        'Centre of Physical Education                    ' => 'Testnevelési Központ',
-        'Department of Business Law                      ' => 'Üzleti Jog Tanszék',
-        'Department of Finance                           ' => 'Pénzügyek Tanszék',
-        "Dean's Office"                                    => 'Dékáni Hivatal',
+        'Department of Ergonomics and Psychology'                   => 'Ergonómia és Pszichológia Tanszék',
+        'Department of Philosophy and History of Science '          => 'Filozófia és Tudománytörténet Tanszék',
+        'Centre of Modern Languages'                                => 'Idegen Nyelvi Központ',
+        'Department of Environmental Economics'                     => 'Környezetgazdaságtan Tanszék',
+        'Department of Economics'                                   => 'Közgazdaságtan Tanszék',
+        'Department of Management and Business Economics'           => 'Menedzsment és Vállalkozásgazdaságtan Tanszék',
+        'Institute of Continuing Engineering Education'             => 'Mérnöktovábbképző Intézet',
+        'Department of Technical Education'                         => 'Műszaki Pedagógia Tanszék',
+        'Department of Sociology and Communication'                 => 'Szociológia és Kommunikáció Tanszék',
+        'Centre of Physical Education'                              => 'Testnevelési Központ',
+        'Department of Business Law'                                => 'Üzleti Jog Tanszék',
+        'Department of Finance'                                     => 'Pénzügyek Tanszék',
+        "Dean's Office"                                             => 'Dékáni Hivatal',
     );
 
     public function get_department_by_code($code){
@@ -65,6 +65,26 @@ class Department{
             }
         }
         return false;
+    }
+
+    function get_departments_with_code(){
+        $arr = [];
+        foreach ($this->departmentascodearray as $key => $value) {
+            $dep = new stdClass();
+            $dep->name = $value;
+            $dep->value = $key;
+            array_push($arr, $dep);
+        }
+        var_dump($arr);
+        return $arr;
+    }
+
+    public function get_code($departmentname){
+        foreach ($this->departmentascodearray as $key => $value) {
+            if ($value == $departmentname){
+                return $key;
+            }
+        }
     }
 
     public function get_english($department){

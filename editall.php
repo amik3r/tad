@@ -24,7 +24,7 @@
 require_once(__DIR__ . '/../../config.php');
 require_once(__DIR__ . '/locallib.php');
 
-$PAGE->set_url(new moodle_url('/local/tad/editall.php'), ['id' => $PAGE->url->get_param('id')]);
+$PAGE->set_url(new moodle_url('/local/tad/editall.php'), ['id' => $PAGE->url->get_param('id'),'list' => $PAGE->url->get_param('list'), 'clone' => $PAGE->url->get_param('clone')]);
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('TAD Létrehozása');
 $PAGE->set_heading('TAD Létrehozása');
@@ -36,6 +36,7 @@ $PAGE->requires->js(new moodle_url('./static/scripts/section2.js'));
 $PAGE->requires->js(new moodle_url('./static/scripts/section3.js'));
 $PAGE->requires->js(new moodle_url('./static/scripts/section4.js'));
 $PAGE->requires->jquery();
+$CFG->cache_js = false;
 
 
 // Enable!!!!!
@@ -59,35 +60,54 @@ if (has_capability('local/tad:approver', $context)){
 $canapprove = true;
 $canedit = false;
 
-$section = intval($PAGE->url->get_param('section'));
-
-
-
-
-$mform = new tadSectionAll();
-if ($id = $PAGE->url->get_param('id')){
-    $editing = true;
-    $data = gatherTadData($id);
-    //var_dump($data);
-    $data['validby'] = gmdate("Y-m-d",intval($data['validby']));
-    $data['validuntil'] = gmdate("Y-m-d",intval($data['validuntil']));
-    $data['validby_2'] = gmdate("Y-m-d",intval($data['validby_2']));
-    $data['validuntil_2'] = gmdate("Y-m-d",intval($data['validuntil_2']));
-    $data['validby_3'] = gmdate("Y-m-d",intval($data['validby_3']));
-    $data['validuntil_3'] = gmdate("Y-m-d",intval($data['validuntil_3']));
-    $mform->templatestuff = ["data" => $data];
-}
-$mform->set_data(['editable' => ($canedit ? 'required' : '')]);
-if ($mform->is_cancelled()) {
-    redirect($CFG->wwwroot . '/local/tad/editall.php',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
-} else if ($formdata = $mform->get_data()) {    
-    create_tad_from_formdata($formdata);
+// if not in list view
+if (!$PAGE->url->get_param('list')){
+    $mform = new tadSectionAll();
+    $departmentsObj = new Department();
+    $departments = $departmentsObj->get_departments_with_code();
+    // if editing a specific entry
+    if ($id = $PAGE->url->get_param('id')){
+        $editing = true;
+        $data = gatherTadData($id);
+        $data['validby'] = gmdate("Y-m-d",intval($data['validby']));
+        $data['validuntil'] = gmdate("Y-m-d",intval($data['validuntil']));
+        $data['validby_2'] = gmdate("Y-m-d",intval($data['validby_2']));
+        $data['validuntil_2'] = gmdate("Y-m-d",intval($data['validuntil_2']));
+        $data['validby_3'] = gmdate("Y-m-d",intval($data['validby_3']));
+        $data['validuntil_3'] = gmdate("Y-m-d",intval($data['validuntil_3']));
+        $data['departments'] = $departments;
+        $data['department_selected_code'] = $departmentsObj->get_code($data['ou']);
+        $mform->templatestuff = ["data" => $data];
+        if ($PAGE->url->get_param('clone')){
+            // if cloning
+            $mform->set_data(['editable' => ($canedit ? 'required' : ''), 'id' => $id, 'clone' => $PAGE->url->get_param('clone')]);
+        }
+        $mform->set_data(['editable' => ($canedit ? 'required' : ''), 'id' => $id]);
+    // if not in list view and creating a new entry 
+    } else {
+        $data['departments'] = $departments;
+        $mform->templatestuff = ["data" => $data];
+        $mform->set_data(['editable' => ($canedit ? 'required' : ''), 'id' => 0]);
+    }
+    if ($mform->is_cancelled()) {
+        redirect($CFG->wwwroot . '/local/tad/editall.php?list=true',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
+    } else if ($formdata = $mform->get_data()) {  
+        create_tad_from_formdata($formdata, $formdata->id, $clone=$formdata->clone);
+        redirect($CFG->wwwroot . '/local/tad/editall.php?list=true',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
+    }
+} else {
+    $data = get_all_custom_tads();
+    $templatestuff = $data;
 }
 
 echo $OUTPUT->header();
-if ($editing){
-    echo "<h1>Szerkesztő nézet</h1><br>";
+if (!$PAGE->url->get_param('list')){
+    $mform->display();
+} else {
+    echo $OUTPUT->render_from_template('local_tad/list_tads', $templatestuff);
 } 
+if ($editing) {
+    echo "<h1>Szerkesztő nézet</h1><br>";
+}
 //echo $OUTPUT->render_from_template('local_tad/tadsection1', []);
-$mform->display();
 echo $OUTPUT->footer();

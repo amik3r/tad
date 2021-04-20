@@ -11,6 +11,13 @@ div.content4 {
     overflow-y: auto;
 }
 
+div.btn-error{
+    background-color: red;
+    border: none !important;
+    border-radius: 0px !important;
+    color: white !important;
+}
+
 input[type="submit"]{
     border: none !important;
     border-radius: 0px !important;

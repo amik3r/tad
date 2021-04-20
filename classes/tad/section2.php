@@ -23,12 +23,12 @@
 
 class tadSection2{
     function __construct($formdata, $userid, $parent) {
-        $this->data->rules =                    $formdata->rules;
-        $this->data->rules_en =                 $formdata->rules_en;
-        $this->data->assesment_methods_hu =     $formdata->assesment_methods_hu;                   
-        $this->data->assesment_methods_en =     $formdata->assesment_methods_en;
-        $this->data->midterm_proportions =      $formdata->midterm_proportions;
-        $this->data->exam_proportions =         $formdata->exam_proportions;
+        $this->data->rules =                    strval($formdata->rules);
+        $this->data->rules_en =                 strval($formdata->rules_en);
+        $this->data->assesment_methods_hu =     strval($formdata->assesment_methods_hu);                  
+        $this->data->assesment_methods_en =     strval($formdata->assesment_methods_en);
+        $this->data->midterm_proportions =      strval($formdata->midterm_proportions);
+        $this->data->exam_proportions =         strval($formdata->exam_proportions);
         
         $this->data->excellent =                intval($formdata->excellent);
         $this->data->very_good =                intval($formdata->very_good);
@@ -37,16 +37,16 @@ class tadSection2{
         $this->data->pass =                     intval($formdata->pass);
         $this->data->fail =                     intval($formdata->fail);
 
-        $this->data->retake =                   $formdata->retake;
-        $this->data->retake_en =                $formdata->retake_en;
-        $this->data->signature =                $formdata->signature;
-        $this->data->signature_en =             $formdata->signature_en;
-        $this->data->workhours_activity =       $formdata->workhours_activity;
+        $this->data->retake =                   strval($formdata->retake);
+        $this->data->retake_en =                strval($formdata->retake_en);
+        $this->data->signature =                strval($formdata->signature);
+        $this->data->signature_en =             strval($formdata->signature_en);
+        $this->data->workhours_activity =       strval($formdata->workhours_activity);
 
-        $this->data->validity =                 $formdata->validity_2;
-        $this->data->validity_en =              $formdata->validity_en_2;
-        $this->data->validby =                  $formdata->validby_2;
-        $this->data->validuntil =               $formdata->validuntil_2;
+        $this->data->validity_2 =               strval($formdata->validity_2);
+        $this->data->validity_en_2 =            strval($formdata->validity_en_2);
+        $this->data->validby_2 =                strtotime($formdata->validby_2);
+        $this->data->validuntil_2 =             strtotime($formdata->validuntil_2);
 
         $this->data->parent =                   $parent;
         $this->data->locked =                   intval(0);

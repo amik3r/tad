@@ -218,6 +218,59 @@ function collapse4(){
 }
 
 
+const departmentsByCode = {
+    "GT20": "Menedzsment és Vállalkozásgazdaságtan Tanszék",
+    "GT30": "Közgazdaságtan Tanszék",
+    "GT35": "Pénzügyek Tanszék",
+    "GT41": "Filozófia és Tudománytörténet Tanszék",
+    "GT42": "Környezetgazdaságtan Tanszék",
+    "GT43": "Szociológia és Kommunikáció Tanszék",
+    "GT51": "Műszaki Pedagógia Tanszék",
+    "GT52": "Ergonómia és Pszichológia Tanszék",
+    "GT55": "Üzleti Jog Tanszék",
+    "GT61": "Idegen Nyelvi Központ",
+    "GT62": "Idegen Nyelvi Központ",
+    "GT63": "Idegen Nyelvi Központ",
+    "GT65": "Idegen Nyelvi Központ",
+    "GT70": "Testnevelési Központ",
+    "GTDH": "Dékáni Hivatal"
+}
+
+const departmentsByName = {
+    'Department of Ergonomics and Psychology': 'Ergonómia és Pszichológia Tanszék',
+    'Department of Philosophy and History of Science ': 'Filozófia és Tudománytörténet Tanszék',
+    'Centre of Modern Languages': 'Idegen Nyelvi Központ',
+    'Department of Environmental Economics': 'Környezetgazdaságtan Tanszék',
+    'Department of Economics': 'Közgazdaságtan Tanszék',
+    'Department of Management and Business Economics': 'Menedzsment és Vállalkozásgazdaságtan Tanszék',
+    'Institute of Continuing Engineering Education': 'Mérnöktovábbképző Intézet',
+    'Department of Technical Education': 'Műszaki Pedagógia Tanszék',
+    'Department of Sociology and Communication': 'Szociológia és Kommunikáció Tanszék',
+    'Centre of Physical Education': 'Testnevelési Központ',
+    'Department of Business Law': 'Üzleti Jog Tanszék',
+    'Department of Finance': 'Pénzügyek Tanszék',
+    "Dean's Office": 'Dékáni Hivatal',
+}
+
+function findEnglishDepartmentName(name){
+    const englishNames = Object.keys(departmentsByName)
+    for (let i = 0; i < englishNames.length; i++) {
+        const element = englishNames[i];
+        if (departmentsByName[element] === name){
+            console.log(element);
+            return element
+        }
+    }
+}
+
+function setDepartmentName(){
+    var departmentValue = document.getElementById('ou').value
+    var englishName = findEnglishDepartmentName(departmentsByCode[departmentValue])
+    document.getElementById('ou_en').innerHTML = englishName
+    document.getElementById('id_ou_en').value = englishName
+    document.getElementById('id_ou').value = departmentsByCode[departmentValue]
+}
+
 document.addEventListener("DOMContentLoaded", function(event) {
     collapse1()
     collapse2()

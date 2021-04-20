@@ -105,13 +105,21 @@
                 <input type="text" name="courseleadercontact" id="id_courseleadercontact" class="form-control" placeholder="elérhetőség" value="{{{data.courseleadercontact}}}" {{readonly}} {{required___}}>
             </div>
         </div>
-        <label for="id_ou">1.8 Tantárgyat gondozó oktatási szervezeti egység – Organisational unit for the subject</label>
+        <label for="id_oua">1.8 Tantárgyat gondozó oktatási szervezeti egység – Organisational unit for the subject</label>
         <div class="row">
             <div class=" col-sm-12  col-md">
-                <input type="text" name="ou" id="id_ou" class="form-control" placeholder="magyar" value="{{{data.ou}}}" {{readonly}} {{required___}}>
+                <select name="" id="ou" class="form-control" onchange="setDepartmentName()">
+                    {{^data.departments}}
+                    <option value="" selected disabled hidden>Tanszék kiválasztása</option>
+                    {{/data.departments}}
+                    <option value="{{{data.department_selected}}}" selected disabled hidden>{{data.ou}}</option>
+                    {{#data.departments}}
+                    <option value="{{{name}}}">{{name}}</option>
+                    {{/data.departments}}
+                </select>
             </div>
             <div class=" col-sm-12  col-md">
-                <input type="text" name="ou_en" id="id_ou_en" class="form-control" placeholder="English" value="{{{data.ou_en}}}" {{readonly}} {{required___}}>
+                <input type="text" name="ou_en" id="ou_en" class="form-control" placeholder="English" value="{{{data.ou_en}}}" {{readonly}} {{required___}}>
             </div>
         </div>
         <label for="id_website">1.9 A tantárgy weblapja – Subject website</label>
@@ -431,6 +439,7 @@
         <label for="">3.3 Szorgalmi időszakban végzett teljesítményértékelések részaránya a minősítésben - Proportion of mid-term performance assessments in final grading</label>
         <div class="midterm-list">
             <ol id="midterm" style="padding: 0px;">
+                {{^data.midterm_proportions}}
                 <li class="oc_1_1">
                     <div class="row">
                         <div class="col-sm-12 col-md">
@@ -444,6 +453,22 @@
                         </div>
                     </div>
                 </li>
+                {{/data.midterm_proportions}}
+                {{#data.midterm_proportions}}
+                <li class="oc_1_1">
+                    <div class="row">
+                        <div class="col-sm-12 col-md">
+                            <input type="textarea" placeholder="Típus (magyar)" value="{{{hu}}}" class="form-control midterm-hu" {{readonly}} {{required}}/>
+                        </div>
+                        <div class="col-sm-12 col-md">
+                            <input type="textarea" placeholder="Type (optional)" value="{{{en}}}" class="form-control midterm-en" {{readonly}} {{required}}/>
+                        </div>
+                        <div class="col-sm-12 col-md">
+                            <input type="text" placeholder="Százalék/percent" value="{{{percent}}}" class="form-control midterm-percent" {{readonly}} {{required}} />
+                        </div>
+                    </div>
+                </li>
+                {{/data.midterm_proportions}}
             </ol>
             <div class="container">
                 <div class="row">
@@ -460,19 +485,36 @@
         <label for="">3.4 Vizsgaelemek részaránya a minősítésben</label>
         <div class="exam">
             <ol id="exam" style="padding: 0px;">
+                {{^data.exam_proportions}}
                 <li class="oc_1_1">
                     <div class="row">
                         <div class="col-sm-12 col-md">
-                            <input type="textarea" placeholder="Típus (magyar)" class="form-control exam-hu" {{readonly}} {{required}}/>
+                            <input type="text" placeholder="Típus (magyar)" class="form-control exam-hu" {{readonly}} {{required}}/>
                         </div>
                         <div class="col-sm-12 col-md">
-                            <input type="textarea" placeholder="Type (optional)" class="form-control exam-en" {{readonly}} {{required}}/>
+                            <input type="text" placeholder="Type (optional)" class="form-control exam-en" {{readonly}} {{required}}/>
                         </div>
                         <div class="col-sm-12 col-md">
                             <input type="text" placeholder="Százalék/percent" class="form-control exam-percent" onchange="handleExamChange()" {{readonly}} {{required}}/>
                         </div>
                     </div>
                 </li>
+                {{/data.exam_proportions}}
+                {{#data.exam_proportions}}
+                <li class="oc_1_1">
+                    <div class="row">
+                        <div class="col-sm-12 col-md">
+                            <input type="text" placeholder="Típus (magyar)" value="{{{hu}}}" class="form-control exam-hu" {{readonly}} {{required}}/>
+                        </div>
+                        <div class="col-sm-12 col-md">
+                            <input type="text" placeholder="Type (optional)" value="{{{en}}}" class="form-control exam-en" {{readonly}} {{required}}/>
+                        </div>
+                        <div class="col-sm-12 col-md">
+                            <input type="text" placeholder="Százalék/percent" value="{{{percent}}}" class="form-control exam-percent" onchange="handleExamChange()" {{readonly}} {{required}}/>
+                        </div>
+                    </div>
+                </li>
+                {{/data.exam_proportions}}
             </ol>
             <div class="container">
                 <div class="row">
@@ -637,13 +679,15 @@
         <h4>4 TEMATIKAI EGYSÉGEK ÉS TOVÁBBI RÉSZLETEK - THEMATIC UNITS AND FURTHER DETAILS</h4>
     </div>
     <div class="content4" id="content4">
-        <label for="id_topics_summary">4.1 A félévben sorra vett témák - Topics discussed during the semester</label>
-        <div class='row'>
-            <div class='col-sm-12  col-md'>
-                <textarea type="textarea" name='topics_summary' id='id_topics_summary' class='form-control' placeholder='magyar összegzés' {{readonly}} {{required}}>{{data.topics_summary}}</textarea>
-            </div>
-            <div class='col-sm-12  col-md'>
-                <textarea type="textarea" name='topics_summary_en' id='id_topics_summary_en' class='form-control' placeholder='English (optional)' {{readonly}}>{{data.topics_summary_en}}</textarea>
+        <div class="topic-summary" id="topic-summary">
+            <label for="topic-summary-hu">4.1 A félévben sorra vett témák - Topics discussed during the semester</label>
+            <div class='row'>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='topic-summary-hu' id='topic-summary-hu' class='form-control' placeholder='magyar összegzés' {{readonly}} {{required}}>{{data.topic_summary_en}}</textarea>
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='topic-summary-en' id='topic-summary-en' class='form-control' placeholder='English (optional)' {{readonly}}>{{data.topic_summary_en}}</textarea>
+                </div>
             </div>
         </div>
         <label for="">Előadások témái</label>
@@ -732,10 +776,10 @@
         <label for="validity_3" style="padding-top: 1rem;">4.3 A tantárgykövetelmények jóváhagyása és érvényessége - Approval and validity of subject requirements</label>
         <div class='row'>
             <div class='col-sm-12  col-md'>
-                <textarea type="textarea" name='validity_3' id='id_validity_3' class='form-control' placeholder='magyar' value="{{{data.validity_3}}}" {{readonly}} {{required}}></textarea>
+                <textarea type="textarea" name='validity_3' id='id_validity_3' class='form-control' placeholder='magyar' {{readonly}} {{required}}>{{data.validity_3}}</textarea>
             </div>
             <div class='col-sm-12  col-md'>
-                <textarea type="textarea" name='validity_en_3' id='id_validity_en_3' class='form-control' placeholder='English' value="{{{data.validity_en_3}}}" {{readonly}} {{required}}></textarea>
+                <textarea type="textarea" name='validity_en_3' id='id_validity_en_3' class='form-control' placeholder='English' {{readonly}} {{required}}>{{data.validity_en_3}}</textarea>
             </div>
         </div>
         <div class="row">
@@ -762,6 +806,8 @@
     </div>
 </div>
 
+<input type="hidden" name="ou" id="id_ou">
+<input type="hidden" name="ou_en" id="id_ou_en">
 <input type="hidden" name="outcomes_value_1" id="id_outcomes_value_1">
 <input type="hidden" name="outcomes_value_2" id="id_outcomes_value_2">
 <input type="hidden" name="outcomes_value_3" id="id_outcomes_value_3">
@@ -771,6 +817,7 @@
 <input type="hidden" name="exam_proportions" id="id_exam_proportions">
 <input type="hidden" name="workhours_activity" id="id_workhours_activity">
 <input type="hidden" name="topics" id="id_topics">
+<input type="hidden" name="topics_summary" id="id_topics_summary">
 <input type="hidden" name="lecturers" id="id_lecturers">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">

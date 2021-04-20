@@ -283,6 +283,9 @@ class tadSectionAll extends moodleform {
 
 
 
+        $mform->addElement('hidden', 'departments');
+        $mform->addElement('hidden', 'id');
+        $mform->addElement('hidden', 'clone');
         $mform->addElement('hidden', 'editable');
         $mform->addElement('hidden', 'approvable');
         $mform->setType('editable', PARAM_NOTAGS);
@@ -300,7 +303,6 @@ class tadSectionAll extends moodleform {
         $readonly_data = $mform->getElement('editable');
         //$required_data = $mform->getElement('required');
         $readonly = $readonly_data->_attributes['value'];
-        var_dump($this->templatestuff);
         $mform->addElement(
             'html', 
             $OUTPUT->render_from_template('local_tad/tadall', $this->templatestuff)

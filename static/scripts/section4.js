@@ -40,11 +40,25 @@ function handleNewTopic(){
 var topics = {
     "topics": []
 }
+var topicsummary = {
+    "topics": []
+}
 
 var lecturers = {
     "lecturers": []
 }
 
+function gatherTopicSummary(){
+    var arr = []
+    var data = {
+        "hu": document.getElementById('topic-summary-hu').value,
+        "en": document.getElementById('topic-summary-en').value,
+    }
+    arr.push(data)
+    topicsummary.topics = arr
+    console.log(topicsummary);
+    document.getElementById('id_topics_summary').value = JSON.stringify(topicsummary)
+}
 function gatherTopic(){
     var arr = []
     var container = document.getElementById('topics')
@@ -77,6 +91,7 @@ function gatherTutors(){
     document.getElementById('id_lecturers').value = JSON.stringify(lecturers)
 }
 function gatherSection4() {
+    gatherTopicSummary()
     gatherTopic()
     gatherTutors()
     enableSubmitButton()

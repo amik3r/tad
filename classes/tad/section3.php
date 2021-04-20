@@ -25,14 +25,14 @@ class tadSection3{
     function __construct($formdata, $userid, $parent) {
         $this->data = $formdata;
         unset($this->data->submitbutton);
-        $this->data->topics       = $formdata->topics;
-        $this->data->lecturers    = $formdata->lecturers;
-        
-        $this->data->validity     = $formdata->validity_3;
-        $this->data->validity_en  = $formdata->validity_en_3;
-        $this->data->validby      = $formdata->validby_3;
-        $this->data->validuntil   = $formdata->validuntil_3;
-
+        $this->data->topics_summary     = strval($formdata->topics_summary);
+        $this->data->topics             = strval($formdata->topics);
+        $this->data->lecturers          = strval($formdata->lecturers);
+        $this->data->workhours_activity = strval($formdata->workhours_activity);
+        $this->data->validity_3    = strval($formdata->validity_3);
+        $this->data->validity_en_3 = strval($formdata->validity_en_3);
+        $this->data->validby_3     = strtotime($formdata->validby_3);
+        $this->data->validuntil_3  = strtotime($formdata->validuntil_3);
         $this->data->parent       = intval($parent);
         $this->data->locked       = intval(0);
         $this->data->draft        = intval(1);
