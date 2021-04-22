@@ -5,51 +5,54 @@ details. You should have received a copy of the GNU General Public License along
 
 <div class="container-fluid">
     <div class="list">
-        <div class="row justify-content-between">
-            <div class="col-md col-sm-3">
+        <div class="btn btn-primary" onclick="window.location.href='https://www.test.edu.gtk.bme.hu/local/tad/editall'" target=" _blank ">
+            <span>Szerkesztés</span>
+        </div>
+        <div class="row justify-content-between ">
+            <div class="col-md col-sm-3 ">
                 <strong>ID</strong>
             </div>
-            <div class="col-md col-sm-3">
+            <div class="col-md col-sm-3 ">
                 <strong>Kurzus neve</strong>
             </div>
-            <div class="col-md col-sm-3">
+            <div class="col-md col-sm-3 ">
                 <strong>Course name</strong>
             </div>
-            <div class="col-md col-sm-3">
+            <div class="col-md col-sm-3 ">
                 <strong>Kurzus kódja</strong>
             </div>
-            <div class="col-md col-sm-3">
+            <div class="col-md col-sm-3 ">
                 <strong>Készítette</strong>
             </div>
-            <div class="col-md col-sm-3">
+            <div class="col-md col-sm-3 ">
                 <strong></strong>
             </div>
         </div>
         <hr> {{#tads}}
-        <div class="row justify-content-between">
-            <div class="col-md col-sm-3">
+        <div class="row justify-content-between ">
+            <div class="col-md col-sm-3 ">
                 <p>{{id}}</p>
             </div>
-            <div class="col-md col-sm-3">
+            <div class="col-md col-sm-3 ">
                 <p>{{coursename}}</p>
             </div>
-            <div class="col-md col-sm-3">
+            <div class="col-md col-sm-3 ">
                 <p>{{coursename_en}}</p>
             </div>
-            <div class="col-md col-sm-3">
+            <div class="col-md col-sm-3 ">
                 <p>{{coursecode}}</p>
             </div>
-            <div class="col-md col-sm-3">
+            <div class="col-md col-sm-3 ">
                 <p>{{created_by}}</p>
             </div>
-            <div class="col-md col-sm-12">
-                <div class="btn btn-primary" onclick="window.location.href='{{{editlink}}}'" target="_blank">
+            <div class="col-md col-sm-12 ">
+                <div class="btn btn-primary " onclick="window.location.href='{{{editlink}}}' " target="_blank ">
                     <span>Szerkesztés</span>
                 </div>
-                <div class="btn btn-primary" onclick="window.location.href='{{{clonelink}}}'">
+                <div class="btn btn-primary " onclick="window.location.href='{{{clonelink}}}' ">
                     <span>Klónozás</span>
                 </div>
-                <div class="btn btn-error" onclick="window.location.href='{{{clonelink}}}'">
+                <div class="btn btn-error " onclick="window.location.href='{{{clonelink}}}' ">
                     <span>Törlés</span>
                 </div>
             </div>
@@ -59,5 +62,5 @@ details. You should have received a copy of the GNU General Public License along
         {{/tads}}
     </div>
 </div>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<link rel="stylesheet " href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css " integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z " crossorigin="anonymous ">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js " integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV " crossorigin="anonymous "></script>
