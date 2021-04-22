@@ -717,6 +717,8 @@ function get_all_custom_tads(){
         $tad->editlink = $tad->editlink->out();
         $tad->clonelink = new moodle_url('/local/tad/editall.php', ['id' => $t->id, 'clone' => 'true']);
         $tad->clonelink = $tad->clonelink->out();
+        $tad->viewlink = new moodle_url('/local/tad/editall.php', ['view' => $t->id]);
+        $tad->viewlink = $tad->viewlink->out();
         array_push($arr['tads'], (array) $tad);
     }
     return $arr;

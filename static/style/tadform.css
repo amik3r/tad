@@ -1,42 +1,55 @@
 div.content1 {
     overflow-y: auto;
 }
+
 div.content2 {
     overflow-y: auto;
 }
+
 div.content3 {
     overflow-y: auto;
 }
+
 div.content4 {
     overflow-y: auto;
 }
 
-div.btn-error{
+div.btn-error {
     background-color: red;
     border: none !important;
     border-radius: 0px !important;
     color: white !important;
 }
 
-input[type="submit"]{
+a.btn-primary {
     border: none !important;
     border-radius: 0px !important;
     background: #4F957D !important;
 }
-input[type="submit"]:hover{
+
+input[type="submit"] {
+    border: none !important;
+    border-radius: 0px !important;
+    background: #4F957D !important;
+}
+
+input[type="submit"]:hover {
     background: #315a4c !important;
 }
 
-input[type="submit"].btn-secondary{
+input[type="submit"].btn-secondary {
     background: #575757 !important;
 }
-input[type="submit"].btn-secondary:hover{
+
+input[type="submit"].btn-secondary:hover {
     background-color: #181818 !important;
 }
-input[type="submit"].btn-cancel{
+
+input[type="submit"].btn-cancel {
     background: #575757 !important;
 }
-input[type="submit"].btn-cancel:hover{
+
+input[type="submit"].btn-cancel:hover {
     background-color: #181818 !important;
 }
 
@@ -44,38 +57,39 @@ input[type="submit"]:disabled {
     background: #8eada2 !important;
 }
 
-div.btn-primary{
+div.btn-primary {
     background: #4F957D !important;
     border: none !important;
     border-radius: 0px !important;
 }
 
-div.btn-primary:hover{
+div.btn-primary:hover {
     background: #315a4c !important;
 }
 
-div.btn-info{
+div.btn-info {
     background: #95904f !important;
     border: none !important;
     border-radius: 0px !important;
 }
 
-div.btn-info:hover{
+div.btn-info:hover {
     background: #686537 !important;
 }
 
-.container > h3 {
+.container>h3 {
     padding-top: 50px;
 }
-.container > h3 {
+
+.container>h3 {
     padding-top: 30px;
 }
 
-.d-inline{
+.d-inline {
     display: block !important;
 }
 
-.word-break{
+.word-break {
     word-break: keep-all !important;
 }
 
@@ -84,21 +98,21 @@ div.btn-info:hover{
     flex-direction: column;
 }
 
-.form_row_group{
+.form_row_group {
     height: max-content;
     display: flexbox;
-    justify-content:left;
+    justify-content: left;
     align-items: baseline;
     font-size: 90%;
 }
 
-.form_row_group label{
+.form_row_group label {
     margin-left: 10px;
 }
 
-.section1_1{
+.section1_1 {
     display: flex;
-    justify-content:left;
+    justify-content: left;
     align-items: baseline;
 }
 
@@ -115,14 +129,15 @@ div.btn-info:hover{
 }
 
 table {
-    overflow:auto;
+    overflow: auto;
 }
 
 table td {
     height: max-content;
     vertical-align: middle;
 }
-.form-control input{
+
+.form-control input {
     margin: auto;
 }
 
@@ -153,8 +168,8 @@ li {
     outline: none;
     padding: 10px;
     font-size: 1.2rem !important;
-
 }
+
 .collapse2 {
     background-color: #4F957D;
     color: rgb(255, 255, 255);
@@ -167,7 +182,8 @@ li {
     outline: none;
     padding: 10px;
     font-size: 1.2rem !important;
-  }
+}
+
 .collapse3 {
     background-color: #4F957D;
     color: rgb(255, 255, 255);
@@ -181,6 +197,7 @@ li {
     padding: 10px;
     font-size: 1.2rem !important;
 }
+
 .collapse4 {
     background-color: #4F957D;
     color: rgb(255, 255, 255);
@@ -193,22 +210,34 @@ li {
     outline: none;
     padding: 10px;
     font-size: 1.2rem !important;
-  }
+}
+
+
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapse1:hover {
-    background-color:#315a4c;
-}
-.active, .collapse2:hover {
+
+.active,
+.collapse1:hover {
     background-color: #315a4c;
 }
-.active, .collapse3:hover {
+
+.active,
+.collapse2:hover {
     background-color: #315a4c;
 }
-.active, .collapse4:hover {
+
+.active,
+.collapse3:hover {
     background-color: #315a4c;
 }
-  
-  /* Style the collapsible content. Note: hidden by default */
+
+.active,
+.collapse4:hover {
+    background-color: #315a4c;
+}
+
+
+/* Style the collapsible content. Note: hidden by default */
+
 .content1 {
     padding: 0 18px;
     background-color: white;
@@ -216,6 +245,7 @@ li {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+
 .content2 {
     padding: 0 18px;
     background-color: white;
@@ -223,6 +253,7 @@ li {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+
 .content3 {
     padding: 0 18px;
     background-color: white;
@@ -230,6 +261,7 @@ li {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+
 .content4 {
     padding: 0 18px;
     background-color: white;

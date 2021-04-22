@@ -8,7 +8,8 @@ details. You should have received a copy of the GNU General Public License along
         <a class="btn btn-primary" href='https://test.edu.gtk.bme.hu/local/tad/editall.php' target=" _blank ">
             <span>Új hozzáadása</span>
         </a>
-        <div class="row justify-content-between ">
+        <hr>
+        <div class="row justify-content-between">
             <div class="col-md col-sm-3 ">
                 <strong>ID</strong>
             </div>
@@ -31,16 +32,16 @@ details. You should have received a copy of the GNU General Public License along
         <hr> {{#tads}}
         <div class="row justify-content-between ">
             <div class="col-md col-sm-3 ">
-                <p>{{id}}</p>
+                <a href="{{{viewlink}}}"><span>{{id}}</span></a>
             </div>
             <div class="col-md col-sm-3 ">
-                <p>{{coursename}}</p>
+                <a href="{{{viewlink}}}"><span>{{coursename}}</span></a>
             </div>
             <div class="col-md col-sm-3 ">
                 <p>{{coursename_en}}</p>
             </div>
             <div class="col-md col-sm-3 ">
-                <p>{{coursecode}}</p>
+                <a href="{{{viewlink}}}"><span>{{coursecode}}</span></a>
             </div>
             <div class="col-md col-sm-3 ">
                 <p>{{created_by}}</p>
