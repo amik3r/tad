@@ -91,7 +91,6 @@ if (!$PAGE->url->get_param('list')){
     if ($mform->is_cancelled()) {
         redirect($CFG->wwwroot . '/local/tad/editall.php?list=true',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
     } else if ($formdata = $mform->get_data()) {  
-        var_dump($formdata);
         create_tad_from_formdata($formdata, $formdata->id, $clone=$formdata->clone);
         redirect($CFG->wwwroot . '/local/tad/editall.php?list=true',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
     }

@@ -75,7 +75,6 @@ class Department{
             $dep->value = $key;
             array_push($arr, $dep);
         }
-        var_dump($arr);
         return $arr;
     }
 
