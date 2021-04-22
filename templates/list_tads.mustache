@@ -1,70 +1,48 @@
-{{!
-    This file is part of Moodle - http://moodle.org/
+{{! This file is part of Moodle - http://moodle.org/ Moodle is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version. Moodle is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details. You should have received a copy of the GNU General Public License along with Moodle. If not, see
+<http://www.gnu.org/licenses/>. }} {{! @template local_banner/manage Template to display the list of forum discussions. Classes required for JS: * none Data attributes required for JS: * none Context variables required for this template: * TODO Example context (json): { } }}
 
-    Moodle is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    Moodle is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-}}
-{{!
-    @template local_banner/manage
-
-    Template to display the list of forum discussions.
-
-    Classes required for JS:
-    * none
-
-    Data attributes required for JS:
-    * none
-
-    Context variables required for this template:
-    * TODO
-
-    Example context (json):
-    {
-    }
-}}
-
-<div class="container">
+<div class="container-fluid">
     <div class="list">
-        <div class="row">
-            <div class="col-md-2 col-sm-3">
+        <div class="row justify-content-between">
+            <div class="col-md col-sm-3">
+                <strong>ID</strong>
+            </div>
+            <div class="col-md col-sm-3">
                 <strong>Kurzus neve</strong>
             </div>
-            <div class="col-md-2 col-sm-3">
+            <div class="col-md col-sm-3">
                 <strong>Course name</strong>
             </div>
-            <div class="col-md-2 col-sm-3">
+            <div class="col-md col-sm-3">
                 <strong>Kurzus kódja</strong>
             </div>
-            <div class="col-md-2 col-sm-3">
+            <div class="col-md col-sm-3">
                 <strong>Készítette</strong>
             </div>
+            <div class="col-md col-sm-3">
+                <strong></strong>
+            </div>
         </div>
-        <hr>
-        {{#tads}}
-        <div class="row">
-            <div class="col-md-2 col-sm-3">
+        <hr> {{#tads}}
+        <div class="row justify-content-between">
+            <div class="col-md col-sm-3">
+                <p>{{id}}</p>
+            </div>
+            <div class="col-md col-sm-3">
                 <p>{{coursename}}</p>
             </div>
-            <div class="col-md-2 col-sm-3">
+            <div class="col-md col-sm-3">
                 <p>{{coursename_en}}</p>
             </div>
-            <div class="col-md-2 col-sm-3">
+            <div class="col-md col-sm-3">
                 <p>{{coursecode}}</p>
             </div>
-            <div class="col-md-2 col-sm-3">
+            <div class="col-md col-sm-3">
                 <p>{{created_by}}</p>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md col-sm-12">
                 <div class="btn btn-primary" onclick="window.location.href='{{{editlink}}}'" target="_blank">
                     <span>Szerkesztés</span>
                 </div>
@@ -76,9 +54,7 @@
                 </div>
             </div>
         </div>
-        <hr>
-        {{/tads}}
-        {{^tads}}
+        <hr> {{/tads}} {{^tads}}
         <h2>Nincs megjeleníthető tartalom</h2>
         {{/tads}}
     </div>

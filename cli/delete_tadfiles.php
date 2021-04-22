@@ -20,8 +20,10 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 define('CLI_SCRIPT', true);
-require_once(__DIR__    . '/../../../config.php');
-
+require_once(__DIR__ . '/../../../config.php');
+echo $CFG->dataroot . '\n';
+echo __DIR__    . '/../../../config.php';
+die;
 global $DB;
 
 $fs = get_file_storage();

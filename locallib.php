@@ -551,7 +551,7 @@ function create_tad_from_formdata($formdata, $id=null, $clone=false){
     global $USER;
     global $DB;
 
-    if (!isset($id) || $clone){
+    if (!is_null($id) || $clone){
         $tad = new tadAllSections($formdata, $USER->id);
         try{
             $tad->record_data($tad->userid);
@@ -720,4 +720,35 @@ function get_all_custom_tads(){
         array_push($arr['tads'], (array) $tad);
     }
     return $arr;
+}
+
+// Edit mode functions
+function gatherTadDataForEdit($id, $departments){
+    $data = gatherTadData($id);
+    $departmentsObj = new Department();
+    $data['validby'] = gmdate("Y-m-d",intval($data['validby']));
+    $data['validuntil'] = gmdate("Y-m-d",intval($data['validuntil']));
+    $data['validby_2'] = gmdate("Y-m-d",intval($data['validby_2']));
+    $data['validuntil_2'] = gmdate("Y-m-d",intval($data['validuntil_2']));
+    $data['validby_3'] = gmdate("Y-m-d",intval($data['validby_3']));
+    $data['validuntil_3'] = gmdate("Y-m-d",intval($data['validuntil_3']));
+    $data['departments'] = $departments;
+    $data['department_selected_code'] = $departmentsObj->get_code($data['ou']);
+    return $data;
+}
+
+
+// View mode functions
+function gatherTadDataForView($id){
+    $departmentsObj = new Department();
+    $data = gatherTadData($id);
+    $data['validby'] = gmdate("Y-m-d",intval($data['validby']));
+    $data['validuntil'] = gmdate("Y-m-d",intval($data['validuntil']));
+    $data['validby_2'] = gmdate("Y-m-d",intval($data['validby_2']));
+    $data['validuntil_2'] = gmdate("Y-m-d",intval($data['validuntil_2']));
+    $data['validby_3'] = gmdate("Y-m-d",intval($data['validby_3']));
+    $data['validuntil_3'] = gmdate("Y-m-d",intval($data['validuntil_3']));
+    $data['department_selected_code'] = $departmentsObj->get_code($data['ou']);
+    $templatestuff = ["data" => $data];
+    return $templatestuff;
 }

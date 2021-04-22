@@ -24,7 +24,12 @@
 require_once(__DIR__ . '/../../config.php');
 require_once(__DIR__ . '/locallib.php');
 
-$PAGE->set_url(new moodle_url('/local/tad/editall.php'), ['id' => $PAGE->url->get_param('id'),'list' => $PAGE->url->get_param('list'), 'clone' => $PAGE->url->get_param('clone')]);
+$PAGE->set_url(new moodle_url('/local/tad/editall.php'), [
+    'id' => $PAGE->url->get_param('id'),
+    'list' => $PAGE->url->get_param('list'), 
+    'clone' => $PAGE->url->get_param('clone'),
+    'view' => $PAGE->url->get_param('view')
+    ]);
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('TAD Létrehozása');
 $PAGE->set_heading('TAD Létrehozása');
@@ -38,16 +43,11 @@ $PAGE->requires->js(new moodle_url('./static/scripts/section4.js'));
 $PAGE->requires->jquery();
 $CFG->cache_js = false;
 
+if (!has_capability('local/tad:manager', $context) || !has_capability('local/tad:editor', $context)){
+    redirect($CFG->wwwroot . '/local/tad/view.php');
+}
 
-// Enable!!!!!
-// Disable access to unauthorised personnel
-//require_capability('local/tad:viewer', $context);
-
-// Load form when 'authencticated'
-//require_once($CFG->dirroot . '/local/tad/classes/form/createTadForm.php');
-//require_once($CFG->dirroot . '/local/tad/classes/form/createTadForm2.php');
 require_once($CFG->dirroot . '/local/tad/classes/form/tadSectionAll.php');
-
 // See if can edit form
 $canedit = false;
 $canapprove = false;
@@ -68,21 +68,20 @@ if (!$PAGE->url->get_param('list')){
     // if editing a specific entry
     if ($id = $PAGE->url->get_param('id')){
         $editing = true;
-        $data = gatherTadData($id);
-        $data['validby'] = gmdate("Y-m-d",intval($data['validby']));
-        $data['validuntil'] = gmdate("Y-m-d",intval($data['validuntil']));
-        $data['validby_2'] = gmdate("Y-m-d",intval($data['validby_2']));
-        $data['validuntil_2'] = gmdate("Y-m-d",intval($data['validuntil_2']));
-        $data['validby_3'] = gmdate("Y-m-d",intval($data['validby_3']));
-        $data['validuntil_3'] = gmdate("Y-m-d",intval($data['validuntil_3']));
-        $data['departments'] = $departments;
-        $data['department_selected_code'] = $departmentsObj->get_code($data['ou']);
+        $data = gatherTadDataForEdit($id, $departments);
         $mform->templatestuff = ["data" => $data];
         if ($PAGE->url->get_param('clone')){
             // if cloning
-            $mform->set_data(['editable' => ($canedit ? 'required' : ''), 'id' => $id, 'clone' => $PAGE->url->get_param('clone')]);
+            $mform->set_data([
+                'clone' => $PAGE->url->get_param('clone')
+                ]);
         }
-        $mform->set_data(['editable' => ($canedit ? 'required' : ''), 'id' => $id]);
+        $mform->set_data([
+            'editable' => ($canedit ? 
+            'required' : ''), 
+            'id' => $id
+            ]);
+
     // if not in list view and creating a new entry 
     } else {
         $data['departments'] = $departments;
@@ -92,6 +91,7 @@ if (!$PAGE->url->get_param('list')){
     if ($mform->is_cancelled()) {
         redirect($CFG->wwwroot . '/local/tad/editall.php?list=true',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
     } else if ($formdata = $mform->get_data()) {  
+        var_dump($formdata);
         create_tad_from_formdata($formdata, $formdata->id, $clone=$formdata->clone);
         redirect($CFG->wwwroot . '/local/tad/editall.php?list=true',  get_string("upload_cancelled", "local_tad"), \core\output\notification::NOTIFY_INFO);
     }
@@ -101,13 +101,14 @@ if (!$PAGE->url->get_param('list')){
 }
 
 echo $OUTPUT->header();
-if (!$PAGE->url->get_param('list')){
+if (!$PAGE->url->get_param('list') && !$PAGE->url->get_param('view')){
     $mform->display();
+} elseif ($id = $PAGE->url->get_param('view')){
+    $templatestuff = gatherTadDataForView($id);
+    echo $OUTPUT->render_from_template('local_tad/view_tadall', $templatestuff);
+
 } else {
     echo $OUTPUT->render_from_template('local_tad/list_tads', $templatestuff);
-} 
-if ($editing) {
-    echo "<h1>Szerkesztő nézet</h1><br>";
 }
 //echo $OUTPUT->render_from_template('local_tad/tadsection1', []);
 echo $OUTPUT->footer();

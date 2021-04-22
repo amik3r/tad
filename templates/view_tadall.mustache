@@ -1,0 +1,830 @@
+{{! This file is part of Moodle - http://moodle.org/ Moodle is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version. Moodle is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details. You should have received a copy of the GNU General Public License along with Moodle. If not, see
+<http://www.gnu.org/licenses/>. }} {{! @template local_banner/manage Template to display the list of forum discussions. Classes required___ for JS: * none Data attributes required___ for JS: * none Context variables required___ for this template: * TODO Example context (json): { }
+}}
+
+<div class="container">
+    <h2>I. TANTÁRGYLEÍRÁS – COURSE DESCRIPTION</h1>
+        <div class="section1-title">
+            <h4>1. ALAPADATOK - SUBJECT DATA</h4>
+        </div>
+        <h6 for="id_coursename">1.1 Tantárgy neve - Name of the subject </h6>
+        <div class="row">
+            <div class=" col-sm-12  col-md">
+                <p>{{data.coursename}}</p>
+            </div>
+            <div class=" col-sm-12  col-md">
+                <p>
+                    {{data.coursename_en}}
+                </p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row  justify-content-between">
+            <div class="col-md-5">
+                <h6>1.2 Azonosító (tantárgykód) - Subject code</h6>
+            </div>
+            <div class="col-md-4">
+                <h6>1.3 A tantárgy jellege - Course type</h6>
+            </div>
+        </div>
+        <div class="row justify-content-between">
+            <div class=" col-sm-12  col-md-4">
+                <p>
+                    {{data.coursecode}}
+                </p>
+            </div>
+            <div class=" col-sm-12  col-md-4">
+                <p>{{data.coursetype}}/{{data.coursetype_en}}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-md-4">
+                        <h6>1.4 Kurzustípuscok és óraszámok - Course type and number of lessons</h6>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>1.5 Tanulmányi teljesítményértékelés - Type of assessment</h6>
+                    </div>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    Előadás/Lecture
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>{{data.lecture}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    Gyakorlat/Practice
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>{{data.practice}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    Labor/Laboratory
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>{{data.laboratory}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <p>{{data.assesmenttype}}/{{data.assesmenttype_en}}</p>
+                        <div class="row">
+                            <div class=" col-sm-12  col-md">
+                                <h6>1.6 Kreditszám – Number of credits</h6>
+                                <p>{{data.credit}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6>1.7 Tantárgyfelelős – Course leader</h6>
+        <div class="row">
+            <div class=" col-sm-12  col-md">
+                <p>
+                    Neve/name: {{data.courseleadername}}
+                </p>
+            </div>
+            <div class=" col-sm-12  col-md">
+                <p>Beosztása: {{data.courseleaderrank}}</p>
+            </div>
+            <div class=" col-sm-12  col-md">
+                <p>Rank: {{data.courseleaderrank_en}}</p>
+            </div>
+            <div class=" col-sm-12  col-md">
+                <p>Elérthetősége: {{data.courseleadercontact}}</p>
+            </div>
+        </div>
+        <hr>
+        <h6 for="id_oua">1.8 Tantárgyat gondozó oktatási szervezeti egység – Organisational unit for the subject</h6>
+        <div class="row">
+            <div class=" col-sm-12  col-md">
+                <p>{{data.ou}}</p>
+            </div>
+            <div class=" col-sm-12  col-md">
+                <p>{{data.ou_en}}</p>
+            </div>
+        </div>
+        <hr>
+        <h6 for="id_website">1.9 A tantárgy weblapja – Subject website</h6>
+        <div class="row">
+            <div class=" col-sm-12  col-md">
+                <p>{{data.website}}</p>
+            </div>
+        </div>
+        <hr>
+        <h6 for="id_lang">1.10 A tantárgy oktatásának nyelve- language of teaching</h6>
+        <div class="row">
+            <div class=" col-sm-12  col-md">
+                <p>{{data.lang}}</p>
+            </div>
+        </div>
+        <hr>
+        <h6 for="id_corriculumrole">1.11 A tantárgy tantervi szerepe, ajánlott féléve - Corriculum role of the subject, recommended semester</h6>
+        <div class="row">
+            <div class=" col-sm-12  col-md">
+                <p>{{data.corriculumrole}}</p>
+            </div>
+            <div class=" col-sm-12  col-md">
+                <p>{{data.corriculumrole_en}}</p>
+            </div>
+        </div>
+        <hr>
+        <h6 for="id_strong">1.12 Közvetlen előkövetelmények – Pre-requisites</h6>
+        <div class="container-fluid">
+            <div class="row">
+                <div class=" col-sm-12  col-md-4">
+                    <p><strong>Erős/Strong:</strong> {{data.strong}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12  col-md-4">
+                    <p><strong>Gyenge/Weak:</strong> {{data.weak}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12  col-md">
+                    <p><strong>Párhuzamos/Parallel:</strong> {{data.paralell}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12  col-md">
+                    <p><strong>Kizáró/Exclusive: </strong>{{data.exclusive_1}}</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 for="id_validity">1.13 A tantárgyleírás érvényessége – Validity of the Course Description</h6>
+        <div class="row">
+            <div class=" col-sm-12  col-md">
+                <p>
+                    {{data.validity}}
+                </p>
+            </div>
+            <div class=" col-sm-12  col-md">
+                <p>
+                    {{data.validity_en}}
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-sm-12  col-md">
+                <div>
+                    <h6 for="">Jóváhagyás dátuma - Valid from</h6>
+                    <p>{{data.validby}} </p>
+                </div>
+            </div>
+            <div class=" col-sm-12  col-md">
+                <div>
+                    <h6 for="">Érvényesség vége - Valid until</h6>
+                    <p>{{data.validuntil}} </p>
+                </div>
+            </div>
+        </div>
+        <div class="collapse2" id="">
+            <h4>2. CÉLKITŰZÉSEK ÉS TANULÁSI EREDMÉNYEK – OBJECTIVES AND LEARNING OUTCOMES</h4>
+        </div>
+        <div class="content2" id="content2">
+            <label for="id_objectives">2.1 Célkitűzések - Objectives</label>
+            <div class='row'>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='objectives' id='id_objectives' class='form-control' placeholder='magyar' {{readonly}} {{required___}}>{{data.objectives}}</textarea>
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='objectives_en' id='id_objectives_en' class='form-control' placeholder='English' {{readonly}} {{required___}}>{{data.objectives_en}}</textarea>
+                </div>
+            </div>
+            <hr>
+            <h4 for="">2.2 Tanulmányi eredmények - Learning outcomes</h4>
+            <label for="">Tudás/Knowledge</label>
+            <div class="outcomes_1">
+                <ol id="outcomes_1" style="padding: 0px;">
+                    {{^data.outcome_1}}
+                    <li class="outcomes_1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_1" {{readonly}} {{required___}}></textarea>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="English" class="form-control outcome_1_en" {{readonly}} {{required___}}></textarea>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.outcome_1}} {{#data.outcome_1}}
+                    <li class="outcomes_1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_1" {{readonly}} {{required___}}>{{hu}}</textarea>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="English" class="form-control outcome_1_en" {{readonly}} {{required___}}>{{en}}</textarea>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.outcome_1}}
+                </ol>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome1('outcomes_1')">
+                            <span>Új sor hozzáadása</span>
+                        </div>
+                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('outcomes_1')">
+                            <span>Utolsó sor törlése</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <label for="">Képesség/Skills</label>
+            <div class="outcomes_2">
+                <ol id="outcomes_2" style="padding: 0px;">
+                    {{^data.outcome_2}}
+                    <li class="outcomes_2">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_2" {{readonly}} {{required___}}></textarea>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="English" class="form-control outcome_2_en" {{readonly}} {{required___}}></textarea>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.outcome_2}} {{#data.outcome_2}}
+                    <li class="outcomes_2">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_2" {{readonly}} {{required___}}>{{hu}}</textarea>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="English" class="form-control outcome_2_en" {{readonly}} {{required___}}>{{en}}</textarea>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.outcome_2}}
+                </ol>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome2('outcomes_2')">
+                            <span>Új sor hozzáadása</span>
+                        </div>
+                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('outcomes_2')">
+                            <span>Utolsó sor törlése</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <label for="">Attitűd/Attitude</label>
+            <div class="outcomes_3">
+                <ol id="outcomes_3" style="padding: 0px;">
+                    {{^data.outcome_3}}
+                    <li class="outcomes_3">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_3" {{readonly}} {{required___}}></textarea>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="English" class="form-control outcome_3_en" {{readonly}} {{required___}}></textarea>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.outcome_3}} {{#data.outcome_3}}
+                    <li class="outcomes_3">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_3" {{readonly}} {{required___}}>{{hu}}</textarea>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="English" class="form-control outcome_3_en" {{readonly}} {{required___}}>{{en}}</textarea>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.outcome_3}}
+                </ol>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome3('outcomes_3')">
+                            <span>Új sor hozzáadása</span>
+                        </div>
+                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('outcomes_3')">
+                            <span>Utolsó sor törlése</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <label for="">Önállóság és felelősség/Independence and responsibility</label>
+            <div class="outcomes_4">
+                <ol id="outcomes_4" style="padding: 0px;">
+                    {{^data.outcome_4}}
+                    <li class="outcomes_4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_4" {{readonly}} {{required___}}></textarea>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="English" class="form-control outcome_4_en" {{readonly}} {{required___}}></textarea>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.outcome_4}} {{#data.outcome_4}}
+                    <li class="outcomes_4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_4" {{readonly}} {{required___}}>{{hu}}</textarea>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="English" class="form-control outcome_4_en" {{readonly}} {{required___}}>{{en}}</textarea>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.outcome_4}}
+                </ol>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome4('outcomes_4')" {{readonly}} {{required___}}>
+                            <span>Új sor hozzáadása</span>
+                        </div>
+                        <div class="col-sm-6 btn btn-info delete-button delete-button" onclick="handleRowDelete('outcomes_4')" {{readonly}} {{required___}}>
+                            <span>Utolsó sor törlése</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <label for="">2.3 Oktatásmódszertan - Methodology of teaching</label>
+            <div class='row'>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" id="id_methodology" name="methodology" placeholder="magyar" class="form-control" {{readonly}} {{required___}}>{{data.methodology}}</textarea>
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" id="id_methodology_en" name="methodology_en" placeholder="English" class="form-control" {{readonly}} {{required___}}>{{data.methodology_en}}</textarea>
+                </div>
+            </div>
+            <hr>
+            <label for="">2.4 Tanulástámogató anyagok - Materials supporting learning</label>
+            <div class="supportmaterials">
+                <ol id="supportmaterials" style="padding: 0px;">
+                    {{^data.supportmaterial}}
+                    <li class="supportmaterials">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="" class="form-control supportmaterial" {{readonly}} {{required___}}/>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.supportmaterial}} {{#data.supportmaterial}}
+                    <li class="supportmaterials">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="" value="{{{hu}}}" class="form-control supportmaterial" {{readonly}} {{required___}}/>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.supportmaterial}}
+                </ol>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 btn btn-primary" onclick="handleNewSupport('supportmaterials')" {{readonly}} {{required___}}>
+                            <span>Új sor hozzáadása</span>
+                        </div>
+                        <div class="col-sm-6 btn btn-info delete-button delete-button" onclick="handleRowDelete('supportmaterials')" {{readonly}} {{required___}}>
+                            <span>Utolsó sor törlése</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="container">
+                <div class="row" style="padding-top: 1rem; padding-bottom: 1rem;">
+                    <div class="col-sm-12 btn btn-primary" onclick="gatherSection2()">
+                        <span>Rész véglegesítése</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2>II. TANTÁRGYKÖVETELMÉNYEK - SUBJECT REQUIREMENTS</h2>
+        <div class="collapse3">
+            <h4>3. A TANULMÁNYI TELJESÍTMÉNY ELLENŐRZÉSE ÉS ÉRTÉKELÉSE - TESTING AND ASSESSMENT OF LEARNING PERFORMANCE</h4>
+        </div>
+        <div class="content3" id="content3">
+            <label for="rules">3.1 Általános szabályok - General rules</label>
+            <div class='row'>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='rules' id='id_rules' class='form-control' placeholder='magyar' value="{{{data.rules}}}" {{readonly}} {{required}}>{{data.rules}}</textarea>
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='rules_en' id='id_rules_en' class='form-control' placeholder='English (optional)' value="{{{data.rules_en}}}" {{readonly}} {{required}}>{{data.rules_en}}</textarea>
+                </div>
+            </div>
+            <hr>
+            <label for="assesment_methods_hu">3.2 Teljesítményértékelési módszerek - Assessment methods</label>
+            <div class='row'>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='assesment_methods_hu' id='id_assesment_methods_hu' class='form-control' placeholder='magyar' value="{{{data.assesment_methods_hu}}}" {{readonly}} {{required}}>{{data.assesment_methods_hu}}</textarea>
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='assesment_methods_en' id='id_assesment_methods_en' class='form-control' placeholder='English (optional)' value="{{{data.assesment_methods_en}}}" {{readonly}} {{required}}>{{data.assesment_methods_en}}</textarea>
+                </div>
+            </div>
+            <hr>
+            <label for="">3.3 Szorgalmi időszakban végzett teljesítményértékelések részaránya a minősítésben - Proportion of mid-term performance assessments in final grading</label>
+            <div class="midterm-list">
+                <ol id="midterm" style="padding: 0px;">
+                    {{^data.midterm_proportions}}
+                    <li class="oc_1_1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <input type="textarea" placeholder="Típus (magyar)" class="form-control midterm-hu" {{readonly}} {{required}}/>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <input type="textarea" placeholder="Type (optional)" class="form-control midterm-en" {{readonly}} {{required}}/>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="Százalék/percent" class="form-control midterm-percent" {{readonly}} {{required}} />
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.midterm_proportions}} {{#data.midterm_proportions}}
+                    <li class="oc_1_1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <input type="textarea" placeholder="Típus (magyar)" value="{{{hu}}}" class="form-control midterm-hu" {{readonly}} {{required}}/>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <input type="textarea" placeholder="Type (optional)" value="{{{en}}}" class="form-control midterm-en" {{readonly}} {{required}}/>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="Százalék/percent" value="{{{percent}}}" class="form-control midterm-percent" {{readonly}} {{required}} />
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.midterm_proportions}}
+                </ol>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 btn btn-primary" onclick="handleNewMidterm()" {{readonly}} {{required}}>
+                            <span>Új sor hozzáadása</span>
+                        </div>
+                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('midterm')" {{readonly}} {{required}}>
+                            <span>Utolsó sor törlése</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <label for="">3.4 Vizsgaelemek részaránya a minősítésben</label>
+            <div class="exam">
+                <ol id="exam" style="padding: 0px;">
+                    {{^data.exam_proportions}}
+                    <li class="oc_1_1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="Típus (magyar)" class="form-control exam-hu" {{readonly}} {{required}}/>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="Type (optional)" class="form-control exam-en" {{readonly}} {{required}}/>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="Százalék/percent" class="form-control exam-percent" onchange="handleExamChange()" {{readonly}} {{required}}/>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.exam_proportions}} {{#data.exam_proportions}}
+                    <li class="oc_1_1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="Típus (magyar)" value="{{{hu}}}" class="form-control exam-hu" {{readonly}} {{required}}/>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="Type (optional)" value="{{{en}}}" class="form-control exam-en" {{readonly}} {{required}}/>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="Százalék/percent" value="{{{percent}}}" class="form-control exam-percent" onchange="handleExamChange()" {{readonly}} {{required}}/>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.exam_proportions}}
+                </ol>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 btn btn-primary" onclick="handleNewExam()">
+                            <span>Új sor hozzáadása</span>
+                        </div>
+                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('exam')">
+                            <span>Utolsó sor törlése</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <label for="id_signature">3.5  Az aláírás megszerzésének feltétele, az aláírás érvényessége</label>
+            <div class='row'>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='signature' id='id_signature' class='form-control' placeholder='magyar' {{readonly}} {{required}}>{{data.signature}}</textarea>
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='signature_en' id='id_signature_en' class='form-control' placeholder='English (optional)' {{readonly}} {{required}}>{{data.signature_en}}</textarea>
+                </div>
+            </div>
+            <hr>
+            <label for="id_excellent">3.6 Érdemjegy-megállapítás - Grading</label>
+            <div class='row'>
+                <div class='col-sm-12  col-md'>
+                    <input type="text" name='placeholder_1' id='placeholder_1' class='form-control' placeholder='' value="jeles (5) - Excellent [A]" disabled />
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <p>{{data.excellent}}}" {{readonly}} {{required}} />
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12  col-md'>
+                    <input type="text" name='placeholder_2' id='placeholder_2' class='form-control' placeholder='' value="jeles (5) - Very Good [B]" disabled />
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <p>{{data.very_good}}}" {{readonly}} {{required}} />
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12  col-md'>
+                    <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="jó (4) - Good [C]" disabled />
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <p>{{data.good}}}" {{readonly}} {{required}} />
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12  col-md'>
+                    <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="közepes (3) - Satisfactory [D]" disabled />
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <p>{{data.satisfactory}}}" {{readonly}} {{required}} />
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12  col-md'>
+                    <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="elégséges (2) - Pass [E]" disabled />
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <p>{{data.pass}}}" {{readonly}} {{required}} />
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12  col-md'>
+                    <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="elégtelen (1) - Fail [F]" disabled />
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <p>{{data.fail}}}" {{readonly}} {{required}} />
+                </div>
+            </div>
+            <hr>
+            <label for="">3.7 Javítás és pótlás - Retake and make-up test</label>
+            <div class="row">
+                <div class="col-sm-12 col-md">
+                    <textarea type="textarea" placeholder="magyar" name="retake" id="id_retake" class="form-control" {{readonly}} {{required}}>{{data.retake}}</textarea>
+                </div>
+                <div class="col-sm-12 col-md">
+                    <textarea type="textarea" placeholder="English (optional)" name="retake_en" id="id_retake_en" class="form-control">{{data.retake_en}}</textarea>
+                </div>
+            </div>
+            <hr>
+            <label for="">3.8 A tantárgy elvégzéséhez szükséges tanulmányi munka - Working hours needed to complete the course</label>
+            <div class="workinghours">
+                <ol id="workinghours" style="padding: 0px;">
+                    {{^data.workhours_activity}}
+                    <li class="oc_1_1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="Munka jellege" class="form-control workinghours-type" />
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <input type="textarea" placeholder="Munkaórák száma" class="form-control workinghours-length" {{readonly}} {{required}}/>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="Alkalmak száma félévente" class="form-control workinghours-amount" />
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.workhours_activity}} {{#data.workhours_activity}}
+                    <li class="oc_1_1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="Munka jellege" value="{{{type}}}" class="form-control workinghours-type" />
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <input type="textarea" placeholder="Munkaórák száma" value="{{{length}}}" class="form-control workinghours-length" {{readonly}} {{required}}/>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <input type="text" placeholder="Alkalmak száma félévente" value="{{{amount}}}" class="form-control workinghours-amount" />
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.workhours_activity}}
+                </ol>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 btn btn-primary" onclick="handleNewWorkingHours()">
+                            <span>Új sor hozzáadása</span>
+                        </div>
+                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('workinghours')" {{readonly}} {{required}}>
+                            <span>Utolsó sor törlése</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <label for="" style="padding-top: 1rem;">3.9 A tantárgykövetelmények jóváhagyása és érvényessége - Approval and validity of subject requirements</label>
+            <div class='row'>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='validity_2' id='id_validity_2' class='form-control' placeholder='magyar' {{readonly}} {{required}}>{{data.validity_2}}</textarea>
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='validity_en_2' id='id_validity_en_2' class='form-control' placeholder='English (optional)' {{readonly}}>{{data.validity_en_2}}</textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12  col-md">
+                    <div>
+                        <label for="id_s_1_9">Jóváhagyás dátuma</label>
+                        <input type="date" name="validby_2" id="id_validby_2" class="form-control" placeholder="English (optional)" value="{{{data.validby_2}}}" {{readonly}} {{required}}>
+                    </div>
+                </div>
+                <div class=" col-sm-12  col-md">
+                    <div>
+                        <label for="id_s_1_9">Érvényesség vége</label>
+                        <input type="date" name="validuntil_2" id="id_validuntil_2" class="form-control" placeholder="English (optional)" value="{{{data.validuntil_2}}}" {{readonly}} {{required}}>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row" style="padding-top: 1rem; padding-bottom: 1rem;">
+                    <div class="col-sm-12 btn btn-primary" onclick="gahterSection3()">
+                        <span>Rész véglegesítése</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2>III. RÉSZLETES TANTÁRGYTEMATIKA - COURSE CURRICULUM</h2>
+        <div class="collapse4">
+            <h4>4 TEMATIKAI EGYSÉGEK ÉS TOVÁBBI RÉSZLETEK - THEMATIC UNITS AND FURTHER DETAILS</h4>
+        </div>
+        <div class="content4" id="content4">
+            <div class="topic-summary" id="topic-summary">
+                <label for="topic-summary-hu">4.1 A félévben sorra vett témák - Topics discussed during the semester</label>
+                <div class='row'>
+                    <div class='col-sm-12  col-md'>
+                        <textarea type="textarea" name='topic-summary-hu' id='topic-summary-hu' class='form-control' placeholder='magyar összegzés' {{readonly}} {{required}}>{{data.topic_summary_en}}</textarea>
+                    </div>
+                    <div class='col-sm-12  col-md'>
+                        <textarea type="textarea" name='topic-summary-en' id='topic-summary-en' class='form-control' placeholder='English (optional)' {{readonly}}>{{data.topic_summary_en}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <label for="">Előadások témái</label>
+            <div class="topics">
+                <ol id="topics" style="padding: 0px;">
+                    {{#data.topics}}
+                    <li class="oc_1_1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="magyar" class="form-control topic-hu">{{hu}}</textarea>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="English (optional)" class="form-control topic-en">{{en}}</textarea>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.topics}} {{^data.topics}}
+                    <li class="oc_1_1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="magyar" class="form-control topic-hu"></textarea>
+                            </div>
+                            <div class="col-sm-12 col-md">
+                                <textarea type="textarea" placeholder="English (optional)" class="form-control topic-en"></textarea>
+                            </div>
+                        </div>
+                    </li>
+                    {{/data.topics}}
+                </ol>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 btn btn-primary" onclick="handleNewTopic()">
+                            <span>Új sor hozzáadása</span>
+                        </div>
+                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('topics')">
+                            <span>Utolsó sor törlése</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <label for="">4.2 További oktatók – Lecturers participating in teaching</label>
+            <ol id="tutors" style="padding: 0px;">
+                {{#data.lecturers}}
+                <li class="oc_1_1">
+                    <div class="row">
+                        <div class="col-sm-12 col-md">
+                            <input type="textarea" placeholder="Név/Name" value="{{{name}}}" class="form-control tutor-name" {{readonly}} {{required}}/>
+                        </div>
+                        <div class="col-sm-12 col-md">
+                            <input type="textarea" placeholder="Beosztás/Position" value="{{{rank}}}" class="form-control tutor-rank" {{readonly}} {{required}}/>
+                        </div>
+                        <div class="col-sm-12 col-md">
+                            <input type="text" placeholder="Elérhetőség/Contact" value="{{{contact}}}" class="form-control tutor-contact" {{readonly}} {{required}} />
+                        </div>
+                    </div>
+                </li>
+                {{/data.lecturers}} {{^data.lecturers}}
+                <li class="oc_1_1">
+                    <div class="row">
+                        <div class="col-sm-12 col-md">
+                            <input type="textarea" placeholder="Név/Name" class="form-control tutor-name" {{readonly}} {{required}}/>
+                        </div>
+                        <div class="col-sm-12 col-md">
+                            <input type="textarea" placeholder="Beosztás/Position" class="form-control tutor-rank" {{readonly}} {{required}}/>
+                        </div>
+                        <div class="col-sm-12 col-md">
+                            <input type="text" placeholder="Elérhetőség/Contact" class="form-control tutor-contact" {{readonly}} {{required}} />
+                        </div>
+                    </div>
+                </li>
+                {{/data.lecturers}}
+            </ol>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 btn btn-primary" onclick="handleNewTutor()">
+                        <span>Új sor hozzáadása</span>
+                    </div>
+                    <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('performance-list')">
+                        <span>Utolsó sor törlése</span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <label for="validity_3" style="padding-top: 1rem;">4.3 A tantárgykövetelmények jóváhagyása és érvényessége - Approval and validity of subject requirements</label>
+            <div class='row'>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='validity_3' id='id_validity_3' class='form-control' placeholder='magyar' {{readonly}} {{required}}>{{data.validity_3}}</textarea>
+                </div>
+                <div class='col-sm-12  col-md'>
+                    <textarea type="textarea" name='validity_en_3' id='id_validity_en_3' class='form-control' placeholder='English' {{readonly}} {{required}}>{{data.validity_en_3}}</textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12  col-md">
+                    <div>
+                        <label for="id_s_1_9">Jóváhagyás dátuma</label>
+                        <input type="date" name="validby_3" id="id_validby_3" class="form-control" value="{{{data.validby_3}}}" {{readonly}} {{required}}>
+                    </div>
+                </div>
+                <div class=" col-sm-12  col-md">
+                    <div>
+                        <label for="id_s_1_9">Érvényesség vége</label>
+                        <input type="date" name="validuntil_3" id="id_validuntil_3" class="form-control" value="{{{data.validuntil_3}}}" {{readonly}} {{required}}>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row" style="padding-top: 1rem; padding-bottom: 1rem;">
+                    <div class="col-sm-12 btn btn-primary" onclick="gatherSection4()">
+                        <span>Űrlap véglegesítése</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<input type="hidden" name="ou" id="id_ou">
+<input type="hidden" name="ou_en" id="id_ou_en">
+<input type="hidden" name="outcomes_value_1" id="id_outcomes_value_1">
+<input type="hidden" name="outcomes_value_2" id="id_outcomes_value_2">
+<input type="hidden" name="outcomes_value_3" id="id_outcomes_value_3">
+<input type="hidden" name="outcomes_value_4" id="id_outcomes_value_4">
+<input type="hidden" name="supportmaterial" id="id_supportmaterial">
+<input type="hidden" name="midterm_proportions" id="id_midterm_proportions">
+<input type="hidden" name="exam_proportions" id="id_exam_proportions">
+<input type="hidden" name="workhours_activity" id="id_workhours_activity">
+<input type="hidden" name="topics" id="id_topics">
+<input type="hidden" name="topics_summary" id="id_topics_summary">
+<input type="hidden" name="lecturers" id="id_lecturers">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

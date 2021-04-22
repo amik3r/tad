@@ -84,6 +84,8 @@
         <FIELD NAME="methodology" TYPE="text" NOTNULL="true"></FIELD>
         <FIELD NAME="methodology_en" TYPE="text" NOTNULL="true"></FIELD>
         <FIELD NAME="supportmaterial" TYPE="text" NOTNULL="true"></FIELD>
+        <FIELD NAME="lastedited" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
+        <FIELD NAME="lasteditedby" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
         <FIELD NAME="locked" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
         <FIELD NAME="draft" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
         <FIELD NAME="version" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"></FIELD>
@@ -124,6 +126,8 @@
         <FIELD NAME="draft" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
         <FIELD NAME="published" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
         <FIELD NAME="created_by" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
+        <FIELD NAME="lastedited" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
+        <FIELD NAME="lasteditedby" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
         <FIELD NAME="parent" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"></FIELD>
         <FIELD NAME="version" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"></FIELD>
       </FIELDS>
@@ -144,6 +148,8 @@
         <FIELD NAME="validby_3" TYPE="int" LENGTH="10" NOTNULL="true"></FIELD>
         <FIELD NAME="validuntil_3" TYPE="int" LENGTH="10" NOTNULL="true"></FIELD>
         <FIELD NAME="locked" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
+        <FIELD NAME="lastedited" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
+        <FIELD NAME="lasteditedby" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
         <FIELD NAME="draft" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
         <FIELD NAME="published" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
         <FIELD NAME="created_by" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"></FIELD>
