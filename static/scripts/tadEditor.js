@@ -304,13 +304,13 @@ function setDepartmentName() {
 }
 
 function setOrganisationUnit() {
-    var coursecode = document.getElementById('id_coursecode')
+    var coursecode = document.getElementById('id_coursecode').value
     console.log('asd')
     console.log(coursecode)
-    if (coursecode.length == 11) {
+    if (coursecode.length === 11) {
         var departmentCode = coursecode.substring(3, 7)
-        document.getElementById('id_ou').value = departments[departmentCode].hu
-        document.getElementById('id_ou_en').value = departments[departmentCode].en
+        document.getElementById('id_ou').value = departments[departmentCode.toUpperCase()]['hu']
+        document.getElementById('id_ou_en').value = departments[departmentCode.toUpperCase()]['en']
         console.log(coursecode)
     }
 }

@@ -551,7 +551,7 @@ function create_tad_from_formdata($formdata, $id=null, $clone=false){
     global $USER;
     global $DB;
 
-    if (!is_null($id) || $clone){
+    if (is_null($id) || $clone){
         $tad = new tadAllSections($formdata, $USER->id);
         try{
             $tad->record_data($tad->userid);
@@ -559,6 +559,7 @@ function create_tad_from_formdata($formdata, $id=null, $clone=false){
             die;
             return false;
         }
+        
     } else {
         $tad = new tadSection1($formdata, $USER->id);
         try{

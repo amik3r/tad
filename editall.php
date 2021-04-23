@@ -108,7 +108,6 @@ if (!$PAGE->url->get_param('list') && !$PAGE->url->get_param('view')){
 } elseif ($id = $PAGE->url->get_param('view')){
     $templatestuff = gatherTadDataForView($id);
     echo $OUTPUT->render_from_template('local_tad/view_tadall', $templatestuff);
-
 } else {
     echo $OUTPUT->render_from_template('local_tad/list_tads', $templatestuff);
 }
