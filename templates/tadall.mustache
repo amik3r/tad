@@ -76,21 +76,13 @@ details. You should have received a copy of the GNU General Public License along
                     <input type="text" name="courseleadercontact" id="id_courseleadercontact" class="form-control" placeholder="elérhetőség" value="{{{data.courseleadercontact}}}" {{readonly}} {{required___}}>
                 </div>
             </div>
-            <label for="id_oua">1.8 Tantárgyat gondozó oktatási szervezeti egység – Organisational unit for the subject</label>
+            <label for="id_ou">1.8 Tantárgyat gondozó oktatási szervezeti egység – Organisational unit for the subject</label>
             <div class="row">
                 <div class=" col-sm-12  col-md">
-                    <select name="" id="ou" class="form-control" onchange="setDepartmentName()">
-                    {{^data.departments}}
-                    <option value="" selected disabled hidden>Tanszék kiválasztása</option>
-                    {{/data.departments}}
-                    <option value="{{{data.department_selected}}}" selected disabled hidden>{{data.ou}}</option>
-                    {{#data.departments}}
-                    <option value="{{{name}}}">{{name}}</option>
-                    {{/data.departments}}
-                </select>
+                    <input type="text" name="ou_en" id="id_ou" class="form-control" placeholder="Magyar" value="{{{data.ou}}}" {{readonly}} {{required___}}>
                 </div>
                 <div class=" col-sm-12  col-md">
-                    <input type="text" name="ou_en" id="ou_en" class="form-control" placeholder="English" value="{{{data.ou_en}}}" {{readonly}} {{required___}}>
+                    <input type="text" name="ou_en" id="id_ou_en" class="form-control" placeholder="English" value="{{{data.ou_en}}}" {{readonly}} {{required___}}>
                 </div>
             </div>
             <label for="id_website">1.9 A tantárgy weblapja – Subject website</label>
