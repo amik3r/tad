@@ -305,6 +305,7 @@ function setDepartmentName() {
 
 function setOrganisationUnit() {
     var coursecode = document.getElementById('id_coursecode')
+    console.log('asd')
     if (coursecode.length == 11) {
         var departmentCode = coursecode.substring(3, 7)
         document.getElementById('id_ou').value = departments[departmentCode].hu
