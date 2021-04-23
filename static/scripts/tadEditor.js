@@ -21,7 +21,7 @@ var dualColRowInput = `
 </li>
 `
 
-function getDualColRowInput(id, className='', eventlistenerType='', eventlistenerFunc=''){
+function getDualColRowInput(id, className = '', eventlistenerType = '', eventlistenerFunc = '') {
     var firstNode = '<li ' + 'class="' + id + '">'
     var fullNode = firstNode + `
         <div class="row">
@@ -36,7 +36,8 @@ function getDualColRowInput(id, className='', eventlistenerType='', eventlistene
     `
     return fullNode
 }
-function getSingleColRowInput(id, placeholder="magyar", classname=''){
+
+function getSingleColRowInput(id, placeholder = "magyar", classname = '') {
     var firstNode = '<li ' + 'class="' + id + '">'
     var fullNode = firstNode + `
         <div class="row">
@@ -49,7 +50,7 @@ function getSingleColRowInput(id, placeholder="magyar", classname=''){
     return fullNode
 }
 
-function getSingleColRowTextArea(id, placeholder="magyar", classname=""){
+function getSingleColRowTextArea(id, placeholder = "magyar", classname = "") {
     var firstNode = '<li ' + 'class="' + id + '">'
     var fullNode = firstNode + `
         <div class="row">
@@ -62,7 +63,7 @@ function getSingleColRowTextArea(id, placeholder="magyar", classname=""){
     return fullNode
 }
 
-function getPerformanceRow(id, fieldPrefix){
+function getPerformanceRow(id, fieldPrefix) {
     var firstNode = '<li ' + 'class="' + id + '">'
     var fullNode = firstNode + `
         <div class="row">
@@ -82,39 +83,39 @@ function getPerformanceRow(id, fieldPrefix){
     return fullNode
 }
 
-function handleNewOutcome(id, colcount, fieldPrefix="", className='', eventlistenerType='', evenlistenerFunc=''){
-    if (colcount === "dual"){
+function handleNewOutcome(id, colcount, fieldPrefix = "", className = '', eventlistenerType = '', evenlistenerFunc = '') {
+    if (colcount === "dual") {
         document.getElementById(id).innerHTML += getDualColRowInput(id, className, eventlistenerType, evenlistenerFunc)
-    } else if (colcount === 'performance'){
+    } else if (colcount === 'performance') {
         document.getElementById(id).innerHTML += getPerformanceRow(id, fieldPrefix)
     } else {
-        document.getElementById(id).innerHTML += getSingleColRowInput(id, placeholder="", classname=className)
+        document.getElementById(id).innerHTML += getSingleColRowInput(id, placeholder = "", classname = className)
     }
 }
 
 
 
 
-function handleRowDelete(id){
+function handleRowDelete(id) {
     var list = document.getElementById(id)
-    if (list.childNodes.length == 3){
+    if (list.childNodes.length == 3) {
         return
     }
     var last = list.lastChild
     list.removeChild(last)
 }
 
-function handlePerformanceCheck(){
+function handlePerformanceCheck() {
     var sum = 0
     var list = document.getElementById('performance-list')
     var listItems = list.getElementsByClassName('performance-number-field')
     for (let index = 0; index < listItems.length; index++) {
         sum += parseInt(listItems[index].value)
     }
-    if (sum == 100){
+    if (sum == 100) {
         var alertContainer = document.getElementById('alert-container')
         alertContainer.style.display = "none"
-    } else if (sum < 100){
+    } else if (sum < 100) {
         var alertContainer = document.getElementById('alert-container')
         alertContainer.style.display = "flex"
         alertContainer.style.backgroundColor = "#ffaaaa"
@@ -126,20 +127,20 @@ function handlePerformanceCheck(){
 }
 
 
-function disableSubmitButton(){
+function disableSubmitButton() {
     console.log('disabled');
     var b = document.getElementsByName('submitbutton')
     b = b[0]
     b.disabled = true
 }
 
-function enableSubmitButton(){
+function enableSubmitButton() {
     var b = document.getElementsByName('submitbutton')
     b = b[0]
     b.disabled = false
 }
 
-function applySubmitDisabler(){
+function applySubmitDisabler() {
     var inputFields = document.getElementsByTagName('input')
     for (let i = 0; i < inputFields.length; i++) {
         const element = inputFields[i];
@@ -152,118 +153,149 @@ function applySubmitDisabler(){
     }
 }
 
-function collapse1(){
+function collapse1() {
     var coll = document.getElementsByClassName("collapse1");
     var i;
-    
+
     for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = document.getElementById('content1');
-        if (content.style.maxHeight){
-            content.style.maxHeight = null;
-          } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-          }
-      });
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = document.getElementById('content1');
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
     }
 }
-function collapse2(){
+
+function collapse2() {
     var coll = document.getElementsByClassName("collapse2");
     var i;
-    
+
     for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = document.getElementById('content2');
-        if (content.style.maxHeight){
-            content.style.maxHeight = null;
-          } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-          }
-      });
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = document.getElementById('content2');
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
     }
 }
-function collapse3(){
+
+function collapse3() {
     var coll = document.getElementsByClassName("collapse3");
     var i;
-    
+
     for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = document.getElementById('content3');
-        if (content.style.maxHeight){
-            content.style.maxHeight = null;
-          } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-          }
-      });
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = document.getElementById('content3');
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
     }
 }
-function collapse4(){
+
+function collapse4() {
     var coll = document.getElementsByClassName("collapse4");
     var i;
-    
+
     for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = document.getElementById('content4');
-        if (content.style.maxHeight){
-            content.style.maxHeight = null;
-          } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-          }
-      });
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = document.getElementById('content4');
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
     }
 }
 
-
-const departmentsByCode = {
-    "GT20": "Menedzsment és Vállalkozásgazdaságtan Tanszék",
-    "GT30": "Közgazdaságtan Tanszék",
-    "GT35": "Pénzügyek Tanszék",
-    "GT41": "Filozófia és Tudománytörténet Tanszék",
-    "GT42": "Környezetgazdaságtan Tanszék",
-    "GT43": "Szociológia és Kommunikáció Tanszék",
-    "GT51": "Műszaki Pedagógia Tanszék",
-    "GT52": "Ergonómia és Pszichológia Tanszék",
-    "GT55": "Üzleti Jog Tanszék",
-    "GT61": "Idegen Nyelvi Központ",
-    "GT62": "Idegen Nyelvi Központ",
-    "GT63": "Idegen Nyelvi Központ",
-    "GT65": "Idegen Nyelvi Központ",
-    "GT70": "Testnevelési Központ",
-    "GTDH": "Dékáni Hivatal"
+const departments = {
+    "GT20": {
+        'hu': 'Menedzsment és Vállalkozásgazdaságtan Tanszék',
+        'en': 'Department of Management and Business Economics'
+    },
+    "GT30": {
+        'hu': 'Közgazdaságtan Tanszék',
+        'en': 'Department of Economics'
+    },
+    "GT35": {
+        'hu': 'Pénzügyek Tanszék',
+        'en': 'Department of Finance'
+    },
+    "GT41": {
+        'hu': 'Filozófia és Tudománytörténet Tanszék',
+        'en': 'Department of Philosophy and History of Science'
+    },
+    "GT42": {
+        'hu': 'Környezetgazdaságtan Tanszék',
+        'en': 'Department of Environmental Economics'
+    },
+    "GT43": {
+        'hu': 'Szociológia és Kommunikáció Tanszék',
+        'en': 'Department of Sociology and Communication'
+    },
+    "GT51": {
+        'hu': 'Műszaki Pedagógia Tanszék',
+        'en': 'Department of Technical Education'
+    },
+    "GT52": {
+        'hu': 'Ergonómia és Pszichológia Tanszék',
+        'en': 'Department of Ergonomics and Psychology'
+    },
+    "GT55": {
+        'hu': 'Üzleti Jog Tanszék',
+        'en': 'Department of Business Law'
+    },
+    "GT61": {
+        'hu': 'Idegen Nyelvi Központ',
+        'en': 'Centre of Modern Languages'
+    },
+    "GT62": {
+        'hu': 'Idegen Nyelvi Központ',
+        'en': 'Centre of Modern Languages'
+    },
+    "GT63": {
+        'hu': 'Idegen Nyelvi Központ',
+        'en': 'Centre of Modern Languages'
+    },
+    "GT65": {
+        'hu': 'Idegen Nyelvi Központ',
+        'en': 'Centre of Modern Languages'
+    },
+    "GT70": {
+        'hu': 'Testnevelési Központ',
+        'en': 'Centre of Physical Education'
+    },
+    "GTDH": {
+        'hu': 'Dékáni Hivata',
+        'en': "Dean's Office"
+    }
 }
 
-const departmentsByName = {
-    'Department of Ergonomics and Psychology': 'Ergonómia és Pszichológia Tanszék',
-    'Department of Philosophy and History of Science ': 'Filozófia és Tudománytörténet Tanszék',
-    'Centre of Modern Languages': 'Idegen Nyelvi Központ',
-    'Department of Environmental Economics': 'Környezetgazdaságtan Tanszék',
-    'Department of Economics': 'Közgazdaságtan Tanszék',
-    'Department of Management and Business Economics': 'Menedzsment és Vállalkozásgazdaságtan Tanszék',
-    'Institute of Continuing Engineering Education': 'Mérnöktovábbképző Intézet',
-    'Department of Technical Education': 'Műszaki Pedagógia Tanszék',
-    'Department of Sociology and Communication': 'Szociológia és Kommunikáció Tanszék',
-    'Centre of Physical Education': 'Testnevelési Központ',
-    'Department of Business Law': 'Üzleti Jog Tanszék',
-    'Department of Finance': 'Pénzügyek Tanszék',
-    "Dean's Office": 'Dékáni Hivatal',
-}
-
-function findEnglishDepartmentName(name){
+function findEnglishDepartmentName(name) {
     const englishNames = Object.keys(departmentsByName)
     for (let i = 0; i < englishNames.length; i++) {
         const element = englishNames[i];
-        if (departmentsByName[element] === name){
+        if (departmentsByName[element] === name) {
             console.log(element);
             return element
         }
     }
 }
 
-function setDepartmentName(){
+function setDepartmentName() {
     var departmentValue = document.getElementById('ou').value
     var englishName = findEnglishDepartmentName(departmentsByCode[departmentValue])
     document.getElementById('ou_en').innerHTML = englishName
@@ -271,7 +303,18 @@ function setDepartmentName(){
     document.getElementById('id_ou').value = departmentsByCode[departmentValue]
 }
 
+function setOrganisationUnit() {
+    var coursecode = document.getElementById('id_coursecode')
+    if (coursecode.length == 11) {
+        var departmentCode = coursecode.substring(3, 7)
+        document.getElementById('id_ou').value = departments[departmentCode].hu
+        document.getElementById('id_ou_en').value = departments[departmentCode].en
+        console.log(coursecode)
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function(event) {
+    document.getElementById('id_coursecode').addEventListener('change', setOrganisationUnit)
     collapse1()
     collapse2()
     collapse3()
