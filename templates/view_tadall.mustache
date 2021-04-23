@@ -344,30 +344,13 @@ details. You should have received a copy of the GNU General Public License along
                     <li class="supportmaterials">
                         <div class="row">
                             <div class="col-sm-12 col-md">
-                                <input type="text" placeholder="" value="{{{hu}}}" class="form-control supportmaterial" {{readonly}} {{required___}}/>
+                                <p>{{hu}}</p>
                             </div>
                         </div>
                     </li>
                     {{/data.supportmaterial}}
                 </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewSupport('supportmaterials')" {{readonly}} {{required___}}>
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button delete-button" onclick="handleRowDelete('supportmaterials')" {{readonly}} {{required___}}>
-                            <span>Utolsó sor törlése</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="container">
-                <div class="row" style="padding-top: 1rem; padding-bottom: 1rem;">
-                    <div class="col-sm-12 btn btn-primary" onclick="gatherSection2()">
-                        <span>Rész véglegesítése</span>
-                    </div>
-                </div>
+
             </div>
         </div>
         <h2>II. TANTÁRGYKÖVETELMÉNYEK - SUBJECT REQUIREMENTS</h2>
@@ -414,18 +397,7 @@ details. You should have received a copy of the GNU General Public License along
                     </li>
                     {{/data.midterm_proportions}}
                 </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewMidterm()" {{readonly}} {{required}}>
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('midterm')" {{readonly}} {{required}}>
-                            <span>Utolsó sor törlése</span>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <hr>
             <h6>3.4 Vizsgaelemek részaránya a minősítésben</h6>
             <div class="exam">
                 <ol id="exam" style="padding: 0px;">
@@ -546,16 +518,6 @@ details. You should have received a copy of the GNU General Public License along
                     </li>
                     {{/data.workhours_activity}}
                 </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewWorkingHours()">
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('workinghours')" {{readonly}} {{required}}>
-                            <span>Utolsó sor törlése</span>
-                        </div>
-                    </div>
-                </div>
             </div>
             <h6>3.9 A tantárgykövetelmények jóváhagyása és érvényessége - Approval and validity of subject requirements</h6>
             <div class='row'>
@@ -577,13 +539,6 @@ details. You should have received a copy of the GNU General Public License along
                     <div>
                         <h6>Érvényesség vége</h6>
                         <input type="date" name="validuntil_2" id="id_validuntil_2" class="form-control" placeholder="English (optional)" value="{{{data.validuntil_2}}}" {{readonly}} {{required}}>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row" style="padding-top: 1rem; padding-bottom: 1rem;">
-                    <div class="col-sm-12 btn btn-primary" onclick="gahterSection3()">
-                        <span>Rész véglegesítése</span>
                     </div>
                 </div>
             </div>
@@ -620,16 +575,6 @@ details. You should have received a copy of the GNU General Public License along
                     </li>
                     {{/data.topics}}
                 </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewTopic()">
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('topics')">
-                            <span>Utolsó sor törlése</span>
-                        </div>
-                    </div>
-                </div>
             </div>
             <h6>4.2 További oktatók – Lecturers participating in teaching</h6>
             <ol id="tutors" style="padding: 0px;">
@@ -649,16 +594,6 @@ details. You should have received a copy of the GNU General Public License along
                 </li>
                 {{/data.lecturers}}
             </ol>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 btn btn-primary" onclick="handleNewTutor()">
-                        <span>Új sor hozzáadása</span>
-                    </div>
-                    <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('performance-list')">
-                        <span>Utolsó sor törlése</span>
-                    </div>
-                </div>
-            </div>
             <hr>
             <h6>4.3 A tantárgykövetelmények jóváhagyása és érvényessége - Approval and validity of subject requirements</h6>
             <div class='row'>
@@ -680,13 +615,6 @@ details. You should have received a copy of the GNU General Public License along
                     <div>
                         <h6>Érvényesség vége</h6>
                         <input type="date" name="validuntil_3" id="id_validuntil_3" class="form-control" value="{{{data.validuntil_3}}}" {{readonly}} {{required}}>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row" style="padding-top: 1rem; padding-bottom: 1rem;">
-                    <div class="col-sm-12 btn btn-primary" onclick="gatherSection4()">
-                        <span>Űrlap véglegesítése</span>
                     </div>
                 </div>
             </div>
