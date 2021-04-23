@@ -306,6 +306,7 @@ function setDepartmentName() {
 function setOrganisationUnit() {
     var coursecode = document.getElementById('id_coursecode')
     console.log('asd')
+    console.log(coursecode)
     if (coursecode.length == 11) {
         var departmentCode = coursecode.substring(3, 7)
         document.getElementById('id_ou').value = departments[departmentCode].hu
@@ -315,7 +316,6 @@ function setOrganisationUnit() {
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    document.getElementById('id_coursecode').addEventListener('change', setOrganisationUnit)
     collapse1()
     collapse2()
     collapse3()
