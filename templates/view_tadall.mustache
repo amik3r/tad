@@ -45,7 +45,7 @@ details. You should have received a copy of the GNU General Public License along
             <div class="container">
                 <div class="row justify-content-between">
                     <div class="col-md-4">
-                        <h6>1.4 Kurzustípuscok és óraszámok - Course type and number of lessons</h6>
+                        <h6>1.4 Kurzustípusok és óraszámok - Course type and number of lessons</h6>
                     </div>
                     <div class="col-md-4">
                         <h6>1.5 Tanulmányi teljesítményértékelés - Type of assessment</h6>
@@ -53,36 +53,52 @@ details. You should have received a copy of the GNU General Public License along
                 </div>
                 <div class="row justify-content-between">
                     <div class="col-md-4">
-                        <div class="row">
-                            <div class="col">
-                                <p>
-                                    Előadás/Lecture
-                                </p>
-                            </div>
-                            <div class="col">
-                                <p>{{data.lecture}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <p>
-                                    Gyakorlat/Practice
-                                </p>
-                            </div>
-                            <div class="col">
-                                <p>{{data.practice}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <p>
-                                    Labor/Laboratory
-                                </p>
-                            </div>
-                            <div class="col">
-                                <p>{{data.laboratory}}</p>
-                            </div>
-                        </div>
+                        <table class="table-striped table">
+                            <tr>
+                                <th>
+                                    Típus
+                                </th>
+                                <th>
+                                    Type
+                                </th>
+                                <th>
+                                    Óraszám/Lessons
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Előadás
+                                </td>
+                                <td>
+                                    Lecture
+                                </td>
+                                <td class="coursetype-center">
+                                    {{data.lecture}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Gyakorlat
+                                </td>
+                                <td>
+                                    Practice
+                                </td>
+                                <td class="coursetype-center">
+                                    {{data.practice}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Labor
+                                </td>
+                                <td>
+                                    Laboratory
+                                </td>
+                                <td class="coursetype-center">
+                                    {{data.laboratory}}
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="col-md-4">
                         <p>{{data.assesmenttype}}/{{data.assesmenttype_en}}</p>
@@ -101,17 +117,14 @@ details. You should have received a copy of the GNU General Public License along
         <div class="row">
             <div class=" col-sm-12  col-md">
                 <p>
-                    Neve/name: {{data.courseleadername}}
+                    Neve/Name: {{data.courseleadername}}
                 </p>
             </div>
             <div class=" col-sm-12  col-md">
-                <p>Beosztása: {{data.courseleaderrank}}</p>
+                <p>Beosztása/Rank: {{data.courseleaderrank}}/{{data.courseleaderrank_en}}</p>
             </div>
             <div class=" col-sm-12  col-md">
-                <p>Rank: {{data.courseleaderrank_en}}</p>
-            </div>
-            <div class=" col-sm-12  col-md">
-                <p>Elérthetősége: {{data.courseleadercontact}}</p>
+                <p>Elérthetősége/Contact: {{data.courseleadercontact}}</p>
             </div>
         </div>
         <hr>
@@ -128,13 +141,13 @@ details. You should have received a copy of the GNU General Public License along
         <h6 for="id_website">1.9 A tantárgy weblapja – Subject website</h6>
         <div class="row">
             <div class=" col-sm-12  col-md">
-                <p>{{data.website}}</p>
+                <a href="{{{data.website}}}">{{data.website}}</a>
             </div>
         </div>
         <hr>
-        <h6 for="id_lang">1.10 A tantárgy oktatásának nyelve- language of teaching</h6>
+        <h6 for="id_lang">1.10 A tantárgy oktatásának nyelve - language of teaching</h6>
         <div class="row">
-            <div class=" col-sm-12  col-md">
+            <div class=" col-sm-12 col-md">
                 <p>{{data.lang}}</p>
             </div>
         </div>
@@ -214,8 +227,8 @@ details. You should have received a copy of the GNU General Public License along
                 </div>
             </div>
             <hr>
-            <h4 for="">2.2 Tanulmányi eredmények - Learning outcomes</h4>
-            <h6>Tudás/Knowledge</h6>
+            <h5 for="">2.2 Tanulmányi eredmények - Learning outcomes</h5>
+            <h6>A. Tudás/Knowledge</h6>
             <div class="outcomes_1">
                 <ol id="outcomes_1" style="padding: 0px;">
                     {{#data.outcome_1}}
@@ -231,19 +244,9 @@ details. You should have received a copy of the GNU General Public License along
                     </li>
                     {{/data.outcome_1}}
                 </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome1('outcomes_1')">
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('outcomes_1')">
-                            <span>Utolsó sor törlése</span>
-                        </div>
-                    </div>
-                </div>
             </div>
             <hr>
-            <h6>Képesség/Skills</h6>
+            <h6>B. Képesség/Skills</h6>
             <div class="outcomes_2">
                 <ol id="outcomes_2" style="padding: 0px;">
                     {{#data.outcome_2}}
@@ -260,97 +263,68 @@ details. You should have received a copy of the GNU General Public License along
                     {{/data.outcome_2}}
                 </ol>
                 <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome2('outcomes_2')">
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('outcomes_2')">
-                            <span>Utolsó sor törlése</span>
-                        </div>
+                </div>
+                <hr>
+                <h6>C. Attitűd/Attitude</h6>
+                <div class="outcomes_3">
+                    <ol id="outcomes_3" style="padding: 0px;">
+                        {{#data.outcome_3}}
+                        <li class="outcomes_3">
+                            <div class="row">
+                                <div class="col-sm-12 col-md">
+                                    <p>{{hu}}</p>
+                                </div>
+                                <div class="col-sm-12 col-md">
+                                    <p>{{en}}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {{/data.outcome_3}}
+                    </ol>
+                </div>
+                <hr>
+                <h6>D. Önállóság és felelősség/Independence and responsibility</h6>
+                <div class="outcomes_4">
+                    <ol id="outcomes_4" style="padding: 0px;">
+                        {{#data.outcome_4}}
+                        <li class="outcomes_4">
+                            <div class="row">
+                                <div class="col-sm-12 col-md">
+                                    <p>{{hu}}</p>
+                                </div>
+                                <div class="col-sm-12 col-md">
+                                    <p>{{en}}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {{/data.outcome_4}}
+                    </ol>
+                </div>
+                <hr>
+                <h6 for="">2.3 Oktatásmódszertan - Methodology of teaching</h6>
+                <div class='row'>
+                    <div class='col-sm-12  col-md'>
+                        <p>{{data.methodology}}</p>
+                    </div>
+                    <div class='col-sm-12  col-md'>
+                        <p>{{data.methodology_en}}</p>
                     </div>
                 </div>
-            </div>
-            <hr>
-            <h6>Attitűd/Attitude</h6>
-            <div class="outcomes_3">
-                <ol id="outcomes_3" style="padding: 0px;">
-                    {{#data.outcome_3}}
-                    <li class="outcomes_3">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <p>{{hu}}</p>
+                <hr>
+                <h6>2.4 Tanulástámogató anyagok - Materials supporting learning</h6>
+                <div class="supportmaterials">
+                    <ol id="supportmaterials" style="padding: 0px;">
+                        {{#data.supportmaterial}}
+                        <li class="supportmaterials">
+                            <div class="row">
+                                <div class="col-sm-12 col-md">
+                                    <p>{{hu}}</p>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md">
-                                <p>{{en}}</p>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.outcome_3}}
-                </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome3('outcomes_3')">
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('outcomes_3')">
-                            <span>Utolsó sor törlése</span>
-                        </div>
-                    </div>
+                        </li>
+                        {{/data.supportmaterial}}
+                    </ol>
                 </div>
-            </div>
-            <hr>
-            <h6>Önállóság és felelősség/Independence and responsibility</h6>
-            <div class="outcomes_4">
-                <ol id="outcomes_4" style="padding: 0px;">
-                    {{#data.outcome_4}}
-                    <li class="outcomes_4">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <p>{{hu}}</p>
-                            </div>
-                            <div class="col-sm-12 col-md">
-                                <p>{{en}}</p>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.outcome_4}}
-                </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome4('outcomes_4')" {{readonly}} {{required___}}>
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button delete-button" onclick="handleRowDelete('outcomes_4')" {{readonly}} {{required___}}>
-                            <span>Utolsó sor törlése</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <h6 for="">2.3 Oktatásmódszertan - Methodology of teaching</h6>
-            <div class='row'>
-                <div class='col-sm-12  col-md'>
-                    <p>{{data.methodology}}</p>
-                </div>
-                <div class='col-sm-12  col-md'>
-                    <p>{{data.methodology_en}}</p>
-                </div>
-            </div>
-            <hr>
-            <h6>2.4 Tanulástámogató anyagok - Materials supporting learning</h6>
-            <div class="supportmaterials">
-                <ol id="supportmaterials" style="padding: 0px;">
-                    {{#data.supportmaterial}}
-                    <li class="supportmaterials">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <p>{{hu}}</p>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.supportmaterial}}
-                </ol>
-
             </div>
         </div>
         <h2>II. TANTÁRGYKÖVETELMÉNYEK - SUBJECT REQUIREMENTS</h2>
@@ -381,17 +355,31 @@ details. You should have received a copy of the GNU General Public License along
             <h6>3.3 Szorgalmi időszakban végzett teljesítményértékelések részaránya a minősítésben - Proportion of mid-term performance assessments in final grading</h6>
             <div class="midterm-list">
                 <ol id="midterm" style="padding: 0px;">
+                    <table class="table table-striped grading-table">
+                        <tr>
+                            <th>Megnevezés</th>
+                            <th>Name</th>
+                            <th>Százalék/percent</th>
+                        </tr>
+                        {{#data.midterm_proportions}}
+                        <tr>
+                            <td>{{hu}}</td>
+                            <td>{{en}}</td>
+                            <td>{{percent}}</td>
+                        </tr>
+                        {{/data.midterm_proportions}}
+                    </table>
                     {{#data.midterm_proportions}}
                     <li class="oc_1_1">
                         <div class="row">
                             <div class="col-sm-12 col-md">
-                                <input type="textarea" placeholder="Típus (magyar)" value="{{{hu}}}" class="form-control midterm-hu" {{readonly}} {{required}}/>
+                                <p>{{hu}}</p>
                             </div>
                             <div class="col-sm-12 col-md">
-                                <input type="textarea" placeholder="Type (optional)" value="{{{en}}}" class="form-control midterm-en" {{readonly}} {{required}}/>
+                                <p>{{en}}</p>
                             </div>
                             <div class="col-sm-12 col-md">
-                                <input type="text" placeholder="Százalék/percent" value="{{{percent}}}" class="form-control midterm-percent" {{readonly}} {{required}} />
+                                <p>{{percent}}</p>
                             </div>
                         </div>
                     </li>
@@ -399,35 +387,6 @@ details. You should have received a copy of the GNU General Public License along
                 </ol>
             </div>
             <h6>3.4 Vizsgaelemek részaránya a minősítésben</h6>
-            <div class="exam">
-                <ol id="exam" style="padding: 0px;">
-                    {{#data.exam_proportions}}
-                    <li class="oc_1_1">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <input type="text" placeholder="Típus (magyar)" value="{{{hu}}}" class="form-control exam-hu" {{readonly}} {{required}}/>
-                            </div>
-                            <div class="col-sm-12 col-md">
-                                <input type="text" placeholder="Type (optional)" value="{{{en}}}" class="form-control exam-en" {{readonly}} {{required}}/>
-                            </div>
-                            <div class="col-sm-12 col-md">
-                                <input type="text" placeholder="Százalék/percent" value="{{{percent}}}" class="form-control exam-percent" onchange="handleExamChange()" {{readonly}} {{required}}/>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.exam_proportions}}
-                </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewExam()">
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('exam')">
-                            <span>Utolsó sor törlése</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <hr>
             <h6>3.5 Az aláírás megszerzésének feltétele, az aláírás érvényessége</h6>
             <div class='row'>
@@ -440,53 +399,37 @@ details. You should have received a copy of the GNU General Public License along
             </div>
             <hr>
             <h6>3.6 Érdemjegy-megállapítás - Grading</h6>
-            <div class='row'>
-                <div class='col-sm-12  col-md'>
-                    <input type="text" name='placeholder_1' id='placeholder_1' class='form-control' placeholder='' value="jeles (5) - Excellent [A]" disabled />
-                </div>
-                <div class='col-sm-12  col-md'>
-                    <p>{{data.excellent}}}" {{readonly}} {{required}} />
-                </div>
-            </div>
-            <div class="row">
-                <div class='col-sm-12  col-md'>
-                    <input type="text" name='placeholder_2' id='placeholder_2' class='form-control' placeholder='' value="jeles (5) - Very Good [B]" disabled />
-                </div>
-                <div class='col-sm-12  col-md'>
-                    <p>{{data.very_good}}}" {{readonly}} {{required}} />
-                </div>
-            </div>
-            <div class="row">
-                <div class='col-sm-12  col-md'>
-                    <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="jó (4) - Good [C]" disabled />
-                </div>
-                <div class='col-sm-12  col-md'>
-                    <p>{{data.good}}}" {{readonly}} {{required}} />
-                </div>
-            </div>
-            <div class="row">
-                <div class='col-sm-12  col-md'>
-                    <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="közepes (3) - Satisfactory [D]" disabled />
-                </div>
-                <div class='col-sm-12  col-md'>
-                    <p>{{data.satisfactory}}}" {{readonly}} {{required}} />
-                </div>
-            </div>
-            <div class="row">
-                <div class='col-sm-12  col-md'>
-                    <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="elégséges (2) - Pass [E]" disabled />
-                </div>
-                <div class='col-sm-12  col-md'>
-                    <p>{{data.pass}}}" {{readonly}} {{required}} />
-                </div>
-            </div>
-            <div class="row">
-                <div class='col-sm-12  col-md'>
-                    <input type="text" name='s_2_1' id='id_s_2_1' class='form-control' placeholder='' value="elégtelen (1) - Fail [F]" disabled />
-                </div>
-                <div class='col-sm-12  col-md'>
-                    <p>{{data.fail}}}" {{readonly}} {{required}} />
-                </div>
+            <div class='row justify-content-center'>
+                <table class="table table-striped grading-table">
+                    <tr>
+                        <th>Érdemjegy/grading</th>
+                        <th>Százalék/percent</th>
+                    </tr>
+                    <tr>
+                        <td>jeles (5) - Excellent [A]</td>
+                        <td>{{data.excellent}}%</td>
+                    </tr>
+                    <tr>
+                        <td>jeles (5) - Very Good [B]</td>
+                        <td>{{data.very_good}}%</td>
+                    </tr>
+                    <tr>
+                        <td>jó (4) - Good [C]</td>
+                        <td>{{data.good}}%</td>
+                    </tr>
+                    <tr>
+                        <td>közepes (3) - Satisfactory [D]</td>
+                        <td>{{data.satisfactory}}%</td>
+                    </tr>
+                    <tr>
+                        <td>elégséges (2) - Pass [E]</td>
+                        <td>{{data.pass}}%</td>
+                    </tr>
+                    <tr>
+                        <td>elégtelen (1) - Fail [F]</td>
+                        <td>{{data.fail}}%</td>
+                    </tr>
+                </table>
             </div>
             <hr>
             <h6>3.7 Javítás és pótlás - Retake and make-up test</h6>
@@ -501,23 +444,27 @@ details. You should have received a copy of the GNU General Public License along
             <hr>
             <h6>3.8 A tantárgy elvégzéséhez szükséges tanulmányi munka - Working hours needed to complete the course</h6>
             <div class="workinghours">
-                <ol id="workinghours" style="padding: 0px;">
-                    {{#data.workhours_activity}}
-                    <li class="oc_1_1">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <input type="text" placeholder="Munka jellege" value="{{{type}}}" class="form-control workinghours-type" />
-                            </div>
-                            <div class="col-sm-12 col-md">
-                                <input type="textarea" placeholder="Munkaórák száma" value="{{{length}}}" class="form-control workinghours-length" {{readonly}} {{required}}/>
-                            </div>
-                            <div class="col-sm-12 col-md">
-                                <input type="text" placeholder="Alkalmak száma félévente" value="{{{amount}}}" class="form-control workinghours-amount" />
-                            </div>
-                        </div>
-                    </li>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Munka jellege</th>
+                        <th>Work Type</th>
+                        <th>Munkaórák száma/Amount of work hours</th>
+                    </tr>
+                    <tr>
+                        {{#data.workhours_activity}}
+                        <td>
+                            {{type}}
+                        </td>
+                        <td>
+                            {{type_en}}
+                        </td>
+                        <td>
+                            {{amount}}
+                        </td>
+                    </tr>
                     {{/data.workhours_activity}}
-                </ol>
+
+                </table>
             </div>
             <h6>3.9 A tantárgykövetelmények jóváhagyása és érvényessége - Approval and validity of subject requirements</h6>
             <div class='row'>
@@ -532,13 +479,13 @@ details. You should have received a copy of the GNU General Public License along
                 <div class=" col-sm-12  col-md">
                     <div>
                         <h6>Jóváhagyás dátuma</h6>
-                        <input type="date" name="validby_2" id="id_validby_2" class="form-control" placeholder="English (optional)" value="{{{data.validby_2}}}" {{readonly}} {{required}}>
+                        <p>{{data.validby_2}}</p>
                     </div>
                 </div>
                 <div class=" col-sm-12  col-md">
                     <div>
                         <h6>Érvényesség vége</h6>
-                        <input type="date" name="validuntil_2" id="id_validuntil_2" class="form-control" placeholder="English (optional)" value="{{{data.validuntil_2}}}" {{readonly}} {{required}}>
+                        <p>{{data.validuntil_2}}</p>
                     </div>
                 </div>
             </div>

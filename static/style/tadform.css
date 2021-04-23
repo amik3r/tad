@@ -269,3 +269,17 @@ li {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+
+.grading-table {
+    width: 70%;
+}
+
+.grading-table.td {
+    width: 10rem;
+}
+
+.coursetype-center {
+    margin: auto;
+    padding: auto;
+    align-items: center;
+}

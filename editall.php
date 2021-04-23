@@ -43,9 +43,9 @@ $PAGE->requires->js(new moodle_url('./static/scripts/section4.js'));
 $PAGE->requires->jquery();
 $CFG->cache_js = false;
 
-if (!has_capability('local/tad:manager', $context) || !has_capability('local/tad:editor', $context)){
-    redirect($CFG->wwwroot . '/local/tad/view.php');
-}
+//if (!has_capability('local/tad:manager', $context) || !has_capability('local/tad:editor', $context)){
+//    redirect($CFG->wwwroot . '/local/tad/view.php');
+//}
 
 require_once($CFG->dirroot . '/local/tad/classes/form/tadSectionAll.php');
 // See if can edit form
@@ -85,6 +85,9 @@ if (!$PAGE->url->get_param('list')){
     // if not in list view and creating a new entry 
     } else {
         $data['departments'] = $departments;
+        if (is_null($data['website']) || $data['website'] === '' || !isset($data['website'])){
+            $data['website'] = 'https://edu.gtk.bme.hu';
+        }
         $mform->templatestuff = ["data" => $data];
         $mform->set_data(['editable' => ($canedit ? 'required' : ''), 'id' => 0]);
     }
