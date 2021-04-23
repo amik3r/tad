@@ -745,6 +745,8 @@ function gatherTadDataForEdit($id, $departments){
 function gatherTadDataForView($id){
     $departmentsObj = new Department();
     $data = gatherTadData($id);
+    var_dump($data);
+    die;
     $data['validby'] = gmdate("Y-m-d",intval($data['validby']));
     $data['validuntil'] = gmdate("Y-m-d",intval($data['validuntil']));
     $data['validby_2'] = gmdate("Y-m-d",intval($data['validby_2']));
