@@ -1,4 +1,4 @@
-function handleNewMidterm(){
+function handleNewMidterm() {
     const node = `
     <li class="oc_1_1">
         <div class="row">
@@ -19,7 +19,7 @@ function handleNewMidterm(){
     applySubmitDisabler()
 }
 
-function handleNewExam(){
+function handleNewExam() {
     const node = `
     <li class="oc_1_1">
         <div class="row">
@@ -39,7 +39,8 @@ function handleNewExam(){
     document.getElementById('exam').innerHTML += node;
     applySubmitDisabler()
 }
-function handleNewRetake(){
+
+function handleNewRetake() {
     const node = `
     <li class="oc_1_1">
         <div class="row">
@@ -57,7 +58,7 @@ function handleNewRetake(){
     applySubmitDisabler()
 }
 
-function handleNewWorkingHours(){
+function handleNewWorkingHours() {
     var node = `
     <li class="oc_1_1">
         <div class="row">
@@ -93,7 +94,7 @@ var workinghours = {
     "workinghours": []
 }
 
-function gatherMidterm(){
+function gatherMidterm() {
     var arr = []
     var container = document.getElementById('midterm')
     var rows = container.getElementsByClassName('row')
@@ -110,7 +111,7 @@ function gatherMidterm(){
     document.getElementById('id_midterm_proportions').value = JSON.stringify(midterm)
 }
 
-function gatherExam(){
+function gatherExam() {
     var arr = []
     var container = document.getElementById('exam')
     var rows = container.getElementsByClassName('row')
@@ -127,14 +128,14 @@ function gatherExam(){
     document.getElementById('id_exam_proportions').value = JSON.stringify(exam)
 }
 
-function gatherWorkingHours(){
+function gatherWorkingHours() {
     var arr = []
     var container = document.getElementById('workinghours')
     var rows = container.getElementsByClassName('row')
     for (let i = 0; i < rows.length; i++) {
         var data = {
             "type": rows[i].getElementsByClassName('workinghours-type')[0].value,
-            "length": rows[i].getElementsByClassName('workinghours-length')[0].value,
+            "type_en": rows[i].getElementsByClassName('workinghours-length')[0].value,
             "amount": rows[i].getElementsByClassName('workinghours-amount')[0].value
         }
         arr.push(data)
@@ -143,9 +144,9 @@ function gatherWorkingHours(){
     console.log(workinghours);
     document.getElementById('id_workhours_activity').value = JSON.stringify(workinghours)
 }
-function gahterSection3(){
+
+function gahterSection3() {
     gatherMidterm()
     gatherExam()
     gatherWorkingHours()
 }
-
