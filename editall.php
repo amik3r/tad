@@ -43,9 +43,9 @@ $PAGE->requires->js(new moodle_url('./static/scripts/section4.js'));
 $PAGE->requires->jquery();
 $CFG->cache_js = false;
 
-//if (!has_capability('local/tad:manager', $context) || !has_capability('local/tad:editor', $context)){
-//    redirect($CFG->wwwroot . '/local/tad/view.php');
-//}
+if (!has_capability('local/tad:manager', $context) || !has_capability('local/tad:editor', $context)){
+    redirect($CFG->wwwroot . '/local/tad/view.php');
+}
 
 require_once($CFG->dirroot . '/local/tad/classes/form/tadSectionAll.php');
 // See if can edit form
