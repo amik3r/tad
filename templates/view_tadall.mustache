@@ -441,7 +441,7 @@ details. You should have received a copy of the GNU General Public License along
                 <table class="table table-striped">
                     <tr>
                         <th>Munka jellege</th>
-                        <th>Work Type</th>
+                        <th>Work type</th>
                         <th>Munkaórák száma/Amount of work hours</th>
                     </tr>
                     <tr>
@@ -519,21 +519,20 @@ details. You should have received a copy of the GNU General Public License along
             </div>
             <h6>4.2 További oktatók – Lecturers participating in teaching</h6>
             <ol id="tutors" style="padding: 0px;">
-                {{#data.lecturers}}
-                <li class="oc_1_1">
-                    <div class="row">
-                        <div class="col-sm-12 col-md">
-                            <input type="textarea" placeholder="Név/Name" value="{{{name}}}" class="form-control tutor-name" {{readonly}} {{required}}/>
-                        </div>
-                        <div class="col-sm-12 col-md">
-                            <input type="textarea" placeholder="Beosztás/Position" value="{{{rank}}}" class="form-control tutor-rank" {{readonly}} {{required}}/>
-                        </div>
-                        <div class="col-sm-12 col-md">
-                            <input type="text" placeholder="Elérhetőség/Contact" value="{{{contact}}}" class="form-control tutor-contact" {{readonly}} {{required}} />
-                        </div>
-                    </div>
-                </li>
-                {{/data.lecturers}}
+                <table class="table table-striped">
+                    <tr>
+                        <th>Név/Name</th>
+                        <th>Beosztás/Rank</th>
+                        <th>Contact</th>
+                    </tr>
+                    {{#data.lecturers}}
+                    <tr>
+                        <td>{{name}}</td>
+                        <td>{{rank}}</td>
+                        <td>{{contact}}</td>
+                    </tr>
+                    {{/data.lecturers}}
+                </table>
             </ol>
             <hr>
             <h6>4.3 A tantárgykövetelmények jóváhagyása és érvényessége - Approval and validity of subject requirements</h6>
