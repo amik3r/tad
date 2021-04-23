@@ -502,20 +502,20 @@ details. You should have received a copy of the GNU General Public License along
             </div>
             <h6>Előadások témái</h6>
             <div class="topics">
-                <ol id="topics" style="padding: 0px;">
+                <table class="table table-striped">
+                    <tr>
+                        <th>#</th>
+                        <th>Téma</th>
+                        <th>Topic</th>
+                    </tr>
                     {{#data.topics}}
-                    <li class="oc_1_1">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <p>{{hu}}</p>
-                            </div>
-                            <div class="col-sm-12 col-md">
-                                <p>{{en}}</p>
-                            </div>
-                        </div>
-                    </li>
+                    <tr>
+                        <td>TBD</td>
+                        <td>{{hu}}</td>
+                        <td>{{en}}</td>
+                    </tr>
                     {{/data.topics}}
-                </ol>
+                </table>
             </div>
             <h6>4.2 További oktatók – Lecturers participating in teaching</h6>
             <ol id="tutors" style="padding: 0px;">
@@ -523,7 +523,7 @@ details. You should have received a copy of the GNU General Public License along
                     <tr>
                         <th>Név/Name</th>
                         <th>Beosztás/Rank</th>
-                        <th>Contact</th>
+                        <th>Elérhetőség/Contact</th>
                     </tr>
                     {{#data.lecturers}}
                     <tr>
