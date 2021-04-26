@@ -15,7 +15,7 @@ div.content4 {
 }
 
 div.btn-error {
-    background-color: red;
+    background-color: red !important;
     border: none !important;
     border-radius: 0px !important;
     color: white !important;
