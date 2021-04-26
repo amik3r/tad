@@ -7,7 +7,8 @@ details. You should have received a copy of the GNU General Public License along
 <div class="container">
     <h2>I. TANTÁRGYLEÍRÁS – COURSE DESCRIPTION</h1>
         <div class="collapse1" id="">
-            <h4>1. ALAPADATOK - SUBJECT DATA</h4>
+            <h6>1. ALAPADATOK - SUBJECT DATA
+                <h6>
         </div>
         <div class="content1" id="content1">
             <label for="id_coursename">1.1 Tantárgy neve - Name of the subject </label>
@@ -147,7 +148,8 @@ details. You should have received a copy of the GNU General Public License along
             </div>
         </div>
         <div class="collapse2" id="">
-            <h4>2. CÉLKITŰZÉSEK ÉS TANULÁSI EREDMÉNYEK – OBJECTIVES AND LEARNING OUTCOMES</h4>
+            <h6>2. CÉLKITŰZÉSEK ÉS TANULÁSI EREDMÉNYEK – OBJECTIVES AND LEARNING OUTCOMES
+                <h6>
         </div>
         <div class="content2" id="content2">
             <label for="id_objectives">2.1 Célkitűzések - Objectives</label>
@@ -160,217 +162,219 @@ details. You should have received a copy of the GNU General Public License along
                 </div>
             </div>
             <hr>
-            <h4 for="">2.2 Tanulmányi eredmények - Learning outcomes</h4>
-            <label for="">Tudás/Knowledge</label>
-            <div class="outcomes_1">
-                <ol id="outcomes_1" style="padding: 0px;">
-                    {{^data.outcome_1}}
-                    <li class="outcomes_1">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_1" {{readonly}} {{required___}}></textarea>
+            <h4 for="">2.2 Tanulmányi eredmények - Learning outcomes
+                <h6>
+                    <label for="">Tudás/Knowledge</label>
+                    <div class="outcomes_1">
+                        <ol id="outcomes_1" style="padding: 0px;">
+                            {{^data.outcome_1}}
+                            <li class="outcomes_1">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_1" {{readonly}} {{required___}}></textarea>
+                                    </div>
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="English" class="form-control outcome_1_en" {{readonly}} {{required___}}></textarea>
+                                    </div>
+                                </div>
+                            </li>
+                            {{/data.outcome_1}} {{#data.outcome_1}}
+                            <li class="outcomes_1">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_1" {{readonly}} {{required___}}>{{hu}}</textarea>
+                                    </div>
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="English" class="form-control outcome_1_en" {{readonly}} {{required___}}>{{en}}</textarea>
+                                    </div>
+                                </div>
+                            </li>
+                            {{/data.outcome_1}}
+                        </ol>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome1('outcomes_1')">
+                                    <span>Új sor hozzáadása</span>
+                                </div>
+                                <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('outcomes_1')">
+                                    <span>Utolsó sor törlése</span>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="English" class="form-control outcome_1_en" {{readonly}} {{required___}}></textarea>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.outcome_1}} {{#data.outcome_1}}
-                    <li class="outcomes_1">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_1" {{readonly}} {{required___}}>{{hu}}</textarea>
-                            </div>
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="English" class="form-control outcome_1_en" {{readonly}} {{required___}}>{{en}}</textarea>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.outcome_1}}
-                </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome1('outcomes_1')">
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('outcomes_1')">
-                            <span>Utolsó sor törlése</span>
                         </div>
                     </div>
-                </div>
-            </div>
-            <hr>
-            <label for="">Képesség/Skills</label>
-            <div class="outcomes_2">
-                <ol id="outcomes_2" style="padding: 0px;">
-                    {{^data.outcome_2}}
-                    <li class="outcomes_2">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_2" {{readonly}} {{required___}}></textarea>
+                    <hr>
+                    <label for="">Képesség/Skills</label>
+                    <div class="outcomes_2">
+                        <ol id="outcomes_2" style="padding: 0px;">
+                            {{^data.outcome_2}}
+                            <li class="outcomes_2">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_2" {{readonly}} {{required___}}></textarea>
+                                    </div>
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="English" class="form-control outcome_2_en" {{readonly}} {{required___}}></textarea>
+                                    </div>
+                                </div>
+                            </li>
+                            {{/data.outcome_2}} {{#data.outcome_2}}
+                            <li class="outcomes_2">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_2" {{readonly}} {{required___}}>{{hu}}</textarea>
+                                    </div>
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="English" class="form-control outcome_2_en" {{readonly}} {{required___}}>{{en}}</textarea>
+                                    </div>
+                                </div>
+                            </li>
+                            {{/data.outcome_2}}
+                        </ol>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome2('outcomes_2')">
+                                    <span>Új sor hozzáadása</span>
+                                </div>
+                                <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('outcomes_2')">
+                                    <span>Utolsó sor törlése</span>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="English" class="form-control outcome_2_en" {{readonly}} {{required___}}></textarea>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.outcome_2}} {{#data.outcome_2}}
-                    <li class="outcomes_2">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_2" {{readonly}} {{required___}}>{{hu}}</textarea>
-                            </div>
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="English" class="form-control outcome_2_en" {{readonly}} {{required___}}>{{en}}</textarea>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.outcome_2}}
-                </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome2('outcomes_2')">
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('outcomes_2')">
-                            <span>Utolsó sor törlése</span>
                         </div>
                     </div>
-                </div>
-            </div>
-            <hr>
-            <label for="">Attitűd/Attitude</label>
-            <div class="outcomes_3">
-                <ol id="outcomes_3" style="padding: 0px;">
-                    {{^data.outcome_3}}
-                    <li class="outcomes_3">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_3" {{readonly}} {{required___}}></textarea>
+                    <hr>
+                    <label for="">Attitűd/Attitude</label>
+                    <div class="outcomes_3">
+                        <ol id="outcomes_3" style="padding: 0px;">
+                            {{^data.outcome_3}}
+                            <li class="outcomes_3">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_3" {{readonly}} {{required___}}></textarea>
+                                    </div>
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="English" class="form-control outcome_3_en" {{readonly}} {{required___}}></textarea>
+                                    </div>
+                                </div>
+                            </li>
+                            {{/data.outcome_3}} {{#data.outcome_3}}
+                            <li class="outcomes_3">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_3" {{readonly}} {{required___}}>{{hu}}</textarea>
+                                    </div>
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="English" class="form-control outcome_3_en" {{readonly}} {{required___}}>{{en}}</textarea>
+                                    </div>
+                                </div>
+                            </li>
+                            {{/data.outcome_3}}
+                        </ol>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome3('outcomes_3')">
+                                    <span>Új sor hozzáadása</span>
+                                </div>
+                                <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('outcomes_3')">
+                                    <span>Utolsó sor törlése</span>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="English" class="form-control outcome_3_en" {{readonly}} {{required___}}></textarea>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.outcome_3}} {{#data.outcome_3}}
-                    <li class="outcomes_3">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_3" {{readonly}} {{required___}}>{{hu}}</textarea>
-                            </div>
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="English" class="form-control outcome_3_en" {{readonly}} {{required___}}>{{en}}</textarea>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.outcome_3}}
-                </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome3('outcomes_3')">
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button" onclick="handleRowDelete('outcomes_3')">
-                            <span>Utolsó sor törlése</span>
                         </div>
                     </div>
-                </div>
-            </div>
-            <hr>
-            <label for="">Önállóság és felelősség/Independence and responsibility</label>
-            <div class="outcomes_4">
-                <ol id="outcomes_4" style="padding: 0px;">
-                    {{^data.outcome_4}}
-                    <li class="outcomes_4">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_4" {{readonly}} {{required___}}></textarea>
+                    <hr>
+                    <label for="">Önállóság és felelősség/Independence and responsibility</label>
+                    <div class="outcomes_4">
+                        <ol id="outcomes_4" style="padding: 0px;">
+                            {{^data.outcome_4}}
+                            <li class="outcomes_4">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_4" {{readonly}} {{required___}}></textarea>
+                                    </div>
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="English" class="form-control outcome_4_en" {{readonly}} {{required___}}></textarea>
+                                    </div>
+                                </div>
+                            </li>
+                            {{/data.outcome_4}} {{#data.outcome_4}}
+                            <li class="outcomes_4">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="magyar" class="form-control outcome_4" {{readonly}} {{required___}}>{{hu}}</textarea>
+                                    </div>
+                                    <div class="col-sm-12 col-md">
+                                        <textarea type="textarea" placeholder="English" class="form-control outcome_4_en" {{readonly}} {{required___}}>{{en}}</textarea>
+                                    </div>
+                                </div>
+                            </li>
+                            {{/data.outcome_4}}
+                        </ol>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome4('outcomes_4')" {{readonly}} {{required___}}>
+                                    <span>Új sor hozzáadása</span>
+                                </div>
+                                <div class="col-sm-6 btn btn-info delete-button delete-button" onclick="handleRowDelete('outcomes_4')" {{readonly}} {{required___}}>
+                                    <span>Utolsó sor törlése</span>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="English" class="form-control outcome_4_en" {{readonly}} {{required___}}></textarea>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.outcome_4}} {{#data.outcome_4}}
-                    <li class="outcomes_4">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="magyar" class="form-control outcome_4" {{readonly}} {{required___}}>{{hu}}</textarea>
-                            </div>
-                            <div class="col-sm-12 col-md">
-                                <textarea type="textarea" placeholder="English" class="form-control outcome_4_en" {{readonly}} {{required___}}>{{en}}</textarea>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.outcome_4}}
-                </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewOutcome4('outcomes_4')" {{readonly}} {{required___}}>
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button delete-button" onclick="handleRowDelete('outcomes_4')" {{readonly}} {{required___}}>
-                            <span>Utolsó sor törlése</span>
                         </div>
                     </div>
-                </div>
-            </div>
-            <hr>
-            <label for="">2.3 Oktatásmódszertan - Methodology of teaching</label>
-            <div class='row'>
-                <div class='col-sm-12  col-md'>
-                    <textarea type="textarea" id="id_methodology" name="methodology" placeholder="magyar" class="form-control" {{readonly}} {{required___}}>{{data.methodology}}</textarea>
-                </div>
-                <div class='col-sm-12  col-md'>
-                    <textarea type="textarea" id="id_methodology_en" name="methodology_en" placeholder="English" class="form-control" {{readonly}} {{required___}}>{{data.methodology_en}}</textarea>
-                </div>
-            </div>
-            <hr>
-            <label for="">2.4 Tanulástámogató anyagok - Materials supporting learning</label>
-            <div class="supportmaterials">
-                <ol id="supportmaterials" style="padding: 0px;">
-                    {{^data.supportmaterial}}
-                    <li class="supportmaterials">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <input type="text" placeholder="" class="form-control supportmaterial" {{readonly}} {{required___}}/>
-                            </div>
+                    <hr>
+                    <label for="">2.3 Oktatásmódszertan - Methodology of teaching</label>
+                    <div class='row'>
+                        <div class='col-sm-12  col-md'>
+                            <textarea type="textarea" id="id_methodology" name="methodology" placeholder="magyar" class="form-control" {{readonly}} {{required___}}>{{data.methodology}}</textarea>
                         </div>
-                    </li>
-                    {{/data.supportmaterial}} {{#data.supportmaterial}}
-                    <li class="supportmaterials">
-                        <div class="row">
-                            <div class="col-sm-12 col-md">
-                                <input type="text" placeholder="" value="{{{hu}}}" class="form-control supportmaterial" {{readonly}} {{required___}}/>
-                            </div>
-                        </div>
-                    </li>
-                    {{/data.supportmaterial}}
-                </ol>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 btn btn-primary" onclick="handleNewSupport('supportmaterials')" {{readonly}} {{required___}}>
-                            <span>Új sor hozzáadása</span>
-                        </div>
-                        <div class="col-sm-6 btn btn-info delete-button delete-button" onclick="handleRowDelete('supportmaterials')" {{readonly}} {{required___}}>
-                            <span>Utolsó sor törlése</span>
+                        <div class='col-sm-12  col-md'>
+                            <textarea type="textarea" id="id_methodology_en" name="methodology_en" placeholder="English" class="form-control" {{readonly}} {{required___}}>{{data.methodology_en}}</textarea>
                         </div>
                     </div>
-                </div>
-            </div>
-            <hr>
-            <div class="container">
-                <div class="row" style="padding-top: 1rem; padding-bottom: 1rem;">
-                    <div class="col-sm-12 btn btn-primary" onclick="gatherSection2()">
-                        <span>Rész véglegesítése</span>
+                    <hr>
+                    <label for="">2.4 Tanulástámogató anyagok - Materials supporting learning</label>
+                    <div class="supportmaterials">
+                        <ol id="supportmaterials" style="padding: 0px;">
+                            {{^data.supportmaterial}}
+                            <li class="supportmaterials">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md">
+                                        <input type="text" placeholder="" class="form-control supportmaterial" {{readonly}} {{required___}}/>
+                                    </div>
+                                </div>
+                            </li>
+                            {{/data.supportmaterial}} {{#data.supportmaterial}}
+                            <li class="supportmaterials">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md">
+                                        <input type="text" placeholder="" value="{{{hu}}}" class="form-control supportmaterial" {{readonly}} {{required___}}/>
+                                    </div>
+                                </div>
+                            </li>
+                            {{/data.supportmaterial}}
+                        </ol>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-6 btn btn-primary" onclick="handleNewSupport('supportmaterials')" {{readonly}} {{required___}}>
+                                    <span>Új sor hozzáadása</span>
+                                </div>
+                                <div class="col-sm-6 btn btn-info delete-button delete-button" onclick="handleRowDelete('supportmaterials')" {{readonly}} {{required___}}>
+                                    <span>Utolsó sor törlése</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <hr>
+                    <div class="container">
+                        <div class="row" style="padding-top: 1rem; padding-bottom: 1rem;">
+                            <div class="col-sm-12 btn btn-primary" onclick="gatherSection2()">
+                                <span>Rész véglegesítése</span>
+                            </div>
+                        </div>
+                    </div>
         </div>
         <h2>II. TANTÁRGYKÖVETELMÉNYEK - SUBJECT REQUIREMENTS</h2>
         <div class="collapse3">
-            <h4>3. A TANULMÁNYI TELJESÍTMÉNY ELLENŐRZÉSE ÉS ÉRTÉKELÉSE - TESTING AND ASSESSMENT OF LEARNING PERFORMANCE</h4>
+            <h6>3. A TANULMÁNYI TELJESÍTMÉNY ELLENŐRZÉSE ÉS ÉRTÉKELÉSE - TESTING AND ASSESSMENT OF LEARNING PERFORMANCE
+                <h6>
         </div>
         <div class="content3" id="content3">
             <label for="rules">3.1 Általános szabályok - General rules</label>
@@ -630,7 +634,8 @@ details. You should have received a copy of the GNU General Public License along
         </div>
         <h2>III. RÉSZLETES TANTÁRGYTEMATIKA - COURSE CURRICULUM</h2>
         <div class="collapse4">
-            <h4>4 TEMATIKAI EGYSÉGEK ÉS TOVÁBBI RÉSZLETEK - THEMATIC UNITS AND FURTHER DETAILS</h4>
+            <h6>4 TEMATIKAI EGYSÉGEK ÉS TOVÁBBI RÉSZLETEK - THEMATIC UNITS AND FURTHER DETAILS
+                <h6>
         </div>
         <div class="content4" id="content4">
             <div class="topic-summary" id="topic-summary">
