@@ -28,7 +28,8 @@ $PAGE->set_url(new moodle_url('/local/tad/editall.php'), [
     'id' => $PAGE->url->get_param('id'),
     'list' => $PAGE->url->get_param('list'), 
     'clone' => $PAGE->url->get_param('clone'),
-    'view' => $PAGE->url->get_param('view')
+    'view' => $PAGE->url->get_param('view'),
+    'delete' => $PAGE->url->get_param('delete')
     ]);
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('TAD Létrehozása');
@@ -59,6 +60,12 @@ if (has_capability('local/tad:approver', $context)){
 }
 $canapprove = true;
 $canedit = false;
+
+
+if ($id = $PAGE->url->get_param('delete')){
+    deleteCompleteTad($id);
+    redirect($CFG->wwwroot . '/local/tad/editall.php?list=true',  "deleted: " . $id, \core\output\notification::NOTIFY_INFO);
+}
 
 // if not in list view
 if (!$PAGE->url->get_param('list')){

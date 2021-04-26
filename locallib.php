@@ -582,6 +582,19 @@ function create_tad_from_formdata($formdata, $id=0, $clone=false){
     }
 }
 
+function deleteCompleteTad($id){
+    global $DB;
+    try {
+        $sections = getSectionIdbyParent($id);
+        $DB->delete_records('tad_section_one', ['id' => $id]);
+        $DB->delete_records('tad_section2', ['id' => $sections->section2]);
+        $DB->delete_records('tad_section3', ['id' => $sections->section3]);
+    } catch (Throwable $th){
+        var_dump($th);
+        die;
+    }
+}
+
 function getSectionIdbyParent($parent){
     global $DB;
     try {
@@ -743,6 +756,8 @@ function get_all_custom_tads(){
         $tad->clonelink = $tad->clonelink->out();
         $tad->viewlink = new moodle_url('/local/tad/editall.php', ['view' => $t->id]);
         $tad->viewlink = $tad->viewlink->out();
+        $tad->deletelink = new moodle_url('/local/tad/editall.php', ['delete' => $t->id]);
+        $tad->deletelink = $tad->deletelink->out();
         array_push($arr['tads'], (array) $tad);
     }
     return $arr;
