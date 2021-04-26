@@ -61,7 +61,6 @@ if (has_capability('local/tad:approver', $context)){
 $canapprove = true;
 $canedit = false;
 
-
 if ($id = $PAGE->url->get_param('delete')){
     deleteCompleteTad($id);
     redirect($CFG->wwwroot . '/local/tad/editall.php?list=true',  "deleted: " . $id, \core\output\notification::NOTIFY_INFO);

@@ -562,6 +562,15 @@ function create_tad_from_formdata($formdata, $id=0, $clone=false){
             die;
             return false;
         }
+    } elseif ($clone) {
+        $tad = new tadAllSections($formdata, $USER->id);
+        try{
+            $tad->record_data($tad->userid);
+        } catch (Throwable $th){
+            var_dump($th);
+            die;
+            return false;
+        }
     } elseif (!is_null($id) && !$clone) {
         try{
             $sections = getSectionIdbyParent($id);

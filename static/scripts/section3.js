@@ -145,7 +145,7 @@ function gatherWorkingHours() {
     document.getElementById('id_workhours_activity').value = JSON.stringify(workinghours)
 }
 
-function gahterSection3() {
+function gatherSection3() {
     gatherMidterm()
     gatherExam()
     gatherWorkingHours()

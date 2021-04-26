@@ -383,8 +383,23 @@ details. You should have received a copy of the GNU General Public License along
                 </ol>
             </div>
             <hr>
-
             <h6>3.4 Vizsgaelemek részaránya a minősítésben</h6>
+            <ol id="midterm" style="padding: 0px;">
+                <table class="table table-striped grading-table">
+                    <tr>
+                        <th>Megnevezés</th>
+                        <th>Name</th>
+                        <th>Százalék/percent</th>
+                    </tr>
+                    {{#data.exam_proportions}}
+                    <tr>
+                        <td>{{hu}}</td>
+                        <td>{{en}}</td>
+                        <td>{{percent}}</td>
+                    </tr>
+                    {{/data.exam_proportions}}
+                </table>
+            </ol>
             <hr>
             <h6>3.5 Az aláírás megszerzésének feltétele, az aláírás érvényessége</h6>
             <div class='row'>

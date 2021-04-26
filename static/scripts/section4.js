@@ -1,4 +1,4 @@
-function handleNewTutor(){
+function handleNewTutor() {
     const node = `
     <li class="oc_1_1">
         <div class="row">
@@ -19,7 +19,7 @@ function handleNewTutor(){
     applySubmitDisabler()
 }
 
-function handleNewTopic(){
+function handleNewTopic() {
     const node = `
     <li class="oc_1_1">
         <div class="row">
@@ -48,7 +48,7 @@ var lecturers = {
     "lecturers": []
 }
 
-function gatherTopicSummary(){
+function gatherTopicSummary() {
     var arr = []
     var data = {
         "hu": document.getElementById('topic-summary-hu').value,
@@ -59,7 +59,8 @@ function gatherTopicSummary(){
     console.log(topicsummary);
     document.getElementById('id_topics_summary').value = JSON.stringify(topicsummary)
 }
-function gatherTopic(){
+
+function gatherTopic() {
     var arr = []
     var container = document.getElementById('topics')
     var rows = container.getElementsByClassName('row')
@@ -74,7 +75,8 @@ function gatherTopic(){
     console.log(topics);
     document.getElementById('id_topics').value = JSON.stringify(topics)
 }
-function gatherTutors(){
+
+function gatherTutors() {
     var arr = []
     var container = document.getElementById('tutors')
     var rows = container.getElementsByClassName('row')
@@ -90,7 +92,10 @@ function gatherTutors(){
     console.log(lecturers);
     document.getElementById('id_lecturers').value = JSON.stringify(lecturers)
 }
+
 function gatherSection4() {
+    gatherSection2()
+    gatherSection3()
     gatherTopicSummary()
     gatherTopic()
     gatherTutors()

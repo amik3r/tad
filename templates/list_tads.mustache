@@ -3,6 +3,15 @@
 details. You should have received a copy of the GNU General Public License along with Moodle. If not, see
 <http://www.gnu.org/licenses/>. }} {{! @template local_banner/manage Template to display the list of forum discussions. Classes required for JS: * none Data attributes required for JS: * none Context variables required for this template: * TODO Example context (json): { } }}
 
+<script>
+    function confirmTadDelete() {
+        if (window.confirm('Biztosan törli?')) {
+            window.location.href = '{{{data.deletelink}}}'
+        }
+    }
+</script>
+
+
 <div class="container-fluid">
     <div class="list">
         <a class="btn btn-primary" href='https://test.edu.gtk.bme.hu/local/tad/editall.php' target=" _blank ">
@@ -53,7 +62,7 @@ details. You should have received a copy of the GNU General Public License along
                 <div class="btn btn-primary " onclick="window.location.href='{{{clonelink}}}' ">
                     <span>Klónozás</span>
                 </div>
-                <div class="btn btn-error " onclick="window.location.href='{{{deletelink}}}' ">
+                <div class="btn btn-error " onclick="confirmTadDelete()">
                     <span>Törlés</span>
                 </div>
             </div>
