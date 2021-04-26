@@ -18,6 +18,7 @@ div.btn-error {
     background: red !important;
     border: none !important;
     border-radius: 0px !important;
+    color: white;
 }
 
 div.btn-error:hover {
