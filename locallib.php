@@ -790,6 +790,8 @@ function gatherTadDataForView($id){
     $data['validby_3'] = gmdate("Y-m-d",intval($data['validby_3']));
     $data['validuntil_3'] = gmdate("Y-m-d",intval($data['validuntil_3']));
     $data['department_selected_code'] = $departmentsObj->get_code($data['ou']);
+    $data['editlink'] = new moodle_url('/local/tad/editall.php', ['id' => $id]);
+    $data['editlink'] = $data['editlink']->out();
     $templatestuff = ["data" => $data];
     return $templatestuff;
 }

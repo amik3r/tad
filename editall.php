@@ -114,7 +114,6 @@ if (!$PAGE->url->get_param('list') && !$PAGE->url->get_param('view')){
     $mform->display();
 } elseif ($id = $PAGE->url->get_param('view')){
     $templatestuff = gatherTadDataForView($id);
-    $templatestuff['edit'] = new moodle_url('/local/tad/editall.php', ['edit' => $id]);
     echo $OUTPUT->render_from_template('local_tad/view_tadall', $templatestuff);
 } else {
     echo $OUTPUT->render_from_template('local_tad/list_tads', $templatestuff);
