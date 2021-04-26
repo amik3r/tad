@@ -30,12 +30,12 @@ class tadSection2{
         $this->data->midterm_proportions =      strval($formdata->midterm_proportions);
         $this->data->exam_proportions =         strval($formdata->exam_proportions);
         
-        $this->data->excellent =                intval($formdata->excellent);
-        $this->data->very_good =                intval($formdata->very_good);
-        $this->data->good =                     intval($formdata->good);
-        $this->data->satisfactory =             intval($formdata->satisfactory);
-        $this->data->pass =                     intval($formdata->pass);
-        $this->data->fail =                     intval($formdata->fail);
+        $this->data->excellent =                $formdata->excellent;
+        $this->data->very_good =                $formdata->very_good;
+        $this->data->good =                     $formdata->good;
+        $this->data->satisfactory =             $formdata->satisfactory;
+        $this->data->pass =                     $formdata->pass;
+        $this->data->fail =                     $formdata->fail;
 
         $this->data->retake =                   strval($formdata->retake);
         $this->data->retake_en =                strval($formdata->retake_en);

@@ -51,14 +51,14 @@ class tadSection1{
         $this->data->exclusive_1 =              strval($formdata->exclusive);
         $this->data->objectives =               strval($formdata->objectives);
         $this->data->objectives_en =            strval($formdata->objectives_en);
-        $this->data->outcome_1 =                strval($formdata->outcomes_value_4);
-        $this->data->outcome_2 =                strval($formdata->outcomes_value_4);
-        $this->data->outcome_3 =                strval($formdata->outcomes_value_4);
+        $this->data->outcome_1 =                strval($formdata->outcomes_value_1);
+        $this->data->outcome_2 =                strval($formdata->outcomes_value_2);
+        $this->data->outcome_3 =                strval($formdata->outcomes_value_3);
         $this->data->outcome_4 =                strval($formdata->outcomes_value_4);
         $this->data->methodology =              strval($formdata->methodology);
         $this->data->methodology_en =           strval($formdata->methodology_en);
         $this->data->supportmaterial =          strval($formdata->supportmaterial);
-
+        
         $this->data->validity =                 strval($formdata->validity);
         $this->data->validity_en =              strval($formdata->validity_en);
         $this->data->validby =                  strtotime($formdata->validby);

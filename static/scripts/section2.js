@@ -6,7 +6,18 @@ function docReady(fn) {
     }
 }
 
-function handleNewOutcome1(id){
+function handleNewOutcome1(id) {
+    var prevList = document.getElementById(id);
+    const hu = prevList.getElementsByClassName('outcome_1')
+    const en = prevList.getElementsByClassName('outcome_1_en')
+    var prevValues = []
+    for (let i = 0; i < hu.length; i++) {
+        var d = {
+            hu: hu[i].value,
+            en: en[i].value
+        }
+        prevValues.push(d)
+    }
     var firstNode = '<li ' + 'class="' + id + '">'
     var fullNode = firstNode + `
         <div class="row">
@@ -19,11 +30,33 @@ function handleNewOutcome1(id){
         </div>
     </li>
     `
+
     disableSubmitButton()
     document.getElementById(id).innerHTML += fullNode
+    var newList = document.getElementById(id)
+    var newHu = newList.getElementsByClassName('outcome_1')
+    var newEn = newList.getElementsByClassName('outcome_1_en')
+    console.log(newHu.length);
+    for (let i = 0; i < newHu.length - 1; i++) {
+        console.log(hu[i].value);
+        newHu[i].value = prevValues[i].hu
+        newEn[i].value = prevValues[i].en
+    }
     applySubmitDisabler()
 }
-function handleNewOutcome2(id){
+
+function handleNewOutcome2(id) {
+    var prevList = document.getElementById(id);
+    const hu = prevList.getElementsByClassName('outcome_2')
+    const en = prevList.getElementsByClassName('outcome_2_en')
+    var prevValues = []
+    for (let i = 0; i < hu.length; i++) {
+        var d = {
+            hu: hu[i].value,
+            en: en[i].value
+        }
+        prevValues.push(d)
+    }
     var firstNode = '<li ' + 'class="' + id + '">'
     var fullNode = firstNode + `
         <div class="row">
@@ -38,9 +71,30 @@ function handleNewOutcome2(id){
     `
     disableSubmitButton()
     document.getElementById(id).innerHTML += fullNode
+    var newList = document.getElementById(id)
+    var newHu = newList.getElementsByClassName('outcome_2')
+    var newEn = newList.getElementsByClassName('outcome_2_en')
+    console.log(newHu.length);
+    for (let i = 0; i < newHu.length - 1; i++) {
+        console.log(hu[i].value);
+        newHu[i].value = prevValues[i].hu
+        newEn[i].value = prevValues[i].en
+    }
     applySubmitDisabler()
 }
-function handleNewOutcome3(id){
+
+function handleNewOutcome3(id) {
+    var prevList = document.getElementById(id);
+    const hu = prevList.getElementsByClassName('outcome_3')
+    const en = prevList.getElementsByClassName('outcome_3_en')
+    var prevValues = []
+    for (let i = 0; i < hu.length; i++) {
+        var d = {
+            hu: hu[i].value,
+            en: en[i].value
+        }
+        prevValues.push(d)
+    }
     var firstNode = '<li ' + 'class="' + id + '">'
     var fullNode = firstNode + `
         <div class="row">
@@ -55,10 +109,30 @@ function handleNewOutcome3(id){
     `
     disableSubmitButton()
     document.getElementById(id).innerHTML += fullNode
+    var newList = document.getElementById(id)
+    var newHu = newList.getElementsByClassName('outcome_3')
+    var newEn = newList.getElementsByClassName('outcome_3_en')
+    console.log(newHu.length);
+    for (let i = 0; i < newHu.length - 1; i++) {
+        console.log(hu[i].value);
+        newHu[i].value = prevValues[i].hu
+        newEn[i].value = prevValues[i].en
+    }
     applySubmitDisabler()
 }
 
-function handleNewOutcome4(id){
+function handleNewOutcome4(id) {
+    var prevList = document.getElementById(id);
+    const hu = prevList.getElementsByClassName('outcome_4')
+    const en = prevList.getElementsByClassName('outcome_4_en')
+    var prevValues = []
+    for (let i = 0; i < hu.length; i++) {
+        var d = {
+            hu: hu[i].value,
+            en: en[i].value
+        }
+        prevValues.push(d)
+    }
     var firstNode = '<li ' + 'class="' + id + '">'
     var fullNode = firstNode + `
         <div class="row">
@@ -73,9 +147,28 @@ function handleNewOutcome4(id){
     `
     disableSubmitButton()
     document.getElementById(id).innerHTML += fullNode
+    var newList = document.getElementById(id)
+    var newHu = newList.getElementsByClassName('outcome_4')
+    var newEn = newList.getElementsByClassName('outcome_4_en')
+    console.log(newHu.length);
+    for (let i = 0; i < newHu.length - 1; i++) {
+        console.log(hu[i].value);
+        newHu[i].value = prevValues[i].hu
+        newEn[i].value = prevValues[i].en
+    }
     applySubmitDisabler()
 }
-function handleNewSupport(id){
+
+function handleNewSupport(id) {
+    var prevList = document.getElementById(id);
+    const hu = prevList.getElementsByClassName('supportmaterial')
+    var prevValues = []
+    for (let i = 0; i < hu.length; i++) {
+        var d = {
+            hu: hu[i].value,
+        }
+        prevValues.push(d)
+    }
     var firstNode = '<li ' + 'class="' + id + '">'
     var fullNode = firstNode + `
         <div class="row">
@@ -87,6 +180,13 @@ function handleNewSupport(id){
     `
     disableSubmitButton()
     document.getElementById(id).innerHTML += fullNode
+    var newList = document.getElementById(id)
+    var newHu = newList.getElementsByClassName('supportmaterial')
+    console.log(newHu.length);
+    for (let i = 0; i < newHu.length - 1; i++) {
+        console.log(hu[i].value);
+        newHu[i].value = prevValues[i].hu
+    }
     applySubmitDisabler()
 }
 
@@ -107,44 +207,44 @@ var support = {
     materials: []
 }
 
-function gatherOutcome1(){
+function gatherOutcome1() {
     var arr = []
     var o1ElementsHu = document.getElementsByClassName('outcome_1')
     var o1ElementsEn = document.getElementsByClassName('outcome_1_en')
     for (let i = 0; i < o1ElementsHu.length; i++) {
         var a = {
-            hu: o1ElementsHu[i].value, 
+            hu: o1ElementsHu[i].value,
             en: o1ElementsEn[i].value
         }
         arr.push(a)
     }
     outcome1.outcomes = arr
     document.getElementById('id_outcomes_value_1').value = JSON.stringify(outcome1)
-    //outcome1.outcomes.push(outcomeObject)
+    console.log(document.getElementById('id_outcomes_value_1').value);
 }
 
-function gatherOutcome2(){
+function gatherOutcome2() {
     var arr = []
     var o2ElementsHu = document.getElementsByClassName('outcome_2')
     var o2ElementsEn = document.getElementsByClassName('outcome_2_en')
     for (let i = 0; i < o2ElementsHu.length; i++) {
         var a = {
-            hu: o2ElementsHu[i].value, 
+            hu: o2ElementsHu[i].value,
             en: o2ElementsEn[i].value
         }
         arr.push(a)
     }
     outcome2.outcomes = arr
     document.getElementById('id_outcomes_value_2').value = JSON.stringify(outcome2)
-    //outcome1.outcomes.push(outcomeObject)
 }
-function gatherOutcome3(){
+
+function gatherOutcome3() {
     var arr = []
     var eHu = document.getElementsByClassName('outcome_3')
     var eEn = document.getElementsByClassName('outcome_3_en')
     for (let i = 0; i < eHu.length; i++) {
         var a = {
-            hu: eHu[i].value, 
+            hu: eHu[i].value,
             en: eEn[i].value
         }
         arr.push(a)
@@ -152,13 +252,14 @@ function gatherOutcome3(){
     outcome3.outcomes = arr
     document.getElementById('id_outcomes_value_3').value = JSON.stringify(outcome3)
 }
-function gatherOutcome4(){
+
+function gatherOutcome4() {
     var arr = []
     var eHu = document.getElementsByClassName('outcome_4')
     var eEn = document.getElementsByClassName('outcome_4_en')
     for (let i = 0; i < eHu.length; i++) {
         var a = {
-            hu: eHu[i].value, 
+            hu: eHu[i].value,
             en: eEn[i].value
         }
         arr.push(a)
@@ -166,12 +267,13 @@ function gatherOutcome4(){
     outcome4.outcomes = arr
     document.getElementById('id_outcomes_value_4').value = JSON.stringify(outcome4)
 }
-function gatherSupport(){
+
+function gatherSupport() {
     var arr = []
     var supportElements = document.getElementsByClassName('supportmaterial')
     for (let i = 0; i < supportElements.length; i++) {
         var a = {
-            hu: supportElements[i].value, 
+            hu: supportElements[i].value,
         }
         arr.push(a)
     }
@@ -179,14 +281,10 @@ function gatherSupport(){
     document.getElementById('id_supportmaterial').value = JSON.stringify(support)
 }
 
-function gatherSection2(){
+function gatherSection2() {
     gatherOutcome1()
     gatherOutcome2()
     gatherOutcome3()
     gatherOutcome4()
     gatherSupport()
-    console.log(outcome1);
-    console.log(outcome2);
-    console.log(outcome3);
-    console.log(outcome4);
 }

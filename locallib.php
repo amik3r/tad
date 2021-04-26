@@ -660,15 +660,14 @@ function gatherTadData($id){
         $topics = json_decode($data['topics']);
         $data['topics']  = (array) $topics->topics;
     } catch (Throwable $th){
-        return false;
+        
     }
     try{
         //var_dump($topics);
         $lecturers = json_decode($data['lecturers']);
         $data['lecturers']  = (array) $lecturers->lecturers;
     } catch (Throwable $th){
-        return false;
-    }
+        }
 
     try{
         //var_dump($topics);
@@ -676,8 +675,7 @@ function gatherTadData($id){
         $data['outcome_1']  = (array) $outcome_1->outcomes;
         //die;
     } catch (Throwable $th){
-        return false;
-    }
+        }
 
     try{
         //var_dump($topics);
@@ -685,32 +683,28 @@ function gatherTadData($id){
         $data['outcome_2']  = (array) $outcome_2->outcomes;
         //die;
     } catch (Throwable $th){
-        return false;
-    }
+            }
     try{
         //var_dump($topics);
         $outcome_3 = json_decode($data['outcome_3']);
         $data['outcome_3']  = (array) $outcome_3->outcomes;
         //die;
     } catch (Throwable $th){
-        return false;
-    }
+            }
     try{
         //var_dump($topics);
         $outcome_4 = json_decode($data['outcome_4']);
         $data['outcome_4']  = (array) $outcome_4->outcomes;
         //die;
     } catch (Throwable $th){
-        return false;
-    }
+        }
     try{
         //var_dump($topics);
         $supportmaterial = json_decode($data['supportmaterial']);
         $data['supportmaterial']  = (array) $supportmaterial->materials;
         //die;
     } catch (Throwable $th){
-        return false;
-    }
+            }
 
     try{
         //var_dump($topics);
@@ -718,15 +712,14 @@ function gatherTadData($id){
         $data['exam_proportions']  = (array) $exam_proportions->exams;
         //die;
     } catch (Throwable $th){
-        return false;
-    }
+            }
     try{
         //var_dump($topics);
         $midterm_proportions = json_decode($data['midterm_proportions']);
         $data['midterm_proportions']  = (array) $midterm_proportions->midterms;
         //die;
     } catch (Throwable $th){
-        return false;
+        
     }
     try{
         //var_dump($topics);
@@ -734,7 +727,7 @@ function gatherTadData($id){
         $data['workhours_activity']  = (array) $workhours_activity->workinghours;
         //die;
     } catch (Throwable $th){
-        return false;
+        
     }
     try{
         //var_dump($topics);
@@ -742,7 +735,7 @@ function gatherTadData($id){
         $data['topic_summary_en']  = $topic_summary->topics[0]->en;
         $data['topic_summary_hu']  = $topic_summary->topics[0]->hu;
     } catch (Throwable $th){
-        return false;
+        
     }
     return $data;
 }

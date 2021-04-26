@@ -127,20 +127,20 @@ class tadSectionAll extends moodleform {
 
         // 2.2.1
         $mform->addElement('hidden', 'outcomes_value_1');
-        $mform->setType('outcomes_value_1', PARAM_NOTAGS);
+        $mform->setType('outcomes_value_1', PARAM_RAW);
         $mform->setDefault('outcomes_value_1', '');
         
         // 2.2.2
         $mform->addElement('hidden', 'outcomes_value_2');
-        $mform->setType('outcomes_value_2', PARAM_NOTAGS);
+        $mform->setType('outcomes_value_2', PARAM_RAW);
         $mform->setDefault('outcomes_value_2', '');
         // 2.2.3
         $mform->addElement('hidden', 'outcomes_value_3');
-        $mform->setType('outcomes_value_3', PARAM_NOTAGS);
+        $mform->setType('outcomes_value_3', PARAM_RAW);
         $mform->setDefault('outcomes_value_3', '');
         // 2.2.4
         $mform->addElement('hidden', 'outcomes_value_4');
-        $mform->setType('outcomes_value_4', PARAM_NOTAGS);
+        $mform->setType('outcomes_value_4', PARAM_RAW);
         $mform->setDefault('outcomes_value_4', '');
 
         $mform->addElement('hidden', 'methodology');
