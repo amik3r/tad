@@ -550,11 +550,10 @@ function update_tad_from_formdata($id, $formdata){
     }
 }
 
-function create_tad_from_formdata($formdata, $id=null, $clone=false){
+function create_tad_from_formdata($formdata, $id=0, $clone=false){
     global $USER;
     global $DB;
-
-    if (is_null($id) || $clone){
+    if (!$clone && $id == 0){
         $tad = new tadAllSections($formdata, $USER->id);
         try{
             $tad->record_data($tad->userid);
