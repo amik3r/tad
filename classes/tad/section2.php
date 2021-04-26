@@ -53,6 +53,7 @@ class tadSection2{
         $this->data->draft =                    intval(1);
         $this->data->published =                intval(0);
         $this->data->created_by =               $userid;
+        $this->id;
     }
     function get_all(){
         return $this->data;

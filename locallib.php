@@ -26,6 +26,9 @@ require_once(__DIR__ . '/classes/tad/tadfileobject.php');
 require_once(__DIR__ . '/classes/tad/tadobject.php');
 require_once(__DIR__ . '/classes/tad/departmentobject.php');
 require_once(__DIR__ . '/classes/tad/tadAllSections.php');
+require_once(__DIR__ . '/classes/tad/section1.php');
+require_once(__DIR__ . '/classes/tad/section2.php');
+require_once(__DIR__ . '/classes/tad/section3.php');
 require_once(__DIR__ . '/classes/db/db_tadobject.php');
 
 function get_tad_files(){
@@ -556,21 +559,42 @@ function create_tad_from_formdata($formdata, $id=null, $clone=false){
         try{
             $tad->record_data($tad->userid);
         } catch (Throwable $th){
+            var_dump($th);
             die;
             return false;
         }
-        
-    } else {
-        $tad = new tadSection1($formdata, $USER->id);
+    } elseif (!is_null($id) && !$clone) {
         try{
+            $sections = getSectionIdbyParent($id);
+            $tad = new tadSection1($formdata, $USER->id);
+            $section2 = new tadSection2($formdata, $USER->id, $id);
+            $section2->data->id = $sections->section2;
+            $section3 = new tadSection3($formdata, $USER->id, $id);
+            $section3->data->id = $sections->section3;
             $tad = $tad->data;
             $tad->id = intval($id);
             $DB->update_record('tad_section_one', $tad);
-
+            $DB->update_record('tad_section2', $section2->data);
+            $DB->update_record('tad_section3', $section3->data);
         } catch (Throwable $th){
             var_dump($th);
             die;
         }
+    }
+}
+
+function getSectionIdbyParent($parent){
+    global $DB;
+    try {
+        $section2 = $DB->get_record('tad_section2', ['parent' => $parent]);
+        $section3 = $DB->get_record('tad_section3', ['parent' => $parent]);
+        $data = new stdClass();
+        $data->section2 = intval($section2->id);
+        $data->section3 = intval($section3->id);
+        return $data;
+    } catch (Throwable $th){
+        var_dump($th);
+        die;
     }
 }
 
