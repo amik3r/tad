@@ -6,6 +6,7 @@ details. You should have received a copy of the GNU General Public License along
 <script>
     function confirmTadDelete(deletelink) {
         if (window.confirm('Biztosan törli?')) {
+            console.log(deletelink);
             window.location.href = deletelink
         }
     }
