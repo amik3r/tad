@@ -23,6 +23,7 @@ div.btn-error {
 
 div.btn-error:hover {
     background: rgb(136, 0, 0) !important;
+    color: white;
 }
 
 a.btn-primary {
