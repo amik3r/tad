@@ -15,10 +15,13 @@ div.content4 {
 }
 
 div.btn-error {
-    background-color: red !important;
+    background: red !important;
     border: none !important;
     border-radius: 0px !important;
-    color: white !important;
+}
+
+div.btn-error:hover {
+    background: rgb(136, 0, 0) !important;
 }
 
 a.btn-primary {
