@@ -792,6 +792,8 @@ function gatherTadDataForView($id){
     $data['department_selected_code'] = $departmentsObj->get_code($data['ou']);
     $data['editlink'] = new moodle_url('/local/tad/editall.php', ['id' => $id]);
     $data['editlink'] = $data['editlink']->out();
+    $data['homelink'] = new moodle_url('/local/tad/editall.php', ['list' => 'true']);
+    $data['homelink'] = $data['homelink']->out();
     $templatestuff = ["data" => $data];
     return $templatestuff;
 }
