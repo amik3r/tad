@@ -6,8 +6,8 @@ details. You should have received a copy of the GNU General Public License along
 <script>
     function confirmTadDelete(deletelink) {
         if (window.confirm('Biztosan törli?')) {
-            console.log(deletelink);
-            //window.location.href = deletelink
+            //console.log(deletelink);
+            window.location.href = deletelink
         }
     }
 </script>
@@ -62,7 +62,7 @@ details. You should have received a copy of the GNU General Public License along
                 <div class="btn btn-primary " onclick="window.location.href='{{{clonelink}}}' ">
                     <span>Klónozás</span>
                 </div>
-                <div class="btn btn-error " onclick="confirmTadDelete('{{{deletelink}}}')" disabled>
+                <div class="btn btn-error " onclick="confirmTadDelete('{{{deletelink}}}')">
                     <span>Törlés</span>
                 </div>
             </div>
