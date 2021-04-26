@@ -4,9 +4,9 @@ details. You should have received a copy of the GNU General Public License along
 <http://www.gnu.org/licenses/>. }} {{! @template local_banner/manage Template to display the list of forum discussions. Classes required for JS: * none Data attributes required for JS: * none Context variables required for this template: * TODO Example context (json): { } }}
 
 <script>
-    function confirmTadDelete() {
+    function confirmTadDelete(deltelink) {
         if (window.confirm('Biztosan törli?')) {
-            window.location.href = '{{{data.deletelink}}}'
+            window.location.href = deletelink
         }
     }
 </script>
@@ -61,7 +61,7 @@ details. You should have received a copy of the GNU General Public License along
                 <div class="btn btn-primary " onclick="window.location.href='{{{clonelink}}}' ">
                     <span>Klónozás</span>
                 </div>
-                <div class="btn btn-error " onclick="confirmTadDelete()">
+                <div class="btn btn-error " onclick="confirmTadDelete('{{{data.deletelink}}}')">
                     <span>Törlés</span>
                 </div>
             </div>
