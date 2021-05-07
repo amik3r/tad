@@ -76,10 +76,78 @@ function gatherTopic() {
     document.getElementById('id_topics').value = JSON.stringify(topics)
 }
 
+function splitTutors() {
+    var container = document.getElementsByClassName('tutors');
+    container = container[0];
+    var valueField = document.getElementById('tutorlist');
+    value = valueField.value;
+    values = value.split(/\n/)
+    var tutors = []
+    for (let i = 0; i < values.length; i++) {
+        var rank = '';
+        var email = '';
+        const element = values[i];
+        var splitElement = element.split(/\t/)
+        var name = String(splitElement[0]);
+        for (let j = 1; j < splitElement.length; j++) {
+            const e = splitElement[j];
+            if (e.includes('@')) {
+                email = String(e)
+            } else {
+                rank = String(e)
+            }
+        }
+        var tutor = { 'name': name, 'rank': rank, 'email': email }
+        console.log(tutor)
+        tutors.push(tutor)
+    }
+    var textboxArray = []
+    for (let i = 0; i < tutors.length; i++) {
+        const element = tutors[i];
+        if (!element == '') {
+            console.log(element)
+            var name = element.name
+            console.log(name);
+            var rank = element.rank
+            var email = element.email
+            var listElement = `
+            <li class="tutor">
+                    <div class="row">
+                        <div class="col-sm-12 col-md">
+                            <input type="textarea" placeholder="Név/Name" class="form-control tutor-name" {{readonly}} {{required}} disabled value="${name}"/>
+                        </div>
+                        <div class="col-sm-12 col-md">
+                            <input type="textarea" placeholder="Beosztás/Position" class="form-control tutor-rank" disabled {{readonly}} {{required}} value="${rank}"/>
+                        </div>
+                        <div class="col-sm-12 col-md">
+                            <input type="text" placeholder="Elérhetőség/Contact" class="form-control tutor-contact" disabled {{readonly}} {{required}} value="${
+email}"/>
+                        </div>
+                    </div>
+                </li>
+                `
+            textboxArray.push(listElement)
+        }
+    }
+    var ol = document.createElement('ol')
+    ol.setAttribute('id', 'tutors')
+    for (let i = 0; i < textboxArray.length; i++) {
+        const element = textboxArray[i];
+        ol.innerHTML += element
+    }
+    container.innerHTML = ''
+    container.appendChild(valueField)
+    document.getElementById('tutorlist').innerHTML = value
+    container.appendChild(ol)
+    console.log(values)
+}
+
+
 function gatherTutors() {
     var arr = []
     var container = document.getElementById('tutors')
-    var rows = container.getElementsByClassName('row')
+    console.log(container);
+    var rows = container.getElementsByTagName('li')
     for (let i = 0; i < rows.length; i++) {
         var data = {
             "name": rows[i].getElementsByClassName('tutor-name')[0].value,

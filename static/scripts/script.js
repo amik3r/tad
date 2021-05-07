@@ -6,33 +6,31 @@ function docReady(fn) {
     }
 }
 
-
-
-function filter_semester(){
+function filter_semester() {
     var table = document.getElementById("tad-table");
     var semester_select = document.getElementById('semester-options')
     var semester_index = semester_select.options.selectedIndex
     semester = semester_select.options[semester_index].innerHTML
-    if (semester == 0){
+    if (semester == 0) {
         decorateTable();
         preparePagination();
     }
     console.log(semester);
-    var display = table.rows[0].cells[0].style.display  
+    var display = table.rows[0].cells[0].style.display
     for (var i = 1, row; row = table.rows[i]; i++) {
-        if (!row.cells[4].innerHTML == semester){
+        if (!row.cells[4].innerHTML == semester) {
             row.style.display = 'none'
-        } else{
+        } else {
             row.style.display = display
         }
     }
 }
 
-function filter(semester=''){
+function filter(semester = '') {
     preparePagination('tad-table')
     var table = document.getElementById("tad-table")
-    var display = table.rows[0].cells[0].style.display 
-    if (!semester){
+    var display = table.rows[0].cells[0].style.display
+    if (!semester) {
         var filterValue = document.getElementById('filter').value
     } else {
         var semester_select = document.getElementById('semester')
@@ -42,7 +40,7 @@ function filter(semester=''){
     filterValue = filterValue.toLowerCase()
 
     document.getElementById('noresult').style.display = 'none'
-    if (filterValue.length === 0){
+    if (filterValue.length === 0) {
         for (var i = 1, row; row = table.rows[i]; i++) {
             table.style.display = 'table'
         }
@@ -60,15 +58,15 @@ function filter(semester=''){
     // check if any cell contains the filter
     for (var i = 1, row; row = table.rows[i]; i++) {
         for (var j = 0, col; col = row.cells[j]; j++) {
-            if (col.textContent.trim().toLowerCase().includes(filterValue)){
+            if (col.textContent.trim().toLowerCase().includes(filterValue)) {
                 row.style.display = display
                 foundSmt = true
             }
-        }  
+        }
     }
     // Display not found if no result
     // Display table
-    if (!foundSmt){
+    if (!foundSmt) {
         document.getElementById('noresult').style.display = 'block'
         for (var i = 1, row; row = table.rows[i]; i++) {
             table.style.display = display
@@ -81,42 +79,40 @@ var maxrows = 25
 var numpages = 1
 var currpage = 1
 
-function preparePagination(){
+function preparePagination() {
     try {
         document.getElementById('pagination-row').innerHTML = ''
-    } catch{}
+    } catch {}
     var table = document.getElementById("tad-table");
-    var display = table.rows[0].cells[0].style.display      
+    var display = table.rows[0].cells[0].style.display
     var btnGroup = document.getElementById('pagination-row')
     numpages = Math.round((table.rows.length / maxrows) + 1)
-    
+
     // Create 'prev' button
     var button = document.createElement("button");
     button.innerHTML = 'Prev';
     button.id = "btn-prev"
     button.classList = "btn btn-primary"
     button.addEventListener(
-        "click", 
-        {handleEvent: 
-            function (event){
-                if (event.target.classList.contains("btn-disabled")){
+        "click", {
+            handleEvent: function(event) {
+                if (event.target.classList.contains("btn-disabled")) {
                     return
-                } else{
-                    paginate(Number(currpage)-1);
+                } else {
+                    paginate(Number(currpage) - 1);
                 }
             }
         }
     );
     btnGroup.appendChild(button)
-    // Add page buttons
-    for (var i=1;i<=numpages; i++){
+        // Add page buttons
+    for (var i = 1; i <= numpages; i++) {
         var button = document.createElement("button");
         button.innerHTML = i;
         button.classList = "btn btn-primary"
         button.addEventListener(
-            "click", 
-            {handleEvent: 
-                function (event){
+            "click", {
+                handleEvent: function(event) {
                     paginate(event.target.innerHTML);
                 }
             }
@@ -129,13 +125,12 @@ function preparePagination(){
     button.classList = "btn btn-primary"
     button.id = "next-btn"
     button.addEventListener(
-        "click", 
-        {handleEvent: 
-            function (event){
-                if (event.target.classList.contains("btn-disabled")){
+        "click", {
+            handleEvent: function(event) {
+                if (event.target.classList.contains("btn-disabled")) {
                     return
-                } else{
-                    paginate(Number(currpage)+1);
+                } else {
+                    paginate(Number(currpage) + 1);
                 }
             }
         }
@@ -154,16 +149,17 @@ function preparePagination(){
     //} catch{}
     return true
 }
-function paginate(page, doUpdate=false){
+
+function paginate(page, doUpdate = false) {
     page = (page == 0) ? 1 : page
-    //console.log('paginating page: ' + page);
+        //console.log('paginating page: ' + page);
 
     var table = document.getElementById("tad-table");
     var display = table.rows[0].cells[0].style.display
-    var start = (page == 0) ? 0 : page*maxrows - maxrows
-    var end = page*maxrows - 1
+    var start = (page == 0) ? 0 : page * maxrows - maxrows
+    var end = page * maxrows - 1
 
-    if (page >= numpages){
+    if (page >= numpages) {
         document.getElementById('next-btn').classList.remove("btn-primary")
         document.getElementById('next-btn').classList.add("btn-disabled")
     } else {
@@ -171,7 +167,7 @@ function paginate(page, doUpdate=false){
         document.getElementById('next-btn').classList.add("btn-primary")
     }
 
-    if (page == 1){
+    if (page == 1) {
         document.getElementById('btn-prev').classList.remove("btn-primary")
         document.getElementById('btn-prev').classList.add("btn-disabled")
     } else {
@@ -180,37 +176,35 @@ function paginate(page, doUpdate=false){
     }
 
     // Hide all rows
-    if (!doUpdate){
-        for (var i=1;i<=table.rows.length - 1;i++){
+    if (!doUpdate) {
+        for (var i = 1; i <= table.rows.length - 1; i++) {
             table.rows[i].style.display = 'none'
         }
-        if (end > table.rows.length){
+        if (end > table.rows.length) {
             end = table.rows.length + (table.rows.length % maxrows)
         }
-        for (var i=start;i<=end;i++){
-            try{
+        for (var i = start; i <= end; i++) {
+            try {
                 table.rows[i].style.display = display
-            }
-            catch {}
+            } catch {}
         }
     } else {
         var rowCount = 0
         var shouldbeVisible = []
-        for (var i=1;i<=table.rows.length - 1;i++){
-            if (!table.rows[i].style.display == 'none'){
+        for (var i = 1; i <= table.rows.length - 1; i++) {
+            if (!table.rows[i].style.display == 'none') {
                 rowCount++
                 shouldbeVisible.push(i)
             }
             console.log(rowCount)
         }
-        if (end > rowCount){
+        if (end > rowCount) {
             end = rowCount + (rowCount % maxrows)
         }
-        for (var j;shouldbeVisible.length;j++){
-            try{
+        for (var j; shouldbeVisible.length; j++) {
+            try {
                 table.rows[shouldbeVisible[j]].style.display = display
-            }
-            catch {}
+            } catch {}
         }
     }
     currpage = page
