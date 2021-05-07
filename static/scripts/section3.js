@@ -1,4 +1,17 @@
 function handleNewMidterm() {
+    var prevList = document.getElementById('midterm');
+    const hu = prevList.getElementsByClassName('midterm-hu')
+    const en = prevList.getElementsByClassName('midterm-en')
+    const percent = prevList.getElementsByClassName('midterm-percent')
+    var prevValues = []
+    for (let i = 0; i < hu.length; i++) {
+        var d = {
+            hu: hu[i].value,
+            en: en[i].value,
+            percent: percent[i].value
+        }
+        prevValues.push(d)
+    }
     const node = `
     <li class="oc_1_1">
         <div class="row">
@@ -16,10 +29,33 @@ function handleNewMidterm() {
     `
     disableSubmitButton()
     document.getElementById('midterm').innerHTML += node;
+    var newList = document.getElementById('midterm')
+    var newHu = newList.getElementsByClassName('midterm-hu')
+    var newEn = newList.getElementsByClassName('midterm-en')
+    var newPercent = newList.getElementsByClassName('midterm-percent')
+    for (let i = 0; i < newHu.length - 1; i++) {
+        console.log(hu[i].value);
+        newHu[i].value = prevValues[i].hu
+        newEn[i].value = prevValues[i].en
+        newPercent[i].value = prevValues[i].en
+    }
     applySubmitDisabler()
 }
 
 function handleNewExam() {
+    var prevList = document.getElementById('exam');
+    const hu = prevList.getElementsByClassName('exam-hu')
+    const en = prevList.getElementsByClassName('exam-en')
+    const percent = prevList.getElementsByClassName('exam-percent')
+    var prevValues = []
+    for (let i = 0; i < hu.length; i++) {
+        var d = {
+            hu: hu[i].value,
+            en: en[i].value,
+            percent: percent[i].value
+        }
+        prevValues.push(d)
+    }
     const node = `
     <li class="oc_1_1">
         <div class="row">
@@ -37,6 +73,16 @@ function handleNewExam() {
     `
     disableSubmitButton()
     document.getElementById('exam').innerHTML += node;
+    var newList = document.getElementById('midterm')
+    var newHu = newList.getElementsByClassName('exam-hu')
+    var newEn = newList.getElementsByClassName('exam-en')
+    var newPercent = newList.getElementsByClassName('exam-percent')
+    for (let i = 0; i < newHu.length - 1; i++) {
+        console.log(hu[i].value);
+        newHu[i].value = prevValues[i].hu
+        newEn[i].value = prevValues[i].en
+        newPercent[i].value = prevValues[i].en
+    }
     applySubmitDisabler()
 }
 

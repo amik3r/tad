@@ -3,7 +3,154 @@ function docReady(fn) {
         setTimeout(fn(), 1);
     } else {
         document.addEventListener("DOMContentLoaded", fn);
+        splitOutcome1()
+        var outcomes1 = document.getElementsByClassName('outcome_1');
+        for (let i = 0; i < outcomes1.length; i++) {
+            const element = outcomes1[i];
+            element.addEventListener('change', splitOutcome1)
+        }
     }
+}
+
+function splitOutcome1() {
+    var container = document.getElementById('outcomes_1');
+    var valueField = document.getElementById('outcome_1_input');
+    var valueFieldEn = document.getElementById('outcome_1_en_input');
+    value = valueField.value;
+    valueEn = valueFieldEn.value;
+    values = value.split(/\d\.\s+/)
+    valuesEn = valueEn.split(/\d\.\s+/)
+    for (let i = 0; i < values.length; i++) {
+        var elementHu = values[i];
+        var elementEn = valuesEn[i];
+        elementHu = elementHu.replace(/\n+/, " ")
+        elementEn = elementEn.replace(/\n+/, " ")
+    }
+    var textboxArray = []
+    for (let i = 0; i < values.length; i++) {
+        const element = values[i];
+        const element_en = valuesEn[i];
+        if (!element == '') {
+            var listElement = `
+            <li>
+            <div class="row">
+                <div class="col-sm-12 col-md">
+                    <textarea type="textarea" class="form-control outcome_1" disabled>${element}</textarea>
+                </div>
+                <div class="col-sm-12 col-md">
+                    <textarea type="textarea" class="form-control outcome_1_en" disabled>${element_en}</textarea>
+                </div>
+                </div>
+            </li>
+            `
+            textboxArray.push(listElement)
+        }
+    }
+    var ol = document.createElement('ol')
+    for (let i = 0; i < textboxArray.length; i++) {
+        const element = textboxArray[i];
+        ol.innerHTML += element
+    }
+    container.innerHTML = ''
+    container.appendChild(valueField)
+    container.appendChild(valueFieldEn)
+    document.getElementById('outcome_1_input').innerHTML = value
+    container.appendChild(ol)
+    console.log(values)
+}
+
+function splitOutcome2() {
+    var container = document.getElementById('outcomes_2');
+    var valueField = document.getElementById('outcome_2_input');
+    var valueFieldEn = document.getElementById('outcome_2_en_input');
+    value = valueField.value;
+    valueEn = valueFieldEn.value;
+    values = value.split(/\d\.\s+/)
+    valuesEn = valueEn.split(/\d\.\s+/)
+    for (let i = 0; i < values.length; i++) {
+        var elementHu = values[i];
+        var elementEn = valuesEn[i];
+        elementHu = elementHu.replace(/\n+/, " ")
+        elementEn = elementEn.replace(/\n+/, " ")
+    }
+    var textboxArray = []
+    for (let i = 0; i < values.length; i++) {
+        const element = values[i];
+        const element_en = valuesEn[i];
+        if (!element == '') {
+            var listElement = `
+            <li>
+            <div class="row">
+                <div class="col-sm-12 col-md">
+                    <textarea type="textarea" class="form-control outcome_2" disabled>${element}</textarea>
+                </div>
+                <div class="col-sm-12 col-md">
+                    <textarea type="textarea" class="form-control outcome_2_en" disabled>${element_en}</textarea>
+                </div>
+                </div>
+            </li>
+            `
+            textboxArray.push(listElement)
+        }
+    }
+    var ol = document.createElement('ol')
+    for (let i = 0; i < textboxArray.length; i++) {
+        const element = textboxArray[i];
+        ol.innerHTML += element
+    }
+    container.innerHTML = ''
+    container.appendChild(valueField)
+    container.appendChild(valueFieldEn)
+    document.getElementById('outcome_2_input').innerHTML = value
+    container.appendChild(ol)
+    console.log(values)
+}
+
+function splitOutcome3() {
+    var container = document.getElementById('outcomes_3');
+    var valueField = document.getElementById('outcome_3_input');
+    var valueFieldEn = document.getElementById('outcome_3_en_input');
+    value = valueField.value;
+    valueEn = valueFieldEn.value;
+    values = value.split(/\d\.\s+/)
+    valuesEn = valueEn.split(/\d\.\s+/)
+    for (let i = 0; i < values.length; i++) {
+        var elementHu = values[i];
+        var elementEn = valuesEn[i];
+        elementHu = elementHu.replace(/\n+/, " ")
+        elementEn = elementEn.replace(/\n+/, " ")
+    }
+    var textboxArray = []
+    for (let i = 0; i < values.length; i++) {
+        const element = values[i];
+        const element_en = valuesEn[i];
+        if (!element == '') {
+            var listElement = `
+            <li>
+            <div class="row">
+                <div class="col-sm-12 col-md">
+                    <textarea type="textarea" class="form-control outcome_3" disabled>${element}</textarea>
+                </div>
+                <div class="col-sm-12 col-md">
+                    <textarea type="textarea" class="form-control outcome_3_en" disabled>${element_en}</textarea>
+                </div>
+                </div>
+            </li>
+            `
+            textboxArray.push(listElement)
+        }
+    }
+    var ol = document.createElement('ol')
+    for (let i = 0; i < textboxArray.length; i++) {
+        const element = textboxArray[i];
+        ol.innerHTML += element
+    }
+    container.innerHTML = ''
+    container.appendChild(valueField)
+    container.appendChild(valueFieldEn)
+    document.getElementById('outcome_3_input').innerHTML = value
+    container.appendChild(ol)
+    console.log(values)
 }
 
 function handleNewOutcome1(id) {
@@ -36,7 +183,6 @@ function handleNewOutcome1(id) {
     var newList = document.getElementById(id)
     var newHu = newList.getElementsByClassName('outcome_1')
     var newEn = newList.getElementsByClassName('outcome_1_en')
-    console.log(newHu.length);
     for (let i = 0; i < newHu.length - 1; i++) {
         console.log(hu[i].value);
         newHu[i].value = prevValues[i].hu
