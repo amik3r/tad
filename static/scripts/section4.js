@@ -43,21 +43,16 @@ function splitTopics(){
     var valueFieldEn = document.getElementById('topic-en');
     value = valueField.value;
     valueEn = valueFieldEn.value;
-    values = value.split(/\d\.\s+/)
-    valuesEn = valueEn.split(/\d\.\s+/)
-    for (let i = 0; i < values.length; i++) {
-        var elementHu = values[i];
-        var elementEn = valuesEn[i];
-        elementEn = capitalizeFirstLetter(elementEn.replace(/\n+/, " "))
-        elementHu = capitalizeFirstLetter(elementHu.replace(/\n+/, " "))
-    }
+    values = value.split(/\n/)
+    valuesEn = valueEn.split(/\n/)
+
     var textboxArray = []
     for (let i = 0; i < values.length; i++) {
         var element = values[i];
         var element_en = valuesEn[i];
         if (element != '') {
             var listElement = `
-            <li class="topic-list">
+            <li>
                 <div class="row">
                     <div class="col-sm-12 col-md">
                         <textarea type="textarea" placeholder="magyar" class="form-control topic-hu" disabled>${element}</textarea>
@@ -69,6 +64,7 @@ function splitTopics(){
             </li>
             `
             textboxArray.push(listElement)
+            console.log(textboxArray);
         }
     }
     var ol = document.createElement('ol')
@@ -83,6 +79,7 @@ function splitTopics(){
     document.getElementById('topic-en').innerHTML = valueFieldEn.value
     container.appendChild(ol)
     console.log(values)
+    console.log(valuesEn)
 }
 
 var topics = {
