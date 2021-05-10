@@ -37,6 +37,53 @@ function handleNewTopic() {
     applySubmitDisabler()
 }
 
+function splitTopics(){
+    var container = document.getElementById('topics');
+    var valueField = document.getElementById('topic-hu');
+    var valueFieldEn = document.getElementById('topic-en');
+    value = valueField.value;
+    valueEn = valueFieldEn.value;
+    values = value.split(/\d\.\s+/)
+    valuesEn = valueEn.split(/\d\.\s+/)
+    for (let i = 0; i < values.length; i++) {
+        var elementHu = values[i];
+        var elementEn = valuesEn[i];
+        elementEn = capitalizeFirstLetter(elementEn.replace(/\n+/, " "))
+        elementHu = capitalizeFirstLetter(elementHu.replace(/\n+/, " "))
+    }
+    var textboxArray = []
+    for (let i = 0; i < values.length; i++) {
+        var element = values[i];
+        var element_en = valuesEn[i];
+        if (element != '') {
+            var listElement = `
+            <li class="topic-list">
+            <div class="row">
+                <div class="col-sm-12 col-md">
+                    <textarea type="textarea" placeholder="magyar" id="topic-hu" class="form-control topic-hu" disabled>${element}</textarea>
+                </div>
+                <div class="col-sm-12 col-md">
+                    <textarea type="textarea" placeholder="English (optional)" id="topic-en" class="form-control topic-en" disabled>${element_en}</textarea>
+                </div>
+            </div>
+        </li>
+            `
+            textboxArray.push(listElement)
+        }
+    }
+    var ol = document.createElement('ol')
+    for (let i = 0; i < textboxArray.length; i++) {
+        const element = textboxArray[i];
+        ol.innerHTML += element
+    }
+    container.innerHTML = ''
+    container.appendChild(valueField)
+    container.appendChild(valueFieldEn)
+    document.getElementById('outcome_1_input').innerHTML = value
+    container.appendChild(ol)
+    console.log(values)
+}
+
 var topics = {
     "topics": []
 }
