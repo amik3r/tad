@@ -77,10 +77,10 @@ function splitTopics(){
         ol.innerHTML += element
     }
     container.innerHTML = ''
-    container.appendChild(valueField)
+    /* container.appendChild(valueField)
     container.appendChild(valueFieldEn)
     document.getElementById('topic-hu').innerHTML = valueField
-    document.getElementById('topic-en').innerHTML = valueFieldEn
+    document.getElementById('topic-en').innerHTML = valueFieldEn */
     container.appendChild(ol)
     console.log(values)
 }
