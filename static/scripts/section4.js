@@ -58,15 +58,15 @@ function splitTopics(){
         if (element != '') {
             var listElement = `
             <li class="topic-list">
-            <div class="row">
-                <div class="col-sm-12 col-md">
-                    <textarea type="textarea" placeholder="magyar" class="form-control topic-hu" disabled>${element}</textarea>
+                <div class="row">
+                    <div class="col-sm-12 col-md">
+                        <textarea type="textarea" placeholder="magyar" class="form-control topic-hu" disabled>${element}</textarea>
+                    </div>
+                    <div class="col-sm-12 col-md">
+                        <textarea type="textarea" placeholder="English (optional)" class="form-control topic-en" disabled>${element_en}</textarea>
+                    </div>
                 </div>
-                <div class="col-sm-12 col-md">
-                    <textarea type="textarea" placeholder="English (optional)" class="form-control topic-en" disabled>${element_en}</textarea>
-                </div>
-            </div>
-        </li>
+            </li>
             `
             textboxArray.push(listElement)
         }
