@@ -79,7 +79,8 @@ function splitTopics(){
     container.innerHTML = ''
     container.appendChild(valueField)
     container.appendChild(valueFieldEn)
-    document.getElementById('outcome_1_input').innerHTML = value
+    document.getElementById('topic-hu').innerHTML = valueField
+    document.getElementById('topic-en').innerHTML = valueFieldEn
     container.appendChild(ol)
     console.log(values)
 }
