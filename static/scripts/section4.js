@@ -60,10 +60,10 @@ function splitTopics(){
             <li class="topic-list">
             <div class="row">
                 <div class="col-sm-12 col-md">
-                    <textarea type="textarea" placeholder="magyar" id="topic-hu" class="form-control topic-hu" disabled>${element}</textarea>
+                    <textarea type="textarea" placeholder="magyar" class="form-control topic-hu" disabled>${element}</textarea>
                 </div>
                 <div class="col-sm-12 col-md">
-                    <textarea type="textarea" placeholder="English (optional)" id="topic-en" class="form-control topic-en" disabled>${element_en}</textarea>
+                    <textarea type="textarea" placeholder="English (optional)" class="form-control topic-en" disabled>${element_en}</textarea>
                 </div>
             </div>
         </li>
